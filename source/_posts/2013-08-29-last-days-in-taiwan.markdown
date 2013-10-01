@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 在島上的最後幾天
+comments: true
 categories:
 - 隨心所想
 tags:

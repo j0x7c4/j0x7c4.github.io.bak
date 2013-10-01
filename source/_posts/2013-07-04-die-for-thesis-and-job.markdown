@@ -6,6 +6,7 @@ categories:
 tags: []
 status: publish
 type: post
+comments: true
 published: true
 meta:
   _edit_last: '1'

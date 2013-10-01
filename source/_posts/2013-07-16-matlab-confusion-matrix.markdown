@@ -8,6 +8,7 @@ tags:
 - matlab
 status: publish
 type: post
+comments: true
 published: true
 meta:
   dsq_thread_id: '1781962138'

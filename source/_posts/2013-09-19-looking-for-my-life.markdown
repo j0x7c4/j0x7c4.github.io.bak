@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: 寻找自己的生活
 categories:
 - 隨心所想
@@ -7,6 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
+
 meta:
   _edit_last: '1'
   dsq_thread_id: '1795175331'

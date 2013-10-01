@@ -3,6 +3,7 @@ layout: post
 title: 又熬過了一夜
 categories:
 - 隨心所想
+comments: true
 tags: []
 status: publish
 type: post

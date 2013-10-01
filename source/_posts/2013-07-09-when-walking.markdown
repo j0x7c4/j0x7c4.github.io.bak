@@ -4,6 +4,7 @@ title: 走著走著
 categories:
 - 隨心所想
 tags: []
+comments: true
 status: publish
 type: post
 published: true

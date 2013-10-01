@@ -10,6 +10,7 @@ tags:
 status: publish
 type: post
 published: true
+comments: true
 meta:
   dsq_thread_id: '1795161006'
   _edit_last: '1'

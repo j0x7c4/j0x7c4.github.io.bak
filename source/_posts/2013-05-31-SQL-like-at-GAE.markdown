@@ -7,6 +7,7 @@ categories:
 tags:
 - GAE
 - Python
+comments: true
 status: publish
 type: post
 published: true
