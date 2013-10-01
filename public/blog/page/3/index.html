@@ -9,7 +9,7 @@
   <meta name="author" content="Eli">
 
   
-  <meta name="description" content="很多应用都需要database的支持，GAE提供了不错的Database服务。 但是对于新手来讲，不是太容易理解GAE的database. GAE上的database称为datastore. 对于习惯于MySQL这种常见的SQL database的开发者来说，第一步当然是建立一个database &hellip;">
+  <meta name="description" content="目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。 利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。 import json import urllib url=URL_QUERY f = urllib. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/">Python Urllib+json 与web API交互</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+        
+           | <a href="/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。
+
+利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。
+<pre class="lang:python decode:true ">import json
+import urllib
+
+url=URL_QUERY
+f = urllib.urlopen(url)
+j = json.loads(f.read())</pre>
+f这个object存储了server回传的信息，通过read()将文字信息读出来。
+
+loads()将文字信息转成dictionary和list的形式，存储在j中。
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -240,6 +290,10 @@ for item in q:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/">从wordpress到octopress迁移成功</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/">改版octopress 之 安装</a>
       </li>
     
@@ -253,10 +307,6 @@ for item in q:
     
       <li class="post">
         <a href="/blog/2013/08/29/%25e5%259c%25a8%25e5%25b3%25b6%25e4%25b8%258a%25e7%259a%2584%25e6%259c%2580%25e5%25be%258c%25e5%25b9%25be%25e5%25a4%25a9/">在島上的最後幾天</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/10/%25e9%2597%259c%25e6%2596%25bc%25e4%25b8%25ad%25e5%259c%258b%25e7%2594%25b7%25e7%25b1%2583%25e8%25a2%25ab%25e5%258f%25b0%25e7%2581%25a3%25e7%2594%25b7%25e7%25b1%2583%25e5%25ae%258c%25e7%2588%2586/">關於中國男籃被台灣男籃完爆</a>
       </li>
     
   </ul>
@@ -280,7 +330,7 @@ for item in q:
   
 
 <script type="text/javascript">
-      var disqus_shortname = 'chinaeli';
+      var disqus_shortname = 'blog-jfttt';
       
         
         var disqus_script = 'count.js';

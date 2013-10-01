@@ -9,7 +9,7 @@
   <meta name="author" content="Eli">
 
   
-  <meta name="description" content="一直以為有路就要往前走，一直以為往前走就是對的。其實我並不知道這條路通向哪裡，只是覺得往前走就能看到更加美麗的景色。但是身邊的景色也很美，我這樣一直的趕路，錯過了身邊的美景，卻始終無法收穫心中嚮往的景色。 走著走著覺得是不是應該走慢一點。從小學畢業，就有一條明確的路，我要念中學，3年唸完初中， &hellip;">
+  <meta name="description" content="在pattern recognition 中通常用confusion matrix 來表示實驗結果。最近處理論文的實驗結果時發現用matlab可以比較方便的畫出confusion matrix來。 以下是效果图。 n = 14; file = 'data.csv'; ylabels = ['BT &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,87 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/">用matlab畫Confusion Matrix</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-16T00:00:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">在pattern recognition 中通常用confusion matrix 來表示實驗結果。最近處理論文的實驗結果時發現用matlab可以比較方便的畫出confusion matrix來。
+
+以下是效果图。
+<img class="aligncenter" alt="" src="http://farm8.staticflickr.com/7364/9303955419_9aafcbf1c2_o.png" width="584" height="477" />
+<pre class="lang:default decode:true">n = 14;
+file = 'data.csv';
+ylabels = ['BT';'CC';'CS';'DW';'OC';'  ';'RC';'RW';'SS';'TC';'TP';'WL';'WC';'WW'];
+xlabels = ['BT';'CC';'CS';'DW';'OC';'  ';'RC';'RW';'SS';'TC';'TP';'WL';'WC';'WW'];
+
+X = csvread(file);
+
+%normalize
+for i=1:n
+    X(i,:)=X(i,:)/norm(X(i,:),1);
+end
+%inverse data
+X=imcomplement(X);
+%draw
+imagesc(X);
+colormap(gray);
+axis off;
+text(0,6,'Random','HorizontalAlignment','right');
+for i=1:n
+    text(0,i,ylabels(i,:),'HorizontalAlignment','right');
+end
+h=text(6,n+1,'Netural','VerticalAlignment','middle','HorizontalAlignment','right');
+set(h,'rotation',60);
+for i=1:n
+    h = text(i,n+1,xlabels(i,:),'VerticalAlignment','middle','HorizontalAlignment','right');
+    set(h,'rotation',60);
+end
+disp(X);
+%add value
+for i=1:n
+    for j=1:n
+        if X(i,j)&lt;0.7
+            text(i,j,num2str(1-X(i,j),'%.2f'),'VerticalAlignment','middle','HorizontalAlignment','center','color','white');
+        end
+    end
+end</pre>
+&nbsp;
+
+&nbsp;
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -480,56 +561,6 @@ set(h,'FaceColor',[0 0 0],'FaceAlpha',0.5) %change the surface color, and alpha<
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/">Python Urllib+json 与web API交互</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
-        
-           | <a href="/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/#disqus_thread"
-             data-disqus-identifier="http://yoursite.com/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content">目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。
-
-利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。
-<pre class="lang:python decode:true ">import json
-import urllib
-
-url=URL_QUERY
-f = urllib.urlopen(url)
-j = json.loads(f.read())</pre>
-f这个object存储了server回传的信息，通过read()将文字信息读出来。
-
-loads()将文字信息转成dictionary和list的形式，存储在j中。
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -547,6 +578,10 @@ loads()将文字信息转成dictionary和list的形式，存储在j中。
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/">从wordpress到octopress迁移成功</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/">改版octopress 之 安装</a>
       </li>
     
@@ -560,10 +595,6 @@ loads()将文字信息转成dictionary和list的形式，存储在j中。
     
       <li class="post">
         <a href="/blog/2013/08/29/%25e5%259c%25a8%25e5%25b3%25b6%25e4%25b8%258a%25e7%259a%2584%25e6%259c%2580%25e5%25be%258c%25e5%25b9%25be%25e5%25a4%25a9/">在島上的最後幾天</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/10/%25e9%2597%259c%25e6%2596%25bc%25e4%25b8%25ad%25e5%259c%258b%25e7%2594%25b7%25e7%25b1%2583%25e8%25a2%25ab%25e5%258f%25b0%25e7%2581%25a3%25e7%2594%25b7%25e7%25b1%2583%25e5%25ae%258c%25e7%2588%2586/">關於中國男籃被台灣男籃完爆</a>
       </li>
     
   </ul>
@@ -587,7 +618,7 @@ loads()将文字信息转成dictionary和list的形式，存储在j中。
   
 
 <script type="text/javascript">
-      var disqus_shortname = 'chinaeli';
+      var disqus_shortname = 'blog-jfttt';
       
         
         var disqus_script = 'count.js';

@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-01T23:31:14+08:00</updated>
+  <updated>2013-10-02T00:04:56+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[从wordpress到octopress迁移成功]]></title>
+    <link href="http://yoursite.com/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/"/>
+    <updated>2013-10-01T23:49:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong</id>
+    <content type="html"><![CDATA[<p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，有点小开心。</p>
+
+<p>我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多，就小改了一下。
+<a href=http://jekyllrb.com/docs/migrations/><a href="http://jekyllrb.com/docs/migrations/">http://jekyllrb.com/docs/migrations/</a></a></p>
+
+<p>不过目前还有个问题，从wordpress转过来的文章，好像在超链接上还是有点问题，需要再研究一下。接下来要了解markdown语法啦，用这个写博客真的很酷！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[改版octopress 之 安装]]></title>
@@ -471,26 +485,6 @@ set(h,'FaceColor',[0 0 0],'FaceAlpha',0.5) %change the surface color, and alpha<
 房子周圍還是會有很多路人經過，但不是每個人都適合這個房子；也不是所有人願意住進這個房子。其實房子也在期盼新的主人，並且希望這個主人一住，就是一輩子。
 
 世界就是這麼多變，原本以為只是路人，相處之後發覺路人已經變成親愛的，記不清從哪一刻起，她已經住進了心裡的房子。很難判斷她只是路過這個房子，還是對這個房子很期待，想住在裡面。但這時，房子已經認為不能缺少她了。因為她的到來，這個房子又重新溫暖起來，產生一種動力，想做好每一件事情的動力。也許這就是對的人。房子想要做得更好，讓她能夠一直住在裡面不離開。
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Python urllib+json 与web API交互]]></title>
-    <link href="http://yoursite.com/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/"/>
-    <updated>2013-06-01T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/01/python-urllibjson-%e4%b8%8eweb-api%e4%ba%a4%e4%ba%92</id>
-    <content type="html"><![CDATA[目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。
-
-利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。
-<pre class="lang:python decode:true ">import json
-import urllib
-
-url=URL_QUERY
-f = urllib.urlopen(url)
-j = json.loads(f.read())</pre>
-f这个object存储了server回传的信息，通过read()将文字信息读出来。
-
-loads()将文字信息转成dictionary和list的形式，存储在j中。
 ]]></content>
   </entry>
   

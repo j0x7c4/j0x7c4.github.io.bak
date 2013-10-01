@@ -9,8 +9,7 @@
   <meta name="author" content="Eli">
 
   
-  <meta name="description" content="心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。 但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。 首先从git上抓来octopress 1
-git clone git@ &hellip;">
+  <meta name="description" content="忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，有点小开心。 我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,50 @@ git clone git@ &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/">从wordpress到octopress迁移成功</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-01T23:49:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2013</time>
+        
+           | <a href="/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，有点小开心。</p>
+
+<p>我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多，就小改了一下。
+<a href=http://jekyllrb.com/docs/migrations/><a href="http://jekyllrb.com/docs/migrations/">http://jekyllrb.com/docs/migrations/</a></a></p>
+
+<p>不过目前还有个问题，从wordpress转过来的文章，好像在超链接上还是有点问题，需要再研究一下。接下来要了解markdown语法啦，用这个写博客真的很酷！</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -603,87 +646,6 @@ Map中的Key会按照它自己的类中定义的less运算符去比较大小，�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/">用matlab畫Confusion Matrix</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-16T00:00:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/#disqus_thread"
-             data-disqus-identifier="http://yoursite.com/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content">在pattern recognition 中通常用confusion matrix 來表示實驗結果。最近處理論文的實驗結果時發現用matlab可以比較方便的畫出confusion matrix來。
-
-以下是效果图。
-<img class="aligncenter" alt="" src="http://farm8.staticflickr.com/7364/9303955419_9aafcbf1c2_o.png" width="584" height="477" />
-<pre class="lang:default decode:true">n = 14;
-file = 'data.csv';
-ylabels = ['BT';'CC';'CS';'DW';'OC';'  ';'RC';'RW';'SS';'TC';'TP';'WL';'WC';'WW'];
-xlabels = ['BT';'CC';'CS';'DW';'OC';'  ';'RC';'RW';'SS';'TC';'TP';'WL';'WC';'WW'];
-
-X = csvread(file);
-
-%normalize
-for i=1:n
-    X(i,:)=X(i,:)/norm(X(i,:),1);
-end
-%inverse data
-X=imcomplement(X);
-%draw
-imagesc(X);
-colormap(gray);
-axis off;
-text(0,6,'Random','HorizontalAlignment','right');
-for i=1:n
-    text(0,i,ylabels(i,:),'HorizontalAlignment','right');
-end
-h=text(6,n+1,'Netural','VerticalAlignment','middle','HorizontalAlignment','right');
-set(h,'rotation',60);
-for i=1:n
-    h = text(i,n+1,xlabels(i,:),'VerticalAlignment','middle','HorizontalAlignment','right');
-    set(h,'rotation',60);
-end
-disp(X);
-%add value
-for i=1:n
-    for j=1:n
-        if X(i,j)&lt;0.7
-            text(i,j,num2str(1-X(i,j),'%.2f'),'VerticalAlignment','middle','HorizontalAlignment','center','color','white');
-        end
-    end
-end</pre>
-&nbsp;
-
-&nbsp;
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -699,6 +661,10 @@ end</pre>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/">从wordpress到octopress迁移成功</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/">改版octopress 之 安装</a>
       </li>
     
@@ -712,10 +678,6 @@ end</pre>
     
       <li class="post">
         <a href="/blog/2013/08/29/%25e5%259c%25a8%25e5%25b3%25b6%25e4%25b8%258a%25e7%259a%2584%25e6%259c%2580%25e5%25be%258c%25e5%25b9%25be%25e5%25a4%25a9/">在島上的最後幾天</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/10/%25e9%2597%259c%25e6%2596%25bc%25e4%25b8%25ad%25e5%259c%258b%25e7%2594%25b7%25e7%25b1%2583%25e8%25a2%25ab%25e5%258f%25b0%25e7%2581%25a3%25e7%2594%25b7%25e7%25b1%2583%25e5%25ae%258c%25e7%2588%2586/">關於中國男籃被台灣男籃完爆</a>
       </li>
     
   </ul>
@@ -739,7 +701,7 @@ end</pre>
   
 
 <script type="text/javascript">
-      var disqus_shortname = 'chinaeli';
+      var disqus_shortname = 'blog-jfttt';
       
         
         var disqus_script = 'count.js';

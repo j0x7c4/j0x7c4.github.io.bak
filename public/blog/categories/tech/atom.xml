@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-01T23:31:14+08:00</updated>
+  <updated>2013-10-02T00:04:56+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[从wordpress到octopress迁移成功]]></title>
+    <link href="http://yoursite.com/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/"/>
+    <updated>2013-10-01T23:49:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong</id>
+    <content type="html"><![CDATA[<p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，有点小开心。</p>
+
+<p>我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多，就小改了一下。
+<a href=http://jekyllrb.com/docs/migrations/><a href="http://jekyllrb.com/docs/migrations/">http://jekyllrb.com/docs/migrations/</a></a></p>
+
+<p>不过目前还有个问题，从wordpress转过来的文章，好像在超链接上还是有点问题，需要再研究一下。接下来要了解markdown语法啦，用这个写博客真的很酷！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[改版octopress 之 安装]]></title>
@@ -191,60 +205,6 @@ if __name__ == '__main__':
 
 
 <p>Map中的Key会按照它自己的类中定义的less运算符去比较大小，如果像vector, pair这种多元素的对象，会根据里面所有数据的字典序来进行大小的判断。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用matlab畫Confusion matrix]]></title>
-    <link href="http://yoursite.com/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/"/>
-    <updated>2013-07-16T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/16/%e7%94%a8matlab%e7%95%abconfusion-matrix</id>
-    <content type="html"><![CDATA[<p>在pattern recognition 中通常用confusion matrix 來表示實驗結果。最近處理論文的實驗結果時發現用matlab可以比較方便的畫出confusion matrix來。</p>
-
-<p>以下是效果图。
-<img class="aligncenter" alt="" src="http://farm8.staticflickr.com/7364/9303955419_9aafcbf1c2_o.png" width="584" height="477" /></p>
-
-<pre class="lang:default decode:true">n = 14;
-file = 'data.csv';
-ylabels = ['BT';'CC';'CS';'DW';'OC';'  ';'RC';'RW';'SS';'TC';'TP';'WL';'WC';'WW'];
-xlabels = ['BT';'CC';'CS';'DW';'OC';'  ';'RC';'RW';'SS';'TC';'TP';'WL';'WC';'WW'];
-
-X = csvread(file);
-
-%normalize
-for i=1:n
-    X(i,:)=X(i,:)/norm(X(i,:),1);
-end
-%inverse data
-X=imcomplement(X);
-%draw
-imagesc(X);
-colormap(gray);
-axis off;
-text(0,6,'Random','HorizontalAlignment','right');
-for i=1:n
-    text(0,i,ylabels(i,:),'HorizontalAlignment','right');
-end
-h=text(6,n+1,'Netural','VerticalAlignment','middle','HorizontalAlignment','right');
-set(h,'rotation',60);
-for i=1:n
-    h = text(i,n+1,xlabels(i,:),'VerticalAlignment','middle','HorizontalAlignment','right');
-    set(h,'rotation',60);
-end
-disp(X);
-%add value
-for i=1:n
-    for j=1:n
-        if X(i,j)&lt;0.7
-            text(i,j,num2str(1-X(i,j),'%.2f'),'VerticalAlignment','middle','HorizontalAlignment','center','color','white');
-        end
-    end
-end</pre>
-
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
 ]]></content>
   </entry>
   
