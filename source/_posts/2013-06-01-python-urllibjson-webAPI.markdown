@@ -17,12 +17,13 @@ meta:
 目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。
 
 利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。
-<pre class="lang:python decode:true ">import json
+```python
+import json
 import urllib
-
 url=URL_QUERY
 f = urllib.urlopen(url)
-j = json.loads(f.read())</pre>
-f这个object存储了server回传的信息，通过read()将文字信息读出来。
+j = json.loads(f.read())
+```
+f这个object存储了server回传的信息，通过```read()```将文字信息读出来。
 
-loads()将文字信息转成dictionary和list的形式，存储在j中。
+```loads()```将文字信息转成dictionary和list的形式，存储在j中。

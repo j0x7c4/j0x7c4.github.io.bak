@@ -9,10 +9,15 @@
   <meta name="author" content="Eli">
 
   
-  <meta name="description" content="Figure %create a figure
+  <meta name="description" content="1
+2
+3
+4
+5
+Figure %create a figure
 [x,y,z]=sphere(10) %get the mesh of x,y,z for 10x10 surface sphere
 h=surf(x,y,z) %create the object of surface
-axis equal set &hellip;">
+axis &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,11 +103,17 @@ axis equal set &hellip;">
   </header>
 
 
-<div class="entry-content"><pre class="lang:default decode:true">Figure %create a figure
-[x,y,z]=sphere(10) %get the mesh of x,y,z for 10x10 surface sphere
-h=surf(x,y,z) %create the object of surface
-axis equal 
-set(h,'FaceColor',[0 0 0],'FaceAlpha',0.5) %change the surface color, and alpha</pre>
+<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">Figure</span> <span class="c">%create a figure</span>
+</span><span class='line'><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">]=</span><span class="n">sphere</span><span class="p">(</span>10<span class="p">)</span> <span class="c">%get the mesh of x,y,z for 10x10 surface sphere</span>
+</span><span class='line'><span class="n">h</span><span class="p">=</span><span class="n">surf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="c">%create the object of surface</span>
+</span><span class='line'><span class="n">axis</span> <span class="n">equal</span>
+</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;FaceColor&#39;</span><span class="p">,[</span>0 0 0<span class="p">],</span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span>0<span class="p">.</span>5<span class="p">)</span> <span class="c">%change the surface color, and alpha</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>寫thesis需要各種圖，那些圖用photoshop畫會瘋掉。Matlab可以畫出科學上需要的圖。</p>

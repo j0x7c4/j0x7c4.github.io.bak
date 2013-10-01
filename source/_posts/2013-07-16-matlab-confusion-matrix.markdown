@@ -16,8 +16,11 @@ meta:
 在pattern recognition 中通常用confusion matrix 來表示實驗結果。最近處理論文的實驗結果時發現用matlab可以比較方便的畫出confusion matrix來。
 
 以下是效果图。
+
 <img class="aligncenter" alt="" src="http://farm8.staticflickr.com/7364/9303955419_9aafcbf1c2_o.png" width="584" height="477" />
-<pre class="lang:default decode:true">n = 14;
+
+```matlab
+n = 14;
 file = 'data.csv';
 ylabels = ['BT';'CC';'CS';'DW';'OC';'  ';'RC';'RW';'SS';'TC';'TP';'WL';'WC';'WW'];
 xlabels = ['BT';'CC';'CS';'DW';'OC';'  ';'RC';'RW';'SS';'TC';'TP';'WL';'WC';'WW'];
@@ -48,11 +51,9 @@ disp(X);
 %add value
 for i=1:n
     for j=1:n
-        if X(i,j)&lt;0.7
+        if X(i,j)<0.7
             text(i,j,num2str(1-X(i,j),'%.2f'),'VerticalAlignment','middle','HorizontalAlignment','center','color','white');
         end
     end
-end</pre>
-&nbsp;
-
-&nbsp;
+end
+```
