@@ -1,0 +1,775 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>醉過方知酒濃</title>
+  <meta name="author" content="Eli">
+
+  
+  <meta name="description" content="心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。 但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。 首先从git上抓来octopress 1
+git clone git@ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yoursite.com">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="醉過方知酒濃" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">醉過方知酒濃</a></h1>
+  
+    <h2>所謂辜負，都是浪漫的蹉跎</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:yoursite.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/">改版octopress 之 安装</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-01T00:00:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2013</time>
+        
+           | <a href="/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。
+
+但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。
+
+首先从git上抓来octopress
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git@github.com:imathis/octopress.git</span></code></pre></td></tr></table></div></figure>
+然后进入octopress目录下，build源代码
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
+</span><span class='line'>bundle install
+</span><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
+以上几步都没有问题，然后执行
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
+然后问题就来了，出现了错误
+
+Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+rake aborted!
+undefined method `spawn&#8217; for Process:Module
+
+因为octopress需要ruby 1.9.3，而我原本mac上的ruby是1.8.3. 所以要把ruby更新到1.9.3才能用
+
+网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.
+
+我安装stable版本的rvm
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -L https://get.rvm.io | bash -s stable</span></code></pre></td></tr></table></div></figure>
+然后将rvm写到用户环境中。
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>echo "source $HOME/.rvm/scripts/rvm" &gt;&gt; ~/.bash_profile</span></code></pre></td></tr></table></div></figure>
+具体详见 <a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a>
+
+然后使用rvm来安装1.9.3版本的ruby.
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rvm install ruby-1.9.3-p448</span></code></pre></td></tr></table></div></figure>
+不过在这之前，要先确定安装了xcode的command line tools.
+
+可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/25/hive%25e4%25b8%25ad%25e4%25bd%25bf%25e7%2594%25a8python%25e5%25ae%259e%25e7%258e%25b0udf/">HIVE中使用python实现UDF</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/09/25/hive%25e4%25b8%25ad%25e4%25bd%25bf%25e7%2594%25a8python%25e5%25ae%259e%25e7%258e%25b0udf/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/09/25/hive%25e4%25b8%25ad%25e4%25bd%25bf%25e7%2594%25a8python%25e5%25ae%259e%25e7%258e%25b0udf/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。
+
+UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。
+
+HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。
+
+使用HIVE的命令进入数据仓库(search)
+<pre class="lang:default decode:true">use search;</pre>
+使用HIVE的命令查看已经建立的表
+<pre class="lang:sh decode:true">show tables;</pre>
+使用HIVE的命令查看xxx表中的字段
+<pre class="lang:sh decode:true">describe xxx;</pre>
+使用HIVE命令用PYTHON实现UDF
+<pre class="lang:tsql decode:true">add file udf.py;
+SELECT 
+TRANSFORM(keyword)
+USING 'python udf.py'
+AS(keyword)
+FROM xxx
+WHERE dt='2013-09-25'
+;</pre>
+要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。
+
+输入到python中的内容，是按照AS里的数量来决定的。
+
+下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。
+<pre class="lang:python decode:true" title="udf.py">#encoding=utf-8
+import sys
+
+for line in sys.stdin:
+    line = line.strip()
+    print line</pre>
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/19/%25e5%25af%25bb%25e6%2589%25be%25e8%2587%25aa%25e5%25b7%25b1%25e7%259a%2584%25e7%2594%259f%25e6%25b4%25bb/">寻找自己的生活</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-19T00:00:00+08:00" pubdate data-updated="true">Sep 19<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/09/19/%25e5%25af%25bb%25e6%2589%25be%25e8%2587%25aa%25e5%25b7%25b1%25e7%259a%2584%25e7%2594%259f%25e6%25b4%25bb/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/09/19/%25e5%25af%25bb%25e6%2589%25be%25e8%2587%25aa%25e5%25b7%25b1%25e7%259a%2584%25e7%2594%259f%25e6%25b4%25bb/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">转眼间，从台湾回来已经半个多月了。回来之后也忙了不少事情，最大一件事应该是找了一份不错的工作，了去一桩心事。不过其他的心事也接踵而来，比如找房子，找对象等。。。
+
+感觉在毕业之后的两个礼拜内就能找到一份工作，算是相当的神速。不过也有很多客观原因，使得我不得不当机立断，没有太多的“货比三家”的时间。老爸似乎对我这个选择也没有非常满意，在他看来进到一个大家公认的大公司要比呆在一个小公司里做些核心的事情要有意义的多。但是在我看来，我并没有因为进不了这些大公司而感到过分沮丧，我是一个善于自我治愈的人，一开始虽然是有点放不下大公司offer的诱惑，不过在我签下这个到手的offer之后，自我治愈的过程就开始了。能够在一个核心部门发挥自己的价值，能够直接提高产品的效能，能够马上和这家公司的牛人们一起工作，使我对这个工作的兴奋感越来越强。没过多久，我已经把自己的心情恢复到了平衡点上。
+
+现在很多事情都已经一步一步确定，接下来的就是上班工作的节奏了。这几天比较关心的问题就是下班之后干什么？我估摸着自己现在肯定不是一个工作狂，在下班之后希望能及时行乐。那我可以干些什么事呢？然后我发现我一直以来都有的一个问题，就是专注力不够集中，做事很容易分心。不过在deadline的驱使下，我的专注力还是很强的。于是我决定开始看书，一方面补充自己贫乏的人文知识，一方面锻炼自己的专注力。第三方面，也是为了能和喜欢看书的人有些共同语言。这几天看的几本书感觉都不错，曾经的伪文青终于得到了真正的文化知识的滋润了。
+
+对于即将工作的我来说，接下来的日子还很长，还有很多路要走。在生活中有很多东西想要去追逐，希望这些追逐的东西不要在未来的某一天，被证明是可有可无的。希望能找到我自己真正喜欢的生活方式。
+
+&nbsp;
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/29/%25e5%259c%25a8%25e5%25b3%25b6%25e4%25b8%258a%25e7%259a%2584%25e6%259c%2580%25e5%25be%258c%25e5%25b9%25be%25e5%25a4%25a9/">在島上的最後幾天</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-29T00:00:00+08:00" pubdate data-updated="true">Aug 29<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/08/29/%25e5%259c%25a8%25e5%25b3%25b6%25e4%25b8%258a%25e7%259a%2584%25e6%259c%2580%25e5%25be%258c%25e5%25b9%25be%25e5%25a4%25a9/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/08/29/%25e5%259c%25a8%25e5%25b3%25b6%25e4%25b8%258a%25e7%259a%2584%25e6%259c%2580%25e5%25be%258c%25e5%25b9%25be%25e5%25a4%25a9/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">兩年前的今天，我忙著收拾行李，忙著和朋友吃飯告別，準備著來台灣的一切。對台灣的了解也只是林志玲和聯發科。
+
+經過了兩年的生活，雖然不能肯定說自己對台灣有多了解，但肯定是被台灣深深的吸引了。
+
+<span style="line-height: 1.714285714; font-size: 1rem;">我喜歡藍色，因為天空是藍色，大海是藍色，深處廣闊的藍色中，有一種獨特的滿足感。</span>
+
+<span style="line-height: 1.714285714; font-size: 1rem;">在台灣，我看到了最美的藍色，小時候作文中藍藍的天空，白白的雲朵，終於在這裡讓我領略到它們的美。</span>
+
+<img class="alignnone" alt="" src="http://farm8.staticflickr.com/7399/9614610447_96d627a476.jpg" width="500" height="333" />
+
+以前在大陸時，我不經常去海邊，偶爾幾次去海邊，看到的大海和我心目中的大海還是有很大差距。在這裡，我看到了比我心目中更美的大海。
+
+<img class="alignnone" alt="" src="http://farm3.staticflickr.com/2813/9617841176_5de61743b0.jpg" width="500" height="333" />
+
+<span style="line-height: 1.714285714; font-size: 1rem;">在如此美麗的沙灘上，似乎任何煩惱都會暫時的忘記。</span>
+
+台灣吸引我的，除了看不完的美景，還有忘不了的人情。
+
+初來台灣，令我最想不到的是台北的建築。這裡的建築和大陸的高大，浮華不同，它們沒有艷麗的外表，卻深深的流露出溫馨的感覺。走在學校附近的窄小的巷子，兩邊的房子看似都有20多年的房齡，卻還是這麼生機盎然的感覺，房子與房子之間挨的很近，如同親密的老朋友，互相幫助，互相扶持。
+
+<img class="alignnone" alt="" src="http://farm3.staticflickr.com/2876/9614592679_b48a78d9a3.jpg" width="500" height="333" />
+
+房子和房子之間都如此親密無間，人和人之間更是如此。在台灣特別能感受到人情味，路人之間的一絲微笑，言語上的一聲謝謝，人與人之間的信任感，都會令我感到身邊的都是家人。
+
+前幾天和實驗室的同學一起開車環島，在即將離開的時候，能再次體會台灣的美。曾經以為來台灣只是為了學業，匆匆的度過兩年，什麼都不留下，什麼都不帶走。沒想到在這兩年中，能認識這麼多朋友，留下那麼多的友情。有過悲傷，有過歡樂。在心情最低落的時候，有朋友陪我一起喝酒；在壓力山大的時候，有朋友一起肩並肩一起度過。這兩年記錄了人生中豐富的內容，我變得比以前成熟了。
+
+<img class="alignnone" alt="" src="http://farm4.staticflickr.com/3700/9618201436_28c61c7ea5_c.jpg" width="534" height="800" />
+
+兩年后的我們不知身在何處，做著未知的事情。但願一切都若初見。
+
+好基友，一輩子。
+
+&nbsp;
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/10/%25e9%2597%259c%25e6%2596%25bc%25e4%25b8%25ad%25e5%259c%258b%25e7%2594%25b7%25e7%25b1%2583%25e8%25a2%25ab%25e5%258f%25b0%25e7%2581%25a3%25e7%2594%25b7%25e7%25b1%2583%25e5%25ae%258c%25e7%2588%2586/">關於中國男籃被台灣男籃完爆</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-10T00:00:00+08:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/08/10/%25e9%2597%259c%25e6%2596%25bc%25e4%25b8%25ad%25e5%259c%258b%25e7%2594%25b7%25e7%25b1%2583%25e8%25a2%25ab%25e5%258f%25b0%25e7%2581%25a3%25e7%2594%25b7%25e7%25b1%2583%25e5%25ae%258c%25e7%2588%2586/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/08/10/%25e9%2597%259c%25e6%2596%25bc%25e4%25b8%25ad%25e5%259c%258b%25e7%2594%25b7%25e7%25b1%2583%25e8%25a2%25ab%25e5%258f%25b0%25e7%2581%25a3%25e7%2594%25b7%25e7%25b1%2583%25e5%25ae%258c%25e7%2588%2586/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">中國男籃輸台灣，是在情理之中。籃球在台灣是一個很流行的運動，基本上每個男生都會打籃球，還有很多的女生也參與其中。和大陸不一樣的是，這裡的人除了愛看球，更加喜歡自己上場打球。在學校裡，除了校內的學生，還有很多校外已經工作的人在空餘時間來打球。除了年輕人，有時還能看到不少中老年人在打球。目測場上的年齡差距最高可達30歲。籃球已經在台灣成為一種文化，文化就是深入每個人的思想中，並不是為了應付比賽而匆忙組隊開練。文化是每個人都會盡力參與其中，堅持不斷。在我的學校，每個系都有自己的系隊，包括男籃和女籃，並且有規律的訓練。學生們都會組織各個規模的比賽，有學校之間的，也有各系之間的。
+
+在台灣生活過就知道，體育活動在這裡基本上每個人的日常。學校的體育設施基本上都是爆滿，越到晚上，體育場，體育館的人數就越多。而且台北的運動設施非常豐富，許多河濱公園都有球場，自行車道，和慢跑路線。每個人都可以充分利用這些運動資源。
+
+<span style="font-size: 1rem;">至於足球，雖然目前在台灣沒有很普及，但</span><span style="line-height: 1.714285714; font-size: 1rem;">是我看到越來越多的小孩在踢球。假期裡，很多10歲左右的小孩在我們學校的體育場進行看似正規的訓練，這在中國是罕見的事情，哪個家長會讓自己的孩子在近40度的天氣裡出來踢球，而不在家裡溫習功課呢？我覺得按照中國足球的現狀，必備亞洲各個國家完爆。</span>
+
+<span style="line-height: 1.714285714; font-size: 1rem;">一個獨裁統治的社會，就連體育也是被獨裁統治的。我們都只是圍觀，不明覺厲。</span><span style="line-height: 1.714285714; font-size: 1rem;">像中國這種“精英式”的選人方式，大多數人只能在旁邊看熱鬧而已。奧運金牌再多，都是屁。</span>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/28/%25e5%258d%25b3%25e5%25b0%2587%25e5%2586%258d%25e8%25a6%258b%25e7%259a%2584%25e5%25ad%25b8%25e7%2594%259f/">即將再見的學生</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-28T00:00:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/28/%25e5%258d%25b3%25e5%25b0%2587%25e5%2586%258d%25e8%25a6%258b%25e7%259a%2584%25e5%25ad%25b8%25e7%2594%259f/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/07/28/%25e5%258d%25b3%25e5%25b0%2587%25e5%2586%258d%25e8%25a6%258b%25e7%259a%2584%25e5%25ad%25b8%25e7%2594%259f/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">前幾天順利的通過了口試，心中的一塊大石終於落下。這也意味著我的學生身份即將到期，接下來就要自己掙錢生活了。
+
+以前從來沒體會過自己生活是什麼的感受，雖然說我從初中開始就開始住學校，一直經過初中，高中，大學，和研究所。這十多年來也算比較獨立了。可是住學校宿舍，和自己找房子在外面住的感覺還是不一樣的。這些年雖然沒有住在家裡，但是還是能夠感受到父母罩著我，不用擔心食宿問題。如今就要踏入社會，父母對我的態度也有所轉變，我跟他們說我之後不直接飛回家，而是先飛上海。還以為媽媽會勸我還是飛寧波會比較好，之後再送我去上海。沒想到她說那就隨便你吧。那一刻有些失落，不過同時也體會到了媽媽覺得我已經長大了，已經獨立了。當然我也是這麼想的。今天晚上試著在網上找房子租，隨便敲了幾個關鍵字，跳出來一大堆租房信息。我該從哪裡入手？竟然一點都不知道。租房子的流程是如何？需要看風水嗎？會不會是凶宅？滿腦子都是這些。看來在網上找房子，光看幾張照片還是不靠譜。
+
+我從來都是一個怕麻煩的人，結束了單純的學生生活後，麻煩的事會越來越多。這時候抱怨自己的社會經驗不足已經來不及了，要盡快的向身邊人學習生活經驗才對。現在要像Howard一樣，離開媽媽，獨自生活了。
+
+&nbsp;
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/23/%25e4%25b8%258d%25e8%25ae%258a%25e7%259a%2584%25e6%25b0%25b8%25e9%2581%25a0/">不變的永遠</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-23T00:00:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/23/%25e4%25b8%258d%25e8%25ae%258a%25e7%259a%2584%25e6%25b0%25b8%25e9%2581%25a0/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/07/23/%25e4%25b8%258d%25e8%25ae%258a%25e7%259a%2584%25e6%25b0%25b8%25e9%2581%25a0/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">聽到五月天的《如煙》
+<blockquote>有沒有那麼一種永遠，永遠不改變&#8230;
+17歲的那一年，吻過她的臉，以為就能永遠&#8230;</blockquote>
+思緒又回到了大學的回憶當中。人們說不斷的回憶過去，是對現實的不滿，對現實的無奈。那麼我現在只能忍受這些不滿，忍受這些無奈。
+
+經歷過台灣的大學生活後，我深深的體會到自己的大學生活是如此的枯燥。沒有豐富的社團活動，沒有精彩的舞臺表演，沒有冒險的旅行。但是有一點是我非常驕傲，也非常值得回憶的，就是在大學四年裡談了一場戀愛，和一個美麗的女孩，一個獨特性格的女孩。讓我枯燥的大學生活記錄中多了永遠值得懷念的一幅畫面。
+
+以前在一起時，從來都沒想過有一天會分開，直到有一次真的分開了，才體會到軀體和靈魂分開的感覺。終究無法忍受沒有靈魂的生活，千方百計地，我又試圖挽回了這段感情。這一切都是自己的自私和任性造成的，在這段感情上終究是被自己留下了傷痕。傷痕無法抵擋地理距離的阻隔（也許也是心理上的阻隔），最終我們還是分手了。現在去討論為什麼已經沒有什麼意義了，我沒有資格去干涉她追求未來幸福的權利，因為我也沒有把她留住的信心。所以我尊重她的決定。
+
+幸運的，我們並沒有像大多數分手的人那樣，成為了老死不相往來的人，甚至成為了仇人（至少我沒有感覺到我們之間有互相的記恨）。現在說這個似乎是非常輕鬆，但我也經過了近一年的思想鬥爭。真正的放下也許並不是說說這麼容易的，很多療傷的方法並不是每個人都適合。我覺得真正的放下，就是承認我們的美好已經成為了回憶，這些美好都只會存在于回憶中，不會發生在將來。我並不希望把對方互相拉黑，從此就是仇人。因為她畢竟是你愛了整整四年的人，是你幻想能有共同家庭的人，是你在四年之中都認為是終生伴侶的人。想到這裡，沒有任何理由去憎恨她，沒有任何理由去傷害她（甚至到現在還想保護她）。而是一種祝福，祝福她能遇到幫我完成當時願望的人。
+
+雖然在一起的時候我們也停不了各種爭吵，但這些都不會在我的記憶里持續太久。時間就是幫助我過濾到這些雜質，剩下的是純淨的回憶，剩下來的是美好的回憶。也許很難記起我們第一次吵架的地點，但卻能夠清楚的記得我第一次親你的自習室，在教室的最後一排。記憶里留下的，是每一天，你坐在自行車的後座上，我載著你，在校園里。除了回憶，就是感激。非常榮幸在你大學時光中，陪伴在你身邊的人是我，感謝你給我的機會。並不是所有人都能有在大學里談戀愛的經歷，我想如果當初你拒絕我，也許我也會和很多人一樣，在沒有愛的大學里度過四年的青春。這樣我大學的回憶就真的只剩鍵盤，鼠標和一行行冰冷的代碼了。
+
+也許這世上能夠成為永遠的，就是過去的回憶。那如果是這樣，希望我的回憶永遠都是美好的。謝謝你帶給我美好的回憶。
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/20/opencv-in-python/">OpenCV in Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-20T00:00:00+08:00" pubdate data-updated="true">Jul 20<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/20/opencv-in-python/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/07/20/opencv-in-python/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">OpenCV基本上每個學Computer Vision都用過，我之前也是用C++來使用OpenCV, 最近為了處理一些圖片轉影片，加Marker之類的簡單的操作，懶得再用C++去寫。於是就嘗試用Python來寫OpenCV.
+
+在Python中使用OpenCV, 只要把OpenCV的Library加到Python的Lib目錄下面就可以了。
+
+具體就是把OpenCV目錄下的”build/python/2.7/cv2.pyd&#8221; 複製到Python的“Lib/site-packages”目錄中。
+
+OpenCV被包在cv2这个module中，在一开始加载这个module就可以了。
+
+OpenCV中经常会用到cv::Size, cv::Point, 在python中就用tuple来代替，不用再定义cv::Size或者cv::Point. 比如原来C++中定义一个size用cv::Size(640,480), 现在Python中直接用(640,480)来代替就好了。
+
+下面这个例子就是把image_dir中的图片转换成avi格式的影片
+<pre class="lang:python decode:true">#encoding:utf-8
+import sys
+import os
+import cv2
+import re
+def intCmp ( x,y ):
+	a = re.search('([\\\\d]+).png',x).group(1)
+	b = re.search('([\\\\d]+).png',y).group(1)
+	return int(a)-int(b)
+if __name__ == '__main__':
+	if len(sys.argv)&lt;3:
+		print "Usage: %s (image_dir) (output)" %(sys.argv[0])
+		exit(1)
+	image_dir = sys.argv[1]
+	output_file = sys.argv[2]
+	image_list = sorted(os.listdir(image_dir),cmp=intCmp)
+	video_writer = cv2.VideoWriter(output_file,-1,30,(640,480))
+	for image_file in image_list:
+		print image_file
+		img = cv2.imread("%s/%s"%(image_dir,image_file.strip()))
+		cv2.imshow("rgb",img)
+		key = cv2.waitKey(10)
+		video_writer.write(img)
+		if key == 27:
+			break;</pre>
+更多的细节可以看document
+
+<a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/17/%25e5%2585%25b3%25e4%25ba%258ec-std%25e4%25b8%25ad%25e7%259a%2584map%25e7%25b1%25bb/">关于C++ Std::map</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-17T00:00:00+08:00" pubdate data-updated="true">Jul 17<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/17/%25e5%2585%25b3%25e4%25ba%258ec-std%25e4%25b8%25ad%25e7%259a%2584map%25e7%25b1%25bb/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/07/17/%25e5%2585%25b3%25e4%25ba%258ec-std%25e4%25b8%25ad%25e7%259a%2584map%25e7%25b1%25bb/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">C++的std::map是个很好用的东西，将key和value进行对应，而且可以是任意类型的key.
+
+以前一直没有研究过具体这个MAP是怎么实现的，只是大概的知道它是一个binary search tree. 那如果一个key不是数字，字符串这种相对简单的类型的时，而是一个vector, 或者一个pair类型的对象时，key要如何对应value呢？
+
+我在Quora上提了这个问题，很快就有人回答了。
+<blockquote>std::map is a self-balancing binary search tree ordered using a comparator, whose type is given as the third template parameter to std::map. If you don&#8217;t give this template parameter, it defaults to std::less&lt;KeyType&gt;. std::less is basically a function object wrapper around the &#8220;&lt;&#8221; operator. The &lt; operator is defined for types like int, as well as for std::pair (which compares lexicographically).</blockquote>
+Map中的Key会按照它自己的类中定义的less运算符去比较大小，如果像vector, pair这种多元素的对象，会根据里面所有数据的字典序来进行大小的判断。
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/">用matlab畫Confusion Matrix</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-16T00:00:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">在pattern recognition 中通常用confusion matrix 來表示實驗結果。最近處理論文的實驗結果時發現用matlab可以比較方便的畫出confusion matrix來。
+
+以下是效果图。
+<img class="aligncenter" alt="" src="http://farm8.staticflickr.com/7364/9303955419_9aafcbf1c2_o.png" width="584" height="477" />
+<pre class="lang:default decode:true">n = 14;
+file = 'data.csv';
+ylabels = ['BT';'CC';'CS';'DW';'OC';'  ';'RC';'RW';'SS';'TC';'TP';'WL';'WC';'WW'];
+xlabels = ['BT';'CC';'CS';'DW';'OC';'  ';'RC';'RW';'SS';'TC';'TP';'WL';'WC';'WW'];
+
+X = csvread(file);
+
+%normalize
+for i=1:n
+    X(i,:)=X(i,:)/norm(X(i,:),1);
+end
+%inverse data
+X=imcomplement(X);
+%draw
+imagesc(X);
+colormap(gray);
+axis off;
+text(0,6,'Random','HorizontalAlignment','right');
+for i=1:n
+    text(0,i,ylabels(i,:),'HorizontalAlignment','right');
+end
+h=text(6,n+1,'Netural','VerticalAlignment','middle','HorizontalAlignment','right');
+set(h,'rotation',60);
+for i=1:n
+    h = text(i,n+1,xlabels(i,:),'VerticalAlignment','middle','HorizontalAlignment','right');
+    set(h,'rotation',60);
+end
+disp(X);
+%add value
+for i=1:n
+    for j=1:n
+        if X(i,j)&lt;0.7
+            text(i,j,num2str(1-X(i,j),'%.2f'),'VerticalAlignment','middle','HorizontalAlignment','center','color','white');
+        end
+    end
+end</pre>
+&nbsp;
+
+&nbsp;
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/">改版octopress 之 安装</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/25/hive%25e4%25b8%25ad%25e4%25bd%25bf%25e7%2594%25a8python%25e5%25ae%259e%25e7%258e%25b0udf/">HIVE中使用python实现UDF</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/19/%25e5%25af%25bb%25e6%2589%25be%25e8%2587%25aa%25e5%25b7%25b1%25e7%259a%2584%25e7%2594%259f%25e6%25b4%25bb/">寻找自己的生活</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/29/%25e5%259c%25a8%25e5%25b3%25b6%25e4%25b8%258a%25e7%259a%2584%25e6%259c%2580%25e5%25be%258c%25e5%25b9%25be%25e5%25a4%25a9/">在島上的最後幾天</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/%25e9%2597%259c%25e6%2596%25bc%25e4%25b8%25ad%25e5%259c%258b%25e7%2594%25b7%25e7%25b1%2583%25e8%25a2%25ab%25e5%258f%25b0%25e7%2581%25a3%25e7%2594%25b7%25e7%25b1%2583%25e5%25ae%258c%25e7%2588%2586/">關於中國男籃被台灣男籃完爆</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Eli -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'chinaeli';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
