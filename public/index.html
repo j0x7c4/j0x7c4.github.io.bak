@@ -9,7 +9,7 @@
   <meta name="author" content="Eli">
 
   
-  <meta name="description" content="忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，有点小开心。 我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多 &hellip;">
+  <meta name="description" content="忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，心情不好的时候做些geek的事情转移一下注意力也不错，现在有点小开心。 我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -56,8 +56,9 @@
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
+  <li><a href="/">Home</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
 </ul>
 
 </nav>
@@ -97,7 +98,7 @@
   </header>
 
 
-  <div class="entry-content"><p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，有点小开心。</p>
+  <div class="entry-content"><p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，心情不好的时候做些geek的事情转移一下注意力也不错，现在有点小开心。</p>
 
 <p>我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多，就小改了一下。
 <a href=http://jekyllrb.com/docs/migrations/><a href="http://jekyllrb.com/docs/migrations/">http://jekyllrb.com/docs/migrations/</a></a></p>
@@ -248,50 +249,58 @@ undefined method `spawn&#8217; for Process:Module</p>
 
 <p>使用HIVE的命令进入数据仓库(search)</p>
 
-<pre class="lang:default decode:true">use search;</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>use search;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>使用HIVE的命令查看已经建立的表</p>
 
-<pre class="lang:sh decode:true">show tables;</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>show tables;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>使用HIVE的命令查看xxx表中的字段</p>
 
-<pre class="lang:sh decode:true">describe xxx;</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>describe xxx;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>使用HIVE命令用PYTHON实现UDF</p>
 
-<pre class="lang:tsql decode:true">add file udf.py;
-SELECT 
-TRANSFORM(keyword)
-USING 'python udf.py'
-AS(keyword)
-FROM xxx
-WHERE dt='2013-09-25'
-;</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>add file udf.py;
+</span><span class='line'>SELECT 
+</span><span class='line'>TRANSFORM(keyword)
+</span><span class='line'>USING 'python udf.py'
+</span><span class='line'>AS(keyword)
+</span><span class='line'>FROM xxx
+</span><span class='line'>WHERE dt='2013-09-25'
+</span><span class='line'>;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>要注意的是，这里的TRANSFORM的内容可以写<em>，但是AS()里就不能写</em>，会报错。</p>
+<p>要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。</p>
 
 <p>输入到python中的内容，是按照AS里的数量来决定的。</p>
 
 <p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。</p>
 
-<pre class="lang:python decode:true" title="udf.py">#encoding=utf-8
-import sys
+<figure class='code'><figcaption><span>udf.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
 
-for line in sys.stdin:
-    line = line.strip()
-    print line</pre>
-
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
 </div>
   
   
@@ -605,31 +614,55 @@ for line in sys.stdin:
 
 <p>下面这个例子就是把image_dir中的图片转换成avi格式的影片</p>
 
-<pre class="lang:python decode:true">#encoding:utf-8
-import sys
-import os
-import cv2
-import re
-def intCmp ( x,y ):
-    a = re.search('([\\\\d]+).png',x).group(1)
-    b = re.search('([\\\\d]+).png',y).group(1)
-    return int(a)-int(b)
-if __name__ == '__main__':
-    if len(sys.argv)&lt;3:
-        print "Usage: %s (image_dir) (output)" %(sys.argv[0])
-        exit(1)
-    image_dir = sys.argv[1]
-    output_file = sys.argv[2]
-    image_list = sorted(os.listdir(image_dir),cmp=intCmp)
-    video_writer = cv2.VideoWriter(output_file,-1,30,(640,480))
-    for image_file in image_list:
-        print image_file
-        img = cv2.imread("%s/%s"%(image_dir,image_file.strip()))
-        cv2.imshow("rgb",img)
-        key = cv2.waitKey(10)
-        video_writer.write(img)
-        if key == 27:
-            break;</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">cv2</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">intCmp</span> <span class="p">(</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="p">):</span>
+</span><span class='line'>  <span class="n">a</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;([\d]+).png&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">b</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;([\d]+).png&#39;</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">print</span> <span class="s">&quot;Usage: </span><span class="si">%s</span><span class="s"> (image_dir) (output)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span class='line'>      <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">image_dir</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>  <span class="n">output_file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span class='line'>  <span class="n">image_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">),</span><span class="nb">cmp</span><span class="o">=</span><span class="n">intCmp</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">video_writer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">,(</span><span class="mi">640</span><span class="p">,</span><span class="mi">480</span><span class="p">))</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">image_list</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">print</span> <span class="n">image_file</span>
+</span><span class='line'>      <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span><span class="n">image_file</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+</span><span class='line'>      <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&quot;rgb&quot;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">video_writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>更多的细节可以看document</p>

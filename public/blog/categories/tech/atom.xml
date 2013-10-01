@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-02T00:45:49+08:00</updated>
+  <updated>2013-10-02T01:13:13+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -18,7 +18,7 @@
     <link href="http://yoursite.com/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/"/>
     <updated>2013-10-01T23:49:00+08:00</updated>
     <id>http://yoursite.com/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong</id>
-    <content type="html"><![CDATA[<p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，有点小开心。</p>
+    <content type="html"><![CDATA[<p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，心情不好的时候做些geek的事情转移一下注意力也不错，现在有点小开心。</p>
 
 <p>我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多，就小改了一下。
 <a href=http://jekyllrb.com/docs/migrations/><a href="http://jekyllrb.com/docs/migrations/">http://jekyllrb.com/docs/migrations/</a></a></p>
@@ -93,52 +93,43 @@ rvm install ruby-1.9.3-p448
 
 <p>HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。</p>
 
-<p>使用HIVE的命令进入数据仓库(search)</p>
-
-<pre class="lang:default decode:true">use search;</pre>
-
-
-<p>使用HIVE的命令查看已经建立的表</p>
-
-<pre class="lang:sh decode:true">show tables;</pre>
-
-
-<p>使用HIVE的命令查看xxx表中的字段</p>
-
-<pre class="lang:sh decode:true">describe xxx;</pre>
-
-
-<p>使用HIVE命令用PYTHON实现UDF</p>
-
-<pre class="lang:tsql decode:true">add file udf.py;
-SELECT 
+<p>使用HIVE的命令进入数据仓库(search)
+<code>
+use search;
+</code>
+使用HIVE的命令查看已经建立的表
+<code>
+show tables;
+</code>
+使用HIVE的命令查看xxx表中的字段
+<code>
+describe xxx;
+</code>
+使用HIVE命令用PYTHON实现UDF
+<code>
+add file udf.py;
+SELECT
 TRANSFORM(keyword)
 USING 'python udf.py'
 AS(keyword)
 FROM xxx
 WHERE dt='2013-09-25'
-;</pre>
-
-
-<p>要注意的是，这里的TRANSFORM的内容可以写<em>，但是AS()里就不能写</em>，会报错。</p>
+;
+</code>
+要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。</p>
 
 <p>输入到python中的内容，是按照AS里的数量来决定的。</p>
 
-<p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。</p>
-
-<pre class="lang:python decode:true" title="udf.py">#encoding=utf-8
+<p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。
+``` python udf.py
 import sys
+for line in sys.stdin:</p>
 
-for line in sys.stdin:
-    line = line.strip()
-    print line</pre>
+<pre><code>line = line.strip()
+print line
+</code></pre>
 
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
+<p>```</p>
 ]]></content>
   </entry>
   
@@ -157,36 +148,40 @@ for line in sys.stdin:
 
 <p>OpenCV中经常会用到cv::Size, cv::Point, 在python中就用tuple来代替，不用再定义cv::Size或者cv::Point. 比如原来C++中定义一个size用cv::Size(640,480), 现在Python中直接用(640,480)来代替就好了。</p>
 
-<p>下面这个例子就是把image_dir中的图片转换成avi格式的影片</p>
-
-<pre class="lang:python decode:true">#encoding:utf-8
+<p>下面这个例子就是把image_dir中的图片转换成avi格式的影片
+``` python
 import sys
 import os
 import cv2
 import re
-def intCmp ( x,y ):
-    a = re.search('([\\\\d]+).png',x).group(1)
-    b = re.search('([\\\\d]+).png',y).group(1)
-    return int(a)-int(b)
-if __name__ == '__main__':
-    if len(sys.argv)&lt;3:
-        print "Usage: %s (image_dir) (output)" %(sys.argv[0])
-        exit(1)
-    image_dir = sys.argv[1]
-    output_file = sys.argv[2]
-    image_list = sorted(os.listdir(image_dir),cmp=intCmp)
-    video_writer = cv2.VideoWriter(output_file,-1,30,(640,480))
-    for image_file in image_list:
-        print image_file
-        img = cv2.imread("%s/%s"%(image_dir,image_file.strip()))
-        cv2.imshow("rgb",img)
-        key = cv2.waitKey(10)
-        video_writer.write(img)
-        if key == 27:
-            break;</pre>
+def intCmp ( x,y ):</p>
 
+<pre><code>a = re.search('([\d]+).png',x).group(1)
+b = re.search('([\d]+).png',y).group(1)
+return int(a)-int(b)
+</code></pre>
 
-<p>更多的细节可以看document</p>
+<p>if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;:</p>
+
+<pre><code>if len(sys.argv)&lt;3:
+    print "Usage: %s (image_dir) (output)" %(sys.argv[0])
+    exit(1)
+image_dir = sys.argv[1]
+output_file = sys.argv[2]
+image_list = sorted(os.listdir(image_dir),cmp=intCmp)
+video_writer = cv2.VideoWriter(output_file,-1,30,(640,480))
+for image_file in image_list:
+    print image_file
+    img = cv2.imread("%s/%s"%(image_dir,image_file.strip()))
+    cv2.imshow("rgb",img)
+    key = cv2.waitKey(10)
+    video_writer.write(img)
+    if key == 27:
+        break;
+</code></pre>
+
+<p>```
+更多的细节可以看document</p>
 
 <p><a href="http://docs.opencv.org/modules/refman.html"><a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a></a></p>
 ]]></content>

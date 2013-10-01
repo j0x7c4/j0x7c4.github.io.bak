@@ -56,8 +56,9 @@
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
+  <li><a href="/">Home</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
 </ul>
 
 </nav>
@@ -102,50 +103,58 @@
 
 <p>使用HIVE的命令进入数据仓库(search)</p>
 
-<pre class="lang:default decode:true">use search;</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>use search;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>使用HIVE的命令查看已经建立的表</p>
 
-<pre class="lang:sh decode:true">show tables;</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>show tables;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>使用HIVE的命令查看xxx表中的字段</p>
 
-<pre class="lang:sh decode:true">describe xxx;</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>describe xxx;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>使用HIVE命令用PYTHON实现UDF</p>
 
-<pre class="lang:tsql decode:true">add file udf.py;
-SELECT 
-TRANSFORM(keyword)
-USING 'python udf.py'
-AS(keyword)
-FROM xxx
-WHERE dt='2013-09-25'
-;</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>add file udf.py;
+</span><span class='line'>SELECT 
+</span><span class='line'>TRANSFORM(keyword)
+</span><span class='line'>USING 'python udf.py'
+</span><span class='line'>AS(keyword)
+</span><span class='line'>FROM xxx
+</span><span class='line'>WHERE dt='2013-09-25'
+</span><span class='line'>;</span></code></pre></td></tr></table></div></figure>
 
 
-<p>要注意的是，这里的TRANSFORM的内容可以写<em>，但是AS()里就不能写</em>，会报错。</p>
+<p>要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。</p>
 
 <p>输入到python中的内容，是按照AS里的数量来决定的。</p>
 
 <p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。</p>
 
-<pre class="lang:python decode:true" title="udf.py">#encoding=utf-8
-import sys
+<figure class='code'><figcaption><span>udf.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
 
-for line in sys.stdin:
-    line = line.strip()
-    print line</pre>
-
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
 </div>
 
 

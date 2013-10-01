@@ -58,7 +58,7 @@
     </url>
     <url>
         <loc>http://yoursite.com/blog/2013/07/20/opencv-in-python/</loc>
-        <lastmod>2013-10-01T23:04:23+08:00</lastmod>
+        <lastmod>2013-10-02T01:09:47+08:00</lastmod>
     </url>
     <url>
         <loc>http://yoursite.com/blog/2013/07/23/never-change/</loc>
@@ -82,7 +82,7 @@
     </url>
     <url>
         <loc>http://yoursite.com/blog/2013/09/25/hive-python-udf/</loc>
-        <lastmod>2013-10-01T23:04:23+08:00</lastmod>
+        <lastmod>2013-10-02T01:06:37+08:00</lastmod>
     </url>
     <url>
         <loc>http://yoursite.com/blog/2013/10/01/change-to-octopress/</loc>
@@ -92,15 +92,19 @@
         <loc>
             http://yoursite.com/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/
         </loc>
-        <lastmod>2013-10-02T00:44:02+08:00</lastmod>
+        <lastmod>2013-10-02T01:13:01+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://yoursite.com/about/</loc>
+        <lastmod>2013-10-01T23:04:23+08:00</lastmod>
     </url>
     <url>
         <loc>http://yoursite.com/blog/archives/</loc>
-        <lastmod>2013-10-02T00:44:02+08:00</lastmod>
+        <lastmod>2013-10-02T01:13:01+08:00</lastmod>
     </url>
     <url>
         <loc>http://yoursite.com/</loc>
-        <lastmod>2013-10-02T00:44:02+08:00</lastmod>
+        <lastmod>2013-10-02T01:13:01+08:00</lastmod>
     </url>
     <url>
         <loc>http://yoursite.com/robots.txt</loc>

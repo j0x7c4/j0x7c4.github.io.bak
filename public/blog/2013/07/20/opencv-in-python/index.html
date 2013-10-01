@@ -56,8 +56,9 @@
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
+  <li><a href="/">Home</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
 </ul>
 
 </nav>
@@ -106,31 +107,55 @@
 
 <p>下面这个例子就是把image_dir中的图片转换成avi格式的影片</p>
 
-<pre class="lang:python decode:true">#encoding:utf-8
-import sys
-import os
-import cv2
-import re
-def intCmp ( x,y ):
-    a = re.search('([\\\\d]+).png',x).group(1)
-    b = re.search('([\\\\d]+).png',y).group(1)
-    return int(a)-int(b)
-if __name__ == '__main__':
-    if len(sys.argv)&lt;3:
-        print "Usage: %s (image_dir) (output)" %(sys.argv[0])
-        exit(1)
-    image_dir = sys.argv[1]
-    output_file = sys.argv[2]
-    image_list = sorted(os.listdir(image_dir),cmp=intCmp)
-    video_writer = cv2.VideoWriter(output_file,-1,30,(640,480))
-    for image_file in image_list:
-        print image_file
-        img = cv2.imread("%s/%s"%(image_dir,image_file.strip()))
-        cv2.imshow("rgb",img)
-        key = cv2.waitKey(10)
-        video_writer.write(img)
-        if key == 27:
-            break;</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">cv2</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">intCmp</span> <span class="p">(</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="p">):</span>
+</span><span class='line'>  <span class="n">a</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;([\d]+).png&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">b</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;([\d]+).png&#39;</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">print</span> <span class="s">&quot;Usage: </span><span class="si">%s</span><span class="s"> (image_dir) (output)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span class='line'>      <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">image_dir</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>  <span class="n">output_file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span class='line'>  <span class="n">image_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">),</span><span class="nb">cmp</span><span class="o">=</span><span class="n">intCmp</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">video_writer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">,(</span><span class="mi">640</span><span class="p">,</span><span class="mi">480</span><span class="p">))</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">image_list</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">print</span> <span class="n">image_file</span>
+</span><span class='line'>      <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span><span class="n">image_file</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+</span><span class='line'>      <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&quot;rgb&quot;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">video_writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>更多的细节可以看document</p>
