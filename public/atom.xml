@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-02T00:04:56+08:00</updated>
+  <updated>2013-10-02T00:19:20+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -29,71 +29,99 @@
   
   <entry>
     <title type="html"><![CDATA[改版octopress 之 安装]]></title>
-    <link href="http://yoursite.com/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/"/>
+    <link href="http://yoursite.com/blog/2013/10/01/change-to-octopress/"/>
     <updated>2013-10-01T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/10/01/%e6%94%b9%e7%89%88octopress-%e4%b9%8b-%e5%ae%89%e8%a3%85</id>
-    <content type="html"><![CDATA[心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。
+    <id>http://yoursite.com/blog/2013/10/01/change-to-octopress</id>
+    <content type="html"><![CDATA[<p>心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。</p>
 
-但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。
+<p>但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。</p>
 
-首先从git上抓来octopress
+<p>首先从git上抓来octopress</p>
+
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>git clone git@github.com:imathis/octopress.git</span></code></pre></td></tr></table></div></figure>
-然后进入octopress目录下，build源代码
+
+
+<p>然后进入octopress目录下，build源代码</p>
+
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
 </span><span class='line'>bundle install
 </span><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
-以上几步都没有问题，然后执行
+
+
+<p>以上几步都没有问题，然后执行</p>
+
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
-然后问题就来了，出现了错误
 
-Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+
+<p>然后问题就来了，出现了错误</p>
+
+<p>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
 rake aborted!
-undefined method `spawn&#8217; for Process:Module
+undefined method `spawn&#8217; for Process:Module</p>
 
-因为octopress需要ruby 1.9.3，而我原本mac上的ruby是1.8.3. 所以要把ruby更新到1.9.3才能用
+<p>因为octopress需要ruby 1.9.3，而我原本mac上的ruby是1.8.3. 所以要把ruby更新到1.9.3才能用</p>
 
-网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.
+<p>网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.</p>
 
-我安装stable版本的rvm
+<p>我安装stable版本的rvm</p>
+
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>curl -L https://get.rvm.io | bash -s stable</span></code></pre></td></tr></table></div></figure>
-然后将rvm写到用户环境中。
+
+
+<p>然后将rvm写到用户环境中。</p>
+
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>echo "source $HOME/.rvm/scripts/rvm" &gt;&gt; ~/.bash_profile</span></code></pre></td></tr></table></div></figure>
-具体详见 <a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a>
 
-然后使用rvm来安装1.9.3版本的ruby.
+
+<p>具体详见 <a href="https://rvm.io/rvm/install"><a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a></a></p>
+
+<p>然后使用rvm来安装1.9.3版本的ruby.</p>
+
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rvm install ruby-1.9.3-p448</span></code></pre></td></tr></table></div></figure>
-不过在这之前，要先确定安装了xcode的command line tools.
 
-可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。
+
+<p>不过在这之前，要先确定安装了xcode的command line tools.</p>
+
+<p>可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[HIVE中使用python实现UDF]]></title>
-    <link href="http://yoursite.com/blog/2013/09/25/hive%25e4%25b8%25ad%25e4%25bd%25bf%25e7%2594%25a8python%25e5%25ae%259e%25e7%258e%25b0udf/"/>
+    <link href="http://yoursite.com/blog/2013/09/25/hive-python-udf/"/>
     <updated>2013-09-25T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/09/25/hive%e4%b8%ad%e4%bd%bf%e7%94%a8python%e5%ae%9e%e7%8e%b0udf</id>
-    <content type="html"><![CDATA[HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。
+    <id>http://yoursite.com/blog/2013/09/25/hive-python-udf</id>
+    <content type="html"><![CDATA[<p>HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。</p>
 
-UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。
+<p>UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。</p>
 
-HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。
+<p>HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。</p>
 
-使用HIVE的命令进入数据仓库(search)
+<p>使用HIVE的命令进入数据仓库(search)</p>
+
 <pre class="lang:default decode:true">use search;</pre>
-使用HIVE的命令查看已经建立的表
+
+
+<p>使用HIVE的命令查看已经建立的表</p>
+
 <pre class="lang:sh decode:true">show tables;</pre>
-使用HIVE的命令查看xxx表中的字段
+
+
+<p>使用HIVE的命令查看xxx表中的字段</p>
+
 <pre class="lang:sh decode:true">describe xxx;</pre>
-使用HIVE命令用PYTHON实现UDF
+
+
+<p>使用HIVE命令用PYTHON实现UDF</p>
+
 <pre class="lang:tsql decode:true">add file udf.py;
 SELECT 
 TRANSFORM(keyword)
@@ -102,22 +130,27 @@ AS(keyword)
 FROM xxx
 WHERE dt='2013-09-25'
 ;</pre>
-要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。
 
-输入到python中的内容，是按照AS里的数量来决定的。
 
-下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。
+<p>要注意的是，这里的TRANSFORM的内容可以写<em>，但是AS()里就不能写</em>，会报错。</p>
+
+<p>输入到python中的内容，是按照AS里的数量来决定的。</p>
+
+<p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。</p>
+
 <pre class="lang:python decode:true" title="udf.py">#encoding=utf-8
 import sys
 
 for line in sys.stdin:
     line = line.strip()
     print line</pre>
-&nbsp;
 
-&nbsp;
 
-&nbsp;
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
 ]]></content>
   </entry>
   
@@ -471,20 +504,20 @@ set(h,'FaceColor',[0 0 0],'FaceAlpha',0.5) %change the surface color, and alpha<
   
   <entry>
     <title type="html"><![CDATA[住在心裡的人]]></title>
-    <link href="http://yoursite.com/blog/2013/06/08/%25e4%25bd%258f%25e5%259c%25a8%25e5%25bf%2583%25e8%25a3%25a1%25e7%259a%2584%25e4%25ba%25ba/"/>
+    <link href="http://yoursite.com/blog/2013/06/08/people-in-my-heart/"/>
     <updated>2013-06-08T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/08/%e4%bd%8f%e5%9c%a8%e5%bf%83%e8%a3%a1%e7%9a%84%e4%ba%ba</id>
-    <content type="html"><![CDATA[我沒有太多的經驗，之前也只有談過一個女朋友。很遺憾愛情走到後來，我們沒能繼續再一起。
+    <id>http://yoursite.com/blog/2013/06/08/people-in-my-heart</id>
+    <content type="html"><![CDATA[<p>我沒有太多的經驗，之前也只有談過一個女朋友。很遺憾愛情走到後來，我們沒能繼續再一起。</p>
 
-失去過一次之後，才會知道有些事情錯過了，就回不去了。不是所有事情都可以還原的，心裡的傷口很難癒合。
+<p>失去過一次之後，才會知道有些事情錯過了，就回不去了。不是所有事情都可以還原的，心裡的傷口很難癒合。</p>
 
-如果說一段感情放不下，肯定有很多種原因。其中一種，就是耐不住寂寞。之前心裡住著一個人的時候自然不會感覺寂寞，時間久了，當一切成為了一種習慣，以為住在心裡的那個人會一直住下去。當她有一天離開后，心裡會感覺空虛，寂寞。想辦法讓她繼續回來，但她不繼續住的原因，就是因為這個房間不夠溫暖，不夠快樂。
+<p>如果說一段感情放不下，肯定有很多種原因。其中一種，就是耐不住寂寞。之前心裡住著一個人的時候自然不會感覺寂寞，時間久了，當一切成為了一種習慣，以為住在心裡的那個人會一直住下去。當她有一天離開后，心裡會感覺空虛，寂寞。想辦法讓她繼續回來，但她不繼續住的原因，就是因為這個房間不夠溫暖，不夠快樂。</p>
 
-在心中的房客走了之後，自己做什麼事都覺得沒有意義，失去了動力，只有靠外界的強烈刺激來麻痹心中的神經，減輕空虛寂寞的程度，比如酒精，和需要腦神經高度緊張的電玩遊戲。但是這些刺激是暫時的，等到刺激過後，這個房間會更加冰涼，更加空虛。
+<p>在心中的房客走了之後，自己做什麼事都覺得沒有意義，失去了動力，只有靠外界的強烈刺激來麻痹心中的神經，減輕空虛寂寞的程度，比如酒精，和需要腦神經高度緊張的電玩遊戲。但是這些刺激是暫時的，等到刺激過後，這個房間會更加冰涼，更加空虛。</p>
 
-房子周圍還是會有很多路人經過，但不是每個人都適合這個房子；也不是所有人願意住進這個房子。其實房子也在期盼新的主人，並且希望這個主人一住，就是一輩子。
+<p>房子周圍還是會有很多路人經過，但不是每個人都適合這個房子；也不是所有人願意住進這個房子。其實房子也在期盼新的主人，並且希望這個主人一住，就是一輩子。</p>
 
-世界就是這麼多變，原本以為只是路人，相處之後發覺路人已經變成親愛的，記不清從哪一刻起，她已經住進了心裡的房子。很難判斷她只是路過這個房子，還是對這個房子很期待，想住在裡面。但這時，房子已經認為不能缺少她了。因為她的到來，這個房子又重新溫暖起來，產生一種動力，想做好每一件事情的動力。也許這就是對的人。房子想要做得更好，讓她能夠一直住在裡面不離開。
+<p>世界就是這麼多變，原本以為只是路人，相處之後發覺路人已經變成親愛的，記不清從哪一刻起，她已經住進了心裡的房子。很難判斷她只是路過這個房子，還是對這個房子很期待，想住在裡面。但這時，房子已經認為不能缺少她了。因為她的到來，這個房子又重新溫暖起來，產生一種動力，想做好每一件事情的動力。也許這就是對的人。房子想要做得更好，讓她能夠一直住在裡面不離開。</p>
 ]]></content>
   </entry>
   

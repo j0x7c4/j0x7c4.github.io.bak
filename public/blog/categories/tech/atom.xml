@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-02T00:04:56+08:00</updated>
+  <updated>2013-10-02T00:19:20+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -29,9 +29,9 @@
   
   <entry>
     <title type="html"><![CDATA[改版octopress 之 安装]]></title>
-    <link href="http://yoursite.com/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/"/>
+    <link href="http://yoursite.com/blog/2013/10/01/change-to-octopress/"/>
     <updated>2013-10-01T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/10/01/%e6%94%b9%e7%89%88octopress-%e4%b9%8b-%e5%ae%89%e8%a3%85</id>
+    <id>http://yoursite.com/blog/2013/10/01/change-to-octopress</id>
     <content type="html"><![CDATA[<p>心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。</p>
 
 <p>但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。</p>
@@ -82,9 +82,9 @@ rvm install ruby-1.9.3-p448
   
   <entry>
     <title type="html"><![CDATA[HIVE中使用python实现UDF]]></title>
-    <link href="http://yoursite.com/blog/2013/09/25/hive%25e4%25b8%25ad%25e4%25bd%25bf%25e7%2594%25a8python%25e5%25ae%259e%25e7%258e%25b0udf/"/>
+    <link href="http://yoursite.com/blog/2013/09/25/hive-python-udf/"/>
     <updated>2013-09-25T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/09/25/hive%e4%b8%ad%e4%bd%bf%e7%94%a8python%e5%ae%9e%e7%8e%b0udf</id>
+    <id>http://yoursite.com/blog/2013/09/25/hive-python-udf</id>
     <content type="html"><![CDATA[<p>HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。</p>
 
 <p>UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。</p>

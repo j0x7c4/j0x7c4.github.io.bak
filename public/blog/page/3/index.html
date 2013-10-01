@@ -9,7 +9,9 @@
   <meta name="author" content="Eli">
 
   
-  <meta name="description" content="目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。 利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。 import json import urllib url=URL_QUERY f = urllib. &hellip;">
+  <meta name="description" content="目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。 利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。 import json
+import urllib url=URL_QUERY
+f = urllib. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,7 +73,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/">Python Urllib+json 与web API交互</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/06/01/python-urllibjson-webAPI/">Python Urllib+json 与web API交互</a></h1>
     
     
       <p class="meta">
@@ -89,26 +91,29 @@
 
 <time datetime="2013-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
         
-           | <a href="/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/#disqus_thread"
-             data-disqus-identifier="http://yoursite.com/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/">Comments</a>
+           | <a href="/blog/2013/06/01/python-urllibjson-webAPI/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/06/01/python-urllibjson-webAPI/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content">目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。
+  <div class="entry-content"><p>目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。</p>
 
-利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。
+<p>利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。</p>
+
 <pre class="lang:python decode:true ">import json
 import urllib
 
 url=URL_QUERY
 f = urllib.urlopen(url)
 j = json.loads(f.read())</pre>
-f这个object存储了server回传的信息，通过read()将文字信息读出来。
 
-loads()将文字信息转成dictionary和list的形式，存储在j中。
+
+<p>f这个object存储了server回传的信息，通过read()将文字信息读出来。</p>
+
+<p>loads()将文字信息转成dictionary和list的形式，存储在j中。</p>
 </div>
   
   
@@ -121,7 +126,7 @@ loads()将文字信息转成dictionary和list的形式，存储在j中。
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/05/31/%25e5%259c%25a8gae%25e4%25b8%258a%25e4%25bd%25bf%25e7%2594%25a8database/">在GAE上使用Database</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/05/31/database-at-GAE/">在GAE上使用Database</a></h1>
     
     
       <p class="meta">
@@ -139,29 +144,30 @@ loads()将文字信息转成dictionary和list的形式，存储在j中。
 
 <time datetime="2013-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time>
         
-           | <a href="/blog/2013/05/31/%25e5%259c%25a8gae%25e4%25b8%258a%25e4%25bd%25bf%25e7%2594%25a8database/#disqus_thread"
-             data-disqus-identifier="http://yoursite.com/blog/2013/05/31/%25e5%259c%25a8gae%25e4%25b8%258a%25e4%25bd%25bf%25e7%2594%25a8database/">Comments</a>
+           | <a href="/blog/2013/05/31/database-at-GAE/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/05/31/database-at-GAE/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content">很多应用都需要database的支持，GAE提供了不错的Database服务。
+  <div class="entry-content"><p>很多应用都需要database的支持，GAE提供了不错的Database服务。</p>
 
-但是对于新手来讲，不是太容易理解GAE的database. GAE上的database称为datastore.
+<p>但是对于新手来讲，不是太容易理解GAE的database. GAE上的database称为datastore.</p>
 
-对于习惯于MySQL这种常见的SQL database的开发者来说，第一步当然是建立一个database, 然后又用户名，密码这些必要的东西。
+<p>对于习惯于MySQL这种常见的SQL database的开发者来说，第一步当然是建立一个database, 然后又用户名，密码这些必要的东西。</p>
 
-但是对于GAE上的datastore来说，这些都不需要。在GAE上创建好的application, 就会分配到一个datastore, 免费quota 是有1GB的空间。至于用户名和密码，我目前还没发现在哪里需要验证，应该是在同一个application中就不需要验证了吧。
+<p>但是对于GAE上的datastore来说，这些都不需要。在GAE上创建好的application, 就会分配到一个datastore, 免费quota 是有1GB的空间。至于用户名和密码，我目前还没发现在哪里需要验证，应该是在同一个application中就不需要验证了吧。</p>
 
-进入application的管理页面，在左边的column中能够看到Data那一栏，这个就是datastore的管理页面了。在Datastore Viewer里就能看到所有存储的data了。但是一开始里面是空的。
+<p>进入application的管理页面，在左边的column中能够看到Data那一栏，这个就是datastore的管理页面了。在Datastore Viewer里就能看到所有存储的data了。但是一开始里面是空的。</p>
 
-对于MySQL中table的概念，在GAE的datastore中是以Kind来表示。因为GAE是利用Google的Bigtable的感念，他没有像MySQL这样实际的table实体。
+<p>对于MySQL中table的概念，在GAE的datastore中是以Kind来表示。因为GAE是利用Google的Bigtable的感念，他没有像MySQL这样实际的table实体。</p>
 
-那一个Kind在code的层面上， 它是一个继承db.Model class的一个class.
+<p>那一个Kind在code的层面上， 它是一个继承db.Model class的一个class.</p>
 
-以Python为例, 这是一个名叫Employee的class, 继承自db.Model. 也就是相当于MySQL中的一个Employee table：
+<p>以Python为例, 这是一个名叫Employee的class, 继承自db.Model. 也就是相当于MySQL中的一个Employee table：</p>
+
 <pre class="lang:python decode:true ">import datetime
 from google.appengine.ext import db
 class Employee(db.Model):
@@ -169,14 +175,19 @@ class Employee(db.Model):
     last_name = db.StringProperty()
     hire_date = db.DateProperty()
     attended_hr_training = db.BooleanProperty()</pre>
-其中first_name, last_name这些property, 就是相当于一般MySQL table中的每个column字段. 然后db.StringProperty()这就是定义字段的类型.
 
-接下来,可以建立Employee class的instance, 然后给其中的property赋值. 最后使用 .put()这个method就可以将数据存到datastore中了.
+
+<p>其中first_name, last_name这些property, 就是相当于一般MySQL table中的每个column字段. 然后db.StringProperty()这就是定义字段的类型.</p>
+
+<p>接下来,可以建立Employee class的instance, 然后给其中的property赋值. 最后使用 .put()这个method就可以将数据存到datastore中了.</p>
+
 <pre class="lang:python decode:true ">employee = Employee(first_name='Antonio', last_name='Salieri')
 employee.hire_date = datetime.datetime.now().date()
 employee.attended_hr_training = True
 employee.put()</pre>
-以上是相当于SQL语句中的Insert语句。
+
+
+<p>以上是相当于SQL语句中的Insert语句。</p>
 </div>
   
   
@@ -189,7 +200,7 @@ employee.put()</pre>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/05/31/%25e5%259c%25a8gae%25e4%25b8%258a%25e4%25bd%25bf%25e7%2594%25a8%25e7%25b1%25bbsql%25e8%25af%25ad%25e5%258f%25a5%25e8%25bf%259b%25e8%25a1%258c%25e6%259f%25a5%25e8%25af%25a2/">在GAE上使用类SQL语句进行查询</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/05/31/SQL-like-at-GAE/">在GAE上使用类SQL语句进行查询</a></h1>
     
     
       <p class="meta">
@@ -207,17 +218,18 @@ employee.put()</pre>
 
 <time datetime="2013-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time>
         
-           | <a href="/blog/2013/05/31/%25e5%259c%25a8gae%25e4%25b8%258a%25e4%25bd%25bf%25e7%2594%25a8%25e7%25b1%25bbsql%25e8%25af%25ad%25e5%258f%25a5%25e8%25bf%259b%25e8%25a1%258c%25e6%259f%25a5%25e8%25af%25a2/#disqus_thread"
-             data-disqus-identifier="http://yoursite.com/blog/2013/05/31/%25e5%259c%25a8gae%25e4%25b8%258a%25e4%25bd%25bf%25e7%2594%25a8%25e7%25b1%25bbsql%25e8%25af%25ad%25e5%258f%25a5%25e8%25bf%259b%25e8%25a1%258c%25e6%259f%25a5%25e8%25af%25a2/">Comments</a>
+           | <a href="/blog/2013/05/31/SQL-like-at-GAE/#disqus_thread"
+             data-disqus-identifier="http://yoursite.com/blog/2013/05/31/SQL-like-at-GAE/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content">GAE上的Datastore虽然不是SQL的Database， 但是他提供了GQL语句进行类似SQL的查询。因为是类似SQL，所以不是完全等同于SQL语句。SQL语句中常用的count, group在GQL中就没有。
+  <div class="entry-content"><p>GAE上的Datastore虽然不是SQL的Database， 但是他提供了GQL语句进行类似SQL的查询。因为是类似SQL，所以不是完全等同于SQL语句。SQL语句中常用的count, group在GQL中就没有。</p>
 
-以下是GQL支持的格式，具体可以参见reference <a href="https://developers.google.com/appengine/docs/python/datastore/gqlreference" target="_blank">https://developers.google.com/appengine/docs/python/datastore/gqlreference</a>
+<p>以下是GQL支持的格式，具体可以参见reference <a href="https://developers.google.com/appengine/docs/python/datastore/gqlreference" target="_blank"><a href="https://developers.google.com/appengine/docs/python/datastore/gqlreference">https://developers.google.com/appengine/docs/python/datastore/gqlreference</a></a></p>
+
 <pre class="lang:tsql decode:true ">SELECT [* | &lt;property list&gt; | __key__]
   [DISTINCT]
   [FROM &lt;kind&gt;]]
@@ -231,7 +243,10 @@ employee.put()</pre>
   &lt;condition&gt; := &lt;property&gt; IN &lt;list&gt;
   &lt;condition&gt; := ANCESTOR IS &lt;entity or key&gt;
   &lt;list&gt; := (&lt;value&gt; [, &lt;value&gt; ...]])</pre>
-在Datastore 中有3种方式可以对数据进行查询：
+
+
+<p>在Datastore 中有3种方式可以对数据进行查询：</p>
+
 <pre class="lang:python decode:true">class Person(db.Model):
     first_name = db.StringProperty()
     last_name = db.StringProperty()
@@ -254,11 +269,14 @@ q = db.GqlQuery("SELECT * FROM Person " +
 # Query is not executed until results are accessed
 for p in q.run(limit=5):
     print "%s %s, %d inches tall" % (p.first_name, p.last_name, p.height)</pre>
-个人感觉，还是GQL的方式比较直觉，用起来比较灵活。但是如果对于简单的数据查询，可能第一种方式更加有效, code会比较精简。
 
-如果要在GQL中实现Group的功能，那就要分两步走。
 
-按照上面那个例子，如果要把人按照城市来分组，那就要先把城市找出来，GQL就写成
+<p>个人感觉，还是GQL的方式比较直觉，用起来比较灵活。但是如果对于简单的数据查询，可能第一种方式更加有效, code会比较精简。</p>
+
+<p>如果要在GQL中实现Group的功能，那就要分两步走。</p>
+
+<p>按照上面那个例子，如果要把人按照城市来分组，那就要先把城市找出来，GQL就写成</p>
+
 <pre class="lang:python decode:true ">q = db.GqlQuery("SELECT DISTINCT city FROM Person")
 result = []
 for item in q:
@@ -267,7 +285,9 @@ for item in q:
     for item2 in sq:
         people.append({"first_name":item2.first_name,"second_name":item2.second_name})
     result.append({"city":item.city,"people":people})</pre>
-这就是比较简单的GAE上的数据查询操作。
+
+
+<p>这就是比较简单的GAE上的数据查询操作。</p>
 </div>
   
   
@@ -294,11 +314,11 @@ for item in q:
       </li>
     
       <li class="post">
-        <a href="/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/">改版octopress 之 安装</a>
+        <a href="/blog/2013/10/01/change-to-octopress/">改版octopress 之 安装</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/09/25/hive%25e4%25b8%25ad%25e4%25bd%25bf%25e7%2594%25a8python%25e5%25ae%259e%25e7%258e%25b0udf/">HIVE中使用python实现UDF</a>
+        <a href="/blog/2013/09/25/hive-python-udf/">HIVE中使用python实现UDF</a>
       </li>
     
       <li class="post">
