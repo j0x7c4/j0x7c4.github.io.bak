@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-02T02:20:48+08:00</updated>
+  <updated>2013-10-02T23:55:45+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[添加404页面]]></title>
+    <link href="http://yoursite.com/blog/2013/10/02/add-404-page/"/>
+    <updated>2013-10-02T23:48:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/02/add-404-page</id>
+    <content type="html"><![CDATA[<p>今天给博客加了404页面，看起来感觉更加完整了一点。
+加404页面的方法很简单，只要在<code>source</code>目录下面创建<code>404.html</code>文件，当发生404错误时，octopress就会自动跳转到<code>404.html</code>这个页面。
+具体内容如下：</p>
+
+<h2>```</h2>
+
+<p>layout: page
+title: Sorry，404错误！你要访问的网页不存在!</p>
+
+<h2>footer: false</h2>
+
+<p><code>
+其中的</code>title```可以改成任何自己想要的内容。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[从wordpress到octopress迁移成功]]></title>
@@ -184,24 +205,6 @@ for image_file in image_list:
 更多的细节可以看document</p>
 
 <p><a href="http://docs.opencv.org/modules/refman.html"><a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a></a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于C++ std::map]]></title>
-    <link href="http://yoursite.com/blog/2013/07/17/cpp-std-map/"/>
-    <updated>2013-07-17T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/17/cpp-std-map</id>
-    <content type="html"><![CDATA[<p>C++的std::map是个很好用的东西，将key和value进行对应，而且可以是任意类型的key.</p>
-
-<p>以前一直没有研究过具体这个MAP是怎么实现的，只是大概的知道它是一个binary search tree. 那如果一个key不是数字，字符串这种相对简单的类型的时，而是一个vector, 或者一个pair类型的对象时，key要如何对应value呢？</p>
-
-<p>我在Quora上提了这个问题，很快就有人回答了。</p>
-
-<blockquote>std::map is a self-balancing binary search tree ordered using a comparator, whose type is given as the third template parameter to std::map. If you don't give this template parameter, it defaults to std::less&lt;KeyType&gt;. std::less is basically a function object wrapper around the "&lt;" operator. The &lt; operator is defined for types like int, as well as for std::pair (which compares lexicographically).</blockquote>
-
-
-<p>Map中的Key会按照它自己的类中定义的less运算符去比较大小，如果像vector, pair这种多元素的对象，会根据里面所有数据的字典序来进行大小的判断。</p>
 ]]></content>
   </entry>
   
