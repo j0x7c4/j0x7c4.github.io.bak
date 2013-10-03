@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-02T23:55:45+08:00</updated>
+  <updated>2013-10-03T23:36:55+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[复杂的感情]]></title>
+    <link href="http://yoursite.com/blog/2013/10/03/fu-za-de-gan-qing/"/>
+    <updated>2013-10-03T23:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/03/fu-za-de-gan-qing</id>
+    <content type="html"><![CDATA[<p>前幾天被女神拒絕后，心情一直很糟，特別的失落。一直很想用一些文字來發洩一下心中的雜亂，可是卻找不到任何有力的文字。混亂的思想無法用自己幼稚的文字表達出來。不過漸漸的，我似乎明白了一些什麼道理，理解了她的想法。</p>
+
+<p>像我這種一廂情願的人肯定有很多，自己喜歡的人，卻不一定喜歡自己。自己拿對方當做愛人，對方卻把自己當做普通朋友。自己追求很久的人，她也許也在追求其他的人。對方並沒有把你當做戀人，而只是普通朋友，所以和對方說話一定要很小心，一旦尺度過大，就會導致尷尬。經歷過多次后，自己心裡大概也有數，對方可能對自己沒感覺，但自己也不敢捅破那層窗戶紙，因為害怕被拒絕。寧可過著這樣小心翼翼的生活，將對方假想成自己的戀人，也不願意將話挑明，導致大家不歡而散。然而感情是複雜的，我還無法用某種邏輯思維去控制它，因此談話的內容難免有時會觸碰到對方的底線。終於在我出口問她之前，她主動捅破了窗戶紙。心中長久以來的擔憂卻已成真。</p>
+
+<p>說到底，就是沒有互相吸引。我們這種不到30歲的年輕人，對於近期成家或許並沒有太大的執念，所以并不期望湊合著過，還是對一場轟轟烈烈的愛情充滿了期待。在尋找到生命中真正的伴侶之前，總是寧願不停的尋找，也不肯停下來看看自己的周圍。有些人會用很多標準去評判自己的追求者，一旦有某個條件沒有符合，就立即拉黑，如果條件符合就欣然接受；有些人卻比較感性，只要感覺對了就好，感覺不對對方再努力也是白搭。同樣兩個只憑感覺的人湊在一起，往往就無法在一起，因為兩者都對對方有感覺的概率，要遠遠小於兩者都滿足對方要求的概率。因為感情是個複雜的東西，也許感覺就在一瞬間不見了，也許感覺在一瞬間就產生了；而外在的條件是不容易變化的。也許同樣星座的人會有同樣的喜好，也許兩個人星座相同，都同樣相信感覺而不是理性的條件。這也許是相同星座比較難在一起的原因了。</p>
+
+<p>我們在deadline來臨之前都是期望生活是豐富的，只有在deadline迫在眉睫的時候，才會用理性高效的方法去應對deadline. 有些人會選擇替代方案去解決這個問題；有些人卻喜歡寧缺毋濫。我不排斥前者，但我更加尊重後者，雖然他們浪費了追求者的一片用心，但卻保持了感情的純潔。也許我還太幼稚，對於感情的問題太理想化。但是一個沒有完全吸引自己的人，你是無法付出所有去愛這個人的。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[添加404页面]]></title>
@@ -122,6 +137,55 @@ undefined method `spawn&#8217; for Process:Module</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[改版octopress 之 安装]]></title>
+    <link href="http://yoursite.com/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/"/>
+    <updated>2013-10-01T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/01/%e6%94%b9%e7%89%88octopress-%e4%b9%8b-%e5%ae%89%e8%a3%85</id>
+    <content type="html"><![CDATA[心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。
+
+但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。
+
+首先从git上抓来octopress
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git@github.com:imathis/octopress.git</span></code></pre></td></tr></table></div></figure>
+然后进入octopress目录下，build源代码
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
+</span><span class='line'>bundle install
+</span><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
+以上几步都没有问题，然后执行
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
+然后问题就来了，出现了错误
+
+Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+rake aborted!
+undefined method `spawn&#8217; for Process:Module
+
+因为octopress需要ruby 1.9.3，而我原本mac上的ruby是1.8.3. 所以要把ruby更新到1.9.3才能用
+
+网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.
+
+我安装stable版本的rvm
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -L https://get.rvm.io | bash -s stable</span></code></pre></td></tr></table></div></figure>
+然后将rvm写到用户环境中。
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>echo "source $HOME/.rvm/scripts/rvm" &gt;&gt; ~/.bash_profile</span></code></pre></td></tr></table></div></figure>
+具体详见 <a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a>
+
+然后使用rvm来安装1.9.3版本的ruby.
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rvm install ruby-1.9.3-p448</span></code></pre></td></tr></table></div></figure>
+不过在这之前，要先确定安装了xcode的command line tools.
+
+可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[HIVE中使用python实现UDF]]></title>
     <link href="http://yoursite.com/blog/2013/09/25/hive-python-udf/"/>
     <updated>2013-09-25T00:00:00+08:00</updated>
@@ -190,6 +254,51 @@ undefined method `spawn&#8217; for Process:Module</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[HIVE中使用python实现UDF]]></title>
+    <link href="http://yoursite.com/blog/2013/09/25/hive%25e4%25b8%25ad%25e4%25bd%25bf%25e7%2594%25a8python%25e5%25ae%259e%25e7%258e%25b0udf/"/>
+    <updated>2013-09-25T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/09/25/hive%e4%b8%ad%e4%bd%bf%e7%94%a8python%e5%ae%9e%e7%8e%b0udf</id>
+    <content type="html"><![CDATA[HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。
+
+UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。
+
+HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。
+
+使用HIVE的命令进入数据仓库(search)
+<pre class="lang:default decode:true">use search;</pre>
+使用HIVE的命令查看已经建立的表
+<pre class="lang:sh decode:true">show tables;</pre>
+使用HIVE的命令查看xxx表中的字段
+<pre class="lang:sh decode:true">describe xxx;</pre>
+使用HIVE命令用PYTHON实现UDF
+<pre class="lang:tsql decode:true">add file udf.py;
+SELECT 
+TRANSFORM(keyword)
+USING 'python udf.py'
+AS(keyword)
+FROM xxx
+WHERE dt='2013-09-25'
+;</pre>
+要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。
+
+输入到python中的内容，是按照AS里的数量来决定的。
+
+下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。
+<pre class="lang:python decode:true" title="udf.py">#encoding=utf-8
+import sys
+
+for line in sys.stdin:
+    line = line.strip()
+    print line</pre>
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[寻找自己的生活]]></title>
     <link href="http://yoursite.com/blog/2013/09/19/looking-for-my-life/"/>
     <updated>2013-09-19T00:00:00+08:00</updated>
@@ -203,6 +312,23 @@ undefined method `spawn&#8217; for Process:Module</p>
 <p>对于即将工作的我来说，接下来的日子还很长，还有很多路要走。在生活中有很多东西想要去追逐，希望这些追逐的东西不要在未来的某一天，被证明是可有可无的。希望能找到我自己真正喜欢的生活方式。</p>
 
 <p>&nbsp;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[寻找自己的生活]]></title>
+    <link href="http://yoursite.com/blog/2013/09/19/%25e5%25af%25bb%25e6%2589%25be%25e8%2587%25aa%25e5%25b7%25b1%25e7%259a%2584%25e7%2594%259f%25e6%25b4%25bb/"/>
+    <updated>2013-09-19T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/09/19/%e5%af%bb%e6%89%be%e8%87%aa%e5%b7%b1%e7%9a%84%e7%94%9f%e6%b4%bb</id>
+    <content type="html"><![CDATA[转眼间，从台湾回来已经半个多月了。回来之后也忙了不少事情，最大一件事应该是找了一份不错的工作，了去一桩心事。不过其他的心事也接踵而来，比如找房子，找对象等。。。
+
+感觉在毕业之后的两个礼拜内就能找到一份工作，算是相当的神速。不过也有很多客观原因，使得我不得不当机立断，没有太多的“货比三家”的时间。老爸似乎对我这个选择也没有非常满意，在他看来进到一个大家公认的大公司要比呆在一个小公司里做些核心的事情要有意义的多。但是在我看来，我并没有因为进不了这些大公司而感到过分沮丧，我是一个善于自我治愈的人，一开始虽然是有点放不下大公司offer的诱惑，不过在我签下这个到手的offer之后，自我治愈的过程就开始了。能够在一个核心部门发挥自己的价值，能够直接提高产品的效能，能够马上和这家公司的牛人们一起工作，使我对这个工作的兴奋感越来越强。没过多久，我已经把自己的心情恢复到了平衡点上。
+
+现在很多事情都已经一步一步确定，接下来的就是上班工作的节奏了。这几天比较关心的问题就是下班之后干什么？我估摸着自己现在肯定不是一个工作狂，在下班之后希望能及时行乐。那我可以干些什么事呢？然后我发现我一直以来都有的一个问题，就是专注力不够集中，做事很容易分心。不过在deadline的驱使下，我的专注力还是很强的。于是我决定开始看书，一方面补充自己贫乏的人文知识，一方面锻炼自己的专注力。第三方面，也是为了能和喜欢看书的人有些共同语言。这几天看的几本书感觉都不错，曾经的伪文青终于得到了真正的文化知识的滋润了。
+
+对于即将工作的我来说，接下来的日子还很长，还有很多路要走。在生活中有很多东西想要去追逐，希望这些追逐的东西不要在未来的某一天，被证明是可有可无的。希望能找到我自己真正喜欢的生活方式。
+
+&nbsp;
 ]]></content>
   </entry>
   
@@ -248,6 +374,47 @@ undefined method `spawn&#8217; for Process:Module</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[在島上的最後幾天]]></title>
+    <link href="http://yoursite.com/blog/2013/08/29/%25e5%259c%25a8%25e5%25b3%25b6%25e4%25b8%258a%25e7%259a%2584%25e6%259c%2580%25e5%25be%258c%25e5%25b9%25be%25e5%25a4%25a9/"/>
+    <updated>2013-08-29T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/08/29/%e5%9c%a8%e5%b3%b6%e4%b8%8a%e7%9a%84%e6%9c%80%e5%be%8c%e5%b9%be%e5%a4%a9</id>
+    <content type="html"><![CDATA[兩年前的今天，我忙著收拾行李，忙著和朋友吃飯告別，準備著來台灣的一切。對台灣的了解也只是林志玲和聯發科。
+
+經過了兩年的生活，雖然不能肯定說自己對台灣有多了解，但肯定是被台灣深深的吸引了。
+
+<span style="line-height: 1.714285714; font-size: 1rem;">我喜歡藍色，因為天空是藍色，大海是藍色，深處廣闊的藍色中，有一種獨特的滿足感。</span>
+
+<span style="line-height: 1.714285714; font-size: 1rem;">在台灣，我看到了最美的藍色，小時候作文中藍藍的天空，白白的雲朵，終於在這裡讓我領略到它們的美。</span>
+
+<img class="alignnone" alt="" src="http://farm8.staticflickr.com/7399/9614610447_96d627a476.jpg" width="500" height="333" />
+
+以前在大陸時，我不經常去海邊，偶爾幾次去海邊，看到的大海和我心目中的大海還是有很大差距。在這裡，我看到了比我心目中更美的大海。
+
+<img class="alignnone" alt="" src="http://farm3.staticflickr.com/2813/9617841176_5de61743b0.jpg" width="500" height="333" />
+
+<span style="line-height: 1.714285714; font-size: 1rem;">在如此美麗的沙灘上，似乎任何煩惱都會暫時的忘記。</span>
+
+台灣吸引我的，除了看不完的美景，還有忘不了的人情。
+
+初來台灣，令我最想不到的是台北的建築。這裡的建築和大陸的高大，浮華不同，它們沒有艷麗的外表，卻深深的流露出溫馨的感覺。走在學校附近的窄小的巷子，兩邊的房子看似都有20多年的房齡，卻還是這麼生機盎然的感覺，房子與房子之間挨的很近，如同親密的老朋友，互相幫助，互相扶持。
+
+<img class="alignnone" alt="" src="http://farm3.staticflickr.com/2876/9614592679_b48a78d9a3.jpg" width="500" height="333" />
+
+房子和房子之間都如此親密無間，人和人之間更是如此。在台灣特別能感受到人情味，路人之間的一絲微笑，言語上的一聲謝謝，人與人之間的信任感，都會令我感到身邊的都是家人。
+
+前幾天和實驗室的同學一起開車環島，在即將離開的時候，能再次體會台灣的美。曾經以為來台灣只是為了學業，匆匆的度過兩年，什麼都不留下，什麼都不帶走。沒想到在這兩年中，能認識這麼多朋友，留下那麼多的友情。有過悲傷，有過歡樂。在心情最低落的時候，有朋友陪我一起喝酒；在壓力山大的時候，有朋友一起肩並肩一起度過。這兩年記錄了人生中豐富的內容，我變得比以前成熟了。
+
+<img class="alignnone" alt="" src="http://farm4.staticflickr.com/3700/9618201436_28c61c7ea5_c.jpg" width="534" height="800" />
+
+兩年后的我們不知身在何處，做著未知的事情。但願一切都若初見。
+
+好基友，一輩子。
+
+&nbsp;
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[關於中國男籃被台灣男籃完爆]]></title>
     <link href="http://yoursite.com/blog/2013/08/10/big-fail-in-basketball/"/>
     <updated>2013-08-10T00:00:00+08:00</updated>
@@ -263,6 +430,21 @@ undefined method `spawn&#8217; for Process:Module</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[關於中國男籃被台灣男籃完爆]]></title>
+    <link href="http://yoursite.com/blog/2013/08/10/%25e9%2597%259c%25e6%2596%25bc%25e4%25b8%25ad%25e5%259c%258b%25e7%2594%25b7%25e7%25b1%2583%25e8%25a2%25ab%25e5%258f%25b0%25e7%2581%25a3%25e7%2594%25b7%25e7%25b1%2583%25e5%25ae%258c%25e7%2588%2586/"/>
+    <updated>2013-08-10T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/08/10/%e9%97%9c%e6%96%bc%e4%b8%ad%e5%9c%8b%e7%94%b7%e7%b1%83%e8%a2%ab%e5%8f%b0%e7%81%a3%e7%94%b7%e7%b1%83%e5%ae%8c%e7%88%86</id>
+    <content type="html"><![CDATA[中國男籃輸台灣，是在情理之中。籃球在台灣是一個很流行的運動，基本上每個男生都會打籃球，還有很多的女生也參與其中。和大陸不一樣的是，這裡的人除了愛看球，更加喜歡自己上場打球。在學校裡，除了校內的學生，還有很多校外已經工作的人在空餘時間來打球。除了年輕人，有時還能看到不少中老年人在打球。目測場上的年齡差距最高可達30歲。籃球已經在台灣成為一種文化，文化就是深入每個人的思想中，並不是為了應付比賽而匆忙組隊開練。文化是每個人都會盡力參與其中，堅持不斷。在我的學校，每個系都有自己的系隊，包括男籃和女籃，並且有規律的訓練。學生們都會組織各個規模的比賽，有學校之間的，也有各系之間的。
+
+在台灣生活過就知道，體育活動在這裡基本上每個人的日常。學校的體育設施基本上都是爆滿，越到晚上，體育場，體育館的人數就越多。而且台北的運動設施非常豐富，許多河濱公園都有球場，自行車道，和慢跑路線。每個人都可以充分利用這些運動資源。
+
+<span style="font-size: 1rem;">至於足球，雖然目前在台灣沒有很普及，但</span><span style="line-height: 1.714285714; font-size: 1rem;">是我看到越來越多的小孩在踢球。假期裡，很多10歲左右的小孩在我們學校的體育場進行看似正規的訓練，這在中國是罕見的事情，哪個家長會讓自己的孩子在近40度的天氣裡出來踢球，而不在家裡溫習功課呢？我覺得按照中國足球的現狀，必備亞洲各個國家完爆。</span>
+
+<span style="line-height: 1.714285714; font-size: 1rem;">一個獨裁統治的社會，就連體育也是被獨裁統治的。我們都只是圍觀，不明覺厲。</span><span style="line-height: 1.714285714; font-size: 1rem;">像中國這種“精英式”的選人方式，大多數人只能在旁邊看熱鬧而已。奧運金牌再多，都是屁。</span>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[即將再見的學生]]></title>
     <link href="http://yoursite.com/blog/2013/07/28/goodbye-campus/"/>
     <updated>2013-07-28T00:00:00+08:00</updated>
@@ -274,6 +456,21 @@ undefined method `spawn&#8217; for Process:Module</p>
 <p>我從來都是一個怕麻煩的人，結束了單純的學生生活後，麻煩的事會越來越多。這時候抱怨自己的社會經驗不足已經來不及了，要盡快的向身邊人學習生活經驗才對。現在要像Howard一樣，離開媽媽，獨自生活了。</p>
 
 <p>&nbsp;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[即將再見的學生]]></title>
+    <link href="http://yoursite.com/blog/2013/07/28/%25e5%258d%25b3%25e5%25b0%2587%25e5%2586%258d%25e8%25a6%258b%25e7%259a%2584%25e5%25ad%25b8%25e7%2594%259f/"/>
+    <updated>2013-07-28T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/07/28/%e5%8d%b3%e5%b0%87%e5%86%8d%e8%a6%8b%e7%9a%84%e5%ad%b8%e7%94%9f</id>
+    <content type="html"><![CDATA[前幾天順利的通過了口試，心中的一塊大石終於落下。這也意味著我的學生身份即將到期，接下來就要自己掙錢生活了。
+
+以前從來沒體會過自己生活是什麼的感受，雖然說我從初中開始就開始住學校，一直經過初中，高中，大學，和研究所。這十多年來也算比較獨立了。可是住學校宿舍，和自己找房子在外面住的感覺還是不一樣的。這些年雖然沒有住在家裡，但是還是能夠感受到父母罩著我，不用擔心食宿問題。如今就要踏入社會，父母對我的態度也有所轉變，我跟他們說我之後不直接飛回家，而是先飛上海。還以為媽媽會勸我還是飛寧波會比較好，之後再送我去上海。沒想到她說那就隨便你吧。那一刻有些失落，不過同時也體會到了媽媽覺得我已經長大了，已經獨立了。當然我也是這麼想的。今天晚上試著在網上找房子租，隨便敲了幾個關鍵字，跳出來一大堆租房信息。我該從哪裡入手？竟然一點都不知道。租房子的流程是如何？需要看風水嗎？會不會是凶宅？滿腦子都是這些。看來在網上找房子，光看幾張照片還是不靠譜。
+
+我從來都是一個怕麻煩的人，結束了單純的學生生活後，麻煩的事會越來越多。這時候抱怨自己的社會經驗不足已經來不及了，要盡快的向身邊人學習生活經驗才對。現在要像Howard一樣，離開媽媽，獨自生活了。
+
+&nbsp;
 ]]></content>
   </entry>
   
@@ -299,6 +496,75 @@ undefined method `spawn&#8217; for Process:Module</p>
 <p>雖然在一起的時候我們也停不了各種爭吵，但這些都不會在我的記憶里持續太久。時間就是幫助我過濾到這些雜質，剩下的是純淨的回憶，剩下來的是美好的回憶。也許很難記起我們第一次吵架的地點，但卻能夠清楚的記得我第一次親你的自習室，在教室的最後一排。記憶里留下的，是每一天，你坐在自行車的後座上，我載著你，在校園里。除了回憶，就是感激。非常榮幸在你大學時光中，陪伴在你身邊的人是我，感謝你給我的機會。並不是所有人都能有在大學里談戀愛的經歷，我想如果當初你拒絕我，也許我也會和很多人一樣，在沒有愛的大學里度過四年的青春。這樣我大學的回憶就真的只剩鍵盤，鼠標和一行行冰冷的代碼了。</p>
 
 <p>也許這世上能夠成為永遠的，就是過去的回憶。那如果是這樣，希望我的回憶永遠都是美好的。謝謝你帶給我美好的回憶。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[不變的永遠]]></title>
+    <link href="http://yoursite.com/blog/2013/07/23/%25e4%25b8%258d%25e8%25ae%258a%25e7%259a%2584%25e6%25b0%25b8%25e9%2581%25a0/"/>
+    <updated>2013-07-23T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/07/23/%e4%b8%8d%e8%ae%8a%e7%9a%84%e6%b0%b8%e9%81%a0</id>
+    <content type="html"><![CDATA[聽到五月天的《如煙》
+<blockquote>有沒有那麼一種永遠，永遠不改變&#8230;
+17歲的那一年，吻過她的臉，以為就能永遠&#8230;</blockquote>
+思緒又回到了大學的回憶當中。人們說不斷的回憶過去，是對現實的不滿，對現實的無奈。那麼我現在只能忍受這些不滿，忍受這些無奈。
+
+經歷過台灣的大學生活後，我深深的體會到自己的大學生活是如此的枯燥。沒有豐富的社團活動，沒有精彩的舞臺表演，沒有冒險的旅行。但是有一點是我非常驕傲，也非常值得回憶的，就是在大學四年裡談了一場戀愛，和一個美麗的女孩，一個獨特性格的女孩。讓我枯燥的大學生活記錄中多了永遠值得懷念的一幅畫面。
+
+以前在一起時，從來都沒想過有一天會分開，直到有一次真的分開了，才體會到軀體和靈魂分開的感覺。終究無法忍受沒有靈魂的生活，千方百計地，我又試圖挽回了這段感情。這一切都是自己的自私和任性造成的，在這段感情上終究是被自己留下了傷痕。傷痕無法抵擋地理距離的阻隔（也許也是心理上的阻隔），最終我們還是分手了。現在去討論為什麼已經沒有什麼意義了，我沒有資格去干涉她追求未來幸福的權利，因為我也沒有把她留住的信心。所以我尊重她的決定。
+
+幸運的，我們並沒有像大多數分手的人那樣，成為了老死不相往來的人，甚至成為了仇人（至少我沒有感覺到我們之間有互相的記恨）。現在說這個似乎是非常輕鬆，但我也經過了近一年的思想鬥爭。真正的放下也許並不是說說這麼容易的，很多療傷的方法並不是每個人都適合。我覺得真正的放下，就是承認我們的美好已經成為了回憶，這些美好都只會存在于回憶中，不會發生在將來。我並不希望把對方互相拉黑，從此就是仇人。因為她畢竟是你愛了整整四年的人，是你幻想能有共同家庭的人，是你在四年之中都認為是終生伴侶的人。想到這裡，沒有任何理由去憎恨她，沒有任何理由去傷害她（甚至到現在還想保護她）。而是一種祝福，祝福她能遇到幫我完成當時願望的人。
+
+雖然在一起的時候我們也停不了各種爭吵，但這些都不會在我的記憶里持續太久。時間就是幫助我過濾到這些雜質，剩下的是純淨的回憶，剩下來的是美好的回憶。也許很難記起我們第一次吵架的地點，但卻能夠清楚的記得我第一次親你的自習室，在教室的最後一排。記憶里留下的，是每一天，你坐在自行車的後座上，我載著你，在校園里。除了回憶，就是感激。非常榮幸在你大學時光中，陪伴在你身邊的人是我，感謝你給我的機會。並不是所有人都能有在大學里談戀愛的經歷，我想如果當初你拒絕我，也許我也會和很多人一樣，在沒有愛的大學里度過四年的青春。這樣我大學的回憶就真的只剩鍵盤，鼠標和一行行冰冷的代碼了。
+
+也許這世上能夠成為永遠的，就是過去的回憶。那如果是這樣，希望我的回憶永遠都是美好的。謝謝你帶給我美好的回憶。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenCV in Python]]></title>
+    <link href="http://yoursite.com/blog/2013/07/20/opencv-in-python/"/>
+    <updated>2013-07-20T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/07/20/opencv-in-python</id>
+    <content type="html"><![CDATA[OpenCV基本上每個學Computer Vision都用過，我之前也是用C++來使用OpenCV, 最近為了處理一些圖片轉影片，加Marker之類的簡單的操作，懶得再用C++去寫。於是就嘗試用Python來寫OpenCV.
+
+在Python中使用OpenCV, 只要把OpenCV的Library加到Python的Lib目錄下面就可以了。
+
+具體就是把OpenCV目錄下的”build/python/2.7/cv2.pyd&#8221; 複製到Python的“Lib/site-packages”目錄中。
+
+OpenCV被包在cv2这个module中，在一开始加载这个module就可以了。
+
+OpenCV中经常会用到cv::Size, cv::Point, 在python中就用tuple来代替，不用再定义cv::Size或者cv::Point. 比如原来C++中定义一个size用cv::Size(640,480), 现在Python中直接用(640,480)来代替就好了。
+
+下面这个例子就是把image_dir中的图片转换成avi格式的影片
+<pre class="lang:python decode:true">#encoding:utf-8
+import sys
+import os
+import cv2
+import re
+def intCmp ( x,y ):
+	a = re.search('([\\\\d]+).png',x).group(1)
+	b = re.search('([\\\\d]+).png',y).group(1)
+	return int(a)-int(b)
+if __name__ == '__main__':
+	if len(sys.argv)&lt;3:
+		print "Usage: %s (image_dir) (output)" %(sys.argv[0])
+		exit(1)
+	image_dir = sys.argv[1]
+	output_file = sys.argv[2]
+	image_list = sorted(os.listdir(image_dir),cmp=intCmp)
+	video_writer = cv2.VideoWriter(output_file,-1,30,(640,480))
+	for image_file in image_list:
+		print image_file
+		img = cv2.imread("%s/%s"%(image_dir,image_file.strip()))
+		cv2.imshow("rgb",img)
+		key = cv2.waitKey(10)
+		video_writer.write(img)
+		if key == 27:
+			break;</pre>
+更多的细节可以看document
+
+<a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a>
 ]]></content>
   </entry>
   
@@ -391,236 +657,6 @@ undefined method `spawn&#8217; for Process:Module</p>
 
 
 <p>Map中的Key会按照它自己的类中定义的less运算符去比较大小，如果像vector, pair这种多元素的对象，会根据里面所有数据的字典序来进行大小的判断。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用matlab畫Confusion matrix]]></title>
-    <link href="http://yoursite.com/blog/2013/07/16/matlab-confusion-matrix/"/>
-    <updated>2013-07-16T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/16/matlab-confusion-matrix</id>
-    <content type="html"><![CDATA[<p>在pattern recognition 中通常用confusion matrix 來表示實驗結果。最近處理論文的實驗結果時發現用matlab可以比較方便的畫出confusion matrix來。</p>
-
-<p>以下是效果图。</p>
-
-<p><img class="aligncenter" alt="" src="http://farm8.staticflickr.com/7364/9303955419_9aafcbf1c2_o.png" width="584" height="477" /></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">n</span> <span class="p">=</span> 14<span class="p">;</span>
-</span><span class='line'><span class="n">file</span> <span class="p">=</span> <span class="s">&#39;data.csv&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="n">ylabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
-</span><span class='line'><span class="n">xlabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">X</span> <span class="p">=</span> <span class="n">csvread</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">%normalize</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)=</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span>1<span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="c">%inverse data</span>
-</span><span class='line'><span class="n">X</span><span class="p">=</span><span class="n">imcomplement</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="c">%draw</span>
-</span><span class='line'><span class="n">imagesc</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="n">colormap</span><span class="p">(</span><span class="n">gray</span><span class="p">);</span>
-</span><span class='line'><span class="n">axis</span> <span class="n">off</span><span class="p">;</span>
-</span><span class='line'><span class="n">text</span><span class="p">(</span>0<span class="p">,</span>6<span class="p">,</span><span class="s">&#39;Random&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">text</span><span class="p">(</span>0<span class="p">,</span><span class="nb">i</span><span class="p">,</span><span class="n">ylabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">h</span><span class="p">=</span><span class="n">text</span><span class="p">(</span>6<span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="s">&#39;Netural&#39;</span><span class="p">,</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">h</span> <span class="p">=</span> <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="n">xlabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="nb">disp</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="c">%add value</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="k">for</span> <span class="nb">j</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span><span class="o">&lt;</span>0<span class="p">.</span>7
-</span><span class='line'>            <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span>1<span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">),</span><span class="s">&#39;%.2f&#39;</span><span class="p">),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;center&#39;</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,</span><span class="s">&#39;white&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[走著走著]]></title>
-    <link href="http://yoursite.com/blog/2013/07/09/when-walking/"/>
-    <updated>2013-07-09T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/09/when-walking</id>
-    <content type="html"><![CDATA[<p>一直以為有路就要往前走，一直以為往前走就是對的。其實我並不知道這條路通向哪裡，只是覺得往前走就能看到更加美麗的景色。但是身邊的景色也很美，我這樣一直的趕路，錯過了身邊的美景，卻始終無法收穫心中嚮往的景色。</p>
-
-<p>走著走著覺得是不是應該走慢一點。從小學畢業，就有一條明確的路，我要念中學，3年唸完初中，又是3年唸完高中，然後別人告訴我繼續走，別停下，因為別人都在過那條獨木橋，雖然現在身邊沒有什麼美景，但是你只要越過那條獨木橋就可以看到美景了。於是我跟著潮流一起越過了獨木橋，來到了眾人嚮往的象牙塔。有些人迷失在了象牙塔中，而我卻因為深受之前被灌輸的思想，有路就要繼續走，於是我也跟著一撮人繼續走。大學的四年本應該可以過得更加美好，可是我不是一個留戀眼前景色的人。也許我只是跟著感覺在走，並沒有受到任何人的控制。當然我也不希望被人控制。這座象牙塔轉眼間就快跨出門檻了，可是我因為之前走得太快，太自由，卻摔在了門檻上。幸好我還是爬了起來，繼續向前走。這時一條路突然變成了兩條路，一條通向火熱的熔爐，一條通向幽靜的山谷。我在火爐面前來回走了一圈，發現還沒準備充分，還是走向山谷吧。好吧，2年時間我走出了山谷，TMD面前竟然又是那個火爐。本以為從山谷里出來會有不同的景色。無奈最終還是要面對這個火爐。</p>
-
-<p>到底怎樣的人生才會令人滿意，如果仔細觀察身邊的美景，是否會有種心動的感覺？終於應該要有自己獨立思考的技能了，美不美自己說了算，和別人無關。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[又熬過了一夜]]></title>
-    <link href="http://yoursite.com/blog/2013/07/05/one-night/"/>
-    <updated>2013-07-05T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/05/one-night</id>
-    <content type="html"><![CDATA[<p>又熬過了一夜，這已經是這禮拜連續第5天通宵了。</p>
-
-<p>碩論到目前為止，方法基本上都已經確定，理論部分已經完成的差不多了。而為了準備今天的Rehearsal， 這兩天都在準備投影片，又把論文的思路整理了一遍。發現論文經過和學長的討論，自己的研究之後，理論基礎又堅固很多。</p>
-
-<p>耳機中一直循環播放著劉若英的《親愛的路人》專輯和張震嶽的《我是海雅谷慕》專輯；手機偶爾能夠和女神聊到幾句話，從她睡覺前聊幾句，到醒來後再聊幾句；中途偶爾打了幾場LOL；實驗室的中央空調從晚上12點自動關閉，到早上8點的自動打開，經歷了一晚上的悶熱，我依然還坐在電腦前敲鍵盤。</p>
-
-<p>曾經天真的幻想著寫完論文之後可以好好的休息一下，現在才明白現實的殘酷。論文其實是寫不完的，寫的越深入，發現的問題也就越多。我從一開始預計的方法到現在最終的方法，基本上是接近180度的轉變。雖然現在已經完善很多，但是仔細深究下去，應該還有一大堆漏洞。在熬了這麼多晚後，終於悟出一個道理，”論文沒有寫完的一天，只有熬過deadline的一天。“</p>
-
-<p>我發現我越來越喜歡寫blog了。。。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[每當離別的時候，就會開始回憶過去]]></title>
-    <link href="http://yoursite.com/blog/2013/07/05/best-memory/"/>
-    <updated>2013-07-05T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/05/best-memory</id>
-    <content type="html"><![CDATA[<p>每當離別的時候，就會開始回憶過去。兩年前來台灣的情景彷彿就在昨天，但現在朋友們問我最多的都是什麼時候回大陸，工作找的如何，今後打算在哪裡工作。呆在台灣的日子，也漸漸的進入了倒數計時。</p>
-
-<p>兩年在台灣的日子，過得還算充實。雖然說沒有走遍整個台灣，但也去過了不少地方。在台灣結交的朋友也都不錯，遇到形形色色的人，感受到形形色色的愛。在台灣我的心情大概經歷了三個階段，第一是無憂無慮期，來到了一個新的環境，享受著新環境的好，當時也沒有特別大的壓力，因為實驗室也沒有特別多事情做，除了在期末比較忙之外，平時都過得比較悠閒自在。台灣人也非常的熱情，剛來沒多久就結交了不少朋友，在他們的幫助下，我也很快的融入了台灣的生活中；在台灣經歷了人生中很多的第一次，比如第一次失戀，這也就是第二個階段的開始，那段時間的情緒是極其低落的，做事沒有動力，晚上又會特別難過，感覺就像生活在夢境，和回憶當中，和現實脫離了。不過這也鞏固基友之間的感情，因為剛好有朋友也發生和我同樣的變故。生命中突然感受到同性帶來的溫暖，有時這也讓我比價困惑，對自己的性向也有點動搖。那段時間對人生的思考也特別多，喝的酒也特別多。每當晚上喝完酒，思維就變得和平時不一樣，也許是以前活的太好，所以沒心沒肺，經過這次變故后我的心也成熟了不少，開始能夠體會自己和別人的內心世界，自己能摸索著從那裡走出來，從一開始的不知所措，到胡思亂想，到最終的放下，經歷了還算挺長的時間。漸漸的明白成熟的人應該是怎樣的，自己也朝那個方向前進著，雖然不敢說已經走到了成熟，但也已經走了不少路了；生命中其實充滿著很多奇遇，旅遊往往會帶給你一種驚喜。之前大學時幾乎都沒有和她說過話，可是這一次偶然間卻和她能夠一起在台灣旅遊。我和她說話的機會也從原來的0％到了50％（因為我們是3個人，她除了和另一個朋友說話話，也只能和我說話了）。剛聽說她們要來台灣玩時，我也沒有打算會和她們一路玩到底。不過當時也正好忙完paper, 想放鬆一下心情，於是就決定一起履行了。我們一路從台北到墾丁，一起去了春浪音樂節，一起看了美麗的大海。當時在她身上似乎看到了一種似曾相識的憂傷，不知道什麼時候開始，我的心思也從旅遊轉移到了她的身上。也從那段時間開始，我對人生又產生了一種新的動力，有變的像以前這樣樂觀了，想做一個認真的人，想把每件事情都做好。這也是在台灣的第三個階段，現在還在延續著。</p>
-
-<p>如果當初沒有來台灣，我也許會以一種截然不同的方式活著。以前的生活方式不能說不好，但既然已經變了，就要讓現在的生活變得比以前更好。以前的記憶會被時間逐漸的沖淡，希望那些不開心的可以被時間帶走，開心的記憶可以儘可能多的留下來。</p>
-
-<p><span style="line-height: 1.714285714; font-size: 1rem;">上個禮拜還憂心忡忡的擔心自己是不是會不能畢業，而這禮拜經過幾晚的奮鬥，終於把論文初稿趕完，也逐漸開始準備口試的presentation. 今天還進行了口試的rehearsal. 之前投的paper也意外的被accepted了。現在終於有一種感覺，自己進入了準備畢業的節奏。</span></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[爆肝写论文与找工作]]></title>
-    <link href="http://yoursite.com/blog/2013/07/04/die-for-thesis-and-job/"/>
-    <updated>2013-07-04T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/04/die-for-thesis-and-job</id>
-    <content type="html"><![CDATA[<p>这几天是毕业论文的最后阶段了，月底应该就会口试，可是剩下的工作量还蛮大的。天天都是爆肝的节奏。这两天抽空面试了两家公司。</p>
-
-<p>第一家是大众点评，因为我在台湾，不方便onsite面试，所以只能通过QQ视频（为什么是QQ而不是SKYPE, &ndash;_&ndash;! ) 我应聘了大众点评的搜索部门，作为一家做推荐，搜索系统的公司，这应该就是核心部门了。给我面试的面试官是整个搜索部门的BOSS，这是我事后朋友告诉我才知道的。当然在面试前我也有搜索这个面试官的资料（因为他把QQ号告诉我了）。这个面试特别直接，双方都没有互相介绍，直接问我之前做的一个音乐推荐系统相关的事情。看来针对性还是很强的。当然问题必然会有做这个系统遇到最困难的是什么，这也是面试中肯定会问到的问题。虽然这个系统在做的时候确实遇到了不少困难，但是等做完之后再看看其实这些也不算什么（看来以后遇到困难时就要把它记下来，以防以后忘记）。因为我的系统中，用到了SVM (Support Vector Machine), 于是就把话题顺便带到了SVM的原理上，幸好我硕一时修了林智仁的Convex Optimization. 雖然細節上有點模糊，但是大概原理還是能夠推導的。接著談了一些在IR系統上對Corpus的擴展，能夠對沒有在Corpus中的term也能產生作用。由於我的研究方向比较偏电脑视觉，对IR的了解也不过于修过两个不同老师开设的课，做了2次term project. 主要还是兴趣驱使的。于是简单的提了一些我自己的想法，不知道面试官是不是满意。接下来还谈了如何分析USER的偏好，之前没有研究过这个内容，需要data mining的知识。感觉也没有答的很专业。在面试结束前，我们欢乐的谈了台湾这边的美食推荐系统，还有我对大众点评网的一些意见。总体来看这次面试的感觉还算不错，大家都乐乐呵呵的，没有冷场，也没有发生尴尬的事情。个人还是比较偏向互联网产业，特別是对于推荐系统的发展还是很看好的，应该还有很大的发展潛力。</p>
-
-<p>昨天下午面试完大众点评就一直写code, 改论文，改PPT，打LOL，一直，一直，一直到早上7点回去宿舍洗了个澡，然后就去研华科技面试了。研华这是第二次面试了，第一次简单的和部门的主管谈了谈，这次面试的是一个VP和一个大主管。和我一起的还有另外3个人，其中2个是应聘硬件部门，另一人和我一样是面试软件部门。面试一开始就做简单的自我介绍，之后那个大主管用英文向我们提问说是想在大陆的哪个城市工作（无法理解为什么这个问题要用英文来提问和回答）。然后谈了谈这辈子到显现在，所遇到的最大的挫折是什么，然后经历过挫折之后的经验。这是一个很常规的面试问题，由于好几天没有睡，脑子转的不是很灵活，就感觉其他人讲的都很好，我就弱弱的吐出几个字而已。最后一个问题是想在这个公司至少呆几年，这个就是表衷心了咯。不过我还是回答说如果工作内容和我的兴趣比较符合，我就会一直做下去。然后面试官就说我觉得你可能不会超过2年（我是一年内奸的长相吗 &ndash;_&ndash; ) 。最后面试官又介绍了一下软件方面的工作内容，由于研华的产品线跨度很大，种类很多，所以需要的软件需求跨度也很大。但目前主要还是集中在底层的driver和protocol上。</p>
-
-<p>一方面担心毕业问题，另一方面假设毕业了，就会担心就业问题。这几天在连环爆肝的情况下还面试了两家公司，真的有点身心俱疲的感觉。之后还会面临更多的选择，真的想活的单纯一点，能够做自己喜欢做的事，也会有机会去做自己喜欢做的事。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Resume,cover letter及interview心得]]></title>
-    <link href="http://yoursite.com/blog/2013/06/28/resumecover-letter-interview-tips/"/>
-    <updated>2013-06-28T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/28/resumecover-letter-interview-tips</id>
-    <content type="html"><![CDATA[<p>今天有機會和Garmin的Senior HR specialist談關於resume及interview的技巧，真的很有意義。她談到了普遍應聘者不注意，但是HR卻會很care的方面。</p>
-
-<p>對於應聘一家企業，首先要做好充分的survey （如果真的很想去這家公司的話），這就要強大的搜索能力了，當然這種能力因人而異，要好好利用Google這類搜索引擎。除了從外在的了解這家企業，還要從內部入手。比如找人際關係，看看是不是能通過朋友認識到在公司裡工作的人，然後深入的了解工作環境，工作狀態，企業文化等。但是如果真的沒有任何的人際網絡，就只能硬來了，試圖用各種方式獲得該公司員工的聯繫方式，當然email是最好的方式了，直接打電話有點太魯莽了，會把人家嚇壞。現在也很多人用Linkedin, 這也是一個比較不錯的方式。</p>
-
-<p>再來就是準備簡歷了，首先不要認為僅靠一篇簡歷就能征服所有公司，對於不同的公司，不同的職位，要custom不同的內容。台灣這邊的簡歷好像都有自傳這部分，但是之前在大陸貌似很少有人會在簡歷上寫自傳。她跟我很多人都誤會了簡歷的長度，盲目的認為簡歷越簡潔越好，其實只要寫的好，HR還是會很願意看完的。至於怎樣寫算好，除了簡歷條目的清晰明了之外，主要就是自傳那部分，自傳是在interview之前這個公司第一次對應聘者personality的了解，以及闡述能力的了解。公司除了care專業能力之外，也非常care應聘者的personality和闡述能力，可以說是和專業能力一樣重要。自傳從字面上理解就是把自己的經歷寫一寫，最好文字上有吸引力，有些文字必須能夠吸引HR的眼球，就像講故事一樣，要生動形象。這樣HR才會覺得你這篇簡歷比較有“眼緣”。<strong>第一段和最後一段是最重要的！</strong>要把他當作語文作文來寫。當然第一段也別寫太長。通常在應聘的職位上都會寫一些需要什麼樣的人，比如善於學習，團隊精神這樣的人，所以在自傳中要突出這些personality，除了點出這些點之外，還要用具體的事實（當然事實不是事實，只有自己知道）來證明這些點，這就是闡述能力了，要有具體形象的闡述。另外在簡歷中要多用<strong>動詞</strong>，如果能用數字描述的，就盡量用數字描述。</p>
-
-<p>講到cover letter, 她說這個可以說是比resume還要重要的東西，但是很多應聘者卻會忽視，或者不重視。比如通過email將自己的resume寄給HR，通常email的正文都會寫的比較簡單，例如說我叫什麼名字，來自哪裡。然後就說attachment是resume之類的，就結束了。但是HR都會比較希望看到有內容的郵件正文。這地方就是寫cover letter的地方。至於Cover letter的內容，其實是和自傳比較類似的，也可以說是從自傳中抽取出一些精華的文字來作為cover letter. 不過現在很多公司招聘都採用線上的簡歷平台，並不是讓你直接將email寄給HR，比如智聯招聘，中華英才網，51JOB之類的，或者是公司自己的線上投遞系統。而這些系統中，有些沒有明確的地方讓你寫cover letter，她就建議說，在自我評價，或者自我介紹的部分，就直接寫cover letter的內容。</p>
-
-<p>如果得到面試的機會，那已經向成功邁出一步了。這是就要考驗應聘者臨場的表現，和口頭的表述能力了。很多人應聘Software Engineer, 都會被提問寫算法題，而且通常都不容易。如果能順利寫出來，當然是最好的了，但是如果寫不出來，這個時候就是表現personality的大好時機。首先時間到了，可以向面試官求情，讓他再給一點時間；或者向面試官詢問一些Hints；如果在面試官給了Hints還沒做出來，那最後別灰頭土臉的將白紙上交，而是要向面試官請教這題的答案。這時堅持不懈，好學的精神就體現出來了。這些印象也是很重要的，如果題目真的很難，在很少人能解答出來的情況下，這些印象可以有很大加分。另外再補充一些，在面試官讓你做題目時，也不要自顧自的悶頭做題目，也要和面試官講話（如果他願意和你聊），要把自己的每一步的想法都反饋給他。另外，在回答面試官的提問的時候，眼神交流是很重要的，不要讓自己的眼神飄來飄去，要勇敢的直視面試官。如果有多個面試官，就輪流直視。至於口頭的陳述能力也很重要，當面試官問你”以前有沒有過挫折失敗“的時候，不要只回答”有“或者”沒有“，要詳細的講，比如什麼時候因為什麼而失敗，在失敗後懂得了什麼道理，之後有什麼改進之類的。</p>
-
-<p>基本上就是這樣，有其他想到的今後再補充。</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[將Kinect的depth image轉成世界坐標系]]></title>
-    <link href="http://yoursite.com/blog/2013/06/21/kinect-depth-image-world-coordinate/"/>
-    <updated>2013-06-21T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/21/kinect-depth-image-world-coordinate</id>
-    <content type="html"><![CDATA[<p><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html"><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html">http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html</a></a></p>
-
-<p><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html"><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html">http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html</a></a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用matlab畫3D線段]]></title>
-    <link href="http://yoursite.com/blog/2013/06/20/matlab-3d-segment/"/>
-    <updated>2013-06-20T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/20/matlab-3d-segment</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">figure</span> <span class="c">%create the figure</span>
-</span><span class='line'><span class="n">t</span> <span class="p">=</span> 0<span class="p">:</span>1<span class="p">:</span>135  <span class="c">%create the vector</span>
-</span><span class='line'><span class="n">h1</span> <span class="p">=</span> <span class="n">plot3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span>135<span class="o">-</span><span class="n">t</span><span class="p">)</span>  <span class="c">%draw x-y-z+135 = 0</span>
-</span><span class='line'><span class="n">hold</span> <span class="n">on</span>
-</span><span class='line'><span class="n">grid</span> <span class="n">on</span>
-</span><span class='line'><span class="n">h2</span> <span class="p">=</span> <span class="n">plot3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span> <span class="c">%draw x-y = 0</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,[</span>0<span class="p">,</span>0<span class="p">,</span>0<span class="p">])</span>  <span class="c">%set color black</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,[</span>0<span class="p">,</span>0<span class="p">,</span>0<span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用matlab画Sphere Coordinate System]]></title>
-    <link href="http://yoursite.com/blog/2013/06/19/matlab-sphere-coordinate-system/"/>
-    <updated>2013-06-19T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/19/matlab-sphere-coordinate-system</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">Figure</span> <span class="c">%create a figure</span>
-</span><span class='line'><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">]=</span><span class="n">sphere</span><span class="p">(</span>10<span class="p">)</span> <span class="c">%get the mesh of x,y,z for 10x10 surface sphere</span>
-</span><span class='line'><span class="n">h</span><span class="p">=</span><span class="n">surf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="c">%create the object of surface</span>
-</span><span class='line'><span class="n">axis</span> <span class="n">equal</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;FaceColor&#39;</span><span class="p">,[</span>0 0 0<span class="p">],</span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span>0<span class="p">.</span>5<span class="p">)</span> <span class="c">%change the surface color, and alpha</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>寫thesis需要各種圖，那些圖用photoshop畫會瘋掉。Matlab可以畫出科學上需要的圖。</p>
 ]]></content>
   </entry>
   

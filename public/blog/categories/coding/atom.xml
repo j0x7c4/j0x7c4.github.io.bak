@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Coding | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/coding/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-02T23:55:45+08:00</updated>
+  <updated>2013-10-03T23:36:55+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -65,6 +65,66 @@ print line
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[HIVE中使用python实现UDF]]></title>
+    <link href="http://yoursite.com/blog/2013/09/25/hive%25e4%25b8%25ad%25e4%25bd%25bf%25e7%2594%25a8python%25e5%25ae%259e%25e7%258e%25b0udf/"/>
+    <updated>2013-09-25T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/09/25/hive%e4%b8%ad%e4%bd%bf%e7%94%a8python%e5%ae%9e%e7%8e%b0udf</id>
+    <content type="html"><![CDATA[<p>HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。</p>
+
+<p>UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。</p>
+
+<p>HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。</p>
+
+<p>使用HIVE的命令进入数据仓库(search)</p>
+
+<pre class="lang:default decode:true">use search;</pre>
+
+
+<p>使用HIVE的命令查看已经建立的表</p>
+
+<pre class="lang:sh decode:true">show tables;</pre>
+
+
+<p>使用HIVE的命令查看xxx表中的字段</p>
+
+<pre class="lang:sh decode:true">describe xxx;</pre>
+
+
+<p>使用HIVE命令用PYTHON实现UDF</p>
+
+<pre class="lang:tsql decode:true">add file udf.py;
+SELECT 
+TRANSFORM(keyword)
+USING 'python udf.py'
+AS(keyword)
+FROM xxx
+WHERE dt='2013-09-25'
+;</pre>
+
+
+<p>要注意的是，这里的TRANSFORM的内容可以写<em>，但是AS()里就不能写</em>，会报错。</p>
+
+<p>输入到python中的内容，是按照AS里的数量来决定的。</p>
+
+<p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。</p>
+
+<pre class="lang:python decode:true" title="udf.py">#encoding=utf-8
+import sys
+
+for line in sys.stdin:
+    line = line.strip()
+    print line</pre>
+
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[OpenCV in Python]]></title>
     <link href="http://yoursite.com/blog/2013/07/20/opencv-in-python/"/>
     <updated>2013-07-20T00:00:00+08:00</updated>
@@ -119,6 +179,56 @@ for image_file in image_list:
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[OpenCV in Python]]></title>
+    <link href="http://yoursite.com/blog/2013/07/20/opencv-in-python/"/>
+    <updated>2013-07-20T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/07/20/opencv-in-python</id>
+    <content type="html"><![CDATA[<p>OpenCV基本上每個學Computer Vision都用過，我之前也是用C++來使用OpenCV, 最近為了處理一些圖片轉影片，加Marker之類的簡單的操作，懶得再用C++去寫。於是就嘗試用Python來寫OpenCV.</p>
+
+<p>在Python中使用OpenCV, 只要把OpenCV的Library加到Python的Lib目錄下面就可以了。</p>
+
+<p>具體就是把OpenCV目錄下的”build/python/2.7/cv2.pyd" 複製到Python的“Lib/site-packages”目錄中。</p>
+
+<p>OpenCV被包在cv2这个module中，在一开始加载这个module就可以了。</p>
+
+<p>OpenCV中经常会用到cv::Size, cv::Point, 在python中就用tuple来代替，不用再定义cv::Size或者cv::Point. 比如原来C++中定义一个size用cv::Size(640,480), 现在Python中直接用(640,480)来代替就好了。</p>
+
+<p>下面这个例子就是把image_dir中的图片转换成avi格式的影片</p>
+
+<pre class="lang:python decode:true">#encoding:utf-8
+import sys
+import os
+import cv2
+import re
+def intCmp ( x,y ):
+    a = re.search('([\\\\d]+).png',x).group(1)
+    b = re.search('([\\\\d]+).png',y).group(1)
+    return int(a)-int(b)
+if __name__ == '__main__':
+    if len(sys.argv)&lt;3:
+        print "Usage: %s (image_dir) (output)" %(sys.argv[0])
+        exit(1)
+    image_dir = sys.argv[1]
+    output_file = sys.argv[2]
+    image_list = sorted(os.listdir(image_dir),cmp=intCmp)
+    video_writer = cv2.VideoWriter(output_file,-1,30,(640,480))
+    for image_file in image_list:
+        print image_file
+        img = cv2.imread("%s/%s"%(image_dir,image_file.strip()))
+        cv2.imshow("rgb",img)
+        key = cv2.waitKey(10)
+        video_writer.write(img)
+        if key == 27:
+            break;</pre>
+
+
+<p>更多的细节可以看document</p>
+
+<p><a href="http://docs.opencv.org/modules/refman.html"><a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[关于C++ std::map]]></title>
     <link href="http://yoursite.com/blog/2013/07/17/cpp-std-map/"/>
     <updated>2013-07-17T00:00:00+08:00</updated>
@@ -133,88 +243,6 @@ for image_file in image_list:
 
 
 <p>Map中的Key会按照它自己的类中定义的less运算符去比较大小，如果像vector, pair这种多元素的对象，会根据里面所有数据的字典序来进行大小的判断。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用matlab畫Confusion matrix]]></title>
-    <link href="http://yoursite.com/blog/2013/07/16/matlab-confusion-matrix/"/>
-    <updated>2013-07-16T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/16/matlab-confusion-matrix</id>
-    <content type="html"><![CDATA[<p>在pattern recognition 中通常用confusion matrix 來表示實驗結果。最近處理論文的實驗結果時發現用matlab可以比較方便的畫出confusion matrix來。</p>
-
-<p>以下是效果图。</p>
-
-<p><img class="aligncenter" alt="" src="http://farm8.staticflickr.com/7364/9303955419_9aafcbf1c2_o.png" width="584" height="477" /></p>
-
-<p>```matlab
-n = 14;
-file = &lsquo;data.csv&rsquo;;
-ylabels = [&lsquo;BT&rsquo;;&lsquo;CC&rsquo;;&lsquo;CS&rsquo;;&lsquo;DW&rsquo;;&lsquo;OC&rsquo;;&lsquo;  &rsquo;;&lsquo;RC&rsquo;;&lsquo;RW&rsquo;;&lsquo;SS&rsquo;;&lsquo;TC&rsquo;;&lsquo;TP&rsquo;;&lsquo;WL&rsquo;;&lsquo;WC&rsquo;;&lsquo;WW&rsquo;];
-xlabels = [&lsquo;BT&rsquo;;&lsquo;CC&rsquo;;&lsquo;CS&rsquo;;&lsquo;DW&rsquo;;&lsquo;OC&rsquo;;&lsquo;  &rsquo;;&lsquo;RC&rsquo;;&lsquo;RW&rsquo;;&lsquo;SS&rsquo;;&lsquo;TC&rsquo;;&lsquo;TP&rsquo;;&lsquo;WL&rsquo;;&lsquo;WC&rsquo;;&lsquo;WW&rsquo;];</p>
-
-<p>X = csvread(file);</p>
-
-<p>%normalize
-for i=1:n</p>
-
-<pre><code>X(i,:)=X(i,:)/norm(X(i,:),1);
-</code></pre>
-
-<p>end
-%inverse data
-X=imcomplement(X);
-%draw
-imagesc(X);
-colormap(gray);
-axis off;
-text(0,6,&lsquo;Random&rsquo;,&lsquo;HorizontalAlignment&rsquo;,&lsquo;right&rsquo;);
-for i=1:n</p>
-
-<pre><code>text(0,i,ylabels(i,:),'HorizontalAlignment','right');
-</code></pre>
-
-<p>end
-h=text(6,n+1,&lsquo;Netural&rsquo;,&lsquo;VerticalAlignment&rsquo;,&lsquo;middle&rsquo;,&lsquo;HorizontalAlignment&rsquo;,&lsquo;right&rsquo;);
-set(h,&lsquo;rotation&rsquo;,60);
-for i=1:n</p>
-
-<pre><code>h = text(i,n+1,xlabels(i,:),'VerticalAlignment','middle','HorizontalAlignment','right');
-set(h,'rotation',60);
-</code></pre>
-
-<p>end
-disp(X);
-%add value
-for i=1:n</p>
-
-<pre><code>for j=1:n
-    if X(i,j)&lt;0.7
-        text(i,j,num2str(1-X(i,j),'%.2f'),'VerticalAlignment','middle','HorizontalAlignment','center','color','white');
-    end
-end
-</code></pre>
-
-<p>end
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用matlab畫3D線段]]></title>
-    <link href="http://yoursite.com/blog/2013/06/20/matlab-3d-segment/"/>
-    <updated>2013-06-20T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/20/matlab-3d-segment</id>
-    <content type="html"><![CDATA[<p><code>matlab
-figure %create the figure
-t = 0:1:135  %create the vector
-h1 = plot3(t,t,135-t)  %draw x-y-z+135 = 0
-hold on
-grid on
-h2 = plot3(t,t,zeros(length(t))) %draw x-y = 0
-set(h1,'color',[0,0,0])  %set color black
-set(h2,'color',[0,0,0])
-</code></p>
 ]]></content>
   </entry>
   
