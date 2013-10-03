@@ -1,18 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>
-            http://yoursite.com/blog/2013/05/31/%25e5%259c%25a8gae%25e4%25b8%258a%25e4%25bd%25bf%25e7%2594%25a8%25e7%25b1%25bbsql%25e8%25af%25ad%25e5%258f%25a5%25e8%25bf%259b%25e8%25a1%258c%25e6%259f%25a5%25e8%25af%25a2/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/05/31/%25e5%259c%25a8gae%25e4%25b8%258a%25e4%25bd%25bf%25e7%2594%25a8database/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/05/31/SQL-like-at-GAE/</loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
@@ -21,19 +9,7 @@
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://yoursite.com/blog/2013/06/01/python-urllibjson-%25e4%25b8%258eweb-api%25e4%25ba%25a4%25e4%25ba%2592/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/06/01/python-urllibjson-webAPI/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/06/08/%25e4%25bd%258f%25e5%259c%25a8%25e5%25bf%2583%25e8%25a3%25a1%25e7%259a%2584%25e4%25ba%25ba/
-        </loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
@@ -41,19 +17,7 @@
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://yoursite.com/blog/2013/06/19/%25e7%2594%25a8matlab%25e7%2594%25bbsphere-coordinate-system/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/06/19/matlab-sphere-coordinate-system/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/06/20/%25e7%2594%25a8matlab%25e7%2595%25ab3d%25e7%25b7%259a%25e6%25ae%25b5/
-        </loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
@@ -61,19 +25,7 @@
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://yoursite.com/blog/2013/06/21/%25e5%25b0%2587kinect%25e7%259a%2584depth-image%25e8%25bd%2589%25e6%2588%2590%25e4%25b8%2596%25e7%2595%258c%25e5%259d%2590%25e6%25a8%2599%25e7%25b3%25bb/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/06/21/kinect-depth-image-world-coordinate/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/06/28/resumecover-letter%25e5%258f%258ainterview%25e5%25bf%2583%25e5%25be%2597/
-        </loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
@@ -81,25 +33,7 @@
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://yoursite.com/blog/2013/07/04/%25e7%2588%2586%25e8%2582%259d%25e5%2586%2599%25e8%25ae%25ba%25e6%2596%2587%25e4%25b8%258e%25e6%2589%25be%25e5%25b7%25a5%25e4%25bd%259c/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/07/04/die-for-thesis-and-job/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/07/05/%25e5%258f%2588%25e7%2586%25ac%25e9%2581%258e%25e4%25ba%2586%25e4%25b8%2580%25e5%25a4%259c/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/07/05/%25e6%25af%258f%25e7%2595%25b6%25e9%259b%25a2%25e5%2588%25a5%25e7%259a%2584%25e6%2599%2582%25e5%2580%2599%25ef%25bc%258c%25e5%25b0%25b1%25e6%259c%2583%25e9%2596%258b%25e5%25a7%258b%25e5%259b%259e%25e6%2586%25b6%25e9%2581%258e%25e5%258e%25bb/
-        </loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
@@ -111,29 +45,11 @@
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://yoursite.com/blog/2013/07/09/%25e8%25b5%25b0%25e8%2591%2597%25e8%25b5%25b0%25e8%2591%2597/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/07/09/when-walking/</loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://yoursite.com/blog/2013/07/16/%25e7%2594%25a8matlab%25e7%2595%25abconfusion-matrix/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/07/16/matlab-confusion-matrix/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/07/17/%25e5%2585%25b3%25e4%25ba%258ec-std%25e4%25b8%25ad%25e7%259a%2584map%25e7%25b1%25bb/
-        </loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
@@ -145,23 +61,7 @@
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
-        <loc>http://yoursite.com/blog/2013/07/20/opencv-in-python/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/07/23/%25e4%25b8%258d%25e8%25ae%258a%25e7%259a%2584%25e6%25b0%25b8%25e9%2581%25a0/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/07/23/never-change/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/07/28/%25e5%258d%25b3%25e5%25b0%2587%25e5%2586%258d%25e8%25a6%258b%25e7%259a%2584%25e5%25ad%25b8%25e7%2594%259f/
-        </loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
@@ -169,19 +69,7 @@
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://yoursite.com/blog/2013/08/10/%25e9%2597%259c%25e6%2596%25bc%25e4%25b8%25ad%25e5%259c%258b%25e7%2594%25b7%25e7%25b1%2583%25e8%25a2%25ab%25e5%258f%25b0%25e7%2581%25a3%25e7%2594%25b7%25e7%25b1%2583%25e5%25ae%258c%25e7%2588%2586/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/08/10/big-fail-in-basketball/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/08/29/%25e5%259c%25a8%25e5%25b3%25b6%25e4%25b8%258a%25e7%259a%2584%25e6%259c%2580%25e5%25be%258c%25e5%25b9%25be%25e5%25a4%25a9/
-        </loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
@@ -189,29 +77,11 @@
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://yoursite.com/blog/2013/09/19/%25e5%25af%25bb%25e6%2589%25be%25e8%2587%25aa%25e5%25b7%25b1%25e7%259a%2584%25e7%2594%259f%25e6%25b4%25bb/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/09/19/looking-for-my-life/</loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://yoursite.com/blog/2013/09/25/hive%25e4%25b8%25ad%25e4%25bd%25bf%25e7%2594%25a8python%25e5%25ae%259e%25e7%258e%25b0udf/
-        </loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://yoursite.com/blog/2013/09/25/hive-python-udf/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://yoursite.com/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/
-        </loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
     <url>

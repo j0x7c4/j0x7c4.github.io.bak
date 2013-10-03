@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-03T23:36:55+08:00</updated>
+  <updated>2013-10-03T23:47:24+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -104,59 +104,6 @@ rvm install ruby-1.9.3-p448
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[改版octopress 之 安装]]></title>
-    <link href="http://yoursite.com/blog/2013/10/01/%25e6%2594%25b9%25e7%2589%2588octopress-%25e4%25b9%258b-%25e5%25ae%2589%25e8%25a3%2585/"/>
-    <updated>2013-10-01T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/10/01/%e6%94%b9%e7%89%88octopress-%e4%b9%8b-%e5%ae%89%e8%a3%85</id>
-    <content type="html"><![CDATA[<p>心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。</p>
-
-<p>但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。</p>
-
-<p>首先从git上抓来octopress
-<code>
-git clone git@github.com:imathis/octopress.git
-</code>
-然后进入octopress目录下，build源代码
-<code>
-cd octopress
-bundle install
-rake install
-</code>
-以上几步都没有问题，然后执行
-<code>
-rake preview
-</code>
-然后问题就来了，出现了错误</p>
-
-<p>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
-rake aborted!
-undefined method `spawn' for Process:Module</p>
-
-<p>因为octopress需要ruby 1.9.3，而我原本mac上的ruby是1.8.3. 所以要把ruby更新到1.9.3才能用</p>
-
-<p>网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.</p>
-
-<p>我安装stable版本的rvm
-<code>
-curl -L https://get.rvm.io | bash -s stable
-</code>
-然后将rvm写到用户环境中。
-<code>
-echo "source $HOME/.rvm/scripts/rvm" &amp;gt;&amp;gt; ~/.bash_profile
-</code>
-具体详见 <a href="https://rvm.io/rvm/install"><a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a></a></p>
-
-<p>然后使用rvm来安装1.9.3版本的ruby.
-<code>
-rvm install ruby-1.9.3-p448
-</code>
-不过在这之前，要先确定安装了xcode的command line tools.</p>
-
-<p>可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[HIVE中使用python实现UDF]]></title>
     <link href="http://yoursite.com/blog/2013/09/25/hive-python-udf/"/>
     <updated>2013-09-25T00:00:00+08:00</updated>
@@ -204,6 +151,60 @@ print line
 </code></pre>
 
 <p>```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenCV in Python]]></title>
+    <link href="http://yoursite.com/blog/2013/07/20/opencv-in-python/"/>
+    <updated>2013-07-20T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/07/20/opencv-in-python</id>
+    <content type="html"><![CDATA[<p>OpenCV基本上每個學Computer Vision都用過，我之前也是用C++來使用OpenCV, 最近為了處理一些圖片轉影片，加Marker之類的簡單的操作，懶得再用C++去寫。於是就嘗試用Python來寫OpenCV.</p>
+
+<p>在Python中使用OpenCV, 只要把OpenCV的Library加到Python的Lib目錄下面就可以了。</p>
+
+<p>具體就是把OpenCV目錄下的”build/python/2.7/cv2.pyd" 複製到Python的“Lib/site-packages”目錄中。</p>
+
+<p>OpenCV被包在cv2这个module中，在一开始加载这个module就可以了。</p>
+
+<p>OpenCV中经常会用到cv::Size, cv::Point, 在python中就用tuple来代替，不用再定义cv::Size或者cv::Point. 比如原来C++中定义一个size用cv::Size(640,480), 现在Python中直接用(640,480)来代替就好了。</p>
+
+<p>下面这个例子就是把image_dir中的图片转换成avi格式的影片
+``` python
+import sys
+import os
+import cv2
+import re
+def intCmp ( x,y ):</p>
+
+<pre><code>a = re.search('([\d]+).png',x).group(1)
+b = re.search('([\d]+).png',y).group(1)
+return int(a)-int(b)
+</code></pre>
+
+<p>if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;:</p>
+
+<pre><code>if len(sys.argv)&lt;3:
+    print "Usage: %s (image_dir) (output)" %(sys.argv[0])
+    exit(1)
+image_dir = sys.argv[1]
+output_file = sys.argv[2]
+image_list = sorted(os.listdir(image_dir),cmp=intCmp)
+video_writer = cv2.VideoWriter(output_file,-1,30,(640,480))
+for image_file in image_list:
+    print image_file
+    img = cv2.imread("%s/%s"%(image_dir,image_file.strip()))
+    cv2.imshow("rgb",img)
+    key = cv2.waitKey(10)
+    video_writer.write(img)
+    if key == 27:
+        break;
+</code></pre>
+
+<p>```
+更多的细节可以看document</p>
+
+<p><a href="http://docs.opencv.org/modules/refman.html"><a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a></a></p>
 ]]></content>
   </entry>
   

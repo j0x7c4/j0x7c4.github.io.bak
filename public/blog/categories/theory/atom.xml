@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Theory | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/theory/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-03T23:36:55+08:00</updated>
+  <updated>2013-10-03T23:47:24+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -32,39 +32,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[关于C++ std::map]]></title>
-    <link href="http://yoursite.com/blog/2013/07/17/%25e5%2585%25b3%25e4%25ba%258ec-std%25e4%25b8%25ad%25e7%259a%2584map%25e7%25b1%25bb/"/>
-    <updated>2013-07-17T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/17/%e5%85%b3%e4%ba%8ec-std%e4%b8%ad%e7%9a%84map%e7%b1%bb</id>
-    <content type="html"><![CDATA[<p>C++的std::map是个很好用的东西，将key和value进行对应，而且可以是任意类型的key.</p>
-
-<p>以前一直没有研究过具体这个MAP是怎么实现的，只是大概的知道它是一个binary search tree. 那如果一个key不是数字，字符串这种相对简单的类型的时，而是一个vector, 或者一个pair类型的对象时，key要如何对应value呢？</p>
-
-<p>我在Quora上提了这个问题，很快就有人回答了。</p>
-
-<blockquote>std::map is a self-balancing binary search tree ordered using a comparator, whose type is given as the third template parameter to std::map. If you don't give this template parameter, it defaults to std::less&lt;KeyType&gt;. std::less is basically a function object wrapper around the "&lt;" operator. The &lt; operator is defined for types like int, as well as for std::pair (which compares lexicographically).</blockquote>
-
-
-<p>Map中的Key会按照它自己的类中定义的less运算符去比较大小，如果像vector, pair这种多元素的对象，会根据里面所有数据的字典序来进行大小的判断。</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[將Kinect的depth image轉成世界坐標系]]></title>
     <link href="http://yoursite.com/blog/2013/06/21/kinect-depth-image-world-coordinate/"/>
     <updated>2013-06-21T00:00:00+08:00</updated>
     <id>http://yoursite.com/blog/2013/06/21/kinect-depth-image-world-coordinate</id>
-    <content type="html"><![CDATA[<p><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html"><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html">http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html</a></a></p>
-
-<p><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html"><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html">http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html</a></a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[將Kinect的depth image轉成世界坐標系]]></title>
-    <link href="http://yoursite.com/blog/2013/06/21/%25e5%25b0%2587kinect%25e7%259a%2584depth-image%25e8%25bd%2589%25e6%2588%2590%25e4%25b8%2596%25e7%2595%258c%25e5%259d%2590%25e6%25a8%2599%25e7%25b3%25bb/"/>
-    <updated>2013-06-21T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/21/%e5%b0%87kinect%e7%9a%84depth-image%e8%bd%89%e6%88%90%e4%b8%96%e7%95%8c%e5%9d%90%e6%a8%99%e7%b3%bb</id>
     <content type="html"><![CDATA[<p><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html"><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html">http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html</a></a></p>
 
 <p><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html"><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html">http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html</a></a></p>
