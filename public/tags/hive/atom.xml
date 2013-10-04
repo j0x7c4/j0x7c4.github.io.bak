@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: HIVE | 醉過方知酒濃]]></title>
+  <link href="http://yoursite.com/tags/hive/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2013-10-04T23:45:02+08:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[Eli]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[HIVE中使用python实现UDF]]></title>
+    <link href="http://yoursite.com/blog/2013/09/25/hive-python-udf/"/>
+    <updated>2013-09-25T00:00:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/09/25/hive-python-udf</id>
+    <content type="html"><![CDATA[<p>HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。</p>
+
+<p>UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。</p>
+
+<p>HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。</p>
+
+<p>使用HIVE的命令进入数据仓库(search)
+<code>
+use search;
+</code>
+使用HIVE的命令查看已经建立的表
+<code>
+show tables;
+</code>
+使用HIVE的命令查看xxx表中的字段
+<code>
+describe xxx;
+</code>
+使用HIVE命令用PYTHON实现UDF
+<code>
+add file udf.py;
+SELECT
+TRANSFORM(keyword)
+USING 'python udf.py'
+AS(keyword)
+FROM xxx
+WHERE dt='2013-09-25'
+;
+</code>
+要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。</p>
+
+<p>输入到python中的内容，是按照AS里的数量来决定的。</p>
+
+<p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。
+``` python udf.py
+import sys
+for line in sys.stdin:</p>
+
+<pre><code>line = line.strip()
+print line
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>
