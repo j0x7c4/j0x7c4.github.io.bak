@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-03T23:47:24+08:00</updated>
+  <updated>2013-10-04T17:10:12+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[进藏前传]]></title>
+    <link href="http://yoursite.com/blog/2013/10/04/go-to-tibet/"/>
+    <updated>2013-10-04T16:31:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/04/go-to-tibet</id>
+    <content type="html"><![CDATA[<p>最近看了一些书，都是和西藏旅行相关的，身边也有认识的人去西藏旅行。文青们都认为去西藏可以净化自己的心灵，近距离接近天堂。作为一个伪文青的我，自然也要跟随着众多文青的后尘。去西藏的愿望也在心底埋下了一颗种子。</p>
+
+<p>但是毕竟西藏不是一般的地方，除了高原反应和大太阳之外，路途遥远，沿路也不免遇到土匪野兽之类的东西，所以计划必须周全，于是我从现在开始收集进藏的必备知识，待这些知识成熟之后，再亲自赴藏，到时候也许会和小伙伴一起，也许会和妹子同行，也许就我一个人。此文会不断补充，希望广大网友们多多给些意见。</p>
+
+<!-- more -->
+
+
+<h2>路线篇</h2>
+
+<p>首先研究了一下进藏路线，我是比较喜欢享受过程，如果直接坐飞机到达拉萨，会感觉没有那么大的成就感，所以希望通过陆上的方式过去。网上了解到，大致可以分为3条路线：</p>
+
+<h3>川藏线</h3>
+
+<h5>318国道</h5>
+
+<p>这几天看书和网络，看到最多的就是318国道。而且从上海的人民广场出发，一路可以开到西藏。</p>
+
+<p>318国道始建于1993年，1996年建成。起点为上海人民广场，途径浙江、安徽、湖北、重庆、四川、终点为西藏聂拉木县樟木镇友谊桥，全长5476千米，是中国目前最长的国道。因其横跨中国东中西部，揽括了平原、丘陵、盆地、高原景观，包含了江浙水乡文化、天府盆地文化、西藏人文景观，拥有从成都平原到青藏高原的高山峡谷一路的惊、险、绝、美、雄、壮的景观，而被中国国家地理杂志在2006年第10期评为中国的景观大道。<a href=
+http://baike.baidu.com/view/157811.htm>详细内容</a></p>
+
+<p>走川藏线会遇到威猛的康巴人</p>
+
+<h3>青藏线</h3>
+
+<p>青藏线可以走青藏公路和青藏铁路，不过我还是比较偏好铁路，毕竟不用自己开车，比较省事。</p>
+
+<p><a href=http://baike.baidu.com/view/47084.htm>青藏公路</a></p>
+
+<p><a href=http://baike.baidu.com/view/2580.htm>青藏铁路</a></p>
+
+<p>走青藏线会遇到热情好客的安多部</p>
+
+<h3>新藏线</h3>
+
+<p>新藏线就是从新疆开始到西藏，如果去西藏之前会路过新疆的话，可以考虑从这条路进藏。目前只有新藏公路，铁路的话还在修建中。</p>
+
+<p><a href=http://baike.baidu.com/view/196573.htm>新藏公路</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[复杂的感情]]></title>
@@ -588,32 +633,6 @@ undefined method `spawn&#8217; for Process:Module</p>
     <content type="html"><![CDATA[<p><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html"><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html">http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html</a></a></p>
 
 <p><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html"><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html">http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html</a></a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用matlab畫3D線段]]></title>
-    <link href="http://yoursite.com/blog/2013/06/20/matlab-3d-segment/"/>
-    <updated>2013-06-20T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/20/matlab-3d-segment</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">figure</span> <span class="c">%create the figure</span>
-</span><span class='line'><span class="n">t</span> <span class="p">=</span> 0<span class="p">:</span>1<span class="p">:</span>135  <span class="c">%create the vector</span>
-</span><span class='line'><span class="n">h1</span> <span class="p">=</span> <span class="n">plot3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span>135<span class="o">-</span><span class="n">t</span><span class="p">)</span>  <span class="c">%draw x-y-z+135 = 0</span>
-</span><span class='line'><span class="n">hold</span> <span class="n">on</span>
-</span><span class='line'><span class="n">grid</span> <span class="n">on</span>
-</span><span class='line'><span class="n">h2</span> <span class="p">=</span> <span class="n">plot3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span> <span class="c">%draw x-y = 0</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,[</span>0<span class="p">,</span>0<span class="p">,</span>0<span class="p">])</span>  <span class="c">%set color black</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,[</span>0<span class="p">,</span>0<span class="p">,</span>0<span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
