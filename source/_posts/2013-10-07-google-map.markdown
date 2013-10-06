@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "在octopuses中加入Google map"
+title: "在octopress中加入Google map"
 date: 2013-10-07 02:21
 comments: true
 categories: 
