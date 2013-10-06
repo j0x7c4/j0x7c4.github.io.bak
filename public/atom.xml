@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-05T23:35:57+08:00</updated>
+  <updated>2013-10-07T05:18:18+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,109 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在octopuses中加入Google map]]></title>
+    <link href="http://yoursite.com/blog/2013/10/07/google-map/"/>
+    <updated>2013-10-07T02:21:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/07/google-map</id>
+    <content type="html"><![CDATA[<p>想在octopress中插入地图信息，考虑到之后可能会在博客中加入关于游记的文章，如果文章能有形象的地图信息会有很好的效果。于是在网上搜寻octopress的地图插件，发现一个叫做<a herf="http://mguentner.github.io/octolayer/">Octolayer</a>的插件，想载下来试试，不过github刚好出问题，我无法获取代码，再加上他不是用google map. 作为一个google的忠实脑残粉，我就决定自己写一个。</p>
+
+<p>研究了一下<a href="https://developers.google.com/maps/documentation/javascript/">google map API</a>，发现难度并不大。就是在我的文章内容中加入一个div，然后用js去render. 照着sample code改了一下代码，主要是为了从div的属性中读取经纬度坐标。（需要jQuery）</p>
+
+<figure class='code'><figcaption><span>gmap.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">initialize</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">lat</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#map-canvas&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;lat&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">lng</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#map-canvas&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;lng&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lat</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lng</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">loc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span><span class="nx">lat</span><span class="p">,</span><span class="nx">lng</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">mapOptions</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">zoom</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">center</span><span class="o">:</span> <span class="nx">loc</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">mapTypeId</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeId</span><span class="p">.</span><span class="nx">ROADMAP</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;map-canvas&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">mapOptions</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">position</span><span class="o">:</span> <span class="nx">loc</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">map</span><span class="o">:</span> <span class="nx">map</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Hello World!&#39;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addDomListener</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="nx">initialize</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!--more-->
+
+
+<p>把<code>gmap.js</code>放在<code>source/javascripts</code>中，并且在<code>source/_includes/head.html</code>中加入下面几行：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">async=</span><span class="s">&quot;true&quot;</span> <span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/javascripts/gmap.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果已经在前面加过jQuery的话，就不用加第一行了。
+然后在文章中，加入下面这段html代码，其中lat和lng表示地点的经纬度，这个是目前是需要自己输入的。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map-canvas&quot;</span> <span class="na">lat=</span><span class="s">&quot;41.850033&quot;</span> <span class="na">lng=</span><span class="s">&quot;-87.6500523&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我以为这样子应该能显示地图了，可是实际上却无法显示。这个问题我折腾了很久，最后才发现需要给div加css. 所以要在<code>source/stylesheets</code>中创建一个css样式文件（被HTML坑了）。</p>
+
+<figure class='code'><figcaption><span>gmap.css</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#map-canvas</span> <span class="p">{</span> <span class="k">margin</span><span class="o">:</span> <span class="m">20px</span> <span class="m">0</span> <span class="m">20px</span> <span class="m">0</span><span class="p">;</span> <span class="k">height</span><span class="o">:</span> <span class="m">300px</span><span class="p">;}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>所以在<code>source/_includes/head.html</code>中也要加入下面这行：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/gmap.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样子应该可以出现下面的结果了：</p>
+
+<div id="map-canvas" lat="41.850033" lng="-87.6500523"></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[进藏前传]]></title>
@@ -651,17 +754,6 @@ undefined method `spawn&#8217; for Process:Module</p>
 <p>&nbsp;</p>
 
 <p>&nbsp;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[將Kinect的depth image轉成世界坐標系]]></title>
-    <link href="http://yoursite.com/blog/2013/06/21/kinect-depth-image-world-coordinate/"/>
-    <updated>2013-06-21T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/21/kinect-depth-image-world-coordinate</id>
-    <content type="html"><![CDATA[<p><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html"><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html">http://pille.iwr.uni-heidelberg.de/~kinect01/doc/reconstruction.html</a></a></p>
-
-<p><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html"><a href="http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html">http://pille.iwr.uni-heidelberg.de/~kinect01/doc/classdescription.html</a></a></p>
 ]]></content>
   </entry>
   

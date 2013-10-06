@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Coding | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/coding/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-05T23:35:57+08:00</updated>
+  <updated>2013-10-07T05:18:18+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在octopuses中加入Google map]]></title>
+    <link href="http://yoursite.com/blog/2013/10/07/google-map/"/>
+    <updated>2013-10-07T02:21:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/07/google-map</id>
+    <content type="html"><![CDATA[<p>想在octopress中插入地图信息，考虑到之后可能会在博客中加入关于游记的文章，如果文章能有形象的地图信息会有很好的效果。于是在网上搜寻octopress的地图插件，发现一个叫做<a herf="http://mguentner.github.io/octolayer/">Octolayer</a>的插件，想载下来试试，不过github刚好出问题，我无法获取代码，再加上他不是用google map. 作为一个google的忠实脑残粉，我就决定自己写一个。</p>
+
+<p>研究了一下<a href="https://developers.google.com/maps/documentation/javascript/">google map API</a>，发现难度并不大。就是在我的文章内容中加入一个div，然后用js去render. 照着sample code改了一下代码，主要是为了从div的属性中读取经纬度坐标。（需要jQuery）</p>
+
+<p>``` javascript gmap.js
+function initialize() {
+  var lat = $(&ldquo;#map-canvas&rdquo;).attr(&ldquo;lat&rdquo;);
+  var lng = $(&ldquo;#map-canvas&rdquo;).attr(&ldquo;lng&rdquo;);
+  console.log(lat);
+  console.log(lng);
+  var loc = new google.maps.LatLng(lat,lng);
+  var mapOptions = {</p>
+
+<pre><code>zoom: 7,
+center: loc,
+mapTypeId: google.maps.MapTypeId.ROADMAP
+</code></pre>
+
+<p>  };</p>
+
+<p>  map = new google.maps.Map(document.getElementById(&lsquo;map-canvas&rsquo;),</p>
+
+<pre><code>  mapOptions);
+</code></pre>
+
+<p>  var marker = new google.maps.Marker({</p>
+
+<pre><code>  position: loc,
+  map: map,
+  title: 'Hello World!'
+</code></pre>
+
+<p>  });</p>
+
+<p>}</p>
+
+<p>google.maps.event.addDomListener(window, &lsquo;load&rsquo;, initialize);
+```</p>
+
+<!--more-->
+
+
+<p>把<code>gmap.js</code>放在<code>source/javascripts</code>中，并且在<code>source/_includes/head.html</code>中加入下面几行：</p>
+
+<p>``` html</p>
+
+<script async="true" src="http://yoursite.com//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+
+<script src="/javascripts/gmap.js"></script>
+
+
+<p>```</p>
+
+<p>如果已经在前面加过jQuery的话，就不用加第一行了。
+然后在文章中，加入下面这段html代码，其中lat和lng表示地点的经纬度，这个是目前是需要自己输入的。</p>
+
+<p>``` html</p>
+
+<div id="map-canvas" lat="41.850033" lng="-87.6500523"></div>
+
+
+<p>```</p>
+
+<p>我以为这样子应该能显示地图了，可是实际上却无法显示。这个问题我折腾了很久，最后才发现需要给div加css. 所以要在<code>source/stylesheets</code>中创建一个css样式文件（被HTML坑了）。</p>
+
+<p>``` css gmap.css</p>
+
+<h1>map-canvas { margin: 20px 0 20px 0; height: 300px;}</h1>
+
+<p>```</p>
+
+<p>所以在<code>source/_includes/head.html</code>中也要加入下面这行：</p>
+
+<p><code>html
+&lt;link href="/stylesheets/gmap.css" rel="stylesheet" type="text/css"&gt;
+</code></p>
+
+<p>这样子应该可以出现下面的结果了：</p>
+
+<div id="map-canvas" lat="41.850033" lng="-87.6500523"></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HIVE中使用python实现UDF]]></title>
@@ -197,24 +290,6 @@ end
 
 <p>end
 ```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用matlab畫3D線段]]></title>
-    <link href="http://yoursite.com/blog/2013/06/20/matlab-3d-segment/"/>
-    <updated>2013-06-20T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/20/matlab-3d-segment</id>
-    <content type="html"><![CDATA[<p><code>matlab
-figure %create the figure
-t = 0:1:135  %create the vector
-h1 = plot3(t,t,135-t)  %draw x-y-z+135 = 0
-hold on
-grid on
-h2 = plot3(t,t,zeros(length(t))) %draw x-y = 0
-set(h1,'color',[0,0,0])  %set color black
-set(h2,'color',[0,0,0])
-</code></p>
 ]]></content>
   </entry>
   
