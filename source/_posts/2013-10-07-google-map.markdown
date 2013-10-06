@@ -78,3 +78,5 @@ google.maps.event.addDomListener(window, 'load', initialize);
 这样子应该可以出现下面的结果了：
 
 <div id="map-canvas" lat="41.850033" lng="-87.6500523"></div>
+
+目前存在的问题是，因为都使用id叫map-canvas的div, 所以在同个页面中显示多个地图就会出错了。之后再想办法改进。又快天亮了，先睡了zzz

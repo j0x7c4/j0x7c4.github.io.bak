@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: octopress | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/tags/octopress/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-07T05:18:18+08:00</updated>
+  <updated>2013-10-07T05:21:03+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -103,6 +103,8 @@ mapTypeId: google.maps.MapTypeId.ROADMAP
 
 <div id="map-canvas" lat="41.850033" lng="-87.6500523"></div>
 
+
+<p>目前存在的问题是，因为都使用id叫map-canvas的div, 所以在同个页面中显示多个地图就会出错了。之后再想办法改进。又快天亮了，先睡了zzz</p>
 ]]></content>
   </entry>
   
