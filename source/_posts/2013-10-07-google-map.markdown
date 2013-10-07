@@ -12,7 +12,8 @@ tags:
 - javascript
 - jQuery
 
-keywords: 
+keywords: google map, jQuery, octopress, octolayer
+
 description: 
 ---
 ###需要科学上网才能正常显示Google Map(API被墙了T_T)
