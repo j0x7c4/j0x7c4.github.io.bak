@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Coding | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/coding/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-07T17:45:08+08:00</updated>
+  <updated>2013-10-07T17:47:13+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -69,28 +69,21 @@ function initialize() {</p>
 
 <p>  if (!$(&ldquo;div#map-canvas&rdquo;)[0]) return; //check there is map-canves</p>
 
-<p>  var locations=[];
-  var c_lat = 0;
-  var c_lng = 0;</p>
+<p>  var locations=[];</p>
 
 <p>  //get locations from div.map-marker
   $(&ldquo;div.map-marker&rdquo;).each(function(){</p>
 
 <pre><code>console.log($(this).attr('name'));
 locations.push([$(this).attr('name'),$(this).attr('lat'),$(this).attr('lng')]);
-c_lat += parseFloat($(this).attr('lat'));
-c_lng += parseFloat($(this).attr('lng'));
 </code></pre>
 
 <p>  });</p>
 
-<p>  console.log(c_lng);
-  console.log(c_lat);</p>
-
 <p>  var map = new google.maps.Map(document.getElementById(&lsquo;map-canvas&rsquo;), {</p>
 
-<pre><code>  zoom: 7,
-  center: new google.maps.LatLng(c_lat, c_lng),
+<pre><code>  zoom: 10,
+  center: new google.maps.LatLng(locations[0][1], locations[0][2]),
   mapTypeId: google.maps.MapTypeId.ROADMAP
 });
 </code></pre>

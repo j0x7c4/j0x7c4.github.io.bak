@@ -58,23 +58,17 @@ function initialize() {
   if (!$("div#map-canvas")[0]) return; //check there is map-canves
   
   var locations=[];
-  var c_lat = 0;
-  var c_lng = 0;
 
   //get locations from div.map-marker
   $("div.map-marker").each(function(){
     console.log($(this).attr('name'));
     locations.push([$(this).attr('name'),$(this).attr('lat'),$(this).attr('lng')]);
-    c_lat += parseFloat($(this).attr('lat'));
-    c_lng += parseFloat($(this).attr('lng'));
   });
   
-  console.log(c_lng);
-  console.log(c_lat);
   
   var map = new google.maps.Map(document.getElementById('map-canvas'), {
-      zoom: 7,
-      center: new google.maps.LatLng(c_lat, c_lng),
+      zoom: 10,
+      center: new google.maps.LatLng(locations[0][1], locations[0][2]),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
