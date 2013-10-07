@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-07T11:31:52+08:00</updated>
+  <updated>2013-10-07T17:45:08+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -62,6 +62,63 @@ mapTypeId: google.maps.MapTypeId.ROADMAP
 <!--more-->
 
 
+<p><b>但是上面的方法对于需要多个marker时会比较难处理，于是进行如下修改(10月7日下午修改)</b></p>
+
+<p>``` javascript gmap.js
+function initialize() {</p>
+
+<p>  if (!$(&ldquo;div#map-canvas&rdquo;)[0]) return; //check there is map-canves</p>
+
+<p>  var locations=[];
+  var c_lat = 0;
+  var c_lng = 0;</p>
+
+<p>  //get locations from div.map-marker
+  $(&ldquo;div.map-marker&rdquo;).each(function(){</p>
+
+<pre><code>console.log($(this).attr('name'));
+locations.push([$(this).attr('name'),$(this).attr('lat'),$(this).attr('lng')]);
+c_lat += parseFloat($(this).attr('lat'));
+c_lng += parseFloat($(this).attr('lng'));
+</code></pre>
+
+<p>  });</p>
+
+<p>  console.log(c_lng);
+  console.log(c_lat);</p>
+
+<p>  var map = new google.maps.Map(document.getElementById(&lsquo;map-canvas&rsquo;), {</p>
+
+<pre><code>  zoom: 7,
+  center: new google.maps.LatLng(c_lat, c_lng),
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+</code></pre>
+
+<p>  var infowindow = new google.maps.InfoWindow();</p>
+
+<p>  for (i = 0; i &lt; locations.length; i++) {</p>
+
+<pre><code>  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+    map: map
+  });
+
+  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    return function() {
+      infowindow.setContent(locations[i][0]);
+      infowindow.open(map, marker);
+    }
+  })(marker, i));
+</code></pre>
+
+<p>  }
+}</p>
+
+<p>google.maps.event.addDomListener(window, &lsquo;load&rsquo;, initialize);</p>
+
+<p>```</p>
+
 <p>把<code>gmap.js</code>放在<code>source/javascripts</code>中，并且在<code>source/_includes/head.html</code>中加入下面几行：</p>
 
 <p>``` html</p>
@@ -78,11 +135,18 @@ mapTypeId: google.maps.MapTypeId.ROADMAP
 <p>```</p>
 
 <p>如果已经在前面加过jQuery的话，就不用加第一行了。
-然后在文章中，加入下面这段html代码，其中lat和lng表示地点的经纬度，这个是目前是需要自己输入的。</p>
+然后在文章中，加入下面这段html代码。
+其中div.map-marker用来传递每个marker的信息（lat和lng表示地点的经纬度，name表示marker的名字，这些是目前是需要自己输入的）; div#map-canvas用来最终显示地图。</p>
 
 <p>``` html</p>
 
-<div id="map-canvas" lat="41.850033" lng="-87.6500523"></div>
+<div class="map-marker" lat="-33.890542" lng="151.274856" name = "BondiBeach" ></div>
+
+
+<div class="map-marker" name = "CoogeeBeach" lat= "-33.923036" lng="151.259052"></div>
+
+
+<div id="map-canvas"></div>
 
 
 <p>```</p>
@@ -98,12 +162,18 @@ mapTypeId: google.maps.MapTypeId.ROADMAP
 <p>所以在<code>source/_includes/head.html</code>中也要加入下面这行：</p>
 
 <p><code>html
-&lt;link href="/stylesheets/gmap.css" rel="stylesheet" type="text/css"&gt;
+&lt;link href="http://yoursite.com/stylesheets/gmap.css" rel="stylesheet" type="text/css"&gt;
 </code></p>
 
 <p>这样子应该可以出现下面的结果了：</p>
 
-<div id="map-canvas" lat="41.850033" lng="-87.6500523"></div>
+<div class="map-marker" lat="-33.890542" lng="151.274856" name = "BondiBeach" ></div>
+
+
+<div class="map-marker" name = "CoogeeBeach" lat= "-33.923036" lng="151.259052"></div>
+
+
+<div id="map-canvas"></div>
 
 
 <p>目前存在的问题是，因为都使用id叫map-canvas的div, 所以在同个页面中显示多个地图就会出错了。之后再想办法改进。又快天亮了，先睡了zzz</p>

@@ -1,24 +1,37 @@
 function initialize() {
-  var lat = $("#map-canvas").attr("lat"); 
-  var lng = $("#map-canvas").attr("lng"); 
-  console.log(lat);
-  console.log(lng);
-  var loc = new google.maps.LatLng(lat,lng);
-  var mapOptions = {
-    zoom: 7,
-    center: loc,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
+  
+  if (!$("div#map-canvas")[0]) return; //check there is map-canves
+  
+  var locations=[];
 
-  map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
-
-  var marker = new google.maps.Marker({
-      position: loc,
-      map: map,
-      title: 'Hello World!'
+  //get locations from div.map-marker
+  $("div.map-marker").each(function(){
+    console.log($(this).attr('name'));
+    locations.push([$(this).attr('name'),$(this).attr('lat'),$(this).attr('lng')]);
   });
+  
+  
+  var map = new google.maps.Map(document.getElementById('map-canvas'), {
+      zoom: 10,
+      center: new google.maps.LatLng(locations[0][1], locations[0][2]),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
+  var infowindow = new google.maps.InfoWindow();
+
+  for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+  }
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

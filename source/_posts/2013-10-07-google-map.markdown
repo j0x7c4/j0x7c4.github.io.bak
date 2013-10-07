@@ -50,6 +50,55 @@ google.maps.event.addDomListener(window, 'load', initialize);
 ```
 <!--more-->
 
+<b>但是上面的方法对于需要多个marker时会比较难处理，于是进行如下修改(10月7日下午修改)</b>
+
+``` javascript gmap.js
+function initialize() {
+  
+  if (!$("div#map-canvas")[0]) return; //check there is map-canves
+  
+  var locations=[];
+  var c_lat = 0;
+  var c_lng = 0;
+
+  //get locations from div.map-marker
+  $("div.map-marker").each(function(){
+    console.log($(this).attr('name'));
+    locations.push([$(this).attr('name'),$(this).attr('lat'),$(this).attr('lng')]);
+    c_lat += parseFloat($(this).attr('lat'));
+    c_lng += parseFloat($(this).attr('lng'));
+  });
+  
+  console.log(c_lng);
+  console.log(c_lat);
+  
+  var map = new google.maps.Map(document.getElementById('map-canvas'), {
+      zoom: 7,
+      center: new google.maps.LatLng(c_lat, c_lng),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+  var infowindow = new google.maps.InfoWindow();
+
+  for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+  }
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+```
+
 把`gmap.js`放在`source/javascripts`中，并且在`source/_includes/head.html`中加入下面几行：
 
 ``` html
@@ -59,10 +108,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
 ```
 
 如果已经在前面加过jQuery的话，就不用加第一行了。
-然后在文章中，加入下面这段html代码，其中lat和lng表示地点的经纬度，这个是目前是需要自己输入的。
+然后在文章中，加入下面这段html代码。
+其中div.map-marker用来传递每个marker的信息（lat和lng表示地点的经纬度，name表示marker的名字，这些是目前是需要自己输入的）; div#map-canvas用来最终显示地图。
 
 ``` html
-<div id="map-canvas" lat="41.850033" lng="-87.6500523"></div>
+<div class="map-marker" lat="-33.890542" lng="151.274856" name = "BondiBeach" ></div>
+<div class="map-marker" name = "CoogeeBeach" lat= "-33.923036" lng="151.259052"></div>
+<div id="map-canvas"></div>
 ```
 
 我以为这样子应该能显示地图了，可是实际上却无法显示。这个问题我折腾了很久，最后才发现需要给div加css. 所以要在`source/stylesheets`中创建一个css样式文件（被HTML坑了）。
@@ -74,11 +126,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
 所以在`source/_includes/head.html`中也要加入下面这行：
 
 ``` html
-<link href="{{ root_url }}/stylesheets/gmap.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/gmap.css" rel="stylesheet" type="text/css">
 ```
 
 这样子应该可以出现下面的结果了：
 
-<div id="map-canvas" lat="41.850033" lng="-87.6500523"></div>
+<div class="map-marker" lat="-33.890542" lng="151.274856" name = "BondiBeach" ></div>
+<div class="map-marker" name = "CoogeeBeach" lat= "-33.923036" lng="151.259052"></div>
+<div id="map-canvas"></div>
 
 目前存在的问题是，因为都使用id叫map-canvas的div, 所以在同个页面中显示多个地图就会出错了。之后再想办法改进。又快天亮了，先睡了zzz
