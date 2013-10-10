@@ -11,4 +11,9 @@ footer: true
 ---
 ##Blogs
 ###Feature Selection
-<http://www.cnblogs.com/heaad/archive/2011/01/02/1924088.html>
++ Overview <http://www.cnblogs.com/heaad/archive/2011/01/02/1924088.html>
++ Weka <https://www.laps.ufpa.br/aldebaro/weka/feature_selection.html>
+
+##Docs
++ `FSelector` in R <http://cran.r-project.org/web/packages/FSelector/FSelector.pdf>
++ `varSelRF` in R <http://cran.r-project.org/web/packages/varSelRF/varSelRF.pdf>
