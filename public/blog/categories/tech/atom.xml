@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-10T22:08:12+08:00</updated>
+  <updated>2013-10-11T00:31:10+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Feature Selection in R is EASY!]]></title>
+    <link href="http://yoursite.com/blog/2013/10/10/new-fselector-r/"/>
+    <updated>2013-10-10T23:43:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/10/new-fselector-r</id>
+    <content type="html"><![CDATA[<p>最早认识R语言是看到一本书叫做<i>&ldquo;Machine Learning for Hackers&rdquo;</i>, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature Selection方面的工具时，看到有人推荐R的package <a href=http://cran.r-project.org/web/packages/FSelector/FSelector.pdf>FSelector</a> . 于是就载下来尝试一下，结果发现真的很方便。</p>
+
+<h4>R可以方便的使用现成的benchmark（比如<code>iris</code>），只要一句话就可以轻松导入数据！</h4>
+
+<p>下面是一个简单的例子使用FSelector, 采用cvs来寻找feature的子集。其中第一个参数Species~表示数据集iris中的类别(label).</p>
+
+<p><code>r
+library(FSelector)
+data(iris)
+subset &lt;- cfs(Species~., iris)
+f &lt;- as.simple.formula(subset, "Species")
+print(f)
+</code>
+下面这个例子比较高阶，可以自己指定评价feature子集的好坏。采用best first search的策略来寻找子集。其中evaluator训练了rpart model，通过计算error rate来评价feature的好坏。</p>
+
+<p>```r
+library(FSelector)
+library(rpart)
+data(iris)
+evaluator &lt;&ndash; function(subset) {
+  #k-fold cross validation
+  k &lt;&ndash; 5
+  splits &lt;&ndash; runif(nrow(iris))
+  results = sapply(1:k, function(i) {</p>
+
+<pre><code>test.idx &lt;- (splits &gt;= (i - 1) / k) &amp; (splits &lt; i / k)
+train.idx &lt;- !test.idx
+test &lt;- iris[test.idx, , drop=FALSE]
+train &lt;- iris[train.idx, , drop=FALSE]
+tree &lt;- rpart(as.simple.formula(subset, "Species"), train)
+error.rate = sum(test$Species != predict(tree, test, type="c")) / nrow(test)
+return(1 - error.rate)
+</code></pre>
+
+<p>  })
+  #print(subset)
+  #print(mean(results))
+  return(mean(results))
+}
+subset &lt;&ndash; best.first.search(names(iris)[-5], evaluator)
+f &lt;&ndash; as.simple.formula(subset, &ldquo;Species&rdquo;)
+print(f)
+```</p>
+
+<h3>iris</h3>
+
+<p>This famous (Fisher&rsquo;s or Anderson&rsquo;s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
+
+<h3>cfs</h3>
+
+<p>The algorithm finds attribute subset using correlation and entropy measures for continous and discrete data.</p>
+
+<h2>Hints</h2>
+
+<ul>
+<li>虽然原生的R语言的IDE也不错用，但是发现一个更加强大的IDE，RStudio, 真是可以媲美matlab的IDE了。</li>
+<li>R语言也可以在命令行中用batch的方式来运行，具体指令是<code>R CMD BATCH [options] infile [outfile]</code>, infile就是R的脚本文件，R的输出一般无法显示到STDOUT中，是以文件的形式存起来。如果没有指定outfile，就会以原文件名的方式来命名。在脚本执行的时候，很多无关紧要的内容也会被输出，可以使用options命令的<code>--slave</code>. 在最后的输出中，他也会很好心的帮你计算运行时间，如果不需要，也可以加<code>--no-timing</code>. 详见<a href="http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html">http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在octopress中加入Google map]]></title>
@@ -260,57 +327,6 @@ rvm install ruby-1.9.3-p448
 不过在这之前，要先确定安装了xcode的command line tools.</p>
 
 <p>可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[HIVE中使用python实现UDF]]></title>
-    <link href="http://yoursite.com/blog/2013/09/25/hive-python-udf/"/>
-    <updated>2013-09-25T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/09/25/hive-python-udf</id>
-    <content type="html"><![CDATA[<p>HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。</p>
-
-<p>UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。</p>
-
-<p>HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。</p>
-
-<p>使用HIVE的命令进入数据仓库(search)
-<code>
-use search;
-</code>
-使用HIVE的命令查看已经建立的表
-<code>
-show tables;
-</code>
-使用HIVE的命令查看xxx表中的字段
-<code>
-describe xxx;
-</code>
-使用HIVE命令用PYTHON实现UDF
-<code>
-add file udf.py;
-SELECT
-TRANSFORM(keyword)
-USING 'python udf.py'
-AS(keyword)
-FROM xxx
-WHERE dt='2013-09-25'
-;
-</code>
-要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。</p>
-
-<p>输入到python中的内容，是按照AS里的数量来决定的。</p>
-
-<p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。
-``` python udf.py
-import sys
-for line in sys.stdin:</p>
-
-<pre><code>line = line.strip()
-print line
-</code></pre>
-
-<p>```</p>
 ]]></content>
   </entry>
   

@@ -111,6 +111,10 @@
         <lastmod>2013-10-07T17:47:01+08:00</lastmod>
     </url>
     <url>
+        <loc>http://yoursite.com/blog/2013/10/10/new-fselector-r/</loc>
+        <lastmod>2013-10-11T00:30:50+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://yoursite.com/404.html</loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
@@ -120,11 +124,11 @@
     </url>
     <url>
         <loc>http://yoursite.com/blog/archives/</loc>
-        <lastmod>2013-10-07T22:25:58+08:00</lastmod>
+        <lastmod>2013-10-11T00:30:50+08:00</lastmod>
     </url>
     <url>
         <loc>http://yoursite.com/</loc>
-        <lastmod>2013-10-07T22:25:58+08:00</lastmod>
+        <lastmod>2013-10-11T00:30:50+08:00</lastmod>
     </url>
     <url>
         <loc>http://yoursite.com/research/</loc>
