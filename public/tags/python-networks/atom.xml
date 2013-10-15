@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: coding | 醉過方知酒濃]]></title>
-  <link href="http://yoursite.com/blog/categories/coding/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: python,networks | 醉過方知酒濃]]></title>
+  <link href="http://yoursite.com/tags/python-networks/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
   <updated>2013-10-16T02:09:55+08:00</updated>
   <id>http://yoursite.com/</id>

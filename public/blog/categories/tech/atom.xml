@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-11T00:37:20+08:00</updated>
+  <updated>2013-10-16T02:09:55+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[试用networkx]]></title>
+    <link href="http://yoursite.com/blog/2013/10/16/try-networkx/"/>
+    <updated>2013-10-16T01:44:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/16/try-networkx</id>
+    <content type="html"><![CDATA[<p>最近想用pagerank的方法来分析微博好友之间的权威关系，于是试着用crawler去抓微博上好友的信息，然后建立关系网络。在网上看到用networkx可以比较方便的建立关系网络，并且可以比较方便的用pagerank计算每个好友的重要性。</p>
+
+<p>使用networks加入node和edge都很方便，并且networkx宣称他的node可以支持任何python的hashable的类型，于是我一开始使用custom的node.</p>
+
+<p>```python
+class user:</p>
+
+<pre><code>def __init__(self,args):
+    assert re.search('^[\d]+$',args['uid'])
+    self.uid = args['uid']
+    self.info = args
+def __hash__(self):
+    return int(self.uid)
+</code></pre>
+
+<p>```</p>
+
+<p>可是这样写并不正确，他好像对自定义的类支持不太好（或许是不支持自定义类）。于是在网上查了好久，才看到要实现给一个node添加附加信息的方法。</p>
+
+<p><a href="http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up">http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up</a></p>
+
+<p>于是在加入node的时候，应该用
+<code>python
+G.add_node("label",foo="foo",bar="bar")
+</code></p>
+
+<p>于是把添加node改写成</p>
+
+<p><code>python
+G.add_node(user.uid,user.info)
+</code>
+添加node和edge是没问题了，结果在保存<code>gml</code>文件时又出问题了，里面的字符串竟然不支持utf-8… 官方是这么解释的：</p>
+
+<blockquote><p>Notes</p>
+
+<p>GML specifications indicate that the file should only use 7bit ASCII text encoding.iso8859-1 (latin-1).</p>
+
+<p>This implementation does not support all Python data types as GML data. Nodes, node attributes, edge attributes, and graph attributes must be either dictionaries or single stings or numbers. If they are not an attempt is made to represent them as strings. For example, a list as edge data G[1][2][‘somedata’]=[1,2,3], will be
+represented in the GML file as:</p>
+
+<p><a href="http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html">http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html</a></p></blockquote>
+
+<p>于是我只好抽取是ascii的编码的用户信息。然后把类的定义改写成：</p>
+
+<p>``` python
+class user:</p>
+
+<pre><code>def __init__(self,args):
+
+    assert re.search('^[\d]+$',args['uid'])
+
+    self.uid = args['uid']
+    self.info = {'uid':args['uid'],\
+                 'n_follows':args['n_follows'],\
+                 'n_fans':args['n_fans'],\
+                 'n_weibos':args['n_weibos']}
+
+def __hash__(self):
+    return int(self.uid)
+</code></pre>
+
+<p>```</p>
+
+<p>这样终于正常创建网络，读写gml文件了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Feature Selection in R is EASY!]]></title>
@@ -274,59 +346,6 @@ title: Sorry，404错误！你要访问的网页不存在!</p>
 <p>不过目前还有个问题，从wordpress转过来的文章，在超链接上还是有点问题，如果标题中有中文，转完后的文件名是unicode编码，之后会找不到超链接。于是我手动把那些文件名改成了英文，幸好文章不多，大概改了半小时改完了。</p>
 
 <p>接下来要了解markdown语法啦，用这个写博客真的很酷！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[改版octopress 之 安装]]></title>
-    <link href="http://yoursite.com/blog/2013/10/01/change-to-octopress/"/>
-    <updated>2013-10-01T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/10/01/change-to-octopress</id>
-    <content type="html"><![CDATA[<p>心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。</p>
-
-<p>但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。</p>
-
-<p>首先从git上抓来octopress
-<code>
-git clone git@github.com:imathis/octopress.git
-</code>
-然后进入octopress目录下，build源代码
-<code>
-cd octopress
-bundle install
-rake install
-</code>
-以上几步都没有问题，然后执行
-<code>
-rake preview
-</code>
-然后问题就来了，出现了错误</p>
-
-<p>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
-rake aborted!
-undefined method `spawn' for Process:Module</p>
-
-<p>因为octopress需要ruby 1.9.3，而我原本mac上的ruby是1.8.3. 所以要把ruby更新到1.9.3才能用</p>
-
-<p>网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.</p>
-
-<p>我安装stable版本的rvm
-<code>
-curl -L https://get.rvm.io | bash -s stable
-</code>
-然后将rvm写到用户环境中。
-<code>
-echo "source $HOME/.rvm/scripts/rvm" &amp;gt;&amp;gt; ~/.bash_profile
-</code>
-具体详见 <a href="https://rvm.io/rvm/install"><a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a></a></p>
-
-<p>然后使用rvm来安装1.9.3版本的ruby.
-<code>
-rvm install ruby-1.9.3-p448
-</code>
-不过在这之前，要先确定安装了xcode的command line tools.</p>
-
-<p>可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。</p>
 ]]></content>
   </entry>
   

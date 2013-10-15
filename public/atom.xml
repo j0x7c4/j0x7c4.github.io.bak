@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-10-11T00:37:20+08:00</updated>
+  <updated>2013-10-16T02:09:55+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[试用networkx]]></title>
+    <link href="http://yoursite.com/blog/2013/10/16/try-networkx/"/>
+    <updated>2013-10-16T01:44:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/10/16/try-networkx</id>
+    <content type="html"><![CDATA[<p>最近想用pagerank的方法来分析微博好友之间的权威关系，于是试着用crawler去抓微博上好友的信息，然后建立关系网络。在网上看到用networkx可以比较方便的建立关系网络，并且可以比较方便的用pagerank计算每个好友的重要性。</p>
+
+<p>使用networks加入node和edge都很方便，并且networkx宣称他的node可以支持任何python的hashable的类型，于是我一开始使用custom的node.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
+</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
+</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="n">args</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可是这样写并不正确，他好像对自定义的类支持不太好（或许是不支持自定义类）。于是在网上查了好久，才看到要实现给一个node添加附加信息的方法。</p>
+
+<p><a href="http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up">http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up</a></p>
+
+<p>于是在加入node的时候，应该用</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">&quot;label&quot;</span><span class="p">,</span><span class="n">foo</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="n">bar</span><span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>于是把添加node改写成</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span><span class="n">user</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>添加node和edge是没问题了，结果在保存<code>gml</code>文件时又出问题了，里面的字符串竟然不支持utf-8… 官方是这么解释的：</p>
+
+<blockquote><p>Notes</p>
+
+<p>GML specifications indicate that the file should only use 7bit ASCII text encoding.iso8859-1 (latin-1).</p>
+
+<p>This implementation does not support all Python data types as GML data. Nodes, node attributes, edge attributes, and graph attributes must be either dictionaries or single stings or numbers. If they are not an attempt is made to represent them as strings. For example, a list as edge data G[1][2][‘somedata’]=[1,2,3], will be
+represented in the GML file as:</p>
+
+<p><a href="http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html">http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html</a></p></blockquote>
+
+<p>于是我只好抽取是ascii的编码的用户信息。然后把类的定义改写成：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
+</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;uid&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">],</span>\
+</span><span class='line'>                   <span class="s">&#39;n_follows&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_follows&#39;</span><span class="p">],</span>\
+</span><span class='line'>                   <span class="s">&#39;n_fans&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_fans&#39;</span><span class="p">],</span>\
+</span><span class='line'>                   <span class="s">&#39;n_weibos&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_weibos&#39;</span><span class="p">]}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样终于正常创建网络，读写gml文件了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Feature Selection in R is EASY!]]></title>
@@ -913,21 +1003,6 @@ undefined method `spawn&#8217; for Process:Module</p>
 <p>如果當初沒有來台灣，我也許會以一種截然不同的方式活著。以前的生活方式不能說不好，但既然已經變了，就要讓現在的生活變得比以前更好。以前的記憶會被時間逐漸的沖淡，希望那些不開心的可以被時間帶走，開心的記憶可以儘可能多的留下來。</p>
 
 <p><span style="line-height: 1.714285714; font-size: 1rem;">上個禮拜還憂心忡忡的擔心自己是不是會不能畢業，而這禮拜經過幾晚的奮鬥，終於把論文初稿趕完，也逐漸開始準備口試的presentation. 今天還進行了口試的rehearsal. 之前投的paper也意外的被accepted了。現在終於有一種感覺，自己進入了準備畢業的節奏。</span></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[爆肝写论文与找工作]]></title>
-    <link href="http://yoursite.com/blog/2013/07/04/die-for-thesis-and-job/"/>
-    <updated>2013-07-04T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/04/die-for-thesis-and-job</id>
-    <content type="html"><![CDATA[<p>这几天是毕业论文的最后阶段了，月底应该就会口试，可是剩下的工作量还蛮大的。天天都是爆肝的节奏。这两天抽空面试了两家公司。</p>
-
-<p>第一家是大众点评，因为我在台湾，不方便onsite面试，所以只能通过QQ视频（为什么是QQ而不是SKYPE, &ndash;_&ndash;! ) 我应聘了大众点评的搜索部门，作为一家做推荐，搜索系统的公司，这应该就是核心部门了。给我面试的面试官是整个搜索部门的BOSS，这是我事后朋友告诉我才知道的。当然在面试前我也有搜索这个面试官的资料（因为他把QQ号告诉我了）。这个面试特别直接，双方都没有互相介绍，直接问我之前做的一个音乐推荐系统相关的事情。看来针对性还是很强的。当然问题必然会有做这个系统遇到最困难的是什么，这也是面试中肯定会问到的问题。虽然这个系统在做的时候确实遇到了不少困难，但是等做完之后再看看其实这些也不算什么（看来以后遇到困难时就要把它记下来，以防以后忘记）。因为我的系统中，用到了SVM (Support Vector Machine), 于是就把话题顺便带到了SVM的原理上，幸好我硕一时修了林智仁的Convex Optimization. 雖然細節上有點模糊，但是大概原理還是能夠推導的。接著談了一些在IR系統上對Corpus的擴展，能夠對沒有在Corpus中的term也能產生作用。由於我的研究方向比较偏电脑视觉，对IR的了解也不过于修过两个不同老师开设的课，做了2次term project. 主要还是兴趣驱使的。于是简单的提了一些我自己的想法，不知道面试官是不是满意。接下来还谈了如何分析USER的偏好，之前没有研究过这个内容，需要data mining的知识。感觉也没有答的很专业。在面试结束前，我们欢乐的谈了台湾这边的美食推荐系统，还有我对大众点评网的一些意见。总体来看这次面试的感觉还算不错，大家都乐乐呵呵的，没有冷场，也没有发生尴尬的事情。个人还是比较偏向互联网产业，特別是对于推荐系统的发展还是很看好的，应该还有很大的发展潛力。</p>
-
-<p>昨天下午面试完大众点评就一直写code, 改论文，改PPT，打LOL，一直，一直，一直到早上7点回去宿舍洗了个澡，然后就去研华科技面试了。研华这是第二次面试了，第一次简单的和部门的主管谈了谈，这次面试的是一个VP和一个大主管。和我一起的还有另外3个人，其中2个是应聘硬件部门，另一人和我一样是面试软件部门。面试一开始就做简单的自我介绍，之后那个大主管用英文向我们提问说是想在大陆的哪个城市工作（无法理解为什么这个问题要用英文来提问和回答）。然后谈了谈这辈子到显现在，所遇到的最大的挫折是什么，然后经历过挫折之后的经验。这是一个很常规的面试问题，由于好几天没有睡，脑子转的不是很灵活，就感觉其他人讲的都很好，我就弱弱的吐出几个字而已。最后一个问题是想在这个公司至少呆几年，这个就是表衷心了咯。不过我还是回答说如果工作内容和我的兴趣比较符合，我就会一直做下去。然后面试官就说我觉得你可能不会超过2年（我是一年内奸的长相吗 &ndash;_&ndash; ) 。最后面试官又介绍了一下软件方面的工作内容，由于研华的产品线跨度很大，种类很多，所以需要的软件需求跨度也很大。但目前主要还是集中在底层的driver和protocol上。</p>
-
-<p>一方面担心毕业问题，另一方面假设毕业了，就会担心就业问题。这几天在连环爆肝的情况下还面试了两家公司，真的有点身心俱疲的感觉。之后还会面临更多的选择，真的想活的单纯一点，能够做自己喜欢做的事，也会有机会去做自己喜欢做的事。</p>
 ]]></content>
   </entry>
   
