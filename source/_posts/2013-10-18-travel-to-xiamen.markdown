@@ -16,17 +16,17 @@ description:
 大伙儿看来今晚上没有吃尽兴，明天继续杀出去吃个痛快。这接下来几天应该要去这些地方吧。
 
 ##鼓浪屿
-<img src="http://maps.googleapis.com/maps/api/staticmap?size=800x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C鼓浪屿%7C&zoom=14&sensor=false" />
+<img src="http://maps.googleapis.com/maps/api/staticmap?size=640x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C鼓浪屿%7C&zoom=14&sensor=false" />
 ##中山路步行街
-<img src="http://maps.googleapis.com/maps/api/staticmap?size=800x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C中山路步行街%7C&zoom=14&sensor=false" />
+<img src="http://maps.googleapis.com/maps/api/staticmap?size=640x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C中山路步行街%7C&zoom=14&sensor=false" />
 ##厦门白城海滩
-<img src="http://maps.googleapis.com/maps/api/staticmap?size=800x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C厦门白城海滩%7C&zoom=14&sensor=false" />
+<img src="http://maps.googleapis.com/maps/api/staticmap?size=640x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C厦门白城海滩%7C&zoom=14&sensor=false" />
 ##厦大
-<img src="http://maps.googleapis.com/maps/api/staticmap?size=800x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C厦门大学%7C&zoom=14&sensor=false" />
+<img src="http://maps.googleapis.com/maps/api/staticmap?size=640x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C厦门大学%7C&zoom=14&sensor=false" />
 ##南普陀
-<img src="http://maps.googleapis.com/maps/api/staticmap?size=800x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C南普陀%7C&zoom=14&sensor=false" />
+<img src="http://maps.googleapis.com/maps/api/staticmap?size=640x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C南普陀%7C&zoom=14&sensor=false" />
 ##环岛路
-<img src="http://maps.googleapis.com/maps/api/staticmap?size=800x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C环岛路%7C&zoom=12&sensor=false" />
+<img src="http://maps.googleapis.com/maps/api/staticmap?size=640x200&maptype=roadmap&markers=size:mid%7Ccolor:red%7C环岛路%7C&zoom=12&sensor=false" />
 
 
 
