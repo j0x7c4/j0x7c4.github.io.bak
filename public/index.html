@@ -7,8 +7,7 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="以前一直想去厦门，可是都没有机会，没有成行。后来就去了台湾。
-现在从台湾回来，没想到工作还不到一个月就有机会和同事们一起去厦门旅游。我们搭某廉价航空的飞机，旅途算是有点艰辛——除了飞机晚点一个多小时不说，整趟飞行中不能把座椅后背倒下来，结果坐的脖子都僵硬了T_T 好在最后还是安全降落在厦门机场， &hellip;">
+	<meta name="description" content="人生若只如初見 何事秋風悲畫扇 等閒變卻故人心 卻道故心人易變 兩人相見，並沒有絲毫的躲閃，言語之間還是如同往常。真的像是认识很久的老友，我了解她，她也了解我。交谈时毫不顾忌，于是，她還是那麼欢快中带点豪爽，我還是那樣幽默中带点木讷。 从热恋到分手，是否就是一个从有很多话想讲， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -82,6 +81,61 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/24/first-love/">
+		
+			人生若只如初见</a>
+	</h2>
+	<div class="entry-content">
+		<blockquote><p>人生若只如初見</p>
+
+<p>何事秋風悲畫扇</p>
+
+<p>等閒變卻故人心</p>
+
+<p>卻道故心人易變</p></blockquote>
+
+<p>兩人相見，並沒有絲毫的躲閃，言語之間還是如同往常。真的像是认识很久的老友，我了解她，她也了解我。交谈时毫不顾忌，于是，她還是那麼欢快中带点豪爽，我還是那樣幽默中带点木讷。</p>
+
+<p>从热恋到分手，是否就是一个从有很多话想讲，到把能讲的话都讲完的一个过程？双方发现没话讲了，于是一方说分手，另一方默认。但开始恋爱的原因，不就是觉得我们有永远讲不完的话题，永远用不完的欢笑吗？为什么当恋人非得有话要讲，聊得越多就表明爱的越多吗？在交往过程中，双方都有责任和义务和对方讲话，一旦讲不出话，沉没时，就会导致冷战的开始，觉得缘分已尽了吧，或者觉得对方变心了。反而是成了朋友之后，卸下了这份责任和义务，想讲的时候就讲，不讲也不会有人责怪。没有了压力，自然聊得轻松。</p>
+
+<p>爱情真的能转化成友情，还是旧情人相见时互相客套的热情？双方尽量表现的不在乎，好像在说，“看吧，没有你我照样过得很好”。我只是单纯的想对她好，因为以前我对其他女生好，她会生气，现在我对她好，至少还没有人会生我的气吧。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-24T22:11:00+08:00" pubdate data-updated="true">Oct 24<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/10/24/first-love/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -785,108 +839,6 @@ undefined method `spawn&#8217; for Process:Module</p>
 </div>
 	
 	<div class="comments"><a href="/blog/2013/10/01/change-to-octopress/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/09/25/hive-python-udf/">
-		
-			HIVE中使用python实现UDF</a>
-	</h2>
-	<div class="entry-content">
-		<p>HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。</p>
-
-<p>UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。</p>
-
-<p>HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。</p>
-
-<p>使用HIVE的命令进入数据仓库(search)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use search;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用HIVE的命令查看已经建立的表</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>show tables;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用HIVE的命令查看xxx表中的字段</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>describe xxx;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用HIVE命令用PYTHON实现UDF</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>add file udf.py;
-</span><span class='line'>SELECT 
-</span><span class='line'>TRANSFORM(keyword)
-</span><span class='line'>USING 'python udf.py'
-</span><span class='line'>AS(keyword)
-</span><span class='line'>FROM xxx
-</span><span class='line'>WHERE dt='2013-09-25'
-</span><span class='line'>;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。</p>
-
-<p>输入到python中的内容，是按照AS里的数量来决定的。</p>
-
-<p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。</p>
-
-<figure class='code'><figcaption><span>udf.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">line</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/coding/'>Coding</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/09/25/hive-python-udf/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>
