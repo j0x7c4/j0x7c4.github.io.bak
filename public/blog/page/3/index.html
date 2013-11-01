@@ -7,7 +7,7 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="又熬過了一夜，這已經是這禮拜連續第5天通宵了。 碩論到目前為止，方法基本上都已經確定，理論部分已經完成的差不多了。而為了準備今天的Rehearsal， 這兩天都在準備投影片，又把論文的思路整理了一遍。發現論文經過和學長的討論，自己的研究之後，理論基礎又堅固很多。 耳機中一直循環播放著劉若英的《 &hellip;">
+	<meta name="description" content="一直以為有路就要往前走，一直以為往前走就是對的。其實我並不知道這條路通向哪裡，只是覺得往前走就能看到更加美麗的景色。但是身邊的景色也很美，我這樣一直的趕路，錯過了身邊的美景，卻始終無法收穫心中嚮往的景色。 走著走著覺得是不是應該走慢一點。從小學畢業，就有一條明確的路，我要念中學，3年唸完初中， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -83,6 +83,53 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/09/when-walking/">
+		
+			走著走著</a>
+	</h2>
+	<div class="entry-content">
+		<p>一直以為有路就要往前走，一直以為往前走就是對的。其實我並不知道這條路通向哪裡，只是覺得往前走就能看到更加美麗的景色。但是身邊的景色也很美，我這樣一直的趕路，錯過了身邊的美景，卻始終無法收穫心中嚮往的景色。</p>
+
+<p>走著走著覺得是不是應該走慢一點。從小學畢業，就有一條明確的路，我要念中學，3年唸完初中，又是3年唸完高中，然後別人告訴我繼續走，別停下，因為別人都在過那條獨木橋，雖然現在身邊沒有什麼美景，但是你只要越過那條獨木橋就可以看到美景了。於是我跟著潮流一起越過了獨木橋，來到了眾人嚮往的象牙塔。有些人迷失在了象牙塔中，而我卻因為深受之前被灌輸的思想，有路就要繼續走，於是我也跟著一撮人繼續走。大學的四年本應該可以過得更加美好，可是我不是一個留戀眼前景色的人。也許我只是跟著感覺在走，並沒有受到任何人的控制。當然我也不希望被人控制。這座象牙塔轉眼間就快跨出門檻了，可是我因為之前走得太快，太自由，卻摔在了門檻上。幸好我還是爬了起來，繼續向前走。這時一條路突然變成了兩條路，一條通向火熱的熔爐，一條通向幽靜的山谷。我在火爐面前來回走了一圈，發現還沒準備充分，還是走向山谷吧。好吧，2年時間我走出了山谷，TMD面前竟然又是那個火爐。本以為從山谷里出來會有不同的景色。無奈最終還是要面對這個火爐。</p>
+
+<p>到底怎樣的人生才會令人滿意，如果仔細觀察身邊的美景，是否會有種心動的感覺？終於應該要有自己獨立思考的技能了，美不美自己說了算，和別人無關。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-09T00:00:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/07/09/when-walking/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -562,97 +609,6 @@
 </div>
 	
 	<div class="comments"><a href="/blog/2013/06/01/python-urllibjson-webAPI/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/05/31/database-at-GAE/">
-		
-			在GAE上使用Database</a>
-	</h2>
-	<div class="entry-content">
-		<p>很多应用都需要database的支持，GAE提供了不错的Database服务。</p>
-
-<p>但是对于新手来讲，不是太容易理解GAE的database. GAE上的database称为datastore.</p>
-
-<p>对于习惯于MySQL这种常见的SQL database的开发者来说，第一步当然是建立一个database, 然后又用户名，密码这些必要的东西。</p>
-
-<p>但是对于GAE上的datastore来说，这些都不需要。在GAE上创建好的application, 就会分配到一个datastore, 免费quota 是有1GB的空间。至于用户名和密码，我目前还没发现在哪里需要验证，应该是在同一个application中就不需要验证了吧。</p>
-
-<p>进入application的管理页面，在左边的column中能够看到Data那一栏，这个就是datastore的管理页面了。在Datastore Viewer里就能看到所有存储的data了。但是一开始里面是空的。</p>
-
-<p>对于MySQL中table的概念，在GAE的datastore中是以Kind来表示。因为GAE是利用Google的Bigtable的感念，他没有像MySQL这样实际的table实体。</p>
-
-<p>那一个Kind在code的层面上， 它是一个继承<code>db.Model class</code>的一个class.</p>
-
-<p>以Python为例, 这是一个名叫Employee的class, 继承自db.Model. 也就是相当于MySQL中的一个<code>Employee table</code>：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">datetime</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">google.appengine.ext</span> <span class="kn">import</span> <span class="n">db</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">first_name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
-</span><span class='line'>    <span class="n">last_name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
-</span><span class='line'>    <span class="n">hire_date</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">DateProperty</span><span class="p">()</span>
-</span><span class='line'>    <span class="n">attended_hr_training</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">BooleanProperty</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中<code>first_name</code>, <code>last_name</code>这些property, 就是相当于一般MySQL table中的每个column字段. 然后<code>db.StringProperty()</code>这就是定义字段的类型.</p>
-
-<p>接下来,可以建立Employee class的instance, 然后给其中的property赋值. 最后使用<code>.put()</code>这个method就可以将数据存到datastore中了.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">employee</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Antonio&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Salieri&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">employee</span><span class="o">.</span><span class="n">hire_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
-</span><span class='line'><span class="n">employee</span><span class="o">.</span><span class="n">attended_hr_training</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'><span class="n">employee</span><span class="o">.</span><span class="n">put</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>以上是相当于SQL语句中的Insert语句。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/coding/'>Coding</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/05/31/database-at-GAE/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>

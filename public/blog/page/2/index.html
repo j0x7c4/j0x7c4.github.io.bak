@@ -7,7 +7,8 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。 UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。 &hellip;">
+	<meta name="description" content="心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。 但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。 首先从git上抓来octopress 1
+git clone git@ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -83,6 +84,107 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/01/change-to-octopress/">
+		
+			改版octopress 之 安装</a>
+	</h2>
+	<div class="entry-content">
+		<p>心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。</p>
+
+<p>但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。</p>
+
+<p>首先从git上抓来octopress</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git@github.com:imathis/octopress.git</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后进入octopress目录下，build源代码</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
+</span><span class='line'>bundle install
+</span><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上几步都没有问题，然后执行</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后问题就来了，出现了错误</p>
+
+<p>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+rake aborted!
+undefined method `spawn&#8217; for Process:Module</p>
+
+<p>因为octopress需要ruby 1.9.3，而我原本mac上的ruby是1.8.3. 所以要把ruby更新到1.9.3才能用</p>
+
+<p>网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.</p>
+
+<p>我安装stable版本的rvm</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -L https://get.rvm.io | bash -s stable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后将rvm写到用户环境中。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>echo "source $HOME/.rvm/scripts/rvm" &gt;&gt; ~/.bash_profile</span></code></pre></td></tr></table></div></figure>
+
+
+<p>具体详见 <a href="https://rvm.io/rvm/install"><a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a></a></p>
+
+<p>然后使用rvm来安装1.9.3版本的ruby.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rvm install ruby-1.9.3-p448</span></code></pre></td></tr></table></div></figure>
+
+
+<p>不过在这之前，要先确定安装了xcode的command line tools.</p>
+
+<p>可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-01T00:00:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/10/01/change-to-octopress/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -747,53 +849,6 @@
 </div>
 	
 	<div class="comments"><a href="/blog/2013/07/16/matlab-confusion-matrix/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/09/when-walking/">
-		
-			走著走著</a>
-	</h2>
-	<div class="entry-content">
-		<p>一直以為有路就要往前走，一直以為往前走就是對的。其實我並不知道這條路通向哪裡，只是覺得往前走就能看到更加美麗的景色。但是身邊的景色也很美，我這樣一直的趕路，錯過了身邊的美景，卻始終無法收穫心中嚮往的景色。</p>
-
-<p>走著走著覺得是不是應該走慢一點。從小學畢業，就有一條明確的路，我要念中學，3年唸完初中，又是3年唸完高中，然後別人告訴我繼續走，別停下，因為別人都在過那條獨木橋，雖然現在身邊沒有什麼美景，但是你只要越過那條獨木橋就可以看到美景了。於是我跟著潮流一起越過了獨木橋，來到了眾人嚮往的象牙塔。有些人迷失在了象牙塔中，而我卻因為深受之前被灌輸的思想，有路就要繼續走，於是我也跟著一撮人繼續走。大學的四年本應該可以過得更加美好，可是我不是一個留戀眼前景色的人。也許我只是跟著感覺在走，並沒有受到任何人的控制。當然我也不希望被人控制。這座象牙塔轉眼間就快跨出門檻了，可是我因為之前走得太快，太自由，卻摔在了門檻上。幸好我還是爬了起來，繼續向前走。這時一條路突然變成了兩條路，一條通向火熱的熔爐，一條通向幽靜的山谷。我在火爐面前來回走了一圈，發現還沒準備充分，還是走向山谷吧。好吧，2年時間我走出了山谷，TMD面前竟然又是那個火爐。本以為從山谷里出來會有不同的景色。無奈最終還是要面對這個火爐。</p>
-
-<p>到底怎樣的人生才會令人滿意，如果仔細觀察身邊的美景，是否會有種心動的感覺？終於應該要有自己獨立思考的技能了，美不美自己說了算，和別人無關。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-09T00:00:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/07/09/when-walking/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>
