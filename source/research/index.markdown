@@ -16,5 +16,14 @@ footer: true
 + FSelector in R <http://2naive.me/blog/2013/10/10/new-fselector-r/>
 
 ##Docs
+###Feature Selection
+
 + `FSelector` in R <http://cran.r-project.org/web/packages/FSelector/FSelector.pdf>
 + `varSelRF` in R <http://cran.r-project.org/web/packages/varSelRF/varSelRF.pdf>
+
+###Recommender System
++ LSRS2013 <http://graphlab.org/lsrs2013/program/>
+
+##Books
+###Recommender System
++ 《推荐系统实践》 <http://book.douban.com/subject/10769749/>
