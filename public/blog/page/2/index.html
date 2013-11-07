@@ -7,8 +7,7 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。 但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。 首先从git上抓来octopress 1
-git clone git@ &hellip;">
+	<meta name="description" content="忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，心情不好的时候做些geek的事情转移一下注意力也不错，现在有点小开心。 我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -84,6 +83,56 @@ git clone git@ &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/">
+		
+			从wordpress到octopress迁移成功</a>
+	</h2>
+	<div class="entry-content">
+		<p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，心情不好的时候做些geek的事情转移一下注意力也不错，现在有点小开心。</p>
+
+<p>我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多，就小改了一下。
+<a href=http://jekyllrb.com/docs/migrations/><a href="http://jekyllrb.com/docs/migrations/">http://jekyllrb.com/docs/migrations/</a></a></p>
+
+<p>不过目前还有个问题，从wordpress转过来的文章，在超链接上还是有点问题，如果标题中有中文，转完后的文件名是unicode编码，之后会找不到超链接。于是我手动把那些文件名改成了英文，幸好文章不多，大概改了半小时改完了。</p>
+
+<p>接下来要了解markdown语法啦，用这个写博客真的很酷！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-01T23:49:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -727,128 +776,6 @@ undefined method `spawn&#8217; for Process:Module</p>
 </div>
 	
 	<div class="comments"><a href="/blog/2013/07/17/cpp-std-map/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/16/matlab-confusion-matrix/">
-		
-			用matlab畫Confusion Matrix</a>
-	</h2>
-	<div class="entry-content">
-		<p>在pattern recognition 中通常用confusion matrix 來表示實驗結果。最近處理論文的實驗結果時發現用matlab可以比較方便的畫出confusion matrix來。</p>
-
-<p>以下是效果图。</p>
-
-<p><img class="aligncenter" alt="" src="http://farm8.staticflickr.com/7364/9303955419_9aafcbf1c2_o.png" width="584" height="477" /></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">n</span> <span class="p">=</span> 14<span class="p">;</span>
-</span><span class='line'><span class="n">file</span> <span class="p">=</span> <span class="s">&#39;data.csv&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="n">ylabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
-</span><span class='line'><span class="n">xlabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">X</span> <span class="p">=</span> <span class="n">csvread</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">%normalize</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)=</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span>1<span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="c">%inverse data</span>
-</span><span class='line'><span class="n">X</span><span class="p">=</span><span class="n">imcomplement</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="c">%draw</span>
-</span><span class='line'><span class="n">imagesc</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="n">colormap</span><span class="p">(</span><span class="n">gray</span><span class="p">);</span>
-</span><span class='line'><span class="n">axis</span> <span class="n">off</span><span class="p">;</span>
-</span><span class='line'><span class="n">text</span><span class="p">(</span>0<span class="p">,</span>6<span class="p">,</span><span class="s">&#39;Random&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">text</span><span class="p">(</span>0<span class="p">,</span><span class="nb">i</span><span class="p">,</span><span class="n">ylabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">h</span><span class="p">=</span><span class="n">text</span><span class="p">(</span>6<span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="s">&#39;Netural&#39;</span><span class="p">,</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">h</span> <span class="p">=</span> <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="n">xlabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="nb">disp</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="c">%add value</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="k">for</span> <span class="nb">j</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span><span class="o">&lt;</span>0<span class="p">.</span>7
-</span><span class='line'>            <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span>1<span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">),</span><span class="s">&#39;%.2f&#39;</span><span class="p">),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;center&#39;</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,</span><span class="s">&#39;white&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-16T00:00:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/coding/'>Coding</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/07/16/matlab-confusion-matrix/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>
