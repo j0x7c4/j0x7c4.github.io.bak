@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "列車上的妹子"
+title: "在日本——列車上的妹子"
 date: 2013-11-08 00:20
 comments: true
 categories: 
