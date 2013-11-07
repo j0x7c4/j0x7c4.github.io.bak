@@ -18,6 +18,7 @@ footer: true
 + <a href="http://www.dcharm.com/">dcharm</a>
 + <a href="http://blog.csdn.net/chenxinl">老大</a>
 + <a href="http://www.yiwusuozhi.com/blog/">老大的老大</a>
++ <a href="http://chinavatar.github.io">阿伟</a>
 + <a href="http://blog.yxwang.me/">zellux</a>
 
 ##工具
