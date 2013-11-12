@@ -20,7 +20,6 @@ footer: true
 
 + `FSelector` in R <http://cran.r-project.org/web/packages/FSelector/FSelector.pdf>
 + `varSelRF` in R <http://cran.r-project.org/web/packages/varSelRF/varSelRF.pdf>
-+ `word2vec` <http://arxiv.org/pdf/1310.4546.pdf>
 
 ###Recommender System
 + LSRS2013 <http://graphlab.org/lsrs2013/program/>
