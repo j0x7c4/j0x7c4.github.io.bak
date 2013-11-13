@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-11-12T18:04:23+08:00</updated>
+  <updated>2013-11-13T14:00:58+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Sublime Text 备忘]]></title>
+    <link href="http://yoursite.com/blog/2013/11/13/sublime-text2-tutorial/"/>
+    <updated>2013-11-13T11:33:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/11/13/sublime-text2-tutorial</id>
+    <content type="html"><![CDATA[<p>Sublime Text 是个很不错的文本编辑工具，已经使用1年多了。这里整理一些关于Sublime的使用方法，防止以后忘记。</p>
+
+<h2>在线安装Package</h2>
+
+<h3>安装Package Control</h3>
+
+<ul>
+<li>用 Ctrl+` 打开Console</li>
+<li>在console中加入下面这段脚本</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">urllib2</span><span class="o">,</span><span class="nn">os</span><span class="p">;</span><span class="n">pf</span><span class="o">=</span><span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span><span class="n">ipp</span><span class="o">=</span><span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span><span class="p">;</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ipp</span><span class="p">,</span><span class="n">pf</span><span class="p">),</span><span class="s">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://sublime.wbond.net/&#39;</span><span class="o">+</span><span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span><span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>重新打开sublime</li>
+</ul>
+
+
+<h3>用Package Control安装插件</h3>
+
+<ul>
+<li><code>Command+Shift+p</code>打开命令面板(如果非mac就用<code>Ctrl</code>代替<code>Command</code>)</li>
+<li>输入<code>install</code>打开Install Package</li>
+<li>选择需要的插件安装</li>
+</ul>
+
+
+<h3>添加Repository</h3>
+
+<p>想要使用更多的插件，可以自行添加网上的repository，比如github.</p>
+
+<ul>
+<li><code>Command+Shift+p</code>打开命令面板</li>
+<li>选择<code>package Control:Add Repository</code></li>
+<li>然后在底下的Repository URL中填入github地址，比如<a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
+<li>最后再选择<code>install package</code>来安装插件</li>
+</ul>
+
+
+<h3>常用插件</h3>
+
+<ul>
+<li>SublimeFormatSQL <a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
+</ul>
+
+
+<h3>备注</h3>
+
+<ul>
+<li>SublimeFormatSQL的最新版对Sublime Text 2的兼容性有点问题，我用朋友给的旧版本就可以了。具体issue参见<a href="https://github.com/freewizard/SublimeFormatSQL/issues/14">https://github.com/freewizard/SublimeFormatSQL/issues/14</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在日本——列車上的妹子]]></title>
@@ -998,24 +1062,6 @@ undefined method `spawn&#8217; for Process:Module</p>
 <p>更多的细节可以看document</p>
 
 <p><a href="http://docs.opencv.org/modules/refman.html"><a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a></a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于C++ std::map]]></title>
-    <link href="http://yoursite.com/blog/2013/07/17/cpp-std-map/"/>
-    <updated>2013-07-17T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/17/cpp-std-map</id>
-    <content type="html"><![CDATA[<p>C++的std::map是个很好用的东西，将key和value进行对应，而且可以是任意类型的key.</p>
-
-<p>以前一直没有研究过具体这个MAP是怎么实现的，只是大概的知道它是一个binary search tree. 那如果一个key不是数字，字符串这种相对简单的类型的时，而是一个vector, 或者一个pair类型的对象时，key要如何对应value呢？</p>
-
-<p>我在Quora上提了这个问题，很快就有人回答了。</p>
-
-<blockquote>std::map is a self-balancing binary search tree ordered using a comparator, whose type is given as the third template parameter to std::map. If you don&#8217;t give this template parameter, it defaults to std::less&lt;KeyType&gt;. std::less is basically a function object wrapper around the &#8220;&lt;&#8221; operator. The &lt; operator is defined for types like int, as well as for std::pair (which compares lexicographically).</blockquote>
-
-
-<p>Map中的Key会按照它自己的类中定义的less运算符去比较大小，如果像vector, pair这种多元素的对象，会根据里面所有数据的字典序来进行大小的判断。</p>
 ]]></content>
   </entry>
   

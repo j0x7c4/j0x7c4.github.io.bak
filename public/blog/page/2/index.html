@@ -7,7 +7,16 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，心情不好的时候做些geek的事情转移一下注意力也不错，现在有点小开心。 我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。 &hellip;">
+	<meta name="description" content="今天给博客加了404页面，看起来感觉更加完整了一点。
+加404页面的方法很简单，只要在source目录下面创建404.html文件，当发生404错误时，octopress就会自动跳转到404.html这个页面。
+具体内容如下： 1
+2
+3
+4
+5
+---
+layout: page
+title: &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -83,6 +92,65 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/02/add-404-page/">
+		
+			添加404页面</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天给博客加了404页面，看起来感觉更加完整了一点。
+加404页面的方法很简单，只要在<code>source</code>目录下面创建<code>404.html</code>文件，当发生404错误时，octopress就会自动跳转到<code>404.html</code>这个页面。
+具体内容如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>---
+</span><span class='line'>layout: page
+</span><span class='line'>title: Sorry，404错误！你要访问的网页不存在!
+</span><span class='line'>footer: false
+</span><span class='line'>---</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中的<code>title</code>可以改成任何自己想要的内容。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-02T23:48:00+08:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/10/02/add-404-page/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -724,58 +792,6 @@ undefined method `spawn&#8217; for Process:Module</p>
 </div>
 	
 	<div class="comments"><a href="/blog/2013/07/20/opencv-in-python/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/17/cpp-std-map/">
-		
-			关于C++ Std::map</a>
-	</h2>
-	<div class="entry-content">
-		<p>C++的std::map是个很好用的东西，将key和value进行对应，而且可以是任意类型的key.</p>
-
-<p>以前一直没有研究过具体这个MAP是怎么实现的，只是大概的知道它是一个binary search tree. 那如果一个key不是数字，字符串这种相对简单的类型的时，而是一个vector, 或者一个pair类型的对象时，key要如何对应value呢？</p>
-
-<p>我在Quora上提了这个问题，很快就有人回答了。</p>
-
-<blockquote>std::map is a self-balancing binary search tree ordered using a comparator, whose type is given as the third template parameter to std::map. If you don&#8217;t give this template parameter, it defaults to std::less&lt;KeyType&gt;. std::less is basically a function object wrapper around the &#8220;&lt;&#8221; operator. The &lt; operator is defined for types like int, as well as for std::pair (which compares lexicographically).</blockquote>
-
-
-<p>Map中的Key会按照它自己的类中定义的less运算符去比较大小，如果像vector, pair这种多元素的对象，会根据里面所有数据的字典序来进行大小的判断。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-17T00:00:00+08:00" pubdate data-updated="true">Jul 17<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/coding/'>Coding</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>, <a class='category' href='/blog/categories/theory/'>Theory</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/07/17/cpp-std-map/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>
