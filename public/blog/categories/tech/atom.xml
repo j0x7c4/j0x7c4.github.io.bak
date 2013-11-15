@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-11-13T14:00:58+08:00</updated>
+  <updated>2013-11-16T01:37:18+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在Terminal中显示git的当前branch]]></title>
+    <link href="http://yoursite.com/blog/2013/11/16/show-git-branch-name/"/>
+    <updated>2013-11-16T01:05:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/11/16/show-git-branch-name</id>
+    <content type="html"><![CDATA[<p>不知道有没有人和我有同样的困扰，在使用git的时候不小心改到了master分支上的代码，然后还不小心push了，结果还成功push了，而且自己还没发觉是push到了master上。如果代码正确还好，一旦代码有些问题就会引来很大麻烦。</p>
+
+<p><img src="images/blog/show-git-branch-name.png"></p>
+
+<p>mac的terminal上并没有自带功能显示当前的分支，所以需要自己手动修改bash的显示方式。如图上所示，新建一个<code>qrl</code>的目录，初始化<code>git</code>，当<code>commit</code>之后会产生<code>.git</code>的目录，从<code>.git</code>中获取当前的分支名字。</p>
+
+<p>实现起来比较容易，在.bash_profile中加入下面的代码就可以了。
+``` bash
+parse_git_branch() {</p>
+
+<pre><code>git branch 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+</code></pre>
+
+<p>}
+export PS1=&ldquo;\u@\h \W[\033[32m]\$(parse_git_branch)[\033[00m] $ &rdquo;
+```</p>
+
+<p>对于PS1的参数可以参考下面的来写</p>
+
+<blockquote><p>\d ：代表日期</p>
+
+<p>\H ：完整的主机名称</p>
+
+<p>\h ：仅取主机的第一个名字</p>
+
+<p>\t ：显示时间为24小时格式，如：HH：MM：SS</p>
+
+<p>\T ：显示时间为12小时格式</p>
+
+<p>\A ：显示时间为24小时格式：HH：MM</p>
+
+<p>\u ：当前用户的账号名称</p>
+
+<p>\v ：BASH的版本信息</p>
+
+<p>\w ：完整的工作目录名称。家目录会以 ~代替</p>
+
+<p>\W ：利用basename取得工作目录名称，所以只会列出最后一个目录</p>
+
+<p>\# ：下达的第几个命令</p>
+
+<p>\$ ：提示字符，如果是root时，提示符为：# ，普通用户则为：$</p></blockquote>
+
+<h3>参考</h3>
+
+<p><a href="http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac">http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac</a>
+<a href="http://blog.sina.com.cn/s/blog_610913ea0100fce1.html">http://blog.sina.com.cn/s/blog_610913ea0100fce1.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sublime Text 备忘]]></title>
@@ -243,166 +298,6 @@ print(f)
 <li>R语言也可以在命令行中用batch的方式来运行，具体指令是<code>R CMD BATCH [options] infile [outfile]</code>, infile就是R的脚本文件，R的输出一般无法显示到STDOUT中，是以文件的形式存起来。如果没有指定outfile，就会以原文件名的方式来命名。在脚本执行的时候，很多无关紧要的内容也会被输出，可以使用options命令的<code>--slave</code>. 在最后的输出中，他也会很好心的帮你计算运行时间，如果不需要，也可以加<code>--no-timing</code>. 详见<a href="http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html">http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html</a></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在octopress中加入Google map]]></title>
-    <link href="http://yoursite.com/blog/2013/10/07/google-map/"/>
-    <updated>2013-10-07T02:21:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/10/07/google-map</id>
-    <content type="html"><![CDATA[<h3>需要科学上网才能正常显示Google Map(API被墙了T_T)</h3>
-
-<p>想在octopress中插入地图信息，考虑到之后可能会在博客中加入关于游记的文章，如果文章能有形象的地图信息会有很好的效果。于是在网上搜寻octopress的地图插件，发现一个叫做<a herf="http://mguentner.github.io/octolayer/">Octolayer</a>的插件，想载下来试试，不过github刚好出问题，我无法获取代码，再加上他不是用google map. 作为一个google的忠实脑残粉，我就决定自己写一个。</p>
-
-<p>研究了一下<a href="https://developers.google.com/maps/documentation/javascript/">google map API</a>，发现难度并不大。就是在我的文章内容中加入一个div，然后用js去render. 照着sample code改了一下代码，主要是为了从div的属性中读取经纬度坐标。（需要jQuery）</p>
-
-<p>``` javascript gmap.js
-function initialize() {
-  var lat = $(&ldquo;#map-canvas&rdquo;).attr(&ldquo;lat&rdquo;);
-  var lng = $(&ldquo;#map-canvas&rdquo;).attr(&ldquo;lng&rdquo;);
-  console.log(lat);
-  console.log(lng);
-  var loc = new google.maps.LatLng(lat,lng);
-  var mapOptions = {</p>
-
-<pre><code>zoom: 7,
-center: loc,
-mapTypeId: google.maps.MapTypeId.ROADMAP
-</code></pre>
-
-<p>  };</p>
-
-<p>  map = new google.maps.Map(document.getElementById(&lsquo;map-canvas&rsquo;),</p>
-
-<pre><code>  mapOptions);
-</code></pre>
-
-<p>  var marker = new google.maps.Marker({</p>
-
-<pre><code>  position: loc,
-  map: map,
-  title: 'Hello World!'
-</code></pre>
-
-<p>  });</p>
-
-<p>}</p>
-
-<p>google.maps.event.addDomListener(window, &lsquo;load&rsquo;, initialize);
-```</p>
-
-<!--more-->
-
-
-<p><b>但是上面的方法对于需要多个marker时会比较难处理，于是进行如下修改(10月7日下午修改)</b></p>
-
-<p>``` javascript gmap.js
-function initialize() {</p>
-
-<p>  if (!$(&ldquo;div#map-canvas&rdquo;)[0]) return; //check there is map-canves</p>
-
-<p>  var locations=[];</p>
-
-<p>  //get locations from div.map-marker
-  $(&ldquo;div.map-marker&rdquo;).each(function(){</p>
-
-<pre><code>console.log($(this).attr('name'));
-locations.push([$(this).attr('name'),$(this).attr('lat'),$(this).attr('lng')]);
-</code></pre>
-
-<p>  });</p>
-
-<p>  var map = new google.maps.Map(document.getElementById(&lsquo;map-canvas&rsquo;), {</p>
-
-<pre><code>  zoom: 10,
-  center: new google.maps.LatLng(locations[0][1], locations[0][2]),
-  mapTypeId: google.maps.MapTypeId.ROADMAP
-});
-</code></pre>
-
-<p>  var infowindow = new google.maps.InfoWindow();</p>
-
-<p>  for (i = 0; i &lt; locations.length; i++) {</p>
-
-<pre><code>  marker = new google.maps.Marker({
-    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-    map: map
-  });
-
-  google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    return function() {
-      infowindow.setContent(locations[i][0]);
-      infowindow.open(map, marker);
-    }
-  })(marker, i));
-</code></pre>
-
-<p>  }
-}</p>
-
-<p>google.maps.event.addDomListener(window, &lsquo;load&rsquo;, initialize);</p>
-
-<p>```</p>
-
-<p>把<code>gmap.js</code>放在<code>source/javascripts</code>中，并且在<code>source/_includes/head.html</code>中加入下面几行：</p>
-
-<p>``` html</p>
-
-<script async="true" src="http://yoursite.com//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-
-
-<script src="/javascripts/gmap.js"></script>
-
-
-<p>```</p>
-
-<p>如果已经在前面加过jQuery的话，就不用加第一行了。
-然后在文章中，加入下面这段html代码。
-其中div.map-marker用来传递每个marker的信息（lat和lng表示地点的经纬度，name表示marker的名字，这些是目前是需要自己输入的）; div#map-canvas用来最终显示地图。</p>
-
-<p>``` html</p>
-
-<div class="map-marker" lat="-33.890542" lng="151.274856" name = "BondiBeach" ></div>
-
-
-<div class="map-marker" name = "CoogeeBeach" lat= "-33.923036" lng="151.259052"></div>
-
-
-<div id="map-canvas"></div>
-
-
-<p>```</p>
-
-<p>我以为这样子应该能显示地图了，可是实际上却无法显示。这个问题我折腾了很久，最后才发现需要给div加css. 所以要在<code>source/stylesheets</code>中创建一个css样式文件（被HTML坑了）。</p>
-
-<p>``` css gmap.css</p>
-
-<h1>map-canvas { margin: 20px 0 20px 0; height: 300px;}</h1>
-
-<p>```</p>
-
-<p>所以在<code>source/_includes/head.html</code>中也要加入下面这行：</p>
-
-<p><code>html
-&lt;link href="http://yoursite.com/stylesheets/gmap.css" rel="stylesheet" type="text/css"&gt;
-</code></p>
-
-<p>这样子应该可以出现下面的结果了：</p>
-
-<div class="map-marker" lat="-33.890542" lng="151.274856" name = "BondiBeach" ></div>
-
-
-<div class="map-marker" name = "CoogeeBeach" lat= "-33.923036" lng="151.259052"></div>
-
-
-<div id="map-canvas"></div>
-
-
-<p>目前存在的问题是，因为都使用id叫map-canvas的div, 所以在同个页面中显示多个地图就会出错了。之后再想办法改进。又快天亮了，先睡了zzz</p>
 ]]></content>
   </entry>
   

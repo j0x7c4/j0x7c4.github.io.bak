@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-11-13T14:00:58+08:00</updated>
+  <updated>2013-11-16T01:37:18+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在Terminal中显示git的当前branch]]></title>
+    <link href="http://yoursite.com/blog/2013/11/16/show-git-branch-name/"/>
+    <updated>2013-11-16T01:05:00+08:00</updated>
+    <id>http://yoursite.com/blog/2013/11/16/show-git-branch-name</id>
+    <content type="html"><![CDATA[<p>不知道有没有人和我有同样的困扰，在使用git的时候不小心改到了master分支上的代码，然后还不小心push了，结果还成功push了，而且自己还没发觉是push到了master上。如果代码正确还好，一旦代码有些问题就会引来很大麻烦。</p>
+
+<p><img src="images/blog/show-git-branch-name.png"></p>
+
+<p>mac的terminal上并没有自带功能显示当前的分支，所以需要自己手动修改bash的显示方式。如图上所示，新建一个<code>qrl</code>的目录，初始化<code>git</code>，当<code>commit</code>之后会产生<code>.git</code>的目录，从<code>.git</code>中获取当前的分支名字。</p>
+
+<p>实现起来比较容易，在.bash_profile中加入下面的代码就可以了。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>parse_git_branch<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    git branch 2&gt; /dev/null | sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ [\1]/&#39;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ &quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>对于PS1的参数可以参考下面的来写</p>
+
+<blockquote><p>\d ：代表日期</p>
+
+<p>\H ：完整的主机名称</p>
+
+<p>\h ：仅取主机的第一个名字</p>
+
+<p>\t ：显示时间为24小时格式，如：HH：MM：SS</p>
+
+<p>\T ：显示时间为12小时格式</p>
+
+<p>\A ：显示时间为24小时格式：HH：MM</p>
+
+<p>\u ：当前用户的账号名称</p>
+
+<p>\v ：BASH的版本信息</p>
+
+<p>\w ：完整的工作目录名称。家目录会以 ~代替</p>
+
+<p>\W ：利用basename取得工作目录名称，所以只会列出最后一个目录</p>
+
+<p>\# ：下达的第几个命令</p>
+
+<p>\$ ：提示字符，如果是root时，提示符为：# ，普通用户则为：$</p></blockquote>
+
+<h3>参考</h3>
+
+<p><a href="http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac">http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac</a>
+<a href="http://blog.sina.com.cn/s/blog_610913ea0100fce1.html">http://blog.sina.com.cn/s/blog_610913ea0100fce1.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sublime Text 备忘]]></title>
@@ -988,80 +1045,6 @@ undefined method `spawn&#8217; for Process:Module</p>
 <p>雖然在一起的時候我們也停不了各種爭吵，但這些都不會在我的記憶里持續太久。時間就是幫助我過濾到這些雜質，剩下的是純淨的回憶，剩下來的是美好的回憶。也許很難記起我們第一次吵架的地點，但卻能夠清楚的記得我第一次親你的自習室，在教室的最後一排。記憶里留下的，是每一天，你坐在自行車的後座上，我載著你，在校園里。除了回憶，就是感激。非常榮幸在你大學時光中，陪伴在你身邊的人是我，感謝你給我的機會。並不是所有人都能有在大學里談戀愛的經歷，我想如果當初你拒絕我，也許我也會和很多人一樣，在沒有愛的大學里度過四年的青春。這樣我大學的回憶就真的只剩鍵盤，鼠標和一行行冰冷的代碼了。</p>
 
 <p>也許這世上能夠成為永遠的，就是過去的回憶。那如果是這樣，希望我的回憶永遠都是美好的。謝謝你帶給我美好的回憶。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OpenCV in Python]]></title>
-    <link href="http://yoursite.com/blog/2013/07/20/opencv-in-python/"/>
-    <updated>2013-07-20T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/20/opencv-in-python</id>
-    <content type="html"><![CDATA[<p>OpenCV基本上每個學Computer Vision都用過，我之前也是用C++來使用OpenCV, 最近為了處理一些圖片轉影片，加Marker之類的簡單的操作，懶得再用C++去寫。於是就嘗試用Python來寫OpenCV.</p>
-
-<p>在Python中使用OpenCV, 只要把OpenCV的Library加到Python的Lib目錄下面就可以了。</p>
-
-<p>具體就是把OpenCV目錄下的”build/python/2.7/cv2.pyd&#8221; 複製到Python的“Lib/site-packages”目錄中。</p>
-
-<p>OpenCV被包在cv2这个module中，在一开始加载这个module就可以了。</p>
-
-<p>OpenCV中经常会用到cv::Size, cv::Point, 在python中就用tuple来代替，不用再定义cv::Size或者cv::Point. 比如原来C++中定义一个size用cv::Size(640,480), 现在Python中直接用(640,480)来代替就好了。</p>
-
-<p>下面这个例子就是把image_dir中的图片转换成avi格式的影片</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">cv2</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">intCmp</span> <span class="p">(</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="p">):</span>
-</span><span class='line'>  <span class="n">a</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;([\d]+).png&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">b</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;([\d]+).png&#39;</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">print</span> <span class="s">&quot;Usage: </span><span class="si">%s</span><span class="s"> (image_dir) (output)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span><span class='line'>      <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">image_dir</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">output_file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">image_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">),</span><span class="nb">cmp</span><span class="o">=</span><span class="n">intCmp</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">video_writer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">,(</span><span class="mi">640</span><span class="p">,</span><span class="mi">480</span><span class="p">))</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">image_list</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">print</span> <span class="n">image_file</span>
-</span><span class='line'>      <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span><span class="n">image_file</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
-</span><span class='line'>      <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&quot;rgb&quot;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">video_writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
-</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>更多的细节可以看document</p>
-
-<p><a href="http://docs.opencv.org/modules/refman.html"><a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a></a></p>
 ]]></content>
   </entry>
   
