@@ -8,9 +8,10 @@ color: #666;
 @media screen and (max-width: 1040px){body{margin:0 20px}}@media screen and (max-width: 600px){body{font-size:13px}}h1{font-size:1.8em}h2{font-size:1.5em}h3{font-size:1.3em}a{text-decoration:none;outline-width:0;color:#258fb8}.alignleft{float:left}.alignright{float:right}.clearfix{*zoom:1}.clearfix:after{content:"";display:table;clear:both}.inner{width:840px;margin:0 auto}@media screen and (max-width: 1040px){.inner{width:100%}}.pullquote-right:before,.pullquote-left:before{padding:0;border:none;content:attr(data-pullquote);float:right;width:45%;margin:.5em 0 1em 1.5em;position:relative;top:7px;font-size:1.4em;line-height:1.45em}.pullquote-left:before{float:left;margin:.5em 1.5em 1em 0}
 #header {
 height: 200px;
-padding: 10px 0 30px 0;
+padding: 10px 5px 30px 5px;
 border-bottom: 1px solid #ddd;
 line-height: 30px;
+background-image: url(../images/banner/head.png);
 }
 @media screen and (max-width: 1040px){#header{height:auto;position:relative;padding-bottom:10px}}#header a{color:#666;-webkit-transition:color 0.3s;-moz-transition:color 0.3s;-o-transition:color 0.3s;transition:color 0.3s}#header a:hover{color:#258fb8}
 #header h1 {
