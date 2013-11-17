@@ -12,9 +12,15 @@
 3
 4
 5
-Figure %create a figure
-[x,y,z]=sphere(10) %get the mesh of x,y,z for 10x10 surface sphere
-h=surf(x,y,z) %create the object of surface &hellip;">
+6
+7
+8
+figure %create the figure
+t = 0:1:135 %create the vector
+h1 = plot3(t,t,135-t) %draw x-y-z+135 = 0
+hold on
+grid on
+h2 = plot3(t,t, &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -90,6 +96,66 @@ h=surf(x,y,z) %create the object of surface &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/06/20/matlab-3d-segment/">
+		
+			用matlab畫3D線段</a>
+	</h2>
+	<div class="entry-content">
+		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">figure</span> <span class="c">%create the figure</span>
+</span><span class='line'><span class="n">t</span> <span class="p">=</span> 0<span class="p">:</span>1<span class="p">:</span>135  <span class="c">%create the vector</span>
+</span><span class='line'><span class="n">h1</span> <span class="p">=</span> <span class="n">plot3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span>135<span class="o">-</span><span class="n">t</span><span class="p">)</span>  <span class="c">%draw x-y-z+135 = 0</span>
+</span><span class='line'><span class="n">hold</span> <span class="n">on</span>
+</span><span class='line'><span class="n">grid</span> <span class="n">on</span>
+</span><span class='line'><span class="n">h2</span> <span class="p">=</span> <span class="n">plot3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span> <span class="c">%draw x-y = 0</span>
+</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,[</span>0<span class="p">,</span>0<span class="p">,</span>0<span class="p">])</span>  <span class="c">%set color black</span>
+</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,[</span>0<span class="p">,</span>0<span class="p">,</span>0<span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-20T00:00:00+08:00" pubdate data-updated="true">Jun 20<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/coding/'>Coding</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/06/20/matlab-3d-segment/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
