@@ -13,7 +13,7 @@ description:
 ---
 不知道有没有人和我有同样的困扰，在使用git的时候不小心改到了master分支上的代码，然后还不小心push了，结果还成功push了，而且自己还没发觉是push到了master上。如果代码正确还好，一旦代码有些问题就会引来很大麻烦。
 
-{%img images/blog/show-git-branch-name.png %}
+{%img /images/blog/show-git-branch-name.png %}
 
 mac的terminal上并没有自带功能显示当前的分支，所以需要自己手动修改bash的显示方式。如图上所示，新建一个`qrl`的目录，初始化`git`，当`commit`之后会产生`.git`的目录，从`.git`中获取当前的分支名字。
 

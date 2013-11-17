@@ -5,7 +5,7 @@ font-weight: 300;
 font-size: 16px;
 color: #666;
 }
-@media screen and (max-width: 1040px){body{margin:0 20px}}@media screen and (max-width: 600px){body{font-size:13px}}h1{font-size:1.8em}h2{font-size:1.5em}h3{font-size:1.3em}a{text-decoration:none;outline-width:0;color:#258fb8}.alignleft{float:left}.alignright{float:right}.clearfix{*zoom:1}.clearfix:after{content:"";display:table;clear:both}.inner{width:840px;margin:0 auto}@media screen and (max-width: 1040px){.inner{width:100%}}.pullquote-right:before,.pullquote-left:before{padding:0;border:none;content:attr(data-pullquote);float:right;width:45%;margin:.5em 0 1em 1.5em;position:relative;top:7px;font-size:1.4em;line-height:1.45em}.pullquote-left:before{float:left;margin:.5em 1.5em 1em 0}
+@media screen and (max-width: 1040px){body{margin:0 20px}}@media screen and (max-width: 600px){body{font-size:13px}}h1{font-size:1.8em;font-weight: 300;}h2{font-size:1.5em}h3{font-size:1.3em}a{text-decoration:none;outline-width:0;color:#258fb8}.alignleft{float:left}.alignright{float:right}.clearfix{*zoom:1}.clearfix:after{content:"";display:table;clear:both}.inner{width:840px;margin:0 auto}@media screen and (max-width: 1040px){.inner{width:100%}}.pullquote-right:before,.pullquote-left:before{padding:0;border:none;content:attr(data-pullquote);float:right;width:45%;margin:.5em 0 1em 1.5em;position:relative;top:7px;font-size:1.4em;line-height:1.45em}.pullquote-left:before{float:left;margin:.5em 1.5em 1em 0}
 #header {
 height: 200px;
 padding: 10px 5px 30px 5px;
