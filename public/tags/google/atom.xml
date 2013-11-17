@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: google | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/tags/google/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-11-18T01:02:48+08:00</updated>
+  <updated>2013-11-18T01:04:45+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -122,7 +122,7 @@ locations.push([$(this).attr('name'),$(this).attr('lat'),$(this).attr('lng')]);
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
 
-<script src="/javascripts/gmap.js"></script>
+<script src="{{ root_url }}/javascripts/gmap.js"></script>
 
 
 <p>```</p>

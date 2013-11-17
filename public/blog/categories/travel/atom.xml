@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Travel | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/travel/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-11-18T01:02:48+08:00</updated>
+  <updated>2013-11-18T01:04:45+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -35,7 +35,7 @@
 
 <p>日本近几年对<code>痴汉</code>行为抓的很严，不能随意对日本的女孩进行拍照，特别是在电车，地铁上。只要有妹子向警察指正你对她有痴汉行为，比如拍照，咸猪手等，一旦证据确凿，就要在日本被关上两年，无论是本国人还是外国人。所以经常看岛国爱情动作片的同学们，去了日本之后千万不要拿相机乱拍妹子。</p>
 
-<p><img src="/images/blog/Screen-Shot-2013-11-08-at-12.54.14-AM.png"></p>
+<p>{% img /images/blog/Screen-Shot-2013-11-08-at-12.54.14-AM.png %}</p>
 ]]></content>
   </entry>
   
