@@ -7,7 +7,7 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="最近看了一些书，都是和西藏旅行相关的，身边也有认识的人去西藏旅行。文青们都认为去西藏可以净化自己的心灵，近距离接近天堂。作为一个伪文青的我，自然也要跟随着众多文青的后尘。去西藏的愿望也在心底埋下了一颗种子。 但是毕竟西藏不是一般的地方，除了高原反应和大太阳之外，路途遥远， &hellip;">
+	<meta name="description" content="需要科学上网才能正常显示Google Map(API被墙了T_T) 想在octopress中插入地图信息，考虑到之后可能会在博客中加入关于游记的文章，如果文章能有形象的地图信息会有很好的效果。于是在网上搜寻octopress的地图插件，发现一个叫做Octolayer的插件，想载下来试试， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -83,6 +83,105 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/07/google-map/">
+		
+			在octopress中加入Google Map</a>
+	</h2>
+	<div class="entry-content">
+		<h3>需要科学上网才能正常显示Google Map(API被墙了T_T)</h3>
+
+<p>想在octopress中插入地图信息，考虑到之后可能会在博客中加入关于游记的文章，如果文章能有形象的地图信息会有很好的效果。于是在网上搜寻octopress的地图插件，发现一个叫做<a herf="http://mguentner.github.io/octolayer/">Octolayer</a>的插件，想载下来试试，不过github刚好出问题，我无法获取代码，再加上他不是用google map. 作为一个google的忠实脑残粉，我就决定自己写一个。</p>
+
+<p>研究了一下<a href="https://developers.google.com/maps/documentation/javascript/">google map API</a>，发现难度并不大。就是在我的文章内容中加入一个div，然后用js去render. 照着sample code改了一下代码，主要是为了从div的属性中读取经纬度坐标。（需要jQuery）</p>
+
+<figure class='code'><figcaption><span>gmap.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">initialize</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">lat</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#map-canvas&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;lat&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">lng</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#map-canvas&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;lng&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lat</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lng</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">loc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span><span class="nx">lat</span><span class="p">,</span><span class="nx">lng</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">mapOptions</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">zoom</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">center</span><span class="o">:</span> <span class="nx">loc</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">mapTypeId</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeId</span><span class="p">.</span><span class="nx">ROADMAP</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;map-canvas&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">mapOptions</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">position</span><span class="o">:</span> <span class="nx">loc</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">map</span><span class="o">:</span> <span class="nx">map</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Hello World!&#39;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addDomListener</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="nx">initialize</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+		
+		<a href="/blog/2013/10/07/google-map/" class="more-link">More</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-07T02:21:00+08:00" pubdate data-updated="true">Oct 7<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/coding/'>Coding</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/10/07/google-map/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -662,55 +761,6 @@ undefined method `spawn&#8217; for Process:Module</p>
 </div>
 	
 	<div class="comments"><a href="/blog/2013/08/10/big-fail-in-basketball/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/28/goodbye-campus/">
-		
-			即將再見的學生</a>
-	</h2>
-	<div class="entry-content">
-		<p>前幾天順利的通過了口試，心中的一塊大石終於落下。這也意味著我的學生身份即將到期，接下來就要自己掙錢生活了。</p>
-
-<p>以前從來沒體會過自己生活是什麼的感受，雖然說我從初中開始就開始住學校，一直經過初中，高中，大學，和研究所。這十多年來也算比較獨立了。可是住學校宿舍，和自己找房子在外面住的感覺還是不一樣的。這些年雖然沒有住在家裡，但是還是能夠感受到父母罩著我，不用擔心食宿問題。如今就要踏入社會，父母對我的態度也有所轉變，我跟他們說我之後不直接飛回家，而是先飛上海。還以為媽媽會勸我還是飛寧波會比較好，之後再送我去上海。沒想到她說那就隨便你吧。那一刻有些失落，不過同時也體會到了媽媽覺得我已經長大了，已經獨立了。當然我也是這麼想的。今天晚上試著在網上找房子租，隨便敲了幾個關鍵字，跳出來一大堆租房信息。我該從哪裡入手？竟然一點都不知道。租房子的流程是如何？需要看風水嗎？會不會是凶宅？滿腦子都是這些。看來在網上找房子，光看幾張照片還是不靠譜。</p>
-
-<p>我從來都是一個怕麻煩的人，結束了單純的學生生活後，麻煩的事會越來越多。這時候抱怨自己的社會經驗不足已經來不及了，要盡快的向身邊人學習生活經驗才對。現在要像Howard一樣，離開媽媽，獨自生活了。</p>
-
-<p>&nbsp;</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-28T00:00:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/07/28/goodbye-campus/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>
