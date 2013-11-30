@@ -7,7 +7,7 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="這是一篇分享自ptt的文章，很值得一看，特別是對那些總是追不到女生卻又很想討好女生的男生。 作者根據一個網友的問題，逐一解釋，看了真是受益匪淺。 文章有點長，但是看了受益匪淺。 作者: abcd0 (貓舌茉莉卡) 看板: CATCH 標題: Re: [請益] 好朋友，告白失敗被拒 時間: Sun &hellip;">
+	<meta name="description" content="对于像我这种整天感觉很闲的人，总是会在代码中寻找自己的小世界，没事就写个web应用。可是身处天朝，资源有限。国际上很多知名的服务都不能用，比如某G的app engine. 不过还是有些漏网之鱼，没有完全被墙的。比如Heroku http://www.heroku.com. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -83,6 +83,187 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/11/30/heroku-gae-python/">
+		
+			搭建能在天朝使用的web App</a>
+	</h2>
+	<div class="entry-content">
+		<p>对于像我这种整天感觉很闲的人，总是会在代码中寻找自己的小世界，没事就写个web应用。可是身处天朝，资源有限。国际上很多知名的服务都不能用，比如某G的app engine. 不过还是有些漏网之鱼，没有完全被墙的。比如Heroku <a href="http://www.heroku.com">http://www.heroku.com</a>.</p>
+
+<p>Heroku是通过git的方式将本地的代码部署到云上。前面讲到它没有完全被墙，因为放在它上面的app在国内是可以访问的，但是通过git部署的过程，是被墙的。所以我都是需要VPN才能将代码部署到heroku上。Heroku支持很多语言，我最常用的就是python了。刚刚用Django在Heroku上部署了一个web app. 可以参照下面这篇文章，在heroku上部署django <a href="https://devcenter.heroku.com/articles/getting-started-with-django">https://devcenter.heroku.com/articles/getting-started-with-django</a></p>
+
+<p>如果在django中需要用到SESSION或者COOKIE的话，是需要使用heroku提供的数据库的。因为在heroku上程序无法在运行的时候创建静态文件，所以它们是变相的存储在数据库中的。数据库添加可以进入网站的dashboard，在add-on中添加一个免费的Heroku Postgresql. 免费的额度支持10MB的数据库(感觉有点小=_=).</p>
+
+<p><img src="https://addons.heroku.com/provider/addons/heroku-postgresql/icons/catalog.png"></p>
+
+<p>于是乎，我就想到了GAE，它免费的数据库支持到了1GB. 虽然他上面的服务在天朝无法访问，但是如果请求是从heroku发出去的，然后heroku再就收GAE传回的数据显示在app上，就没问题了！带着这个想法，我在GAE上部署了一个数据库，用来存放一些数据，之前的文章中有提到如何在GAE上使用数据库。</p>
+
+<h3><a href="/blog/2013/05/31/SQL-like-at-GAE">在GAE上使用类SQL语句进行查询</a></h3>
+
+<h3><a href="/blog/2013/05/31/database-at-GAE/">在GAE上使用Database</a></h3>
+
+<p>下面这个例子是一张Inverted_index表中，存2个字段，并且实现两个方法去获取资料：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">google.appengine.ext</span> <span class="kn">import</span> <span class="n">db</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Inverted_index</span> <span class="p">(</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span> <span class="p">):</span>
+</span><span class='line'>  <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">IntegerProperty</span><span class="p">()</span>
+</span><span class='line'>  <span class="n">word</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">get</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span><span class='line'>          <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span class='line'>          <span class="k">return</span> <span class="p">[</span> <span class="p">{</span><span class="s">&quot;id&quot;</span><span class="p">:</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s">&quot;word&quot;</span><span class="p">:</span><span class="n">item</span><span class="o">.</span><span class="n">word</span> <span class="p">}</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span> <span class="p">]</span>
+</span><span class='line'>      <span class="k">if</span> <span class="s">&#39;ids&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">ids_set</span> <span class="o">=</span> <span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;ids&#39;</span><span class="p">]))</span>
+</span><span class='line'>          <span class="n">q</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM Inverted_index WHERE id in (</span><span class="si">%s</span><span class="s">)&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ids_set</span><span class="p">))</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">],[</span><span class="n">item</span><span class="o">.</span><span class="n">word</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">]))</span>
+</span><span class='line'>      <span class="k">if</span> <span class="s">&#39;words&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">words_set</span> <span class="o">=</span> <span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;words&#39;</span><span class="p">]))</span>
+</span><span class='line'>          <span class="n">q</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM Inverted_index WHERE word in (</span><span class="si">%s</span><span class="s">)&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">words_set</span><span class="p">))</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">word</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">],[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">]))</span>
+</span><span class='line'>      
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">get_id_list_by_doc</span> <span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">word_list</span> <span class="p">):</span>
+</span><span class='line'>      <span class="n">word_to_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">words</span><span class="o">=</span><span class="n">word_list</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span> <span class="p">[</span><span class="n">word_to_id</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>另外介绍个可以部署在GAE的分词器</h2>
+
+<p>这个分词器用纯python来写，网上看到很多人都推荐。</p>
+
+<p><a href="https://github.com/fxsjy/jieba">https://github.com/fxsjy/jieba</a></p>
+
+<p>但是部署在GAE上需要修改一个地方，不然可能会出错：
+将<code>jieba</code>中的<code>__init__.py</code>的78-81行修改成这样。因为如果使用原来的系统临时文件夹来存放cache文件，会出错。于是我直接把存放cache的目录设置成当前目录。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">abs_path</span> <span class="o">==</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_curpath</span><span class="p">,</span><span class="s">&quot;dict.txt&quot;</span><span class="p">):</span> <span class="c">#defautl dictionary</span>
+</span><span class='line'>    <span class="n">cache_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="s">&quot;jieba.cache&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">else</span><span class="p">:</span> <span class="c">#customer dictionary</span>
+</span><span class='line'>    <span class="n">cache_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="s">&quot;jieba.user.&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="n">abs_path</span><span class="p">))</span><span class="o">+</span><span class="s">&quot;.cache&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在使用上，可以调用<code>jieba.cut</code>，也可以调用<code>jieba.finalseg.cut</code>，两者的区别还没仔细研究，但是如果在GAE上使用前者的话，会出现内存使用过大，然后被系统kill掉进程的问题。用后者就没问题了。具体例子如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">webapp2</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">jieba</span> <span class="kn">import</span> <span class="n">finalseg</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Segment</span><span class="p">(</span><span class="n">webapp2</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">seg_list</span> <span class="o">=</span> <span class="n">finalseg</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">text</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;text/plain&#39;</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">seg_list</span> <span class="o">=</span> <span class="n">finalseg</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">text</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;text/plain&#39;</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">webapp2</span><span class="o">.</span><span class="n">WSGIApplication</span><span class="p">([</span>
+</span><span class='line'>    <span class="p">(</span><span class="s">&#39;/api/segment&#39;</span><span class="p">,</span> <span class="n">Segment</span><span class="p">),</span>
+</span><span class='line'>    <span class="p">],</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上比较粗略的介绍了一下在网上利用免费资源搭建web app的方法。最近在鼓捣一个跟微博相关的东西，我就是利用了HEROKU和GAE来实现的。</p>
+
+<h3>啊! 微博 <a href="http://rweibo.herokuapp.com/">http://rweibo.herokuapp.com/</a></h3>
+
+<p>因为app还没上线，所以需要有将微博账号添加到app的测试账号中才能使用。想要尝试的话，可以私聊~</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-30T20:23:00+08:00" pubdate data-updated="true">Nov 30<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/11/30/heroku-gae-python/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -757,133 +938,6 @@ represented in the GML file as:</p>
 </div>
 	
 	<div class="comments"><a href="/blog/2013/10/16/try-networkx/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/10/10/new-fselector-r/">
-		
-			Feature Selection in R Is EASY!</a>
-	</h2>
-	<div class="entry-content">
-		<p>最早认识R语言是看到一本书叫做<i>&ldquo;Machine Learning for Hackers&rdquo;</i>, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature Selection方面的工具时，看到有人推荐R的package <a href=http://cran.r-project.org/web/packages/FSelector/FSelector.pdf>FSelector</a> . 于是就载下来尝试一下，结果发现真的很方便。</p>
-
-<h4>R可以方便的使用现成的benchmark（比如<code>iris</code>），只要一句话就可以轻松导入数据！</h4>
-
-<p>下面是一个简单的例子使用FSelector, 采用cvs来寻找feature的子集。其中第一个参数Species~表示数据集iris中的类别(label).</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='r'><span class='line'>library<span class="p">(</span>FSelector<span class="p">)</span>
-</span><span class='line'>data<span class="p">(</span>iris<span class="p">)</span>
-</span><span class='line'>subset <span class="o">&lt;-</span> cfs<span class="p">(</span>Species<span class="o">~</span>.<span class="p">,</span> iris<span class="p">)</span>
-</span><span class='line'>f <span class="o">&lt;-</span> as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">)</span>
-</span><span class='line'>print<span class="p">(</span>f<span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>下面这个例子比较高阶，可以自己指定评价feature子集的好坏。采用best first search的策略来寻找子集。其中evaluator训练了rpart model，通过计算error rate来评价feature的好坏。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='r'><span class='line'>library<span class="p">(</span>FSelector<span class="p">)</span>
-</span><span class='line'>library<span class="p">(</span>rpart<span class="p">)</span>
-</span><span class='line'>data<span class="p">(</span>iris<span class="p">)</span>
-</span><span class='line'>evaluator <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>subset<span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="c1">#k-fold cross validation</span>
-</span><span class='line'>  k <span class="o">&lt;-</span> <span class="m">5</span>
-</span><span class='line'>  splits <span class="o">&lt;-</span> runif<span class="p">(</span>nrow<span class="p">(</span>iris<span class="p">))</span>
-</span><span class='line'>  results <span class="o">=</span> sapply<span class="p">(</span><span class="m">1</span><span class="o">:</span>k<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>i<span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    test.idx <span class="o">&lt;-</span> <span class="p">(</span>splits <span class="o">&gt;=</span> <span class="p">(</span>i <span class="o">-</span> <span class="m">1</span><span class="p">)</span> <span class="o">/</span> k<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>splits <span class="o">&lt;</span> i <span class="o">/</span> k<span class="p">)</span>
-</span><span class='line'>    train.idx <span class="o">&lt;-</span> <span class="o">!</span>test.idx
-</span><span class='line'>    test <span class="o">&lt;-</span> iris<span class="p">[</span>test.idx<span class="p">,</span> <span class="p">,</span> drop<span class="o">=</span><span class="kc">FALSE</span><span class="p">]</span>
-</span><span class='line'>    train <span class="o">&lt;-</span> iris<span class="p">[</span>train.idx<span class="p">,</span> <span class="p">,</span> drop<span class="o">=</span><span class="kc">FALSE</span><span class="p">]</span>
-</span><span class='line'>    tree <span class="o">&lt;-</span> rpart<span class="p">(</span>as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">),</span> train<span class="p">)</span>
-</span><span class='line'>    error.rate <span class="o">=</span> sum<span class="p">(</span>test<span class="o">$</span>Species <span class="o">!=</span> predict<span class="p">(</span>tree<span class="p">,</span> test<span class="p">,</span> type<span class="o">=</span><span class="s">&quot;c&quot;</span><span class="p">))</span> <span class="o">/</span> nrow<span class="p">(</span>test<span class="p">)</span>
-</span><span class='line'>    <span class="kr">return</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> error.rate<span class="p">)</span>
-</span><span class='line'>  <span class="p">})</span>
-</span><span class='line'>  <span class="c1">#print(subset)</span>
-</span><span class='line'>  <span class="c1">#print(mean(results))</span>
-</span><span class='line'>  <span class="kr">return</span><span class="p">(</span>mean<span class="p">(</span>results<span class="p">))</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>subset <span class="o">&lt;-</span> best.first.search<span class="p">(</span>names<span class="p">(</span>iris<span class="p">)[</span><span class="m">-5</span><span class="p">],</span> evaluator<span class="p">)</span>
-</span><span class='line'>f <span class="o">&lt;-</span> as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">)</span>
-</span><span class='line'>print<span class="p">(</span>f<span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>iris</h3>
-
-<p>This famous (Fisher&rsquo;s or Anderson&rsquo;s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
-
-<h3>cfs</h3>
-
-<p>The algorithm finds attribute subset using correlation and entropy measures for continous and discrete data.</p>
-
-<h2>Hints</h2>
-
-<ul>
-<li>虽然原生的R语言的IDE也不错用，但是发现一个更加强大的IDE，RStudio, 真是可以媲美matlab的IDE了。</li>
-<li>R语言也可以在命令行中用batch的方式来运行，具体指令是<code>R CMD BATCH [options] infile [outfile]</code>, infile就是R的脚本文件，R的输出一般无法显示到STDOUT中，是以文件的形式存起来。如果没有指定outfile，就会以原文件名的方式来命名。在脚本执行的时候，很多无关紧要的内容也会被输出，可以使用options命令的<code>--slave</code>. 在最后的输出中，他也会很好心的帮你计算运行时间，如果不需要，也可以加<code>--no-timing</code>. 详见<a href="http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html">http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html</a></li>
-</ul>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-10T23:43:00+08:00" pubdate data-updated="true">Oct 10<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/coding/'>Coding</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/10/10/new-fselector-r/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>
