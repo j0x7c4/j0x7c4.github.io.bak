@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://yoursite.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-11-30T21:32:41+08:00</updated>
+  <updated>2013-11-30T21:34:05+08:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -23,6 +23,9 @@
 <p>Heroku是通过git的方式将本地的代码部署到云上。前面讲到它没有完全被墙，因为放在它上面的app在国内是可以访问的，但是通过git部署的过程，是被墙的。所以我都是需要VPN才能将代码部署到heroku上。Heroku支持很多语言，我最常用的就是python了。刚刚用Django在Heroku上部署了一个web app. 可以参照下面这篇文章，在heroku上部署django <a href="https://devcenter.heroku.com/articles/getting-started-with-django">https://devcenter.heroku.com/articles/getting-started-with-django</a></p>
 
 <p>如果在django中需要用到SESSION或者COOKIE的话，是需要使用heroku提供的数据库的。因为在heroku上程序无法在运行的时候创建静态文件，所以它们是变相的存储在数据库中的。数据库添加可以进入网站的dashboard，在add-on中添加一个免费的Heroku Postgresql. 免费的额度支持10MB的数据库(感觉有点小=_=).</p>
+
+<!--more-->
+
 
 <p><img class="<a" src="href="https://addons.heroku.com/provider/addons/heroku-postgresql/icons/catalog.png">https://addons.heroku.com/provider/addons/heroku-postgresql/icons/catalog.png</a>"></p>
 
