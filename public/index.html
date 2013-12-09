@@ -7,7 +7,7 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="对于像我这种整天感觉很闲的人，总是会在代码中寻找自己的小世界，没事就写个web应用。可是身处天朝，资源有限。国际上很多知名的服务都不能用，比如某G的app engine. 不过还是有些漏网之鱼，没有完全被墙的。比如Heroku http://www.heroku.com. (你现在看到的这个博客 &hellip;">
+	<meta name="description" content="畢業，找工作，入職開始上班，手上有活干，這一整串事情就發生在短短3個月里。回想起來生活還挺豐富的，11月份還去了一趟日本玩。不知不覺的好像自己走了很多路，經歷了很多事，以前幻想的，有些破滅了，有些還堅持著。 最近開始有點忙了，工作上要做的事情漸漸有點眉目，迫切的想完成， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -83,6 +83,55 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/06/some-regrets/">
+		
+			不知不觉走了许多路，但又像是原地踏步</a>
+	</h2>
+	<div class="entry-content">
+		<p>畢業，找工作，入職開始上班，手上有活干，這一整串事情就發生在短短3個月里。回想起來生活還挺豐富的，11月份還去了一趟日本玩。不知不覺的好像自己走了很多路，經歷了很多事，以前幻想的，有些破滅了，有些還堅持著。</p>
+
+<p>最近開始有點忙了，工作上要做的事情漸漸有點眉目，迫切的想完成，可是又擔心自己目前的水平難以勝任。感覺工作效率越來越低了，沒有了一種披荊斬棘的快感。另外下班后做的事也越來越豐富了，每週固定要有幾次去健身，對於自己的身材還是不太滿意。還有一個晚上需要留出來參加吉他社，希望自己對吉他的熱情不要再是三分鐘熱度了。暫時現在看來還挺有熱情，在家裡看劇也是把吉他抱在懷裡，只是晚上太晚就不敢彈，怕吵到鄰居吧。最近，還找到了新的美劇《S.H.I.E.L.D》，它擴展了《復仇者聯盟》的劇情，相當於是Marvel弄的外傳吧，和主線劇情沒什麼太大相關，但看起來還挺有意思。其餘的時間，就留給了LOL，不過現在都是一個人打路人局，有時候別人坑我，有時候我坑別人，大家坑來坑去。還是想和小夥伴一起打，最好能有妹子一起。可是現實就是和理想有這麼點坑爹的差距。前段時間還心血來潮鼓搗一個微博相關的應用，可是目前在技術上遇到瓶頸，沒有特別好的方法解決，也沒有特別大的動力，於是就擱置了，等下次心血來潮再繼續吧。</p>
+
+<p>每天就這樣起床，上班，下班，睡覺，時間過得很快，一下次就12月份了。之前看到一本書中講，“人腦強大到足以超越時空的限制”，這句話很好的解釋了有時候感覺時間很快，而有時候又很慢。因為我們的大腦太強大了，以至於在全力使用他的時候，時間都感覺跑的飛快。但是我感覺時間過得太快了，我的成長似乎沒有跟上時間的腳步。雖然感覺空餘時間做了很多事情，但找不到讓我興奮起來的點。原來我走的這麼多路，也只是在原地踏步吧。</p>
+
+<p>另外再抱怨一下，這上海的鬼天氣真的無法忍受了。感覺自己快要被毒死了。就沒人來管管這個空氣污染嗎？</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-06T02:01:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/12/06/some-regrets/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -681,130 +730,6 @@
 </div>
 	
 	<div class="comments"><a href="/blog/2013/10/18/travel-to-xiamen/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/10/16/try-networkx/">
-		
-			试用networkx</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近想用pagerank的方法来分析微博好友之间的权威关系，于是试着用crawler去抓微博上好友的信息，然后建立关系网络。在网上看到用networkx可以比较方便的建立关系网络，并且可以比较方便的用pagerank计算每个好友的重要性。</p>
-
-<p>使用networks加入node和edge都很方便，并且networkx宣称他的node可以支持任何python的hashable的类型，于是我一开始使用custom的node.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="n">args</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可是这样写并不正确，他好像对自定义的类支持不太好（或许是不支持自定义类）。于是在网上查了好久，才看到要实现给一个node添加附加信息的方法。</p>
-
-<p><a href="http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up">http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up</a></p>
-
-<p>于是在加入node的时候，应该用</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">&quot;label&quot;</span><span class="p">,</span><span class="n">foo</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="n">bar</span><span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>于是把添加node改写成</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span><span class="n">user</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>添加node和edge是没问题了，结果在保存<code>gml</code>文件时又出问题了，里面的字符串竟然不支持utf-8… 官方是这么解释的：</p>
-
-<blockquote><p>Notes</p>
-
-<p>GML specifications indicate that the file should only use 7bit ASCII text encoding.iso8859-1 (latin-1).</p>
-
-<p>This implementation does not support all Python data types as GML data. Nodes, node attributes, edge attributes, and graph attributes must be either dictionaries or single stings or numbers. If they are not an attempt is made to represent them as strings. For example, a list as edge data G[1][2][‘somedata’]=[1,2,3], will be
-represented in the GML file as:</p>
-
-<p><a href="http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html">http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html</a></p></blockquote>
-
-<p>于是我只好抽取是ascii的编码的用户信息。然后把类的定义改写成：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;uid&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">],</span>\
-</span><span class='line'>                   <span class="s">&#39;n_follows&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_follows&#39;</span><span class="p">],</span>\
-</span><span class='line'>                   <span class="s">&#39;n_fans&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_fans&#39;</span><span class="p">],</span>\
-</span><span class='line'>                   <span class="s">&#39;n_weibos&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_weibos&#39;</span><span class="p">]}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样终于正常创建网络，读写gml文件了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-16T01:44:00+08:00" pubdate data-updated="true">Oct 16<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>, <a class='category' href='/blog/categories/coding/'>coding</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/10/16/try-networkx/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>
