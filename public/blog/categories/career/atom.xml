@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Career | 醉過方知酒濃]]></title>
-  <link href="http://yoursite.com/blog/categories/career/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2013-12-11T01:25:51+08:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://2naive.me/blog/categories/career/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2013-12-11T01:35:02+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[爆肝写论文与找工作]]></title>
-    <link href="http://yoursite.com/blog/2013/07/04/die-for-thesis-and-job/"/>
+    <link href="http://2naive.me/blog/2013/07/04/die-for-thesis-and-job/"/>
     <updated>2013-07-04T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/04/die-for-thesis-and-job</id>
+    <id>http://2naive.me/blog/2013/07/04/die-for-thesis-and-job</id>
     <content type="html"><![CDATA[<p>这几天是毕业论文的最后阶段了，月底应该就会口试，可是剩下的工作量还蛮大的。天天都是爆肝的节奏。这两天抽空面试了两家公司。</p>
 
 <p>第一家是大众点评，因为我在台湾，不方便onsite面试，所以只能通过QQ视频（为什么是QQ而不是SKYPE, &ndash;_&ndash;! ) 我应聘了大众点评的搜索部门，作为一家做推荐，搜索系统的公司，这应该就是核心部门了。给我面试的面试官是整个搜索部门的BOSS，这是我事后朋友告诉我才知道的。当然在面试前我也有搜索这个面试官的资料（因为他把QQ号告诉我了）。这个面试特别直接，双方都没有互相介绍，直接问我之前做的一个音乐推荐系统相关的事情。看来针对性还是很强的。当然问题必然会有做这个系统遇到最困难的是什么，这也是面试中肯定会问到的问题。虽然这个系统在做的时候确实遇到了不少困难，但是等做完之后再看看其实这些也不算什么（看来以后遇到困难时就要把它记下来，以防以后忘记）。因为我的系统中，用到了SVM (Support Vector Machine), 于是就把话题顺便带到了SVM的原理上，幸好我硕一时修了林智仁的Convex Optimization. 雖然細節上有點模糊，但是大概原理還是能夠推導的。接著談了一些在IR系統上對Corpus的擴展，能夠對沒有在Corpus中的term也能產生作用。由於我的研究方向比较偏电脑视觉，对IR的了解也不过于修过两个不同老师开设的课，做了2次term project. 主要还是兴趣驱使的。于是简单的提了一些我自己的想法，不知道面试官是不是满意。接下来还谈了如何分析USER的偏好，之前没有研究过这个内容，需要data mining的知识。感觉也没有答的很专业。在面试结束前，我们欢乐的谈了台湾这边的美食推荐系统，还有我对大众点评网的一些意见。总体来看这次面试的感觉还算不错，大家都乐乐呵呵的，没有冷场，也没有发生尴尬的事情。个人还是比较偏向互联网产业，特別是对于推荐系统的发展还是很看好的，应该还有很大的发展潛力。</p>
@@ -30,9 +30,9 @@
   
   <entry>
     <title type="html"><![CDATA[Resume,cover letter及interview心得]]></title>
-    <link href="http://yoursite.com/blog/2013/06/28/resumecover-letter-interview-tips/"/>
+    <link href="http://2naive.me/blog/2013/06/28/resumecover-letter-interview-tips/"/>
     <updated>2013-06-28T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/28/resumecover-letter-interview-tips</id>
+    <id>http://2naive.me/blog/2013/06/28/resumecover-letter-interview-tips</id>
     <content type="html"><![CDATA[<p>今天有機會和Garmin的Senior HR specialist談關於resume及interview的技巧，真的很有意義。她談到了普遍應聘者不注意，但是HR卻會很care的方面。</p>
 
 <p>對於應聘一家企業，首先要做好充分的survey （如果真的很想去這家公司的話），這就要強大的搜索能力了，當然這種能力因人而異，要好好利用Google這類搜索引擎。除了從外在的了解這家企業，還要從內部入手。比如找人際關係，看看是不是能通過朋友認識到在公司裡工作的人，然後深入的了解工作環境，工作狀態，企業文化等。但是如果真的沒有任何的人際網絡，就只能硬來了，試圖用各種方式獲得該公司員工的聯繫方式，當然email是最好的方式了，直接打電話有點太魯莽了，會把人家嚇壞。現在也很多人用Linkedin, 這也是一個比較不錯的方式。</p>

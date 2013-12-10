@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: git | 醉過方知酒濃]]></title>
-  <link href="http://yoursite.com/tags/git/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2013-12-11T01:25:51+08:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://2naive.me/tags/git/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2013-12-11T01:35:02+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[在Terminal中显示git的当前branch]]></title>
-    <link href="http://yoursite.com/blog/2013/11/16/show-git-branch-name/"/>
+    <link href="http://2naive.me/blog/2013/11/16/show-git-branch-name/"/>
     <updated>2013-11-16T01:05:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/11/16/show-git-branch-name</id>
+    <id>http://2naive.me/blog/2013/11/16/show-git-branch-name</id>
     <content type="html"><![CDATA[<p>不知道有没有人和我有同样的困扰，在使用git的时候不小心改到了master分支上的代码，然后还不小心push了，结果还成功push了，而且自己还没发觉是push到了master上。如果代码正确还好，一旦代码有些问题就会引来很大麻烦。</p>
 
 <p><img src="/images/blog/show-git-branch-name.png"></p>

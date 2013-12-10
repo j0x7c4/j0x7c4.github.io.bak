@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: matlab | 醉過方知酒濃]]></title>
-  <link href="http://yoursite.com/tags/matlab/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2013-12-11T01:25:51+08:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://2naive.me/tags/matlab/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2013-12-11T01:35:02+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[用matlab畫Confusion matrix]]></title>
-    <link href="http://yoursite.com/blog/2013/07/16/matlab-confusion-matrix/"/>
+    <link href="http://2naive.me/blog/2013/07/16/matlab-confusion-matrix/"/>
     <updated>2013-07-16T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/07/16/matlab-confusion-matrix</id>
+    <id>http://2naive.me/blog/2013/07/16/matlab-confusion-matrix</id>
     <content type="html"><![CDATA[<p>在pattern recognition 中通常用confusion matrix 來表示實驗結果。最近處理論文的實驗結果時發現用matlab可以比較方便的畫出confusion matrix來。</p>
 
 <p>以下是效果图。</p>
@@ -79,9 +79,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[用matlab畫3D線段]]></title>
-    <link href="http://yoursite.com/blog/2013/06/20/matlab-3d-segment/"/>
+    <link href="http://2naive.me/blog/2013/06/20/matlab-3d-segment/"/>
     <updated>2013-06-20T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/20/matlab-3d-segment</id>
+    <id>http://2naive.me/blog/2013/06/20/matlab-3d-segment</id>
     <content type="html"><![CDATA[<p><code>matlab
 figure %create the figure
 t = 0:1:135  %create the vector
@@ -97,9 +97,9 @@ set(h2,'color',[0,0,0])
   
   <entry>
     <title type="html"><![CDATA[用matlab画Sphere Coordinate System]]></title>
-    <link href="http://yoursite.com/blog/2013/06/19/matlab-sphere-coordinate-system/"/>
+    <link href="http://2naive.me/blog/2013/06/19/matlab-sphere-coordinate-system/"/>
     <updated>2013-06-19T00:00:00+08:00</updated>
-    <id>http://yoursite.com/blog/2013/06/19/matlab-sphere-coordinate-system</id>
+    <id>http://2naive.me/blog/2013/06/19/matlab-sphere-coordinate-system</id>
     <content type="html"><![CDATA[<p><code>matlab
 Figure %create a figure
 [x,y,z]=sphere(10) %get the mesh of x,y,z for 10x10 surface sphere
