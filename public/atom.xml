@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://2naive.me/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2013-12-11T01:35:02+08:00</updated>
+  <updated>2013-12-12T18:41:17+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[好用的sublime插件]]></title>
+    <link href="http://2naive.me/blog/2013/12/11/todays-plugin-of-sublime/"/>
+    <updated>2013-12-11T16:35:00+08:00</updated>
+    <id>http://2naive.me/blog/2013/12/11/todays-plugin-of-sublime</id>
+    <content type="html"><![CDATA[<p>今天尝试了3个很好用的sublime插件，在这里mark一下。这些插件都能在sublime的Package Control中找到，可以在线安装。</p>
+
+<h2>SublimeLinter</h2>
+
+<p>经常用sublime写python和一些shell的脚本，有些地方写错了不太容易发现。这个插件可以自动检测一些格式上的错误。</p>
+
+<h2>SideBarEnhancements</h2>
+
+<p>增强了sublime sidebar的功能，在sidebar上点右键能看到很多新的选项，谁用谁知道。</p>
+
+<h2>FileDiffs</h2>
+
+<p>为sublime增加了diff的功能，真的很不错。直接在sidebar可以点右键选择需要比较的文件。</p>
+
+<h2>SideBarGit</h2>
+
+<p>在有git的目录下，能在sublime的状态栏中显示当前git的分支，虽然这个功能很平凡，但是提醒你当前的分支是很重要的，改code不要改错分支哦~</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[不知不觉走了许多路，但又像是原地踏步]]></title>
@@ -1586,23 +1611,6 @@ undefined method `spawn&#8217; for Process:Module</p>
 </span><span class='line'>  <span class="k">print</span> <span class="n">line</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[寻找自己的生活]]></title>
-    <link href="http://2naive.me/blog/2013/09/19/looking-for-my-life/"/>
-    <updated>2013-09-19T00:00:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/09/19/looking-for-my-life</id>
-    <content type="html"><![CDATA[<p>转眼间，从台湾回来已经半个多月了。回来之后也忙了不少事情，最大一件事应该是找了一份不错的工作，了去一桩心事。不过其他的心事也接踵而来，比如找房子，找对象等。。。</p>
-
-<p>感觉在毕业之后的两个礼拜内就能找到一份工作，算是相当的神速。不过也有很多客观原因，使得我不得不当机立断，没有太多的“货比三家”的时间。老爸似乎对我这个选择也没有非常满意，在他看来进到一个大家公认的大公司要比呆在一个小公司里做些核心的事情要有意义的多。但是在我看来，我并没有因为进不了这些大公司而感到过分沮丧，我是一个善于自我治愈的人，一开始虽然是有点放不下大公司offer的诱惑，不过在我签下这个到手的offer之后，自我治愈的过程就开始了。能够在一个核心部门发挥自己的价值，能够直接提高产品的效能，能够马上和这家公司的牛人们一起工作，使我对这个工作的兴奋感越来越强。没过多久，我已经把自己的心情恢复到了平衡点上。</p>
-
-<p>现在很多事情都已经一步一步确定，接下来的就是上班工作的节奏了。这几天比较关心的问题就是下班之后干什么？我估摸着自己现在肯定不是一个工作狂，在下班之后希望能及时行乐。那我可以干些什么事呢？然后我发现我一直以来都有的一个问题，就是专注力不够集中，做事很容易分心。不过在deadline的驱使下，我的专注力还是很强的。于是我决定开始看书，一方面补充自己贫乏的人文知识，一方面锻炼自己的专注力。第三方面，也是为了能和喜欢看书的人有些共同语言。这几天看的几本书感觉都不错，曾经的伪文青终于得到了真正的文化知识的滋润了。</p>
-
-<p>对于即将工作的我来说，接下来的日子还很长，还有很多路要走。在生活中有很多东西想要去追逐，希望这些追逐的东西不要在未来的某一天，被证明是可有可无的。希望能找到我自己真正喜欢的生活方式。</p>
-
-<p>&nbsp;</p>
 ]]></content>
   </entry>
   
