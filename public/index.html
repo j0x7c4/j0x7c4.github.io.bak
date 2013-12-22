@@ -7,7 +7,7 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="今天尝试了3个很好用的sublime插件，在这里mark一下。这些插件都能在sublime的Package Control中找到，可以在线安装。 SublimeLinter 经常用sublime写python和一些shell的脚本，有些地方写错了不太容易发现。这个插件可以自动检测一些格式上的错误 &hellip;">
+	<meta name="description" content="前几天参加了一个hackthon, 在大约24小时的时间内，完成了一个chrome插件，插件扩展大众点评现有的一些功能，比如增加了街景视图，网页上的右键搜索菜单，和本地的点评商户收藏夹。具体可以自己使用看看，不过目前还没上架，可以下载源码来自己玩玩。https://github.com/ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -83,6 +83,94 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/23/my-first-chrome-extension/">
+		
+			开发Chrome插件中遇到的一些坑</a>
+	</h2>
+	<div class="entry-content">
+		<p>前几天参加了一个hackthon, 在大约24小时的时间内，完成了一个chrome插件，插件扩展大众点评现有的一些功能，比如增加了街景视图，网页上的右键搜索菜单，和本地的点评商户收藏夹。具体可以自己使用看看，不过目前还没上架，可以下载源码来自己玩玩。<a href="https://github.com/j0x7c4/hackstreet">https://github.com/j0x7c4/hackstreet</a></p>
+
+<p>以前没有太多JS的开发经验，这次开发是不断掉进坑里，然后再从坑里爬出来，直到最后有个完整版本出来。先说说chrome插件的配置文件吧，插件中有个叫<code>manifest.json</code>的文件，他管理了插件中所需的所有东西。</p>
+
+<h2>Hack现有网页的内容</h2>
+
+<p>由于我们的插件需要修改大众点评网现有网页内容，比如在网页中插入我们的街景视图(我们的街景功能是用了腾讯街景的API). 这个就需要让<code>content_scripts</code>来做，他主要包括三个字段，<code>matches</code>, <code>css</code>, 和<code>js</code>. 只要把自己的JS文件名放到它的<code>js</code>字段中，一旦访问的URL符合规则，就会执行js中的脚本。例如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;content_scripts&quot;</span><span class="err">:</span> <span class="p">[</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;matches&quot;</span><span class="p">:[</span><span class="s2">&quot;http://www.dianping.com/shop/*&quot;</span><span class="p">],</span>
+</span><span class='line'>    <span class="nt">&quot;css&quot;</span><span class="p">:[</span><span class="s2">&quot;bootstrap.css&quot;</span><span class="p">],</span>
+</span><span class='line'>    <span class="nt">&quot;js&quot;</span><span class="p">:[</span><span class="s2">&quot;hackit.js&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中的CSS可以对自己添的内容制定样式。这个看似很简单，其实里面暗藏了一个大坑，不过也是因为自己太粗心，没有仔细看doc所导致的。由于我要在原有网页中嵌入一个街景视图，而街景视图用到了某企鹅的街景API，而那个API又必须是在线调用的。在普通的HTML中，要调用一个网上的脚本很方便，只需添加<code>&lt;script&gt;</code>标签，在<code>src</code>中指定脚本的URL。但是在chrome插件中，无法通过类似的方法，将脚本载入当前页面，并在插件的js脚本中调用。因为<code>content_scripts</code>中的脚本虽然可以访问当前页面的内容，但是无法调用当前页面中的js函数，这个在Chrome的开发文档中有提到：</p>
+
+<blockquote><p>However, content scripts have some limitations. They cannot:</p>
+
+<p>Use chrome.* APIs (except for parts of chrome.extension)</p>
+
+<p>Use variables or functions defined by their extension&rsquo;s pages</p>
+
+<p>Use variables or functions defined by web pages or by other content scripts</p></blockquote>
+
+<p><a href="http://developer.chrome.com/extensions/content_scripts.html">http://developer.chrome.com/extensions/content_scripts.html</a></p>
+
+<p>因此只能把企鹅的js载到本地啦，然后再hack一下那个脚本，因为在本地调用需要做些修改。</p>
+
+<h2>还有一些小东西</h2>
+
+<p>开发chrome插件还有一些小东西可以分享一下，比如那个icon，文档中说最好是19x19的png图片，但如果真的把图片做成19x19，显示在浏览器中会比较糊（可能是因为我的retina屏幕）。其实把图片弄的大一点也是可以的，只要长宽比例是1:1就好。</p>
+
+<p>如果在脚本中需要有一些跨域的请求，比如我将地址转化成经纬度时，是用到了google map的api, 我需要向<code>https://maps.googleapis.com/</code>发送请求，这就需要把<code>https://maps.googleapis.com/*</code>加入到<code>manifest.json</code>的<code>permissions</code>字段中。</p>
+
+<p>还可以把一些公用的函数写在<code>background</code>的脚本中，然后通过message passing的方式去调用这些函数，不过具体效率还没测试过。在<code>background</code>中，可以直接使用<code>&lt;script&gt;</code>标签来添加在线的脚本。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-23T00:03:00+08:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/12/23/my-first-chrome-extension/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -685,59 +773,6 @@
 </div>
 	
 	<div class="comments"><a href="/blog/2013/11/01/udf-in-python-sucks/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/10/24/first-love/">
-		
-			人生若只如初见</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote><p>人生若只如初見
-何事秋風悲畫扇</p>
-
-<p>等閒變卻故人心
-卻道故心人易變</p></blockquote>
-
-<p>兩人相見，並沒有絲毫的躲閃，言語之間還是如同往常。真的像是认识很久的老友，我了解她，她也了解我。交谈时毫不顾忌，于是，她還是那麼欢快中带点豪爽，我還是那樣幽默中带点木讷。</p>
-
-<p>从热恋到分手，是否就是一个从有很多话想讲，到把能讲的话都讲完的一个过程？双方发现没话讲了，于是一方说分手，另一方默认。但开始恋爱的原因，不就是觉得我们有永远讲不完的话题，永远用不完的欢笑吗？为什么当恋人非得有话要讲，聊得越多就表明爱的越多吗？在交往过程中，双方都有责任和义务和对方讲话，一旦讲不出话，沉没时，就会导致冷战的开始，觉得缘分已尽了吧，或者觉得对方变心了。反而是成了朋友之后，卸下了这份责任和义务，想讲的时候就讲，不讲也不会有人责怪。没有了压力，自然聊得轻松。</p>
-
-<p>爱情真的能转化成友情，还是旧情人相见时互相客套的热情？双方尽量表现的不在乎，好像在说，“看吧，没有你我照样过得很好”。我只是单纯的想对她好，因为以前我对其他女生好，她会生气，现在我对她好，至少还没有人会生我的气吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-24T22:11:00+08:00" pubdate data-updated="true">Oct 24<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/10/24/first-love/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>
