@@ -7,7 +7,8 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。 UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。 &hellip;">
+	<meta name="description" content="心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。 但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。 首先从git上抓来octopress 1
+git clone git@ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -20,7 +21,36 @@
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="/javascripts/gmap.js"></script>
-	
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -88,6 +118,101 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/2013/10/01/change-to-octopress/">
+		
+			改版octopress 之 安装</a>
+	</h2>
+	<div class="entry-content">
+		<p>心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。</p>
+
+<p>但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。</p>
+
+<p>首先从git上抓来octopress</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git clone git@github.com:imathis/octopress.git</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然后进入octopress目录下，build源代码</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">cd octopress
+</span><span class="line">bundle install
+</span><span class="line">rake install</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>以上几步都没有问题，然后执行</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">rake preview</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然后问题就来了，出现了错误</p>
+
+<p>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+rake aborted!
+undefined method `spawn’ for Process:Module</p>
+
+<p>因为octopress需要ruby 1.9.3，而我原本mac上的ruby是1.8.3. 所以要把ruby更新到1.9.3才能用</p>
+
+<p>网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.</p>
+
+<p>我安装stable版本的rvm</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">curl -L https://get.rvm.io | bash -s stable</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然后将rvm写到用户环境中。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">echo "source $HOME/.rvm/scripts/rvm" &gt;&gt; ~/.bash_profile</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>具体详见 <a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a></p>
+
+<p>然后使用rvm来安装1.9.3版本的ruby.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">rvm install ruby-1.9.3-p448</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>不过在这之前，要先确定安装了xcode的command line tools.</p>
+
+<p>可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-01T00:00:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/10/01/change-to-octopress/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/2013/09/25/hive-python-udf/">
 		
 			HIVE中使用python实现UDF</a>
@@ -101,41 +226,37 @@
 
 <p>使用HIVE的命令进入数据仓库(search)</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use search;</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">use search;</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>使用HIVE的命令查看已经建立的表</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>show tables;</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">show tables;</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>使用HIVE的命令查看xxx表中的字段</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>describe xxx;</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">describe xxx;</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>使用HIVE命令用PYTHON实现UDF</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>add file udf.py;
-</span><span class='line'>SELECT 
-</span><span class='line'>TRANSFORM(keyword)
-</span><span class='line'>USING 'python udf.py'
-</span><span class='line'>AS(keyword)
-</span><span class='line'>FROM xxx
-</span><span class='line'>WHERE dt='2013-09-25'
-</span><span class='line'>;</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">add file udf.py;
+</span><span class="line">SELECT 
+</span><span class="line">TRANSFORM(keyword)
+</span><span class="line">USING 'python udf.py'
+</span><span class="line">AS(keyword)
+</span><span class="line">FROM xxx
+</span><span class="line">WHERE dt='2013-09-25'
+</span><span class="line">;</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。</p>
 
@@ -143,16 +264,15 @@
 
 <p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。</p>
 
-<figure class='code'><figcaption><span>udf.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">line</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>udf.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+</span><span class="line">    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class="line">    <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 		
 		
@@ -203,7 +323,7 @@
 
 <p>对于即将工作的我来说，接下来的日子还很长，还有很多路要走。在生活中有很多东西想要去追逐，希望这些追逐的东西不要在未来的某一天，被证明是可有可无的。希望能找到我自己真正喜欢的生活方式。</p>
 
-<p>&nbsp;</p>
+<p> </p>
 
 		
 		
@@ -278,7 +398,7 @@
 
 <p>好基友，一輩子。</p>
 
-<p>&nbsp;</p>
+<p> </p>
 
 		
 		
@@ -376,7 +496,7 @@
 
 <p>我從來都是一個怕麻煩的人，結束了單純的學生生活後，麻煩的事會越來越多。這時候抱怨自己的社會經驗不足已經來不及了，要盡快的向身邊人學習生活經驗才對。現在要像Howard一樣，離開媽媽，獨自生活了。</p>
 
-<p>&nbsp;</p>
+<p> </p>
 
 		
 		
@@ -420,11 +540,8 @@
 	</h2>
 	<div class="entry-content">
 		<p>聽到五月天的《如煙》</p>
-
 <blockquote>有沒有那麼一種永遠，永遠不改變&#8230;
 17歲的那一年，吻過她的臉，以為就能永遠&#8230;</blockquote>
-
-
 <p>思緒又回到了大學的回憶當中。人們說不斷的回憶過去，是對現實的不滿，對現實的無奈。那麼我現在只能忍受這些不滿，忍受這些無奈。</p>
 
 <p>經歷過台灣的大學生活後，我深深的體會到自己的大學生活是如此的枯燥。沒有豐富的社團活動，沒有精彩的舞臺表演，沒有冒險的旅行。但是有一點是我非常驕傲，也非常值得回憶的，就是在大學四年裡談了一場戀愛，和一個美麗的女孩，一個獨特性格的女孩。讓我枯燥的大學生活記錄中多了永遠值得懷念的一幅畫面。</p>
@@ -482,7 +599,7 @@
 
 <p>在Python中使用OpenCV, 只要把OpenCV的Library加到Python的Lib目錄下面就可以了。</p>
 
-<p>具體就是把OpenCV目錄下的”build/python/2.7/cv2.pyd&#8221; 複製到Python的“Lib/site-packages”目錄中。</p>
+<p>具體就是把OpenCV目錄下的”build/python/2.7/cv2.pyd” 複製到Python的“Lib/site-packages”目錄中。</p>
 
 <p>OpenCV被包在cv2这个module中，在一开始加载这个module就可以了。</p>
 
@@ -490,60 +607,59 @@
 
 <p>下面这个例子就是把image_dir中的图片转换成avi格式的影片</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">cv2</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">intCmp</span> <span class="p">(</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="p">):</span>
-</span><span class='line'>  <span class="n">a</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;([\d]+).png&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">b</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;([\d]+).png&#39;</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">print</span> <span class="s">&quot;Usage: </span><span class="si">%s</span><span class="s"> (image_dir) (output)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span><span class='line'>      <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">image_dir</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">output_file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">image_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">),</span><span class="nb">cmp</span><span class="o">=</span><span class="n">intCmp</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">video_writer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">,(</span><span class="mi">640</span><span class="p">,</span><span class="mi">480</span><span class="p">))</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">image_list</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">print</span> <span class="n">image_file</span>
-</span><span class='line'>      <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span><span class="n">image_file</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
-</span><span class='line'>      <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&quot;rgb&quot;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">video_writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
-</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">os</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">cv2</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">re</span>
+</span><span class="line"><span class="k">def</span> <span class="nf">intCmp</span> <span class="p">(</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="p">):</span>
+</span><span class="line">	<span class="n">a</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;([\d]+).png&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="line">	<span class="n">b</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;([\d]+).png&#39;</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="line">	<span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class="line">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">:</span>
+</span><span class="line">		<span class="k">print</span> <span class="s">&quot;Usage: </span><span class="si">%s</span><span class="s"> (image_dir) (output)&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span class="line">		<span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="line">	<span class="n">image_dir</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class="line">	<span class="n">output_file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span class="line">	<span class="n">image_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">),</span><span class="nb">cmp</span><span class="o">=</span><span class="n">intCmp</span><span class="p">)</span>
+</span><span class="line">	<span class="n">video_writer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">,(</span><span class="mi">640</span><span class="p">,</span><span class="mi">480</span><span class="p">))</span>
+</span><span class="line">	<span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">image_list</span><span class="p">:</span>
+</span><span class="line">		<span class="k">print</span> <span class="n">image_file</span>
+</span><span class="line">		<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span><span class="n">image_file</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+</span><span class="line">		<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&quot;rgb&quot;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
+</span><span class="line">		<span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span><span class="line">		<span class="n">video_writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span><span class="line">		<span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
+</span><span class="line">			<span class="k">break</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>更多的细节可以看document</p>
 
-<p><a href="http://docs.opencv.org/modules/refman.html"><a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a></a></p>
+<p><a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a></p>
 
 		
 		
@@ -591,10 +707,7 @@
 <p>以前一直没有研究过具体这个MAP是怎么实现的，只是大概的知道它是一个binary search tree. 那如果一个key不是数字，字符串这种相对简单的类型的时，而是一个vector, 或者一个pair类型的对象时，key要如何对应value呢？</p>
 
 <p>我在Quora上提了这个问题，很快就有人回答了。</p>
-
 <blockquote>std::map is a self-balancing binary search tree ordered using a comparator, whose type is given as the third template parameter to std::map. If you don&#8217;t give this template parameter, it defaults to std::less&lt;KeyType&gt;. std::less is basically a function object wrapper around the &#8220;&lt;&#8221; operator. The &lt; operator is defined for types like int, as well as for std::pair (which compares lexicographically).</blockquote>
-
-
 <p>Map中的Key会按照它自己的类中定义的less运算符去比较大小，如果像vector, pair这种多元素的对象，会根据里面所有数据的字典序来进行大小的判断。</p>
 
 		
@@ -644,80 +757,79 @@
 
 <p><img class="aligncenter" alt="" src="http://farm8.staticflickr.com/7364/9303955419_9aafcbf1c2_o.png" width="584" height="477" /></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">n</span> <span class="p">=</span> 14<span class="p">;</span>
-</span><span class='line'><span class="n">file</span> <span class="p">=</span> <span class="s">&#39;data.csv&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="n">ylabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
-</span><span class='line'><span class="n">xlabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">X</span> <span class="p">=</span> <span class="n">csvread</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">%normalize</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)=</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span>1<span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="c">%inverse data</span>
-</span><span class='line'><span class="n">X</span><span class="p">=</span><span class="n">imcomplement</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="c">%draw</span>
-</span><span class='line'><span class="n">imagesc</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="n">colormap</span><span class="p">(</span><span class="n">gray</span><span class="p">);</span>
-</span><span class='line'><span class="n">axis</span> <span class="n">off</span><span class="p">;</span>
-</span><span class='line'><span class="n">text</span><span class="p">(</span>0<span class="p">,</span>6<span class="p">,</span><span class="s">&#39;Random&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">text</span><span class="p">(</span>0<span class="p">,</span><span class="nb">i</span><span class="p">,</span><span class="n">ylabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">h</span><span class="p">=</span><span class="n">text</span><span class="p">(</span>6<span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="s">&#39;Netural&#39;</span><span class="p">,</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">h</span> <span class="p">=</span> <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="n">xlabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="nb">disp</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="c">%add value</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="k">for</span> <span class="nb">j</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span><span class="o">&lt;</span>0<span class="p">.</span>7
-</span><span class='line'>            <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span>1<span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">),</span><span class="s">&#39;%.2f&#39;</span><span class="p">),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;center&#39;</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,</span><span class="s">&#39;white&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+</pre></td><td class="code"><pre><code class="matlab"><span class="line"><span class="n">n</span> <span class="p">=</span> 14<span class="p">;</span>
+</span><span class="line"><span class="n">file</span> <span class="p">=</span> <span class="s">&#39;data.csv&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="n">ylabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
+</span><span class="line"><span class="n">xlabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
+</span><span class="line">
+</span><span class="line"><span class="n">X</span> <span class="p">=</span> <span class="n">csvread</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="c">%normalize</span>
+</span><span class="line"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
+</span><span class="line">    <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)=</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span>1<span class="p">);</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line"><span class="c">%inverse data</span>
+</span><span class="line"><span class="n">X</span><span class="p">=</span><span class="n">imcomplement</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
+</span><span class="line"><span class="c">%draw</span>
+</span><span class="line"><span class="n">imagesc</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
+</span><span class="line"><span class="n">colormap</span><span class="p">(</span><span class="n">gray</span><span class="p">);</span>
+</span><span class="line"><span class="n">axis</span> <span class="n">off</span><span class="p">;</span>
+</span><span class="line"><span class="n">text</span><span class="p">(</span>0<span class="p">,</span>6<span class="p">,</span><span class="s">&#39;Random&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
+</span><span class="line"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
+</span><span class="line">    <span class="n">text</span><span class="p">(</span>0<span class="p">,</span><span class="nb">i</span><span class="p">,</span><span class="n">ylabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line"><span class="n">h</span><span class="p">=</span><span class="n">text</span><span class="p">(</span>6<span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="s">&#39;Netural&#39;</span><span class="p">,</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
+</span><span class="line"><span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
+</span><span class="line"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
+</span><span class="line">    <span class="n">h</span> <span class="p">=</span> <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="n">xlabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line"><span class="nb">disp</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
+</span><span class="line"><span class="c">%add value</span>
+</span><span class="line"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
+</span><span class="line">    <span class="k">for</span> <span class="nb">j</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span><span class="o">&lt;</span>0<span class="p">.</span>7
+</span><span class="line">            <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span>1<span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">),</span><span class="s">&#39;%.2f&#39;</span><span class="p">),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;center&#39;</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,</span><span class="s">&#39;white&#39;</span><span class="p">);</span>
+</span><span class="line">        <span class="k">end</span>
+</span><span class="line">    <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 		
 		
@@ -747,53 +859,6 @@
 </div>
 	
 	<div class="comments"><a href="/blog/2013/07/16/matlab-confusion-matrix/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/09/when-walking/">
-		
-			走著走著</a>
-	</h2>
-	<div class="entry-content">
-		<p>一直以為有路就要往前走，一直以為往前走就是對的。其實我並不知道這條路通向哪裡，只是覺得往前走就能看到更加美麗的景色。但是身邊的景色也很美，我這樣一直的趕路，錯過了身邊的美景，卻始終無法收穫心中嚮往的景色。</p>
-
-<p>走著走著覺得是不是應該走慢一點。從小學畢業，就有一條明確的路，我要念中學，3年唸完初中，又是3年唸完高中，然後別人告訴我繼續走，別停下，因為別人都在過那條獨木橋，雖然現在身邊沒有什麼美景，但是你只要越過那條獨木橋就可以看到美景了。於是我跟著潮流一起越過了獨木橋，來到了眾人嚮往的象牙塔。有些人迷失在了象牙塔中，而我卻因為深受之前被灌輸的思想，有路就要繼續走，於是我也跟著一撮人繼續走。大學的四年本應該可以過得更加美好，可是我不是一個留戀眼前景色的人。也許我只是跟著感覺在走，並沒有受到任何人的控制。當然我也不希望被人控制。這座象牙塔轉眼間就快跨出門檻了，可是我因為之前走得太快，太自由，卻摔在了門檻上。幸好我還是爬了起來，繼續向前走。這時一條路突然變成了兩條路，一條通向火熱的熔爐，一條通向幽靜的山谷。我在火爐面前來回走了一圈，發現還沒準備充分，還是走向山谷吧。好吧，2年時間我走出了山谷，TMD面前竟然又是那個火爐。本以為從山谷里出來會有不同的景色。無奈最終還是要面對這個火爐。</p>
-
-<p>到底怎樣的人生才會令人滿意，如果仔細觀察身邊的美景，是否會有種心動的感覺？終於應該要有自己獨立思考的技能了，美不美自己說了算，和別人無關。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-09T00:00:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/07/09/when-walking/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>

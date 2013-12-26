@@ -16,8 +16,9 @@ meta:
 ---
 GAE上的Datastore虽然不是SQL的Database， 但是他提供了GQL语句进行类似SQL的查询。因为是类似SQL，所以不是完全等同于SQL语句。SQL语句中常用的count, group在GQL中就没有。
 
-以下是GQL支持的格式，具体可以参见reference <a href="https://developers.google.com/appengine/docs/python/datastore/gqlreference" target="_blank">https://developers.google.com/appengine/docs/python/datastore/gqlreference</a>
-```sql
+以下是GQL支持的格式，具体可以参见reference <https://developers.google.com/appengine/docs/python/datastore/gqlreference>
+
+``` sql
 SELECT [* | <property list> | __key__]
   [DISTINCT]
   [FROM <kind>]
@@ -34,7 +35,8 @@ SELECT [* | <property list> | __key__]
 ```
 
 在Datastore 中有3种方式可以对数据进行查询：
-```python
+
+``` python
 class Person(db.Model):
 	first_name = db.StringProperty()
 	last_name = db.StringProperty()
@@ -63,7 +65,8 @@ for p in q.run(limit=5):
 如果要在GQL中实现Group的功能，那就要分两步走。
 
 按照上面那个例子，如果要把人按照城市来分组，那就要先把城市找出来，GQL就写成
-```python
+
+``` python
 q = db.GqlQuery("SELECT DISTINCT city FROM Person")
 result = []
 for item in q:
@@ -73,4 +76,5 @@ for item in q:
 		people.append({"first_name":item2.first_name,"second_name":item2.second_name})
 		result.append({"city":item.city,"people":people})
 ```
+
 这就是比较简单的GAE上的数据查询操作。

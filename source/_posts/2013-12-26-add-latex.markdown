@@ -1,0 +1,88 @@
+---
+layout: post
+title: "在Octopress中使用LaTeX"
+date: 2013-12-26 15:07
+comments: true
+categories: 
+- Tech
+- Octopress
+keywords: 
+description: 
+---
+在Octopress中显示LaTeX的方法，比想象中的要简单。只要几步，就能完成。
+
+##在head中加入MathJax
+
+MathJax用来对LaTeX脚本进行渲染。
+
+可以把下面的代码放到`source/_include/custom/head.html`中。
+
+``` html
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+```
+
+##使用kramdown代替默认的rdiscount
+
+从网上的介绍来看，kramdown对于MathJax的支持要比rediscount好。
+
++ 在`Gemfile`中加入一行`gem 'kramdown'`
+
++ 在`_config.yml`修改`markdown: kramdown`
+
++ `bundle install`
+
+另外在使用上，kramdown的格式比rdiscount更加严谨，比如在插入code block时，必须严格的与上一行间隔一行。导致我又检查了一遍以前的文章，改了很多地方。
+
+##Sample
+
+$$
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+$$
+
+上面的这些就是通过下面的LaTeX代码显示的：
+
+``` latex
+$$
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+$$
+```

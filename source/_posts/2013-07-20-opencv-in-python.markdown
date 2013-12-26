@@ -26,6 +26,7 @@ OpenCV被包在cv2这个module中，在一开始加载这个module就可以了�
 OpenCV中经常会用到cv::Size, cv::Point, 在python中就用tuple来代替，不用再定义cv::Size或者cv::Point. 比如原来C++中定义一个size用cv::Size(640,480), 现在Python中直接用(640,480)来代替就好了。
 
 下面这个例子就是把image_dir中的图片转换成avi格式的影片
+
 ``` python
 import sys
 import os
@@ -52,6 +53,7 @@ if __name__ == '__main__':
 		if key == 27:
 			break;
 ```
+
 更多的细节可以看document
 
-<a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a>
+<http://docs.opencv.org/modules/refman.html>

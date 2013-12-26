@@ -7,9 +7,11 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="Sublime Text 是个很不错的文本编辑工具，已经使用1年多了。这里整理一些关于Sublime的使用方法，防止以后忘记。 在线安装Package 安装Package Control 用 Ctrl+` 打开Console
-在console中加入下面这段脚本 1
-import urllib2, &hellip;">
+	<meta name="description" content="Sublime Text 是个很不错的文本编辑工具，已经使用1年多了。这里整理一些关于Sublime的使用方法，防止以后忘记。 在线安装Package
+###安装Package Control
++ 用 Ctrl+` 打开Console
++ 在console中加入下面这段脚本 1
+import &hellip;">
 	<meta name="keywords" content="sublime text 2, 备忘, package">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -22,7 +24,36 @@ import urllib2, &hellip;">
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="/javascripts/gmap.js"></script>
-	
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -88,60 +119,45 @@ import urllib2, &hellip;">
 	<h2 class="title">Sublime Text 备忘</h2>
 	<div class="entry-content"><p>Sublime Text 是个很不错的文本编辑工具，已经使用1年多了。这里整理一些关于Sublime的使用方法，防止以后忘记。</p>
 
-<h2>在线安装Package</h2>
+<h2 id="package">在线安装Package</h2>
+<p>###安装Package Control
++ 用 Ctrl+` 打开Console
++ 在console中加入下面这段脚本</p>
 
-<h3>安装Package Control</h3>
-
-<ul>
-<li>用 Ctrl+` 打开Console</li>
-<li>在console中加入下面这段脚本</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">urllib2</span><span class="o">,</span><span class="nn">os</span><span class="p">;</span><span class="n">pf</span><span class="o">=</span><span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span><span class="n">ipp</span><span class="o">=</span><span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span><span class="p">;</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ipp</span><span class="p">,</span><span class="n">pf</span><span class="p">),</span><span class="s">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://sublime.wbond.net/&#39;</span><span class="o">+</span><span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span><span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">urllib2</span><span class="o">,</span><span class="nn">os</span><span class="p">;</span><span class="n">pf</span><span class="o">=</span><span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span><span class="n">ipp</span><span class="o">=</span><span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span><span class="p">;</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ipp</span><span class="p">,</span><span class="n">pf</span><span class="p">),</span><span class="s">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://sublime.wbond.net/&#39;</span><span class="o">+</span><span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span><span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-<li>重新打开sublime</li>
+  <li>重新打开sublime</li>
 </ul>
 
-
-<h3>用Package Control安装插件</h3>
-
+<h3 id="package-control">用Package Control安装插件</h3>
 <ul>
-<li><code>Command+Shift+p</code>打开命令面板(如果非mac就用<code>Ctrl</code>代替<code>Command</code>)</li>
-<li>输入<code>install</code>打开Install Package</li>
-<li>选择需要的插件安装</li>
+  <li><code>Command+Shift+p</code>打开命令面板(如果非mac就用<code>Ctrl</code>代替<code>Command</code>)</li>
+  <li>输入<code>install</code>打开Install Package</li>
+  <li>选择需要的插件安装</li>
 </ul>
 
-
-<h3>添加Repository</h3>
-
+<h3 id="repository">添加Repository</h3>
 <p>想要使用更多的插件，可以自行添加网上的repository，比如github.</p>
 
 <ul>
-<li><code>Command+Shift+p</code>打开命令面板</li>
-<li>选择<code>package Control:Add Repository</code></li>
-<li>然后在底下的Repository URL中填入github地址，比如<a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
-<li>最后再选择<code>install package</code>来安装插件</li>
+  <li><code>Command+Shift+p</code>打开命令面板</li>
+  <li>选择<code>package Control:Add Repository</code></li>
+  <li>然后在底下的Repository URL中填入github地址，比如<a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
+  <li>最后再选择<code>install package</code>来安装插件</li>
 </ul>
 
-
-<h3>常用插件</h3>
-
+<h3 id="section">常用插件</h3>
 <ul>
-<li>SublimeFormatSQL <a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
+  <li>SublimeFormatSQL <a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
 </ul>
 
-
-<h3>备注</h3>
-
+<h3 id="section-1">备注</h3>
 <ul>
-<li>SublimeFormatSQL的最新版对Sublime Text 2的兼容性有点问题，我用朋友给的旧版本就可以了。具体issue参见<a href="https://github.com/freewizard/SublimeFormatSQL/issues/14">https://github.com/freewizard/SublimeFormatSQL/issues/14</a></li>
+  <li>SublimeFormatSQL的最新版对Sublime Text 2的兼容性有点问题，我用朋友给的旧版本就可以了。具体issue参见<a href="https://github.com/freewizard/SublimeFormatSQL/issues/14">https://github.com/freewizard/SublimeFormatSQL/issues/14</a></li>
 </ul>
-
 </div>
 
 

@@ -33,7 +33,36 @@ h2 = plot3(t,t, &hellip;">
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="/javascripts/gmap.js"></script>
-	
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -97,24 +126,23 @@ h2 = plot3(t,t, &hellip;">
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">用matlab畫3D線段</h2>
-	<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">figure</span> <span class="c">%create the figure</span>
-</span><span class='line'><span class="n">t</span> <span class="p">=</span> 0<span class="p">:</span>1<span class="p">:</span>135  <span class="c">%create the vector</span>
-</span><span class='line'><span class="n">h1</span> <span class="p">=</span> <span class="n">plot3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span>135<span class="o">-</span><span class="n">t</span><span class="p">)</span>  <span class="c">%draw x-y-z+135 = 0</span>
-</span><span class='line'><span class="n">hold</span> <span class="n">on</span>
-</span><span class='line'><span class="n">grid</span> <span class="n">on</span>
-</span><span class='line'><span class="n">h2</span> <span class="p">=</span> <span class="n">plot3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span> <span class="c">%draw x-y = 0</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,[</span>0<span class="p">,</span>0<span class="p">,</span>0<span class="p">])</span>  <span class="c">%set color black</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,[</span>0<span class="p">,</span>0<span class="p">,</span>0<span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
+	<div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="matlab"><span class="line"><span class="n">figure</span> <span class="c">%create the figure</span>
+</span><span class="line"><span class="n">t</span> <span class="p">=</span> 0<span class="p">:</span>1<span class="p">:</span>135  <span class="c">%create the vector</span>
+</span><span class="line"><span class="n">h1</span> <span class="p">=</span> <span class="n">plot3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span>135<span class="o">-</span><span class="n">t</span><span class="p">)</span>  <span class="c">%draw x-y-z+135 = 0</span>
+</span><span class="line"><span class="n">hold</span> <span class="n">on</span>
+</span><span class="line"><span class="n">grid</span> <span class="n">on</span>
+</span><span class="line"><span class="n">h2</span> <span class="p">=</span> <span class="n">plot3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span> <span class="c">%draw x-y = 0</span>
+</span><span class="line"><span class="n">set</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,[</span>0<span class="p">,</span>0<span class="p">,</span>0<span class="p">])</span>  <span class="c">%set color black</span>
+</span><span class="line"><span class="n">set</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,[</span>0<span class="p">,</span>0<span class="p">,</span>0<span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 

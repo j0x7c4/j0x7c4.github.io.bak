@@ -20,7 +20,36 @@
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="/javascripts/gmap.js"></script>
-	
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -86,51 +115,70 @@
 	<h2 class="title">在Terminal中显示git的当前branch</h2>
 	<div class="entry-content"><p>不知道有没有人和我有同样的困扰，在使用git的时候不小心改到了master分支上的代码，然后还不小心push了，结果还成功push了，而且自己还没发觉是push到了master上。如果代码正确还好，一旦代码有些问题就会引来很大麻烦。</p>
 
-<p><img src="/images/blog/show-git-branch-name.png"></p>
+<p><img src="/images/blog/show-git-branch-name.png" /></p>
 
 <p>mac的terminal上并没有自带功能显示当前的分支，所以需要自己手动修改bash的显示方式。如图上所示，新建一个<code>qrl</code>的目录，初始化<code>git</code>，当<code>commit</code>之后会产生<code>.git</code>的目录，从<code>.git</code>中获取当前的分支名字。</p>
 
 <p>实现起来比较容易，在.bash_profile中加入下面的代码就可以了。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>parse_git_branch<span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    git branch 2&gt; /dev/null | sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ [\1]/&#39;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ &quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">parse_git_branch<span class="o">()</span> <span class="o">{</span>
+</span><span class="line">    git branch 2&gt; /dev/null | sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ [\1]/&#39;</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line"><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ &quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>对于PS1的参数可以参考下面的来写
+&gt;\d ：代表日期</p>
 
-<p>对于PS1的参数可以参考下面的来写</p>
+<blockquote>
+  <p>\H ：完整的主机名称</p>
+</blockquote>
 
-<blockquote><p>\d ：代表日期</p>
+<blockquote>
+  <p>\h ：仅取主机的第一个名字</p>
+</blockquote>
 
-<p>\H ：完整的主机名称</p>
+<blockquote>
+  <p>\t ：显示时间为24小时格式，如：HH：MM：SS</p>
+</blockquote>
 
-<p>\h ：仅取主机的第一个名字</p>
+<blockquote>
+  <p>\T ：显示时间为12小时格式</p>
+</blockquote>
 
-<p>\t ：显示时间为24小时格式，如：HH：MM：SS</p>
+<blockquote>
+  <p>\A ：显示时间为24小时格式：HH：MM</p>
+</blockquote>
 
-<p>\T ：显示时间为12小时格式</p>
+<blockquote>
+  <p>\u ：当前用户的账号名称</p>
+</blockquote>
 
-<p>\A ：显示时间为24小时格式：HH：MM</p>
+<blockquote>
+  <p>\v ：BASH的版本信息</p>
+</blockquote>
 
-<p>\u ：当前用户的账号名称</p>
+<blockquote>
+  <p>\w ：完整的工作目录名称。家目录会以 ~代替</p>
+</blockquote>
 
-<p>\v ：BASH的版本信息</p>
+<blockquote>
+  <p>\W ：利用basename取得工作目录名称，所以只会列出最后一个目录</p>
+</blockquote>
 
-<p>\w ：完整的工作目录名称。家目录会以 ~代替</p>
+<blockquote>
+  <p># ：下达的第几个命令</p>
+</blockquote>
 
-<p>\W ：利用basename取得工作目录名称，所以只会列出最后一个目录</p>
+<blockquote>
+  <p>\$ ：提示字符，如果是root时，提示符为：# ，普通用户则为：$</p>
+</blockquote>
 
-<p>\# ：下达的第几个命令</p>
-
-<p>\$ ：提示字符，如果是root时，提示符为：# ，普通用户则为：$</p></blockquote>
-
-<h3>参考</h3>
-
+<h3 id="section">参考</h3>
 <p><a href="http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac">http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac</a>
 <a href="http://blog.sina.com.cn/s/blog_610913ea0100fce1.html">http://blog.sina.com.cn/s/blog_610913ea0100fce1.html</a></p>
 </div>

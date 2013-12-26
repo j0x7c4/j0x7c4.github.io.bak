@@ -2,15 +2,15 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://2naive.me/blog/2013/05/31/SQL-like-at-GAE/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
+        <lastmod>2013-12-26T15:35:22+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/05/31/database-at-GAE/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
+        <lastmod>2013-12-26T15:33:36+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/06/01/python-urllibjson-webAPI/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
+        <lastmod>2013-12-26T15:36:27+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/06/08/people-in-my-heart/</loc>
@@ -58,7 +58,7 @@
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/07/20/opencv-in-python/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
+        <lastmod>2013-12-26T15:37:42+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/07/23/never-change/</loc>
@@ -82,19 +82,19 @@
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/09/25/hive-python-udf/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
+        <lastmod>2013-12-26T15:39:19+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/10/01/change-to-octopress/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
+        <lastmod>2013-12-26T15:31:46+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
+        <lastmod>2013-12-26T15:27:26+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/10/02/add-404-page/</loc>
-        <lastmod>2013-10-03T00:18:41+08:00</lastmod>
+        <lastmod>2013-12-26T15:26:22+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/10/03/fu-za-de-gan-qing/</loc>
@@ -114,7 +114,7 @@
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/10/16/try-networkx/</loc>
-        <lastmod>2013-10-16T02:09:42+08:00</lastmod>
+        <lastmod>2013-12-26T15:24:46+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/10/18/travel-to-xiamen/</loc>
@@ -138,7 +138,7 @@
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/11/16/show-git-branch-name/</loc>
-        <lastmod>2013-11-17T13:43:37+08:00</lastmod>
+        <lastmod>2013-12-26T15:40:49+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/11/18/homeless/</loc>
@@ -162,7 +162,11 @@
     </url>
     <url>
         <loc>http://2naive.me/blog/2013/12/23/my-first-chrome-extension/</loc>
-        <lastmod>2013-12-23T00:55:22+08:00</lastmod>
+        <lastmod>2013-12-26T15:17:54+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://2naive.me/blog/2013/12/26/add-latex/</loc>
+        <lastmod>2013-12-26T16:00:02+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/404.html</loc>
@@ -174,11 +178,11 @@
     </url>
     <url>
         <loc>http://2naive.me/blog/archives/</loc>
-        <lastmod>2013-12-23T00:55:22+08:00</lastmod>
+        <lastmod>2013-12-26T16:00:02+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/</loc>
-        <lastmod>2013-12-23T00:55:22+08:00</lastmod>
+        <lastmod>2013-12-26T16:00:02+08:00</lastmod>
     </url>
     <url>
         <loc>http://2naive.me/links/</loc>

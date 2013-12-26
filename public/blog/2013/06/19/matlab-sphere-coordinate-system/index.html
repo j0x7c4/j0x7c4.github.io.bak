@@ -28,7 +28,36 @@ axis &hellip;">
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="/javascripts/gmap.js"></script>
-	
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -92,19 +121,17 @@ axis &hellip;">
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">用matlab画Sphere Coordinate System</h2>
-	<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">Figure</span> <span class="c">%create a figure</span>
-</span><span class='line'><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">]=</span><span class="n">sphere</span><span class="p">(</span>10<span class="p">)</span> <span class="c">%get the mesh of x,y,z for 10x10 surface sphere</span>
-</span><span class='line'><span class="n">h</span><span class="p">=</span><span class="n">surf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="c">%create the object of surface</span>
-</span><span class='line'><span class="n">axis</span> <span class="n">equal</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;FaceColor&#39;</span><span class="p">,[</span>0 0 0<span class="p">],</span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span>0<span class="p">.</span>5<span class="p">)</span> <span class="c">%change the surface color, and alpha</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+	<div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="matlab"><span class="line"><span class="n">Figure</span> <span class="c">%create a figure</span>
+</span><span class="line"><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">]=</span><span class="n">sphere</span><span class="p">(</span>10<span class="p">)</span> <span class="c">%get the mesh of x,y,z for 10x10 surface sphere</span>
+</span><span class="line"><span class="n">h</span><span class="p">=</span><span class="n">surf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="c">%create the object of surface</span>
+</span><span class="line"><span class="n">axis</span> <span class="n">equal</span>
+</span><span class="line"><span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;FaceColor&#39;</span><span class="p">,[</span>0 0 0<span class="p">],</span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span>0<span class="p">.</span>5<span class="p">)</span> <span class="c">%change the surface color, and alpha</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 <p>寫thesis需要各種圖，那些圖用photoshop畫會瘋掉。Matlab可以畫出科學上需要的圖。</p>
 </div>
 

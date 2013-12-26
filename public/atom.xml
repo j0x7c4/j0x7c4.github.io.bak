@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://2naive.me/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2013-12-23T00:58:27+08:00</updated>
+  <updated>2013-12-26T16:00:08+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,127 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在Octopress中使用LaTeX]]></title>
+    <link href="http://2naive.me/blog/2013/12/26/add-latex/"/>
+    <updated>2013-12-26T15:07:00+08:00</updated>
+    <id>http://2naive.me/blog/2013/12/26/add-latex</id>
+    <content type="html"><![CDATA[<p>在Octopress中显示LaTeX的方法，比想象中的要简单。只要几步，就能完成。</p>
+
+<h2 id="headmathjax">在head中加入MathJax</h2>
+
+<p>MathJax用来对LaTeX脚本进行渲染。</p>
+
+<p>可以把下面的代码放到<code>source/_include/custom/head.html</code>中。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="c">&lt;!-- mathjax config similar to math.stackexchange --&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-mathjax-config&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
+</span><span class="line">  <span class="nx">jax</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;input/TeX&quot;</span><span class="p">,</span> <span class="s2">&quot;output/HTML-CSS&quot;</span><span class="p">],</span>
+</span><span class="line">  <span class="nx">tex2jax</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">inlineMath</span><span class="o">:</span> <span class="p">[</span> <span class="p">[</span><span class="s1">&#39;$&#39;</span><span class="p">,</span> <span class="s1">&#39;$&#39;</span><span class="p">]</span> <span class="p">],</span>
+</span><span class="line">    <span class="nx">displayMath</span><span class="o">:</span> <span class="p">[</span> <span class="p">[</span><span class="s1">&#39;$$&#39;</span><span class="p">,</span> <span class="s1">&#39;$$&#39;</span><span class="p">]],</span>
+</span><span class="line">    <span class="nx">processEscapes</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class="line">    <span class="nx">skipTags</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;script&#39;</span><span class="p">,</span> <span class="s1">&#39;noscript&#39;</span><span class="p">,</span> <span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="s1">&#39;textarea&#39;</span><span class="p">,</span> <span class="s1">&#39;pre&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">]</span>
+</span><span class="line">  <span class="p">},</span>
+</span><span class="line">  <span class="nx">messageStyle</span><span class="o">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+</span><span class="line">  <span class="s2">&quot;HTML-CSS&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">preferredFont</span><span class="o">:</span> <span class="s2">&quot;TeX&quot;</span><span class="p">,</span> <span class="nx">availableFonts</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;STIX&quot;</span><span class="p">,</span><span class="s2">&quot;TeX&quot;</span><span class="p">]</span> <span class="p">}</span>
+</span><span class="line"><span class="p">});</span>
+</span><span class="line"><span class="nt">&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="kramdownrdiscount">使用kramdown代替默认的rdiscount</h2>
+
+<p>从网上的介绍来看，kramdown对于MathJax的支持要比rediscount好。</p>
+
+<ul>
+  <li>
+    <p>在<code>Gemfile</code>中加入一行<code>gem 'kramdown'</code></p>
+  </li>
+  <li>
+    <p>在<code>_config.yml</code>修改<code>markdown: kramdown</code></p>
+  </li>
+  <li>
+    <p><code>bundle install</code></p>
+  </li>
+</ul>
+
+<p>另外在使用上，kramdown的格式比rdiscount更加严谨，比如在插入code block时，必须严格的与上一行间隔一行。导致我又检查了一遍以前的文章，改了很多地方。</p>
+
+<h2 id="sample">Sample</h2>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+ %]]&gt;</script>
+
+<p>上面的这些就是通过下面的LaTeX代码显示的：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+</pre></td><td class="code"><pre><code class="latex"><span class="line"><span class="sb">$$</span><span class="nb"></span>
+</span><span class="line"><span class="nv">\begin</span><span class="nb">{align</span><span class="o">*</span><span class="nb">}</span>
+</span><span class="line"><span class="nb">  &amp; </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">x,y</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\phi</span><span class="nb"> </span><span class="nv">\left</span><span class="o">(</span><span class="nv">\sum</span><span class="nb">_{i</span><span class="o">=</span><span class="m">1</span><span class="nb">}^n x_ie_i, </span><span class="nv">\sum</span><span class="nb">_{j</span><span class="o">=</span><span class="m">1</span><span class="nb">}^n y_je_j </span><span class="nv">\right</span><span class="o">)</span><span class="nb"></span>
+</span><span class="line"><span class="nb">  </span><span class="o">=</span><span class="nb"> </span><span class="nv">\sum</span><span class="nb">_{i</span><span class="o">=</span><span class="m">1</span><span class="nb">}^n </span><span class="nv">\sum</span><span class="nb">_{j</span><span class="o">=</span><span class="m">1</span><span class="nb">}^n x_i y_j </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">e_i, e_j</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+</span><span class="line"><span class="nb">  &amp; </span><span class="o">(</span><span class="nb">x_</span><span class="m">1</span><span class="nb">, </span><span class="nv">\ldots</span><span class="nb">, x_n</span><span class="o">)</span><span class="nb"> </span><span class="nv">\left</span><span class="o">(</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{array}{ccc}</span>
+</span><span class="line"><span class="nb">      </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">e_</span><span class="m">1</span><span class="nb">, e_</span><span class="m">1</span><span class="o">)</span><span class="nb"> &amp; </span><span class="nv">\cdots</span><span class="nb"> &amp; </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">e_</span><span class="m">1</span><span class="nb">, e_n</span><span class="o">)</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+</span><span class="line"><span class="nb">      </span><span class="nv">\vdots</span><span class="nb"> &amp; </span><span class="nv">\ddots</span><span class="nb"> &amp; </span><span class="nv">\vdots</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+</span><span class="line"><span class="nb">      </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">e_n, e_</span><span class="m">1</span><span class="o">)</span><span class="nb"> &amp; </span><span class="nv">\cdots</span><span class="nb"> &amp; </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">e_n, e_n</span><span class="o">)</span><span class="nb"></span>
+</span><span class="line"><span class="nb">    </span><span class="nv">\end</span><span class="nb">{array} </span><span class="nv">\right</span><span class="o">)</span><span class="nb"></span>
+</span><span class="line"><span class="nb">  </span><span class="nv">\left</span><span class="o">(</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{array}{c}</span>
+</span><span class="line"><span class="nb">      y_</span><span class="m">1</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+</span><span class="line"><span class="nb">      </span><span class="nv">\vdots</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+</span><span class="line"><span class="nb">      y_n</span>
+</span><span class="line"><span class="nb">    </span><span class="nv">\end</span><span class="nb">{array} </span><span class="nv">\right</span><span class="o">)</span><span class="nb"></span>
+</span><span class="line"><span class="nv">\end</span><span class="nb">{align</span><span class="o">*</span><span class="nb">}</span>
+</span><span class="line"><span class="s">$$</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[开发Chrome插件中遇到的一些坑]]></title>
@@ -22,42 +143,43 @@
 
 <p>以前没有太多JS的开发经验，这次开发是不断掉进坑里，然后再从坑里爬出来，直到最后有个完整版本出来。先说说chrome插件的配置文件吧，插件中有个叫<code>manifest.json</code>的文件，他管理了插件中所需的所有东西。</p>
 
-<h2>Hack现有网页的内容</h2>
+<h2 id="hack">Hack现有网页的内容</h2>
 
 <p>由于我们的插件需要修改大众点评网现有网页内容，比如在网页中插入我们的街景视图(我们的街景功能是用了腾讯街景的API). 这个就需要让<code>content_scripts</code>来做，他主要包括三个字段，<code>matches</code>, <code>css</code>, 和<code>js</code>. 只要把自己的JS文件名放到它的<code>js</code>字段中，一旦访问的URL符合规则，就会执行js中的脚本。例如：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;content_scripts&quot;</span><span class="err">:</span> <span class="p">[</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="nt">&quot;matches&quot;</span><span class="p">:[</span><span class="s2">&quot;http://www.dianping.com/shop/*&quot;</span><span class="p">],</span>
-</span><span class='line'>    <span class="nt">&quot;css&quot;</span><span class="p">:[</span><span class="s2">&quot;bootstrap.css&quot;</span><span class="p">],</span>
-</span><span class='line'>    <span class="nt">&quot;js&quot;</span><span class="p">:[</span><span class="s2">&quot;hackit.js&quot;</span><span class="p">]</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="s2">&quot;content_scripts&quot;</span><span class="err">:</span> <span class="p">[</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="nt">&quot;matches&quot;</span><span class="p">:[</span><span class="s2">&quot;http://www.dianping.com/shop/*&quot;</span><span class="p">],</span>
+</span><span class="line">    <span class="nt">&quot;css&quot;</span><span class="p">:[</span><span class="s2">&quot;bootstrap.css&quot;</span><span class="p">],</span>
+</span><span class="line">    <span class="nt">&quot;js&quot;</span><span class="p">:[</span><span class="s2">&quot;hackit.js&quot;</span><span class="p">]</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>其中的CSS可以对自己添的内容制定样式。这个看似很简单，其实里面暗藏了一个大坑，不过也是因为自己太粗心，没有仔细看doc所导致的。由于我要在原有网页中嵌入一个街景视图，而街景视图用到了某企鹅的街景API，而那个API又必须是在线调用的。在普通的HTML中，要调用一个网上的脚本很方便，只需添加<code>&lt;script&gt;</code>标签，在<code>src</code>中指定脚本的URL。但是在chrome插件中，无法通过类似的方法，将脚本载入当前页面，并在插件的js脚本中调用。因为<code>content_scripts</code>中的脚本虽然可以访问当前页面的内容，但是无法调用当前页面中的js函数，这个在Chrome的开发文档中有提到：</p>
 
-<blockquote><p>However, content scripts have some limitations. They cannot:</p>
+<blockquote>
+  <p>However, content scripts have some limitations. They cannot:</p>
 
-<p>Use chrome.* APIs (except for parts of chrome.extension)</p>
+  <p>Use chrome.* APIs (except for parts of chrome.extension)</p>
 
-<p>Use variables or functions defined by their extension&rsquo;s pages</p>
+  <p>Use variables or functions defined by their extension’s pages</p>
 
-<p>Use variables or functions defined by web pages or by other content scripts</p></blockquote>
+  <p>Use variables or functions defined by web pages or by other content scripts</p>
+</blockquote>
 
 <p><a href="http://developer.chrome.com/extensions/content_scripts.html">http://developer.chrome.com/extensions/content_scripts.html</a></p>
 
 <p>因此只能把企鹅的js载到本地啦，然后再hack一下那个脚本，因为在本地调用需要做些修改。</p>
 
-<h2>还有一些小东西</h2>
+<h2 id="section">还有一些小东西</h2>
 
 <p>开发chrome插件还有一些小东西可以分享一下，比如那个icon，文档中说最好是19x19的png图片，但如果真的把图片做成19x19，显示在浏览器中会比较糊（可能是因为我的retina屏幕）。其实把图片弄的大一点也是可以的，只要长宽比例是1:1就好。</p>
 
@@ -74,19 +196,19 @@
     <id>http://2naive.me/blog/2013/12/11/todays-plugin-of-sublime</id>
     <content type="html"><![CDATA[<p>今天尝试了3个很好用的sublime插件，在这里mark一下。这些插件都能在sublime的Package Control中找到，可以在线安装。</p>
 
-<h2>SublimeLinter</h2>
+<h2 id="sublimelinter">SublimeLinter</h2>
 
 <p>经常用sublime写python和一些shell的脚本，有些地方写错了不太容易发现。这个插件可以自动检测一些格式上的错误。</p>
 
-<h2>SideBarEnhancements</h2>
+<h2 id="sidebarenhancements">SideBarEnhancements</h2>
 
 <p>增强了sublime sidebar的功能，在sidebar上点右键能看到很多新的选项，谁用谁知道。</p>
 
-<h2>FileDiffs</h2>
+<h2 id="filediffs">FileDiffs</h2>
 
 <p>为sublime增加了diff的功能，真的很不错。直接在sidebar可以点右键选择需要比较的文件。</p>
 
-<h2>SideBarGit</h2>
+<h2 id="sidebargit">SideBarGit</h2>
 
 <p>在有git的目录下，能在sublime的状态栏中显示当前git的分支，虽然这个功能很平凡，但是提醒你当前的分支是很重要的，改code不要改错分支哦~</p>
 ]]></content>
@@ -112,7 +234,7 @@
     <link href="http://2naive.me/blog/2013/11/30/heroku-gae-python/"/>
     <updated>2013-11-30T20:23:00+08:00</updated>
     <id>http://2naive.me/blog/2013/11/30/heroku-gae-python</id>
-    <content type="html"><![CDATA[<p>对于像我这种整天感觉很闲的人，总是会在代码中寻找自己的小世界，没事就写个web应用。可是身处天朝，资源有限。国际上很多知名的服务都不能用，比如某G的app engine. 不过还是有些漏网之鱼，没有完全被墙的。比如Heroku <a href="http://www.heroku.com">http://www.heroku.com</a>. (你现在看到的这个博客，就是放在heroku上的 >_&lt; )</p>
+    <content type="html"><![CDATA[<p>对于像我这种整天感觉很闲的人，总是会在代码中寻找自己的小世界，没事就写个web应用。可是身处天朝，资源有限。国际上很多知名的服务都不能用，比如某G的app engine. 不过还是有些漏网之鱼，没有完全被墙的。比如Heroku <a href="http://www.heroku.com">http://www.heroku.com</a>. (你现在看到的这个博客，就是放在heroku上的 &gt;_&lt; )</p>
 
 <p>Heroku是通过git的方式将本地的代码部署到云上。前面讲到它没有完全被墙，因为放在它上面的app在国内是可以访问的，但是通过git部署的过程，是被墙的。所以我都是需要VPN才能将代码部署到heroku上。Heroku支持很多语言，我最常用的就是python了。刚刚用Django在Heroku上部署了一个web app. 可以参照下面这篇文章，在heroku上部署django <a href="https://devcenter.heroku.com/articles/getting-started-with-django">https://devcenter.heroku.com/articles/getting-started-with-django</a></p>
 
@@ -120,67 +242,65 @@
 
 <!--more-->
 
-
-<p><img src="https://addons.heroku.com/provider/addons/heroku-postgresql/icons/catalog.png"></p>
+<p><img src="https://addons.heroku.com/provider/addons/heroku-postgresql/icons/catalog.png" /></p>
 
 <p>于是乎，我就想到了GAE，它免费的数据库支持到了1GB. 虽然他上面的服务在天朝无法访问，但是如果请求是从heroku发出去的，然后heroku再就收GAE传回的数据显示在app上，就没问题了！带着这个想法，我在GAE上部署了一个数据库，用来存放一些数据，之前的文章中有提到如何在GAE上使用数据库。</p>
 
-<h3><a href="http://2naive.me/blog/2013/05/31/SQL-like-at-GAE">在GAE上使用类SQL语句进行查询</a></h3>
+<h3 id="a-hrefblog20130531sql-like-at-gaegaesqla"><a href="http://2naive.me/blog/2013/05/31/SQL-like-at-GAE">在GAE上使用类SQL语句进行查询</a></h3>
 
-<h3><a href="http://2naive.me/blog/2013/05/31/database-at-GAE/">在GAE上使用Database</a></h3>
+<h3 id="a-hrefblog20130531database-at-gaegaedatabasea"><a href="http://2naive.me/blog/2013/05/31/database-at-GAE/">在GAE上使用Database</a></h3>
 
 <p>下面这个例子是一张Inverted_index表中，存2个字段，并且实现两个方法去获取资料：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">google.appengine.ext</span> <span class="kn">import</span> <span class="n">db</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Inverted_index</span> <span class="p">(</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span> <span class="p">):</span>
-</span><span class='line'>  <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">IntegerProperty</span><span class="p">()</span>
-</span><span class='line'>  <span class="n">word</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">get</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-</span><span class='line'>          <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-</span><span class='line'>          <span class="k">return</span> <span class="p">[</span> <span class="p">{</span><span class="s">&quot;id&quot;</span><span class="p">:</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s">&quot;word&quot;</span><span class="p">:</span><span class="n">item</span><span class="o">.</span><span class="n">word</span> <span class="p">}</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span> <span class="p">]</span>
-</span><span class='line'>      <span class="k">if</span> <span class="s">&#39;ids&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">ids_set</span> <span class="o">=</span> <span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;ids&#39;</span><span class="p">]))</span>
-</span><span class='line'>          <span class="n">q</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM Inverted_index WHERE id in (</span><span class="si">%s</span><span class="s">)&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ids_set</span><span class="p">))</span>
-</span><span class='line'>          <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">],[</span><span class="n">item</span><span class="o">.</span><span class="n">word</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">]))</span>
-</span><span class='line'>      <span class="k">if</span> <span class="s">&#39;words&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">words_set</span> <span class="o">=</span> <span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;words&#39;</span><span class="p">]))</span>
-</span><span class='line'>          <span class="n">q</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM Inverted_index WHERE word in (</span><span class="si">%s</span><span class="s">)&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">words_set</span><span class="p">))</span>
-</span><span class='line'>          <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">word</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">],[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">]))</span>
-</span><span class='line'>      
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">get_id_list_by_doc</span> <span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">word_list</span> <span class="p">):</span>
-</span><span class='line'>      <span class="n">word_to_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">words</span><span class="o">=</span><span class="n">word_list</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">return</span> <span class="p">[</span><span class="n">word_to_id</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">from</span> <span class="nn">google.appengine.ext</span> <span class="kn">import</span> <span class="n">db</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">Inverted_index</span> <span class="p">(</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span> <span class="p">):</span>
+</span><span class="line">	<span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">IntegerProperty</span><span class="p">()</span>
+</span><span class="line">	<span class="n">word</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">	<span class="k">def</span> <span class="nf">get</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span class="line">		<span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span><span class="line">			<span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span class="line">			<span class="k">return</span> <span class="p">[</span> <span class="p">{</span><span class="s">&quot;id&quot;</span><span class="p">:</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s">&quot;word&quot;</span><span class="p">:</span><span class="n">item</span><span class="o">.</span><span class="n">word</span> <span class="p">}</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span> <span class="p">]</span>
+</span><span class="line">		<span class="k">if</span> <span class="s">&#39;ids&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+</span><span class="line">			<span class="n">ids_set</span> <span class="o">=</span> <span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;ids&#39;</span><span class="p">]))</span>
+</span><span class="line">			<span class="n">q</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM Inverted_index WHERE id in (</span><span class="si">%s</span><span class="s">)&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ids_set</span><span class="p">))</span>
+</span><span class="line">			<span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">],[</span><span class="n">item</span><span class="o">.</span><span class="n">word</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">]))</span>
+</span><span class="line">		<span class="k">if</span> <span class="s">&#39;words&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+</span><span class="line">			<span class="n">words_set</span> <span class="o">=</span> <span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;words&#39;</span><span class="p">]))</span>
+</span><span class="line">			<span class="n">q</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM Inverted_index WHERE word in (</span><span class="si">%s</span><span class="s">)&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">words_set</span><span class="p">))</span>
+</span><span class="line">			<span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">word</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">],[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">]))</span>
+</span><span class="line">		
+</span><span class="line">
+</span><span class="line">	<span class="k">def</span> <span class="nf">get_id_list_by_doc</span> <span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">word_list</span> <span class="p">):</span>
+</span><span class="line">		<span class="n">word_to_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">words</span><span class="o">=</span><span class="n">word_list</span><span class="p">)</span>
+</span><span class="line">		<span class="k">return</span> <span class="p">[</span><span class="n">word_to_id</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h2>另外介绍个可以部署在GAE的分词器</h2>
+<h2 id="gae">另外介绍个可以部署在GAE的分词器</h2>
 
 <p>这个分词器用纯python来写，网上看到很多人都推荐。</p>
 
@@ -189,71 +309,67 @@
 <p>但是部署在GAE上需要修改一个地方，不然可能会出错：
 将<code>jieba</code>中的<code>__init__.py</code>的78-81行修改成这样。因为如果使用原来的系统临时文件夹来存放cache文件，会出错。于是我直接把存放cache的目录设置成当前目录。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">abs_path</span> <span class="o">==</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_curpath</span><span class="p">,</span><span class="s">&quot;dict.txt&quot;</span><span class="p">):</span> <span class="c">#defautl dictionary</span>
-</span><span class='line'>    <span class="n">cache_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="s">&quot;jieba.cache&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span> <span class="c">#customer dictionary</span>
-</span><span class='line'>    <span class="n">cache_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="s">&quot;jieba.user.&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="n">abs_path</span><span class="p">))</span><span class="o">+</span><span class="s">&quot;.cache&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">if</span> <span class="n">abs_path</span> <span class="o">==</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_curpath</span><span class="p">,</span><span class="s">&quot;dict.txt&quot;</span><span class="p">):</span> <span class="c">#defautl dictionary</span>
+</span><span class="line">    <span class="n">cache_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="s">&quot;jieba.cache&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="k">else</span><span class="p">:</span> <span class="c">#customer dictionary</span>
+</span><span class="line">    <span class="n">cache_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="s">&quot;jieba.user.&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="n">abs_path</span><span class="p">))</span><span class="o">+</span><span class="s">&quot;.cache&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>在使用上，可以调用<code>jieba.cut</code>，也可以调用<code>jieba.finalseg.cut</code>，两者的区别还没仔细研究，但是如果在GAE上使用前者的话，会出现内存使用过大，然后被系统kill掉进程的问题。用后者就没问题了。具体例子如下：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">webapp2</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">jieba</span> <span class="kn">import</span> <span class="n">finalseg</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Segment</span><span class="p">(</span><span class="n">webapp2</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">seg_list</span> <span class="o">=</span> <span class="n">finalseg</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">text</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;text/plain&#39;</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">seg_list</span> <span class="o">=</span> <span class="n">finalseg</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">text</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;text/plain&#39;</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">webapp2</span><span class="o">.</span><span class="n">WSGIApplication</span><span class="p">([</span>
-</span><span class='line'>    <span class="p">(</span><span class="s">&#39;/api/segment&#39;</span><span class="p">,</span> <span class="n">Segment</span><span class="p">),</span>
-</span><span class='line'>    <span class="p">],</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">webapp2</span>
+</span><span class="line"><span class="kn">from</span> <span class="nn">jieba</span> <span class="kn">import</span> <span class="n">finalseg</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">Segment</span><span class="p">(</span><span class="n">webapp2</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">)</span>
+</span><span class="line">        <span class="n">seg_list</span> <span class="o">=</span> <span class="n">finalseg</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class="line">        <span class="n">text</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;text/plain&#39;</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">)</span>
+</span><span class="line">        <span class="n">seg_list</span> <span class="o">=</span> <span class="n">finalseg</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class="line">        <span class="n">text</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;text/plain&#39;</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="n">app</span> <span class="o">=</span> <span class="n">webapp2</span><span class="o">.</span><span class="n">WSGIApplication</span><span class="p">([</span>
+</span><span class="line">    <span class="p">(</span><span class="s">&#39;/api/segment&#39;</span><span class="p">,</span> <span class="n">Segment</span><span class="p">),</span>
+</span><span class="line">    <span class="p">],</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<p>以上比较粗略的介绍了一下在网上利用免费资源搭建web app的方法。最近在鼓捣一个跟微博相关的东西，我就是利用了HEROKU和GAE来实现的。</p>
-
-<h3>啊! 微博 <a href="http://rweibo.herokuapp.com/">http://rweibo.herokuapp.com/</a></h3>
-
-<p>因为app还没上线，所以需要有将微博账号添加到app的测试账号中才能使用。想要尝试的话，可以私聊~</p>
+<p>以上比较粗略的介绍了一下在网上利用免费资源搭建web app的方法。最近在鼓捣一个跟微博相关的东西，我就是利用了HEROKU和GAE来实现的。
+###啊! 微博 <a href="http://rweibo.herokuapp.com/">http://rweibo.herokuapp.com/</a>
+因为app还没上线，所以需要有将微博账号添加到app的测试账号中才能使用。想要尝试的话，可以私聊~</p>
 ]]></content>
   </entry>
   
@@ -268,24 +384,28 @@
 
 <p>文章有點長，但是看了受益匪淺。</p>
 
-<blockquote><p>作者: abcd0 (貓舌茉莉卡)</p>
+<blockquote>
+  <p>作者: abcd0 (貓舌茉莉卡)</p>
 
-<p>看板: CATCH</p>
+  <p>看板: CATCH</p>
 
-<p>標題: Re: [請益] 好朋友，告白失敗被拒</p>
+  <p>標題: Re: [請益] 好朋友，告白失敗被拒</p>
 
-<p>時間: Sun Nov 17 03:50:23 2013</p></blockquote>
+  <p>時間: Sun Nov 17 03:50:23 2013</p>
+</blockquote>
 
 <hr />
 
-<blockquote><p>對方個性及狀況簡述:
+<blockquote>
+  <p>對方個性及狀況簡述:
 個性活潑大方，不少人追，外表是會惹人搭訕的女生</p>
 
-<p>大一到大三都跟一個劈腿男(垃圾!幹)</p>
+  <p>大一到大三都跟一個劈腿男(垃圾!幹)</p>
 
-<p>在一起很痛苦後來在</p>
+  <p>在一起很痛苦後來在</p>
 
-<p>大三時終於看清分手後來回家鄉補習念書，大四幾乎都不在學校大四在補習班時，曾短暫跟某男交往1個月，後來發現根本不喜歡他冷處理後，提分手</p></blockquote>
+  <p>大三時終於看清分手後來回家鄉補習念書，大四幾乎都不在學校大四在補習班時，曾短暫跟某男交往1個月，後來發現根本不喜歡他冷處理後，提分手</p>
+</blockquote>
 
 <p>你知道這代表什麼嗎?</p>
 
@@ -301,16 +421,16 @@
 
 <!-- more -->
 
-
 <hr />
+<blockquote>
+  <p>1.問題背景:</p>
 
-<blockquote><p>1.問題背景:</p>
+  <p>彼此關係</p>
 
-<p>彼此關係</p>
+  <p>彼此剛認識後沒多久，因為一同組隊參與一個比賽變得很熟</p>
 
-<p>彼此剛認識後沒多久，因為一同組隊參與一個比賽變得很熟</p>
-
-<p>女生在大三分手的痛苦期，我陪著她走過，給予鼓勵跟支持</p></blockquote>
+  <p>女生在大三分手的痛苦期，我陪著她走過，給予鼓勵跟支持</p>
+</blockquote>
 
 <p>你遇到的這個狀況,很經典,很常見,傷了許多純情男的心</p>
 
@@ -352,7 +472,7 @@
 
 <p>更糟糕的是,很多男生會誤解這種情況</p>
 
-<p>以為女生對自己&#8221;敞開心房&#8221;了,喜歡上自己了</p>
+<p>以為女生對自己”敞開心房”了,喜歡上自己了</p>
 
 <p>但事實上,女生只是把男生當成心情垃圾桶</p>
 
@@ -366,7 +486,7 @@
 
 <p>[你不要一直講這種事,再講我要生氣了]</p>
 
-<p>反正,就是一直強調與男生之間的&#8221;友誼&#8221;</p>
+<p>反正,就是一直強調與男生之間的”友誼”</p>
 
 <p>並且試圖安撫心情垃圾桶</p>
 
@@ -378,7 +498,7 @@
 
 <p>女生其實不是故意這樣做的,這是女生的天性,讓她們不自主的做出這樣的事</p>
 
-<p>也就是說,女生其實真的是&#8221;不帶任何惡意的&#8221;</p>
+<p>也就是說,女生其實真的是”不帶任何惡意的”</p>
 
 <p>請不要誤解女生,以為女生都很惡劣,把人當心情垃圾桶之後還玩弄對方</p>
 
@@ -386,23 +506,23 @@
 
 <p>而女生的天性,就是會去保有這個出口</p>
 
-<p><strong><strong><strong><strong><strong><strong>內容有夠長,又夠多的分格線</strong></strong></strong></strong></strong></strong>_</p>
+<p><strong>__</strong><strong>____內容有夠長,又夠多的分格線</strong><strong>__</strong>_____</p>
 
 <p>但是,這裡有個弔詭的地方:</p>
 
 <p>很多男生會說[可是我以前女朋友也整天對我吐苦水啊]</p>
 
-<p>這個一點也沒錯&hellip;.</p>
+<p>這個一點也沒錯….</p>
 
 <p>女生的天性,是會尋找情緒出口沒錯</p>
 
-<p>而這個情緒出口,最優先的選擇,是女生認定的&#8221;伴侶&#8221;</p>
+<p>而這個情緒出口,最優先的選擇,是女生認定的”伴侶”</p>
 
-<p>也就是&#8221;男朋友&#8221; &ldquo;老公&rdquo;</p>
+<p>也就是”男朋友” “老公”</p>
 
-<p>如果不存在&#8221;男友&#8221; &ldquo;老公&#8221;時,才會從&#8221;異性朋友&#8221;下手</p>
+<p>如果不存在”男友” “老公”時,才會從”異性朋友”下手</p>
 
-<p>也就是說,當你升級成&#8221;男友&#8221;或&#8221;老公&#8221;時</p>
+<p>也就是說,當你升級成”男友”或”老公”時</p>
 
 <p>你同時也會自動成為[心情垃圾桶]</p>
 
@@ -466,7 +586,7 @@
 
 <p>[安慰情殤女安慰了老半天,好不容易安慰好了,結果女生又跟別人交往了]</p>
 
-<p>無窮迴圈,無間地獄&hellip;&hellip;&hellip;&hellip;</p>
+<p>無窮迴圈,無間地獄…………</p>
 
 <p>那~~遇到情殤的女生,到底該怎麼辦??</p>
 
@@ -474,7 +594,7 @@
 
 <p>大陸電影: 失戀33天</p>
 
-<p><strong><strong><strong><strong><strong><strong><strong>_到底要寫多久才能寫完啊</strong></strong></strong></strong></strong></strong></strong>__</p>
+<p><strong>__</strong><strong>__</strong><strong><em>到底要寫多久才能寫完啊</em></strong><strong>__</strong><strong>__</strong>_</p>
 
 <p>電影裡面,女主角被劈腿</p>
 
@@ -494,10 +614,8 @@
 
 <p>關到受不了,探出頭來找心情垃圾桶吐一吐苦水,吐完後再縮進城堡裡面</p>
 
-<p>如果你對城主嗆聲[我一定要打破你這座城!!]</p>
-
-<pre><code>             (我一定要拯救妳走出情殤)
-</code></pre>
+<p>如果你對城主嗆聲[我一定要打破你這座城!!]
+                 (我一定要拯救妳走出情殤)</p>
 
 <p>你覺得城主會做什麼動作?? 加強防禦? 還是告訴你哪邊比較好進攻???</p>
 
@@ -507,7 +625,7 @@
 
 <p>就跟[失戀33天]裡 男主角王小賤做的事一模一樣</p>
 
-<p><strong><strong><strong><strong><strong><strong><strong>總算要進到結論了</strong></strong></strong></strong></strong></strong></strong>____</p>
+<p><strong>__</strong><strong>__</strong><strong>總算要進到結論了</strong><strong>__</strong><strong>__</strong><em>__</em></p>
 
 <p>結論:</p>
 
@@ -523,33 +641,36 @@
 
 <p>誘騙她走出心中的城堡,方能成功</p>
 
-<blockquote><p>後來大四時在家鄉補習念書偶爾來學校，我都會陪她走走</p>
+<blockquote>
+  <p>後來大四時在家鄉補習念書偶爾來學校，我都會陪她走走  </p>
 
-<p>她考試的東西我科系略有涉及，所以也會給予建議跟討論</p>
+  <p>她考試的東西我科系略有涉及，所以也會給予建議跟討論</p>
 
-<p>平常LINE跟FB、簡訊、電話都有連絡</p>
+  <p>平常LINE跟FB、簡訊、電話都有連絡</p>
 
-<p>在今年考試前的一段時間，我跟她都是很好的朋友</p></blockquote>
+  <p>在今年考試前的一段時間，我跟她都是很好的朋友</p>
+</blockquote>
 
 <hr />
+<blockquote>
+  <p>告白前錯估情勢</p>
 
-<blockquote><p>告白前錯估情勢</p>
+  <p>我以為我自己在她心中不只是很好的朋友</p>
 
-<p>  我以為我自己在她心中不只是很好的朋友</p>
+  <p>研究所放榜時，A大學落榜了，她出現在我面前安慰我</p>
 
-<p>  研究所放榜時，A大學落榜了，她出現在我面前安慰我</p>
+  <p>B大學放榜時，我上了，也是她第一個打給我的</p>
 
-<p>  B大學放榜時，我上了，也是她第一個打給我的</p>
+  <p>大四時，她偶爾來學校，幾乎都是我陪她，也常常單獨出去吃飯</p>
 
-<p>  大四時，她偶爾來學校，幾乎都是我陪她，也常常單獨出去吃飯</p>
+  <p>考試前她生日，我騎三小時車，送蛋糕跟唱生日快樂歌給她聽</p>
 
-<p>  考試前她生日，我騎三小時車，送蛋糕跟唱生日快樂歌給她聽</p>
+  <p>她非常開心。</p>
 
-<p>  她非常開心。</p>
+  <p>畢業後有次她回學校，單獨跟我睡我宿舍(只不過是樓中樓，我睡樓上她睡樓下)</p>
 
-<p>  畢業後有次她回學校，單獨跟我睡我宿舍(只不過是樓中樓，我睡樓上她睡樓下)</p>
-
-<p>  當天聊到三更半夜，會問我說怎麼不交個女朋友(我含糊帶過就是了)</p></blockquote>
+  <p>當天聊到三更半夜，會問我說怎麼不交個女朋友(我含糊帶過就是了)</p>
+</blockquote>
 
 <p>通常女生都會很希望心情垃圾桶趕快去交個女友</p>
 
@@ -557,81 +678,90 @@
 
 <p>[交了女友後,他應該就不會喜歡上我了吧,我們就能維持這種正常友誼了]</p>
 
-<blockquote><p>不過我忽略了</p>
+<blockquote>
+  <p>不過我忽略了</p>
 
-<p> 她曾說過喜歡學長型的，勝過同屆</p>
+  <p>她曾說過喜歡學長型的，勝過同屆</p>
 
-<p> 她覺得我們真的是很好的朋友</p>
+  <p>她覺得我們真的是很好的朋友</p>
 
-<p>  生日那天她在我離開後，簡訊我說：「真的是超級好朋友，拜把兄弟了啦!」</p>
+  <p>生日那天她在我離開後，簡訊我說：「真的是超級好朋友，拜把兄弟了啦!」</p>
 
-<p>  (我以為她知道我喜歡她，本已死心，但居然回學校還敢跟我單獨睡一間，想說還有機會，殊不知&hellip;&hellip;)</p></blockquote>
+  <p>(我以為她知道我喜歡她，本已死心，但居然回學校還敢跟我單獨睡一間，想說還有機會，殊不知……)</p>
+</blockquote>
 
 <p>她絕對知道,女人的心思細膩,直覺準確</p>
 
 <p>她是看準你不敢告白,她是捨不得放棄一個這麼好的朋友,這麼棒的心情垃圾桶</p>
 
-<blockquote><p>她不常主動找我，LINE、FB快則當天回，慢則1周才回
+<blockquote>
+  <p>她不常主動找我，LINE、FB快則當天回，慢則1周才回
  她現在想專心在考試上面。</p>
 
-<p>2.目前狀況:</p>
+  <p>2.目前狀況:</p>
 
-<p>告白時及之後的情況：</p>
+  <p>告白時及之後的情況：</p>
 
-<p>  昨天我坐火車去找她，</p>
+  <p>昨天我坐火車去找她，</p>
 
-<p>  以拿書給她的名，行去她家附近玩之實</p>
+  <p>以拿書給她的名，行去她家附近玩之實</p>
 
-<p>  她最近閉關念書很少赴約了，知道我是要去玩也肯陪我</p>
+  <p>她最近閉關念書很少赴約了，知道我是要去玩也肯陪我</p>
 
-<p>  我以為我很有機會，打算一舉成擒，殊不知是壯士斷腕，嗚呼哀哉，甚悲矣</p>
+  <p>我以為我很有機會，打算一舉成擒，殊不知是壯士斷腕，嗚呼哀哉，甚悲矣</p>
 
-<p>  這幾天醞釀了滿久的，後來當天先去走走去吃飯，再到山上看風景的時候</p>
+  <p>這幾天醞釀了滿久的，後來當天先去走走去吃飯，再到山上看風景的時候</p>
 
-<p>  我開口告白了</p>
+  <p>我開口告白了</p>
 
-<p>「妳不是問我說怎麼不交女朋友嗎，其實我喜歡一個女生很久了」</p>
+  <p>「妳不是問我說怎麼不交女朋友嗎，其實我喜歡一個女生很久了」</p>
 
-<p>『真的假的，是誰阿?』</p>
+  <p>『真的假的，是誰阿?』</p>
 
-<p>「我想打電話跟她告白，妳可以給我支持嗎?」(牽她的手)</p>
+  <p>「我想打電話跟她告白，妳可以給我支持嗎?」(牽她的手)</p>
 
-<p>『真的假的，是誰阿?』</p>
+  <p>『真的假的，是誰阿?』</p>
 
-<p>「打電話是不是很沒誠意，當面講比較好齁?」</p>
+  <p>「打電話是不是很沒誠意，當面講比較好齁?」</p>
 
-<p>『恩，對啦，所以是誰啊』</p>
+  <p>『恩，對啦，所以是誰啊』</p>
 
-<p>「我喜歡&hellip;妳，OOO我喜歡妳，當我女朋友吧」</p>
+  <p>「我喜歡…妳，OOO我喜歡妳，當我女朋友吧」</p>
 
-<p>『靠，真的假的阿，我不要拉』</p>
+  <p>『靠，真的假的阿，我不要拉』</p>
 
-<p>「靠要，那你聽我講完啦」</p>
+  <p>「靠要，那你聽我講完啦」</p>
 
-<p>  然後就是說我有多喜歡她，我知道她要考試可能會打擾她</p>
+  <p>然後就是說我有多喜歡她，我知道她要考試可能會打擾她</p>
 
-<p>  但是我可以陪她度過這一年，一起加油等等</p>
+  <p>但是我可以陪她度過這一年，一起加油等等</p>
 
-<p>  她拒絕我</p>
+  <p>她拒絕我</p>
 
-<p>  基本上是：</p>
+  <p>基本上是：</p>
 
-<ol>
-<li><p> 我們是好朋友，根本沒想過這種事情啦 (我以為她知道我喜歡她)</p></li>
-<li><p> 她要考試，現在不想交男朋友</p></li>
-<li><p> 何德何能阿~快去找別的女生吧</p></li>
-</ol>
+  <ol>
+    <li>
+      <p>我們是好朋友，根本沒想過這種事情啦 (我以為她知道我喜歡她)</p>
+    </li>
+    <li>
+      <p>她要考試，現在不想交男朋友</p>
+    </li>
+    <li>
+      <p>何德何能阿~快去找別的女生吧</p>
+    </li>
+  </ol>
 
+  <p>後來看完風景還是去吃了個晚餐</p>
 
-<p>  後來看完風景還是去吃了個晚餐</p>
+  <p>她送我去車站之後，她跟我說，欸，當好朋友啦</p>
 
-<p>  她送我去車站之後，她跟我說，欸，當好朋友啦</p>
+  <p>我就笑了一下不答，轉頭就走了</p>
 
-<p>  我就笑了一下不答，轉頭就走了</p>
+  <p>後來今天下午傳封簡訊跟她說，書大概要怎麼看，然後貼了個考試心得給她</p>
 
-<p>  後來今天下午傳封簡訊跟她說，書大概要怎麼看，然後貼了個考試心得給她</p>
-
-<p>  至今尚未回我，但我猜應該不會回了</p></blockquote>
+  <p>至今尚未回我，但我猜應該不會回了</p>
+</blockquote>
 
 <p>不,會回,只要你願意乖乖回去蹲,當一個認命的心情垃圾桶</p>
 
@@ -641,11 +771,13 @@
 
 <p>她就會再次疏遠你</p>
 
-<blockquote><p>  現在想想，我應該再陪她這一年，讓她感受到我的重要，進而日久生情的</p>
+<blockquote>
+  <p>現在想想，我應該再陪她這一年，讓她感受到我的重要，進而日久生情的</p>
 
-<p>  只不過我也是事後才知道她根本把我當好朋友，沒想過這問題。</p>
+  <p>只不過我也是事後才知道她根本把我當好朋友，沒想過這問題。</p>
 
-<p>  唉= =</p></blockquote>
+  <p>唉= =</p>
+</blockquote>
 
 <p>錯誤,再3年也一樣</p>
 
@@ -653,41 +785,43 @@
 
 <p>但是會變成女生一輩子的好朋友</p>
 
-<blockquote><p>3.我的疑問:</p>
+<blockquote>
+  <p>3.我的疑問:</p>
 
-<p>坦白說我不想放棄，這個女生真的很棒</p>
+  <p>坦白說我不想放棄，這個女生真的很棒</p>
 
-<p>錯過她我會非常後悔</p>
+  <p>錯過她我會非常後悔</p>
 
-<p>請問現階段該如何是好</p>
+  <p>請問現階段該如何是好</p>
 
-<p>版上的心得及建議我大多有爬過</p>
+  <p>版上的心得及建議我大多有爬過</p>
 
-<p>可是我這個是滿久的朋友，而且我應該是她身邊最靠近的人</p>
+  <p>可是我這個是滿久的朋友，而且我應該是她身邊最靠近的人</p>
 
-<p>我不曉得是否就該如此離開</p>
+  <p>我不曉得是否就該如此離開</p>
 
-<p>小弟我約略整理出下面四種：</p>
+  <p>小弟我約略整理出下面四種：</p>
 
-<p>1.冷處理過一兩個月再說，再改採下列 2 3 4</p>
+  <p>1.冷處理過一兩個月再說，再改採下列 2 3 4</p>
 
-<p>  讓自己冷靜一點，說不定可以放下</p>
+  <p>讓自己冷靜一點，說不定可以放下</p>
 
-<p>2.不透過出追的氛圍的保持聯絡，關心她，透過課業科目保持聯繫</p>
+  <p>2.不透過出追的氛圍的保持聯絡，關心她，透過課業科目保持聯繫</p>
 
-<p>  「最近書念得怎樣?」 「OO科有沒有甚麼問題」「欸，這題妳會嗎，我的答案是OOXX」</p>
+  <p>「最近書念得怎樣?」 「OO科有沒有甚麼問題」「欸，這題妳會嗎，我的答案是OOXX」</p>
 
-<p>  「今天過得怎樣」等等</p>
+  <p>「今天過得怎樣」等等</p>
 
-<p>3.嗆明不追了，然後保持關心，透過課業科目保持聯繫</p>
+  <p>3.嗆明不追了，然後保持關心，透過課業科目保持聯繫</p>
 
-<p>  「靠杯，失敗了，不過就這樣啦，哈哈哈哈，(然後關心她進度如何之類的)」</p>
+  <p>「靠杯，失敗了，不過就這樣啦，哈哈哈哈，(然後關心她進度如何之類的)」</p>
 
-<p>4.繼續正攻，除了關心保持聯繫，偶爾上去找她、送送禮物</p>
+  <p>4.繼續正攻，除了關心保持聯繫，偶爾上去找她、送送禮物</p>
 
-<p>  「沒關係，我不會放棄的，我要追妳~~~(沈玉琳調調)」</p>
+  <p>「沒關係，我不會放棄的，我要追妳~~~(沈玉琳調調)」</p>
 
-<p>唉，請問該如何是好呢，各位大大!!</p></blockquote>
+  <p>唉，請問該如何是好呢，各位大大!!</p>
+</blockquote>
 
 <p>基本上這個局你已經做壞了= =</p>
 
@@ -703,7 +837,7 @@
 
 <p>你只要負責帶給女生快樂就好</p>
 
-<p>至於聽女生&#8221;敞開心房&#8221;這種事,讓下一任心情垃圾桶去做</p>
+<p>至於聽女生”敞開心房”這種事,讓下一任心情垃圾桶去做</p>
 
 <p>同時提升自己,讓自己以另一個嶄新的形象重新出現在她眼前</p>
 
@@ -711,9 +845,9 @@
 
 <p>就算這些都做了,還是很可能失敗</p>
 
-<p>因為這局開局就已經做壞了啦&hellip;</p>
+<p>因為這局開局就已經做壞了啦…</p>
 
-<p>你還是放棄,乖乖做女生的好友比較輕鬆&hellip;</p>
+<p>你還是放棄,乖乖做女生的好友比較輕鬆…</p>
 ]]></content>
   </entry>
   
@@ -724,9 +858,13 @@
     <id>http://2naive.me/blog/2013/11/18/homeless</id>
     <content type="html"><![CDATA[<p>刚想写些东西，正在播的音乐刚好跳出五月天的《回来吧》，这真的是个巧合。</p>
 
-<blockquote><p>回来吧，难道你不怀念吗。。。</p>
+<blockquote>
+  <p>回来吧，难道你不怀念吗。。。</p>
+</blockquote>
 
-<p>回来吧，我还一直在等啊。。。</p></blockquote>
+<blockquote>
+  <p>回来吧，我还一直在等啊。。。</p>
+</blockquote>
 
 <p>我来自一个小城市，现在为了自己一点点的事业心，在大城市尝试着自己并不强大的生存能力。坦白说我为什么一定要在这个城市工作，我自己也找不出一个能说服自己的理由。为了事业？为了女人？为了朋友？还是离家比较近？</p>
 
@@ -738,7 +876,7 @@
 
 <p>一个人的生活也可以改变以往的习性，时间久了，我竟然开始看书了。以前只把书当装饰品的我，竟然开始看书了；几年前的我，还是一个没心没肺没有心里情感的人，现在心里的想法多的都藏不住，只好用文字写在博客上来宣泄。</p>
 
-<p><b>喝掉一罐啤酒继续，现在正在播的音乐换成了&#8221;Wake me up when september ends&#8221;，这音乐竟然也懂我的心情</b></p>
+<p><b>喝掉一罐啤酒继续，现在正在播的音乐换成了”Wake me up when september ends”，这音乐竟然也懂我的心情</b></p>
 
 <p>也许年轻时总是喜欢跟自己过不去，明明对方对你没感觉，却一再认为这是一种考验。难道这就叫做“年少轻狂”吗？既然自己无法分辨是真的“没感觉”，还是一种“考验”，那就当时一种考验吧。</p>
 
@@ -753,51 +891,70 @@
     <id>http://2naive.me/blog/2013/11/16/show-git-branch-name</id>
     <content type="html"><![CDATA[<p>不知道有没有人和我有同样的困扰，在使用git的时候不小心改到了master分支上的代码，然后还不小心push了，结果还成功push了，而且自己还没发觉是push到了master上。如果代码正确还好，一旦代码有些问题就会引来很大麻烦。</p>
 
-<p><img src="http://2naive.me/images/blog/show-git-branch-name.png"></p>
+<p><img src="http://2naive.me/images/blog/show-git-branch-name.png" /></p>
 
 <p>mac的terminal上并没有自带功能显示当前的分支，所以需要自己手动修改bash的显示方式。如图上所示，新建一个<code>qrl</code>的目录，初始化<code>git</code>，当<code>commit</code>之后会产生<code>.git</code>的目录，从<code>.git</code>中获取当前的分支名字。</p>
 
 <p>实现起来比较容易，在.bash_profile中加入下面的代码就可以了。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>parse_git_branch<span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    git branch 2&gt; /dev/null | sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ [\1]/&#39;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ &quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">parse_git_branch<span class="o">()</span> <span class="o">{</span>
+</span><span class="line">    git branch 2&gt; /dev/null | sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ [\1]/&#39;</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line"><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ &quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>对于PS1的参数可以参考下面的来写
+&gt;\d ：代表日期</p>
 
-<p>对于PS1的参数可以参考下面的来写</p>
+<blockquote>
+  <p>\H ：完整的主机名称</p>
+</blockquote>
 
-<blockquote><p>\d ：代表日期</p>
+<blockquote>
+  <p>\h ：仅取主机的第一个名字</p>
+</blockquote>
 
-<p>\H ：完整的主机名称</p>
+<blockquote>
+  <p>\t ：显示时间为24小时格式，如：HH：MM：SS</p>
+</blockquote>
 
-<p>\h ：仅取主机的第一个名字</p>
+<blockquote>
+  <p>\T ：显示时间为12小时格式</p>
+</blockquote>
 
-<p>\t ：显示时间为24小时格式，如：HH：MM：SS</p>
+<blockquote>
+  <p>\A ：显示时间为24小时格式：HH：MM</p>
+</blockquote>
 
-<p>\T ：显示时间为12小时格式</p>
+<blockquote>
+  <p>\u ：当前用户的账号名称</p>
+</blockquote>
 
-<p>\A ：显示时间为24小时格式：HH：MM</p>
+<blockquote>
+  <p>\v ：BASH的版本信息</p>
+</blockquote>
 
-<p>\u ：当前用户的账号名称</p>
+<blockquote>
+  <p>\w ：完整的工作目录名称。家目录会以 ~代替</p>
+</blockquote>
 
-<p>\v ：BASH的版本信息</p>
+<blockquote>
+  <p>\W ：利用basename取得工作目录名称，所以只会列出最后一个目录</p>
+</blockquote>
 
-<p>\w ：完整的工作目录名称。家目录会以 ~代替</p>
+<blockquote>
+  <p># ：下达的第几个命令</p>
+</blockquote>
 
-<p>\W ：利用basename取得工作目录名称，所以只会列出最后一个目录</p>
+<blockquote>
+  <p>\$ ：提示字符，如果是root时，提示符为：# ，普通用户则为：$</p>
+</blockquote>
 
-<p>\# ：下达的第几个命令</p>
-
-<p>\$ ：提示字符，如果是root时，提示符为：# ，普通用户则为：$</p></blockquote>
-
-<h3>参考</h3>
-
+<h3 id="section">参考</h3>
 <p><a href="http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac">http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac</a>
 <a href="http://blog.sina.com.cn/s/blog_610913ea0100fce1.html">http://blog.sina.com.cn/s/blog_610913ea0100fce1.html</a></p>
 ]]></content>
@@ -810,60 +967,45 @@
     <id>http://2naive.me/blog/2013/11/13/sublime-text2-tutorial</id>
     <content type="html"><![CDATA[<p>Sublime Text 是个很不错的文本编辑工具，已经使用1年多了。这里整理一些关于Sublime的使用方法，防止以后忘记。</p>
 
-<h2>在线安装Package</h2>
+<h2 id="package">在线安装Package</h2>
+<p>###安装Package Control
++ 用 Ctrl+` 打开Console
++ 在console中加入下面这段脚本</p>
 
-<h3>安装Package Control</h3>
-
-<ul>
-<li>用 Ctrl+` 打开Console</li>
-<li>在console中加入下面这段脚本</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">urllib2</span><span class="o">,</span><span class="nn">os</span><span class="p">;</span><span class="n">pf</span><span class="o">=</span><span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span><span class="n">ipp</span><span class="o">=</span><span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span><span class="p">;</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ipp</span><span class="p">,</span><span class="n">pf</span><span class="p">),</span><span class="s">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://sublime.wbond.net/&#39;</span><span class="o">+</span><span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span><span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">urllib2</span><span class="o">,</span><span class="nn">os</span><span class="p">;</span><span class="n">pf</span><span class="o">=</span><span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span><span class="n">ipp</span><span class="o">=</span><span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span><span class="p">;</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ipp</span><span class="p">,</span><span class="n">pf</span><span class="p">),</span><span class="s">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://sublime.wbond.net/&#39;</span><span class="o">+</span><span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span><span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-<li>重新打开sublime</li>
+  <li>重新打开sublime</li>
 </ul>
 
-
-<h3>用Package Control安装插件</h3>
-
+<h3 id="package-control">用Package Control安装插件</h3>
 <ul>
-<li><code>Command+Shift+p</code>打开命令面板(如果非mac就用<code>Ctrl</code>代替<code>Command</code>)</li>
-<li>输入<code>install</code>打开Install Package</li>
-<li>选择需要的插件安装</li>
+  <li><code>Command+Shift+p</code>打开命令面板(如果非mac就用<code>Ctrl</code>代替<code>Command</code>)</li>
+  <li>输入<code>install</code>打开Install Package</li>
+  <li>选择需要的插件安装</li>
 </ul>
 
-
-<h3>添加Repository</h3>
-
+<h3 id="repository">添加Repository</h3>
 <p>想要使用更多的插件，可以自行添加网上的repository，比如github.</p>
 
 <ul>
-<li><code>Command+Shift+p</code>打开命令面板</li>
-<li>选择<code>package Control:Add Repository</code></li>
-<li>然后在底下的Repository URL中填入github地址，比如<a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
-<li>最后再选择<code>install package</code>来安装插件</li>
+  <li><code>Command+Shift+p</code>打开命令面板</li>
+  <li>选择<code>package Control:Add Repository</code></li>
+  <li>然后在底下的Repository URL中填入github地址，比如<a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
+  <li>最后再选择<code>install package</code>来安装插件</li>
 </ul>
 
-
-<h3>常用插件</h3>
-
+<h3 id="section">常用插件</h3>
 <ul>
-<li>SublimeFormatSQL <a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
+  <li>SublimeFormatSQL <a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
 </ul>
 
-
-<h3>备注</h3>
-
+<h3 id="section-1">备注</h3>
 <ul>
-<li>SublimeFormatSQL的最新版对Sublime Text 2的兼容性有点问题，我用朋友给的旧版本就可以了。具体issue参见<a href="https://github.com/freewizard/SublimeFormatSQL/issues/14">https://github.com/freewizard/SublimeFormatSQL/issues/14</a></li>
+  <li>SublimeFormatSQL的最新版对Sublime Text 2的兼容性有点问题，我用朋友给的旧版本就可以了。具体issue参见<a href="https://github.com/freewizard/SublimeFormatSQL/issues/14">https://github.com/freewizard/SublimeFormatSQL/issues/14</a></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -872,7 +1014,7 @@
     <link href="http://2naive.me/blog/2013/11/08/in-japan-1/"/>
     <updated>2013-11-08T00:20:00+08:00</updated>
     <id>http://2naive.me/blog/2013/11/08/in-japan-1</id>
-    <content type="html"><![CDATA[<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x400&maptype=roadmap&markers=size:large%7Ccolor:blue%7C河口湖%7C&zoom=10&sensor=false" /></p>
+    <content type="html"><![CDATA[<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x400&amp;maptype=roadmap&amp;markers=size:large%7Ccolor:blue%7C河口湖%7C&amp;zoom=10&amp;sensor=false" /></p>
 
 <p>去河口湖，從橫濱站搭電車，需要換乘4趟列車，总共需要3个多小时。從橫濱到Hachioji就要坐1個多小時，原本以為會在車上無聊的度過，沒想到注意力就被一個戴口罩的妹子吸引走了。</p>
 
@@ -884,12 +1026,10 @@
 
 <!--more-->
 
-
-<h2>PS</h2>
-
+<h2 id="ps">PS</h2>
 <p>日本近几年对<code>痴汉</code>行为抓的很严，不能随意对日本的女孩进行拍照，特别是在电车，地铁上。只要有妹子向警察指正你对她有痴汉行为，比如拍照，咸猪手等，一旦证据确凿，就要在日本被关上两年，无论是本国人还是外国人。所以经常看岛国爱情动作片的同学们，去了日本之后千万不要拿相机乱拍妹子。</p>
 
-<p><img src="http://2naive.me/images/blog/Screen-Shot-2013-11-08-at-12.54.14-AM.png"></p>
+<p><img src="http://2naive.me/images/blog/Screen-Shot-2013-11-08-at-12.54.14-AM.png" /></p>
 ]]></content>
   </entry>
   
@@ -902,23 +1042,19 @@
 
 <p>可是现实和理想总是存在些差距，原本想着python简洁的代码和随改随用的特性，在UDF的灵活性上显得有点苍白无力。利用<code>TRANSFORM</code>, <code>USING</code>, <code>AS</code>的结构来把python的脚本当做UDF，虽然看起来非常方便，但实际用起来却有很大问题。</p>
 
-<h2>无法单独处理某个字段</h2>
-
+<h2 id="section">无法单独处理某个字段</h2>
 <p>没有仔细研究过这个具体的流程，不过猜想应该是从hive中select出来的数据以pipe的形式转到python的stdin中，再把python中的stdout的内容转到hive的输出中。这样如果仅需对选出的某个字段进行处理，其余字段不进行处理的话，必须在Python脚本中注意当前要处理的字段是第几个，一旦select中的顺序有所改变，那python脚本应该就无法处理了。目前仅选一个字段出来进行处理的情况比较少，大部分都是选出好几个字段来看。所以虽然python很好，不过我还是“十动然拒”了吧。</p>
 
-<h2>无法外加聚集函数</h2>
-
+<h2 id="section-1">无法外加聚集函数</h2>
 <p>在使用中，下面这种格式是很死的。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="k">TRANSFORM</span><span class="p">(</span><span class="n">field_A</span><span class="p">,</span> <span class="n">field_B</span><span class="p">)</span> <span class="k">USING</span> <span class="s1">&#39;python foo.py&#39;</span> <span class="k">AS</span><span class="p">(</span><span class="n">field_AA</span><span class="p">,</span> <span class="n">field_BB</span><span class="p">)</span> <span class="k">FROM</span> <span class="p">...</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sql"><span class="line"><span class="k">SELECT</span> <span class="k">TRANSFORM</span><span class="p">(</span><span class="n">field_A</span><span class="p">,</span> <span class="n">field_B</span><span class="p">)</span> <span class="k">USING</span> <span class="s1">&#39;python foo.py&#39;</span> <span class="k">AS</span><span class="p">(</span><span class="n">field_AA</span><span class="p">,</span> <span class="n">field_BB</span><span class="p">)</span> <span class="k">FROM</span> <span class="p">...</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>比如你想再对UDF外面加一层<code>Count</code>是没有办法实现的。某人会告诉你格式不对，无法运行。但是常规的用java写的UDF是没有问题的，全部都能hold住~</p>
 
-<h2>外加的吐槽</h2>
-
+<h2 id="section-2">外加的吐槽</h2>
 <p>实际工作中，不仅仅需要<code>UDF</code>，<code>UDAF</code>和<code>UDTF</code>都是会经常遇到的。而Python拼死只能处理UDF的情况，对于后者只能呵呵了。于是反正UDAF和UDTF还是需要JAVA来写，那UDF也就顺便用JAVA写了吧。这样代码也统一一点，便于管理。</p>
 
 <p>所以虽然python在UDF上的效果可以实现，不过功能太过简单，实际环境下还是很无力的。接下来还是用JAVA写<code>UDF</code>,<code>UDAF</code>和<code>UDTF</code>吧。回头吧，少年~</p>
@@ -930,17 +1066,22 @@
     <link href="http://2naive.me/blog/2013/10/24/first-love/"/>
     <updated>2013-10-24T22:11:00+08:00</updated>
     <id>http://2naive.me/blog/2013/10/24/first-love</id>
-    <content type="html"><![CDATA[<blockquote><p>人生若只如初見
+    <content type="html"><![CDATA[<blockquote>
+  <p>人生若只如初見
 何事秋風悲畫扇</p>
+</blockquote>
 
-<p>等閒變卻故人心
-卻道故心人易變</p></blockquote>
+<blockquote>
+  <p>等閒變卻故人心
+卻道故心人易變</p>
+</blockquote>
 
 <p>兩人相見，並沒有絲毫的躲閃，言語之間還是如同往常。真的像是认识很久的老友，我了解她，她也了解我。交谈时毫不顾忌，于是，她還是那麼欢快中带点豪爽，我還是那樣幽默中带点木讷。</p>
 
 <p>从热恋到分手，是否就是一个从有很多话想讲，到把能讲的话都讲完的一个过程？双方发现没话讲了，于是一方说分手，另一方默认。但开始恋爱的原因，不就是觉得我们有永远讲不完的话题，永远用不完的欢笑吗？为什么当恋人非得有话要讲，聊得越多就表明爱的越多吗？在交往过程中，双方都有责任和义务和对方讲话，一旦讲不出话，沉没时，就会导致冷战的开始，觉得缘分已尽了吧，或者觉得对方变心了。反而是成了朋友之后，卸下了这份责任和义务，想讲的时候就讲，不讲也不会有人责怪。没有了压力，自然聊得轻松。</p>
 
 <p>爱情真的能转化成友情，还是旧情人相见时互相客套的热情？双方尽量表现的不在乎，好像在说，“看吧，没有你我照样过得很好”。我只是单纯的想对她好，因为以前我对其他女生好，她会生气，现在我对她好，至少还没有人会生我的气吧。</p>
+
 ]]></content>
   </entry>
   
@@ -954,60 +1095,50 @@
 
 <p>好在最后还是安全降落在厦门机场，来到近期被爆数据库的某家快捷酒店。到酒店已经11点半了，稍微整理了一下出来到附近的宵夜摊，在一家卖沙茶面的店里坐下了。虽然说离开台湾还不到2个月，不过现在身处一海峡之隔的厦门，真的对台湾有了一点想念。于是点了一个在台湾常吃的蚵仔煎(ou a jian)，和没有吃过的沙茶面。结果蚵仔煎和我想的差距有点大，看来隔了一条海峡，蚵仔煎出现了变种。可怕的是，价格竟然还要高于台湾的。。。</p>
 
-<h2>Tips</h2>
+<h2 id="tips">Tips</h2>
 
 <p>除了物价过高之外，小贩的人品也很低。特别是买水果，基本上所有的小贩秤都偏重，大家在买水果之前，先要把手机放在秤上看看秤的准度。太离谱的就马上走人。如果在晚上，要当心小贩给你偷梁换柱。我们一行人在鹭江道的<b>台湾小吃街</b>门口买了水果，没想到小贩给我们秤完重量后，偷偷的换了另外一袋给我们，幸好我们人多，立刻把她识破了。然后她从一开始的客气的给我们试吃水果，立刻变的很凶的大声叫嚷。</p>
 
 <!--more-->
+<p>#游览路线
+##Day 1
+###鼓浪屿</p>
 
-
-<h1>游览路线</h1>
-
-<h2>Day 1</h2>
-
-<h3>鼓浪屿</h3>
-
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&maptype=roadmap&markers=size:mid%7Ccolor:red%7C鼓浪屿%7C&zoom=14&sensor=false" /></p>
+<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C鼓浪屿%7C&amp;zoom=14&amp;sensor=false" /></p>
 
 <p>本以为避开十一高峰去人会比较少，不过还是低估了厦门最有名的经典之一的鼓浪屿吸引游客的能力。看来如果十一去的话，必定是被挤出翔啊。鼓浪屿上地势高低起伏比较大，一条条曲折的小巷，从高到低，从低到高的不断延伸。巷子里有很多建筑物和小店，不少店里提供盖章留念，如果是比较文艺的游客，可以搜集这些印章。</p>
 
 <p>在鼓浪屿上有不少有名的店，比如<code>张三疯</code>奶茶店，不过20元一杯的奶茶确实有点小贵，大多数人选择拍照留念后就走人了（后来才发现这家奶茶店的连锁挺多的，不只是在鼓浪屿上才有）。<code>黄胜记</code>的猪肉脯也不错，主要是店内提供免费的试吃，品尝一下味道不买也没有关系。在<code>黄胜记</code>旁边有家叫做<code>联邦调茶局</code>的店，他们除了卖饮料之外，还有很多的茶包和茶叶卖。起先因为名字比较独特就过去看了看，后来被正妹店员吸引进入店内仔细看看，最终被正妹店员叫帅哥之后，果断的买了一罐茶叶回去。也是在附近，有一家卖肥肠粉的店，看到排很长队，味道也不错。附近还有一家比较大的卖明信片和纪念品的店，在店内看到很多具有特色的明信片，就忍不住买了很多，写了寄给台湾的学妹(^_^)</p>
 
-<h3>中山路步行街</h3>
-
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&maptype=roadmap&markers=size:mid%7Ccolor:red%7C中山路步行街%7C&zoom=14&sensor=false" /></p>
+<h3 id="section">中山路步行街</h3>
+<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C中山路步行街%7C&amp;zoom=14&amp;sensor=false" /></p>
 
 <p>中山路步行街上有很多饭馆，小吃店，服装店。。。第一天路过<code>黄则和</code>，那里的花生汤挺好喝的。在滑蛋中加入了花生，口味比较偏甜。第二天去中山路时，还去了非常有名的<code>藏足馆推拿足浴</code>，大概要排半个多小时才能有空位，而且这还是淡季。比起上海，这里的推拿价格算挺便宜了，物超所值。</p>
 
 <p>靠近中山路的思明西路上，有一家叫<code>梦bar</code>的酒吧，应该是附近比较靠谱的一家酒吧了。来到一个城市，当然要体验一下里面的酒吧了~我一个人去酒吧，坐在靠窗的位子上，点了一杯啤酒，老板送上免费的花生，还热情的跟我聊天。老板是个魔术师，墙上挂了一些照片，不过我没让他当场show几下，因为和另一个可爱的调酒师一起喝酒玩色子会来的更有意思。</p>
 
-<h2>Day 2</h2>
-
-<h3>南普陀寺</h3>
-
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&maptype=roadmap&markers=size:mid%7Ccolor:red%7C南普陀寺%7C&zoom=14&sensor=false" /></p>
+<h2 id="day-2">Day 2</h2>
+<p>###南普陀寺
+<img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C南普陀寺%7C&amp;zoom=14&amp;sensor=false" /></p>
 
 <p>本来打算是先去厦门大学的，在轮渡门口坐841路公交车就能到厦大门口。但是厦大是需要排队进入，到那里已经快11点，排队进入厦大的游客已经是相当多了。所以就决定先去南普陀寺。</p>
 
 <p>由于我们不是特意来烧香的，所以前面的庙宇并没有用心看，直接就走上了后山。山不算太高，体力还可以的，比较轻松的就能登顶。在山顶的视野挺不错的，可以看到远处的建筑物，海，轮船。</p>
 
-<h3>厦门大学</h3>
-
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&maptype=roadmap&markers=size:mid%7Ccolor:red%7C厦门大学%7C&zoom=14&sensor=false" /></p>
+<h3 id="section-1">厦门大学</h3>
+<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C厦门大学%7C&amp;zoom=14&amp;sensor=false" /></p>
 
 <p>厦门大学已经成为了厦门一个知名的景点了，很多游客慕名而来。厦大的美丽，让我想起了台大，同样是树木葱郁的校园，刚从校园走出来的我，又一次来到一个校园，还把自己当作是校园中的一份子。</p>
 
 <p>厦大的芙蓉隧道真的是很惊人，里面的涂鸦充分展示了大学生的热情。喜欢拍照的话，可以在里面摆各种pose，可以把自己融入涂鸦当中去。</p>
 
-<h3>环岛南路</h3>
-
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&maptype=roadmap&markers=size:mid%7Ccolor:red%7C环岛路南%7C&zoom=13&sensor=false" /></p>
+<h3 id="section-2">环岛南路</h3>
+<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C环岛路南%7C&amp;zoom=13&amp;sensor=false" /></p>
 
 <p>沿着环岛南路，有一片很大的沙滩，虽然海水不及台湾的清澈，沙滩看起来也比较脏。但是玩水的人还挺多的，似乎只要是海，人就会对它产生一种发自本能的喜爱。我来厦门的目的，也就是想看看海。</p>
 
-<h3>曾厝垵</h3>
-
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&maptype=roadmap&markers=size:mid%7Ccolor:red%7C曾厝垵%7C&zoom=13&sensor=false" /></p>
+<h3 id="section-3">曾厝垵</h3>
+<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C曾厝垵%7C&amp;zoom=13&amp;sensor=false" /></p>
 
 <p>从沙滩上来，太阳已经下山了。沿着环岛难路，一路走到了曾厝垵。在点评上看到一家叫做<code>亚尖大排档</code>的店，有不错的评价，还有团购券，晚餐就在那里解决。菜的味道还算不错，只是上菜速度有点慢。</p>
 ]]></content>
@@ -1022,22 +1153,21 @@
 
 <p>使用networks加入node和edge都很方便，并且networkx宣称他的node可以支持任何python的hashable的类型，于是我一开始使用custom的node.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="n">args</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>
+</span><span class="line">        <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="n">args</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>可是这样写并不正确，他好像对自定义的类支持不太好（或许是不支持自定义类）。于是在网上查了好久，才看到要实现给一个node添加附加信息的方法。</p>
 
@@ -1045,59 +1175,55 @@
 
 <p>于是在加入node的时候，应该用</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">&quot;label&quot;</span><span class="p">,</span><span class="n">foo</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="n">bar</span><span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">&quot;label&quot;</span><span class="p">,</span><span class="n">foo</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="n">bar</span><span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>于是把添加node改写成</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span><span class="n">user</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span><span class="n">user</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>添加node和edge是没问题了，结果在保存<code>gml</code>文件时又出问题了，里面的字符串竟然不支持utf-8… 官方是这么解释的：
+&gt;Notes</p>
 
-<p>添加node和edge是没问题了，结果在保存<code>gml</code>文件时又出问题了，里面的字符串竟然不支持utf-8… 官方是这么解释的：</p>
+<blockquote>
+  <p>GML specifications indicate that the file should only use 7bit ASCII text encoding.iso8859-1 (latin-1).</p>
+</blockquote>
 
-<blockquote><p>Notes</p>
-
-<p>GML specifications indicate that the file should only use 7bit ASCII text encoding.iso8859-1 (latin-1).</p>
-
-<p>This implementation does not support all Python data types as GML data. Nodes, node attributes, edge attributes, and graph attributes must be either dictionaries or single stings or numbers. If they are not an attempt is made to represent them as strings. For example, a list as edge data G[1][2][‘somedata’]=[1,2,3], will be
+<blockquote>
+  <p>This implementation does not support all Python data types as GML data. Nodes, node attributes, edge attributes, and graph attributes must be either dictionaries or single stings or numbers. If they are not an attempt is made to represent them as strings. For example, a list as edge data G[1][2][‘somedata’]=[1,2,3], will be 
 represented in the GML file as:</p>
+</blockquote>
 
-<p><a href="http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html">http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html</a></p></blockquote>
+<blockquote>
+  <p><a href="http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html">http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html</a></p>
+</blockquote>
 
 <p>于是我只好抽取是ascii的编码的用户信息。然后把类的定义改写成：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;uid&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">],</span>\
-</span><span class='line'>                   <span class="s">&#39;n_follows&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_follows&#39;</span><span class="p">],</span>\
-</span><span class='line'>                   <span class="s">&#39;n_fans&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_fans&#39;</span><span class="p">],</span>\
-</span><span class='line'>                   <span class="s">&#39;n_weibos&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_weibos&#39;</span><span class="p">]}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>	
+</span><span class="line">        <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;uid&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">],</span>\
+</span><span class="line">               <span class="s">&#39;n_follows&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_follows&#39;</span><span class="p">],</span>\
+</span><span class="line">                  <span class="s">&#39;n_fans&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_fans&#39;</span><span class="p">],</span>\
+</span><span class="line">                <span class="s">&#39;n_weibos&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_weibos&#39;</span><span class="p">]}</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>这样终于正常创建网络，读写gml文件了。</p>
 ]]></content>
@@ -1108,91 +1234,83 @@ represented in the GML file as:</p>
     <link href="http://2naive.me/blog/2013/10/10/new-fselector-r/"/>
     <updated>2013-10-10T23:43:00+08:00</updated>
     <id>http://2naive.me/blog/2013/10/10/new-fselector-r</id>
-    <content type="html"><![CDATA[<p>最早认识R语言是看到一本书叫做<i>&ldquo;Machine Learning for Hackers&rdquo;</i>, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature Selection方面的工具时，看到有人推荐R的package <a href=http://cran.r-project.org/web/packages/FSelector/FSelector.pdf>FSelector</a> . 于是就载下来尝试一下，结果发现真的很方便。</p>
+    <content type="html"><![CDATA[<p>最早认识R语言是看到一本书叫做<i>“Machine Learning for Hackers”</i>, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature Selection方面的工具时，看到有人推荐R的package &lt;a href=http://cran.r-project.org/web/packages/FSelector/FSelector.pdf&gt;FSelector&lt;/a&gt; . 于是就载下来尝试一下，结果发现真的很方便。</p>
 
-<h4>R可以方便的使用现成的benchmark（比如<code>iris</code>），只要一句话就可以轻松导入数据！</h4>
+<h4 id="rbenchmarkiris">R可以方便的使用现成的benchmark（比如<code>iris</code>），只要一句话就可以轻松导入数据！</h4>
 
 <p>下面是一个简单的例子使用FSelector, 采用cvs来寻找feature的子集。其中第一个参数Species~表示数据集iris中的类别(label).</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='r'><span class='line'>library<span class="p">(</span>FSelector<span class="p">)</span>
-</span><span class='line'>data<span class="p">(</span>iris<span class="p">)</span>
-</span><span class='line'>subset <span class="o">&lt;-</span> cfs<span class="p">(</span>Species<span class="o">~</span>.<span class="p">,</span> iris<span class="p">)</span>
-</span><span class='line'>f <span class="o">&lt;-</span> as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">)</span>
-</span><span class='line'>print<span class="p">(</span>f<span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="r"><span class="line">library<span class="p">(</span>FSelector<span class="p">)</span>
+</span><span class="line">data<span class="p">(</span>iris<span class="p">)</span>
+</span><span class="line">subset <span class="o">&lt;-</span> cfs<span class="p">(</span>Species<span class="o">~</span>.<span class="p">,</span> iris<span class="p">)</span>
+</span><span class="line">f <span class="o">&lt;-</span> as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">)</span>
+</span><span class="line">print<span class="p">(</span>f<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 <p>下面这个例子比较高阶，可以自己指定评价feature子集的好坏。采用best first search的策略来寻找子集。其中evaluator训练了rpart model，通过计算error rate来评价feature的好坏。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='r'><span class='line'>library<span class="p">(</span>FSelector<span class="p">)</span>
-</span><span class='line'>library<span class="p">(</span>rpart<span class="p">)</span>
-</span><span class='line'>data<span class="p">(</span>iris<span class="p">)</span>
-</span><span class='line'>evaluator <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>subset<span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="c1">#k-fold cross validation</span>
-</span><span class='line'>  k <span class="o">&lt;-</span> <span class="m">5</span>
-</span><span class='line'>  splits <span class="o">&lt;-</span> runif<span class="p">(</span>nrow<span class="p">(</span>iris<span class="p">))</span>
-</span><span class='line'>  results <span class="o">=</span> sapply<span class="p">(</span><span class="m">1</span><span class="o">:</span>k<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>i<span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    test.idx <span class="o">&lt;-</span> <span class="p">(</span>splits <span class="o">&gt;=</span> <span class="p">(</span>i <span class="o">-</span> <span class="m">1</span><span class="p">)</span> <span class="o">/</span> k<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>splits <span class="o">&lt;</span> i <span class="o">/</span> k<span class="p">)</span>
-</span><span class='line'>    train.idx <span class="o">&lt;-</span> <span class="o">!</span>test.idx
-</span><span class='line'>    test <span class="o">&lt;-</span> iris<span class="p">[</span>test.idx<span class="p">,</span> <span class="p">,</span> drop<span class="o">=</span><span class="kc">FALSE</span><span class="p">]</span>
-</span><span class='line'>    train <span class="o">&lt;-</span> iris<span class="p">[</span>train.idx<span class="p">,</span> <span class="p">,</span> drop<span class="o">=</span><span class="kc">FALSE</span><span class="p">]</span>
-</span><span class='line'>    tree <span class="o">&lt;-</span> rpart<span class="p">(</span>as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">),</span> train<span class="p">)</span>
-</span><span class='line'>    error.rate <span class="o">=</span> sum<span class="p">(</span>test<span class="o">$</span>Species <span class="o">!=</span> predict<span class="p">(</span>tree<span class="p">,</span> test<span class="p">,</span> type<span class="o">=</span><span class="s">&quot;c&quot;</span><span class="p">))</span> <span class="o">/</span> nrow<span class="p">(</span>test<span class="p">)</span>
-</span><span class='line'>    <span class="kr">return</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> error.rate<span class="p">)</span>
-</span><span class='line'>  <span class="p">})</span>
-</span><span class='line'>  <span class="c1">#print(subset)</span>
-</span><span class='line'>  <span class="c1">#print(mean(results))</span>
-</span><span class='line'>  <span class="kr">return</span><span class="p">(</span>mean<span class="p">(</span>results<span class="p">))</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>subset <span class="o">&lt;-</span> best.first.search<span class="p">(</span>names<span class="p">(</span>iris<span class="p">)[</span><span class="m">-5</span><span class="p">],</span> evaluator<span class="p">)</span>
-</span><span class='line'>f <span class="o">&lt;-</span> as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">)</span>
-</span><span class='line'>print<span class="p">(</span>f<span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+</pre></td><td class="code"><pre><code class="r"><span class="line">library<span class="p">(</span>FSelector<span class="p">)</span>
+</span><span class="line">library<span class="p">(</span>rpart<span class="p">)</span>
+</span><span class="line">data<span class="p">(</span>iris<span class="p">)</span>
+</span><span class="line">evaluator <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>subset<span class="p">)</span> <span class="p">{</span>
+</span><span class="line">  <span class="c1">#k-fold cross validation</span>
+</span><span class="line">  k <span class="o">&lt;-</span> <span class="m">5</span>
+</span><span class="line">  splits <span class="o">&lt;-</span> runif<span class="p">(</span>nrow<span class="p">(</span>iris<span class="p">))</span>
+</span><span class="line">  results <span class="o">=</span> sapply<span class="p">(</span><span class="m">1</span><span class="o">:</span>k<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>i<span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    test.idx <span class="o">&lt;-</span> <span class="p">(</span>splits <span class="o">&gt;=</span> <span class="p">(</span>i <span class="o">-</span> <span class="m">1</span><span class="p">)</span> <span class="o">/</span> k<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>splits <span class="o">&lt;</span> i <span class="o">/</span> k<span class="p">)</span>
+</span><span class="line">    train.idx <span class="o">&lt;-</span> <span class="o">!</span>test.idx
+</span><span class="line">    test <span class="o">&lt;-</span> iris<span class="p">[</span>test.idx<span class="p">,</span> <span class="p">,</span> drop<span class="o">=</span><span class="kc">FALSE</span><span class="p">]</span>
+</span><span class="line">    train <span class="o">&lt;-</span> iris<span class="p">[</span>train.idx<span class="p">,</span> <span class="p">,</span> drop<span class="o">=</span><span class="kc">FALSE</span><span class="p">]</span>
+</span><span class="line">    tree <span class="o">&lt;-</span> rpart<span class="p">(</span>as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">),</span> train<span class="p">)</span>
+</span><span class="line">    error.rate <span class="o">=</span> sum<span class="p">(</span>test<span class="o">$</span>Species <span class="o">!=</span> predict<span class="p">(</span>tree<span class="p">,</span> test<span class="p">,</span> type<span class="o">=</span><span class="s">&quot;c&quot;</span><span class="p">))</span> <span class="o">/</span> nrow<span class="p">(</span>test<span class="p">)</span>
+</span><span class="line">    <span class="kr">return</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> error.rate<span class="p">)</span>
+</span><span class="line">  <span class="p">})</span>
+</span><span class="line">  <span class="c1">#print(subset)</span>
+</span><span class="line">  <span class="c1">#print(mean(results))</span>
+</span><span class="line">  <span class="kr">return</span><span class="p">(</span>mean<span class="p">(</span>results<span class="p">))</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">subset <span class="o">&lt;-</span> best.first.search<span class="p">(</span>names<span class="p">(</span>iris<span class="p">)[</span><span class="m">-5</span><span class="p">],</span> evaluator<span class="p">)</span>
+</span><span class="line">f <span class="o">&lt;-</span> as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">)</span>
+</span><span class="line">print<span class="p">(</span>f<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>###iris
+This famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
 
-
-<h3>iris</h3>
-
-<p>This famous (Fisher&rsquo;s or Anderson&rsquo;s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
-
-<h3>cfs</h3>
-
+<h3 id="cfs">cfs</h3>
 <p>The algorithm finds attribute subset using correlation and entropy measures for continous and discrete data.</p>
 
-<h2>Hints</h2>
-
+<h2 id="hints">Hints</h2>
 <ul>
-<li>虽然原生的R语言的IDE也不错用，但是发现一个更加强大的IDE，RStudio, 真是可以媲美matlab的IDE了。</li>
-<li>R语言也可以在命令行中用batch的方式来运行，具体指令是<code>R CMD BATCH [options] infile [outfile]</code>, infile就是R的脚本文件，R的输出一般无法显示到STDOUT中，是以文件的形式存起来。如果没有指定outfile，就会以原文件名的方式来命名。在脚本执行的时候，很多无关紧要的内容也会被输出，可以使用options命令的<code>--slave</code>. 在最后的输出中，他也会很好心的帮你计算运行时间，如果不需要，也可以加<code>--no-timing</code>. 详见<a href="http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html">http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html</a></li>
+  <li>虽然原生的R语言的IDE也不错用，但是发现一个更加强大的IDE，RStudio, 真是可以媲美matlab的IDE了。</li>
+  <li>R语言也可以在命令行中用batch的方式来运行，具体指令是<code>R CMD BATCH [options] infile [outfile]</code>, infile就是R的脚本文件，R的输出一般无法显示到STDOUT中，是以文件的形式存起来。如果没有指定outfile，就会以原文件名的方式来命名。在脚本执行的时候，很多无关紧要的内容也会被输出，可以使用options命令的<code>--slave</code>. 在最后的输出中，他也会很好心的帮你计算运行时间，如果不需要，也可以加<code>--no-timing</code>. 详见<a href="http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html">http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html</a></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -1201,193 +1319,180 @@ represented in the GML file as:</p>
     <link href="http://2naive.me/blog/2013/10/07/google-map/"/>
     <updated>2013-10-07T02:21:00+08:00</updated>
     <id>http://2naive.me/blog/2013/10/07/google-map</id>
-    <content type="html"><![CDATA[<h3>需要科学上网才能正常显示Google Map(API被墙了T_T)</h3>
+    <content type="html"><![CDATA[<h3 id="google-mapapitt">需要科学上网才能正常显示Google Map(API被墙了T_T)</h3>
 
 <p>想在octopress中插入地图信息，考虑到之后可能会在博客中加入关于游记的文章，如果文章能有形象的地图信息会有很好的效果。于是在网上搜寻octopress的地图插件，发现一个叫做<a herf="http://mguentner.github.io/octolayer/">Octolayer</a>的插件，想载下来试试，不过github刚好出问题，我无法获取代码，再加上他不是用google map. 作为一个google的忠实脑残粉，我就决定自己写一个。</p>
 
 <p>研究了一下<a href="https://developers.google.com/maps/documentation/javascript/">google map API</a>，发现难度并不大。就是在我的文章内容中加入一个div，然后用js去render. 照着sample code改了一下代码，主要是为了从div的属性中读取经纬度坐标。（需要jQuery）</p>
 
-<figure class='code'><figcaption><span>gmap.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">initialize</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">lat</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#map-canvas&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;lat&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">lng</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#map-canvas&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;lng&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lat</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lng</span><span class="p">);</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">loc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span><span class="nx">lat</span><span class="p">,</span><span class="nx">lng</span><span class="p">);</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">mapOptions</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">zoom</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">center</span><span class="o">:</span> <span class="nx">loc</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">mapTypeId</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeId</span><span class="p">.</span><span class="nx">ROADMAP</span>
-</span><span class='line'>  <span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;map-canvas&#39;</span><span class="p">),</span>
-</span><span class='line'>      <span class="nx">mapOptions</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
-</span><span class='line'>      <span class="nx">position</span><span class="o">:</span> <span class="nx">loc</span><span class="p">,</span>
-</span><span class='line'>      <span class="nx">map</span><span class="o">:</span> <span class="nx">map</span><span class="p">,</span>
-</span><span class='line'>      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Hello World!&#39;</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addDomListener</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="nx">initialize</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>gmap.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">function</span> <span class="nx">initialize</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">  <span class="kd">var</span> <span class="nx">lat</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#map-canvas&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;lat&quot;</span><span class="p">);</span>
+</span><span class="line">  <span class="kd">var</span> <span class="nx">lng</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#map-canvas&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;lng&quot;</span><span class="p">);</span>
+</span><span class="line">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lat</span><span class="p">);</span>
+</span><span class="line">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lng</span><span class="p">);</span>
+</span><span class="line">  <span class="kd">var</span> <span class="nx">loc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span><span class="nx">lat</span><span class="p">,</span><span class="nx">lng</span><span class="p">);</span>
+</span><span class="line">  <span class="kd">var</span> <span class="nx">mapOptions</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">zoom</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
+</span><span class="line">    <span class="nx">center</span><span class="o">:</span> <span class="nx">loc</span><span class="p">,</span>
+</span><span class="line">    <span class="nx">mapTypeId</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeId</span><span class="p">.</span><span class="nx">ROADMAP</span>
+</span><span class="line">  <span class="p">};</span>
+</span><span class="line">
+</span><span class="line">  <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;map-canvas&#39;</span><span class="p">),</span>
+</span><span class="line">      <span class="nx">mapOptions</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">  <span class="kd">var</span> <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
+</span><span class="line">      <span class="nx">position</span><span class="o">:</span> <span class="nx">loc</span><span class="p">,</span>
+</span><span class="line">      <span class="nx">map</span><span class="o">:</span> <span class="nx">map</span><span class="p">,</span>
+</span><span class="line">      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Hello World!&#39;</span>
+</span><span class="line">  <span class="p">});</span>
+</span><span class="line">
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addDomListener</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="nx">initialize</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 <!--more-->
-
 
 <p><b>但是上面的方法对于需要多个marker时会比较难处理，于是进行如下修改(10月7日下午修改)</b></p>
 
-<figure class='code'><figcaption><span>gmap.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">initialize</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;div#map-canvas&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="k">return</span><span class="p">;</span> <span class="c1">//check there is map-canves</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">locations</span><span class="o">=</span><span class="p">[];</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1">//get locations from div.map-marker</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;div.map-marker&quot;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">));</span>
-</span><span class='line'>    <span class="nx">locations</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">),</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;lng&#39;</span><span class="p">)]);</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;map-canvas&#39;</span><span class="p">),</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">zoom</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span><span class='line'>      <span class="nx">center</span><span class="o">:</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span><span class="nx">locations</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="nx">locations</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
-</span><span class='line'>      <span class="nx">mapTypeId</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeId</span><span class="p">.</span><span class="nx">ROADMAP</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">infowindow</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">InfoWindow</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">locations</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
-</span><span class='line'>        <span class="nx">position</span><span class="o">:</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span><span class="nx">locations</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="nx">locations</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
-</span><span class='line'>        <span class="nx">map</span><span class="o">:</span> <span class="nx">map</span>
-</span><span class='line'>      <span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">marker</span><span class="p">,</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">marker</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>          <span class="nx">infowindow</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">locations</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
-</span><span class='line'>          <span class="nx">infowindow</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">marker</span><span class="p">);</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>      <span class="p">})(</span><span class="nx">marker</span><span class="p">,</span> <span class="nx">i</span><span class="p">));</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addDomListener</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="nx">initialize</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>gmap.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">function</span> <span class="nx">initialize</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;div#map-canvas&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="k">return</span><span class="p">;</span> <span class="c1">//check there is map-canves</span>
+</span><span class="line">
+</span><span class="line">  <span class="kd">var</span> <span class="nx">locations</span><span class="o">=</span><span class="p">[];</span>
+</span><span class="line">
+</span><span class="line">  <span class="c1">//get locations from div.map-marker</span>
+</span><span class="line">  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;div.map-marker&quot;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class="line">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">));</span>
+</span><span class="line">    <span class="nx">locations</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">),</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;lng&#39;</span><span class="p">)]);</span>
+</span><span class="line">  <span class="p">});</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">  <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;map-canvas&#39;</span><span class="p">),</span> <span class="p">{</span>
+</span><span class="line">      <span class="nx">zoom</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+</span><span class="line">      <span class="nx">center</span><span class="o">:</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span><span class="nx">locations</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="nx">locations</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
+</span><span class="line">      <span class="nx">mapTypeId</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeId</span><span class="p">.</span><span class="nx">ROADMAP</span>
+</span><span class="line">    <span class="p">});</span>
+</span><span class="line">
+</span><span class="line">  <span class="kd">var</span> <span class="nx">infowindow</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">InfoWindow</span><span class="p">();</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">locations</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">      <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
+</span><span class="line">        <span class="nx">position</span><span class="o">:</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span><span class="nx">locations</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="nx">locations</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
+</span><span class="line">        <span class="nx">map</span><span class="o">:</span> <span class="nx">map</span>
+</span><span class="line">      <span class="p">});</span>
+</span><span class="line">
+</span><span class="line">      <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">marker</span><span class="p">,</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">marker</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">          <span class="nx">infowindow</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">locations</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+</span><span class="line">          <span class="nx">infowindow</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">marker</span><span class="p">);</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">      <span class="p">})(</span><span class="nx">marker</span><span class="p">,</span> <span class="nx">i</span><span class="p">));</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">addDomListener</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="nx">initialize</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>把<code>gmap.js</code>放在<code>source/javascripts</code>中，并且在<code>source/_includes/head.html</code>中加入下面几行：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">async=</span><span class="s">&quot;true&quot;</span> <span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/javascripts/gmap.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">async=</span><span class="s">&quot;true&quot;</span> <span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/javascripts/gmap.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>如果已经在前面加过jQuery的话，就不用加第一行了。
 然后在文章中，加入下面这段html代码。
 其中div.map-marker用来传递每个marker的信息（lat和lng表示地点的经纬度，name表示marker的名字，这些是目前是需要自己输入的）; div#map-canvas用来最终显示地图。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;map-marker&quot;</span> <span class="na">lat=</span><span class="s">&quot;-33.890542&quot;</span> <span class="na">lng=</span><span class="s">&quot;151.274856&quot;</span> <span class="na">name =</span><span class="err"> </span><span class="s">&quot;BondiBeach&quot;</span> <span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;map-marker&quot;</span> <span class="na">name =</span><span class="err"> </span><span class="s">&quot;CoogeeBeach&quot;</span> <span class="na">lat=</span><span class="err"> </span><span class="s">&quot;-33.923036&quot;</span> <span class="na">lng=</span><span class="s">&quot;151.259052&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map-canvas&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;map-marker&quot;</span> <span class="na">lat=</span><span class="s">&quot;-33.890542&quot;</span> <span class="na">lng=</span><span class="s">&quot;151.274856&quot;</span> <span class="na">name =</span><span class="err"> </span><span class="s">&quot;BondiBeach&quot;</span> <span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class="line"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;map-marker&quot;</span> <span class="na">name =</span><span class="err"> </span><span class="s">&quot;CoogeeBeach&quot;</span> <span class="na">lat=</span><span class="err"> </span><span class="s">&quot;-33.923036&quot;</span> <span class="na">lng=</span><span class="s">&quot;151.259052&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class="line"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map-canvas&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>我以为这样子应该能显示地图了，可是实际上却无法显示。这个问题我折腾了很久，最后才发现需要给div加css. 所以要在<code>source/stylesheets</code>中创建一个css样式文件（被HTML坑了）。</p>
 
-<figure class='code'><figcaption><span>gmap.css</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#map-canvas</span> <span class="p">{</span> <span class="k">margin</span><span class="o">:</span> <span class="m">20px</span> <span class="m">0</span> <span class="m">20px</span> <span class="m">0</span><span class="p">;</span> <span class="k">height</span><span class="o">:</span> <span class="m">300px</span><span class="p">;}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>gmap.css</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="nf">#map-canvas</span> <span class="p">{</span> <span class="k">margin</span><span class="o">:</span> <span class="m">20px</span> <span class="m">0</span> <span class="m">20px</span> <span class="m">0</span><span class="p">;</span> <span class="k">height</span><span class="o">:</span> <span class="m">300px</span><span class="p">;}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>所以在<code>source/_includes/head.html</code>中也要加入下面这行：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/gmap.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/gmap.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>这样子应该可以出现下面的结果了：</p>
 
-<div class="map-marker" lat="-33.890542" lng="151.274856" name = "BondiBeach" ></div>
-
-
-<div class="map-marker" name = "CoogeeBeach" lat= "-33.923036" lng="151.259052"></div>
-
-
+<div class="map-marker" lat="-33.890542" lng="151.274856" name="BondiBeach"></div>
+<div class="map-marker" name="CoogeeBeach" lat="-33.923036" lng="151.259052"></div>
 <div id="map-canvas"></div>
-
 
 <p>目前存在的问题是，因为都使用id叫map-canvas的div, 所以在同个页面中显示多个地图就会出错了。之后再想办法改进。又快天亮了，先睡了zzz</p>
 ]]></content>
@@ -1403,77 +1508,61 @@ represented in the GML file as:</p>
 <p>但是毕竟西藏不是一般的地方，除了高原反应和大太阳之外，路途遥远，沿路也不免遇到土匪野兽之类的东西，所以计划必须周全，于是我从现在开始收集进藏的必备知识，待这些知识成熟之后，再亲自赴藏，到时候也许会和小伙伴一起，也许会和妹子同行，也许就我一个人。此文会不断补充，希望广大网友们多多给些意见。</p>
 
 <!-- more -->
+<p>##基础篇
++ <b>时间</b> 最适合去西藏旅游的时间是10月份，空气含氧量是一年内最高的(66%-67%)。
++ <b>携带物品</b> 高原反映的药物(红景天)，消炎软膏，晕车药，唇膏，墨镜，防晒霜（SPA50+）</p>
 
-
-<h2>基础篇</h2>
-
-<ul>
-<li><b>时间</b> 最适合去西藏旅游的时间是10月份，空气含氧量是一年内最高的(66%-67%)。</li>
-<li><b>携带物品</b> 高原反映的药物(红景天)，消炎软膏，晕车药，唇膏，墨镜，防晒霜（SPA50+）</li>
-</ul>
-
-
-<h4>应对高原反应（摘自《背包十年》）</h4>
-
+<h4 id="section">应对高原反应（摘自《背包十年》）</h4>
 <ol>
-<li>提前至少10天服用高原红景天</li>
-<li>进入高原第一天，不要吃太多</li>
-<li>进入高原第一天不要在超过海拔4500米以上的地段过夜</li>
-<li>除非要死，最好不要吸氧</li>
-<li>坚持，一定要坚持，没什么大不了</li>
+  <li>提前至少10天服用高原红景天</li>
+  <li>进入高原第一天，不要吃太多</li>
+  <li>进入高原第一天不要在超过海拔4500米以上的地段过夜</li>
+  <li>除非要死，最好不要吸氧</li>
+  <li>坚持，一定要坚持，没什么大不了</li>
 </ol>
 
-
-<h2>路线篇</h2>
-
+<h2 id="section-1">路线篇</h2>
 <p>首先研究了一下进藏路线，我是比较喜欢享受过程，如果直接坐飞机到达拉萨，会感觉没有那么大的成就感，所以希望通过陆上的方式过去。网上了解到，大致可以分为3条路线：</p>
 
-<h3>川藏方向</h3>
+<h3 id="section-2">川藏方向</h3>
+<p>#####318国道
+这几天看书和网络，看到最多的就是318国道。而且从上海的人民广场出发，一路可以开到西藏。</p>
 
-<h5>318国道</h5>
-
-<p>这几天看书和网络，看到最多的就是318国道。而且从上海的人民广场出发，一路可以开到西藏。</p>
-
-<p>318国道始建于1993年，1996年建成。起点为上海人民广场，途径浙江、安徽、湖北、重庆、四川、终点为西藏聂拉木县樟木镇友谊桥，全长5476千米，是中国目前最长的国道。因其横跨中国东中西部，揽括了平原、丘陵、盆地、高原景观，包含了江浙水乡文化、天府盆地文化、西藏人文景观，拥有从成都平原到青藏高原的高山峡谷一路的惊、险、绝、美、雄、壮的景观，而被中国国家地理杂志在2006年第10期评为中国的景观大道。<a href=
-http://baike.baidu.com/view/157811.htm>百度百科</a></p>
-
-<h5>川藏公路</h5>
-
-<p>川藏公路是连通四川成都与西藏拉萨之间汽车通行的第一条公路。川藏线始于四川成都，经雅安、康定，在新都桥分为南北两线：川藏北线经甘孜、德格、进入西藏昌都、邦达；川藏南线属318国道，经雅安、理塘、巴塘、进入西藏芝康，后在邦达与北线会合，再经巴宿、波密、林芝到拉萨。北线全长2412公里，沿途最高点是海拔4916米的雀儿山；南线全长2159公里，进藏多走南线。川藏线是中国人的景观大道，沿途景色迷人，旅游景点众多（例如稻城亚丁，海螺沟，丹巴，四姑娘山等）。<a href="http://baike.baidu.com/view/30712.htm">http://baike.baidu.com/view/30712.htm</a></p>
+<p>318国道始建于1993年，1996年建成。起点为上海人民广场，途径浙江、安徽、湖北、重庆、四川、终点为西藏聂拉木县樟木镇友谊桥，全长5476千米，是中国目前最长的国道。因其横跨中国东中西部，揽括了平原、丘陵、盆地、高原景观，包含了江浙水乡文化、天府盆地文化、西藏人文景观，拥有从成都平原到青藏高原的高山峡谷一路的惊、险、绝、美、雄、壮的景观，而被中国国家地理杂志在2006年第10期评为中国的景观大道。&lt;a href=
+http://baike.baidu.com/view/157811.htm&gt;百度百科&lt;/a&gt;
+#####川藏公路
+川藏公路是连通四川成都与西藏拉萨之间汽车通行的第一条公路。川藏线始于四川成都，经雅安、康定，在新都桥分为南北两线：川藏北线经甘孜、德格、进入西藏昌都、邦达；川藏南线属318国道，经雅安、理塘、巴塘、进入西藏芝康，后在邦达与北线会合，再经巴宿、波密、林芝到拉萨。北线全长2412公里，沿途最高点是海拔4916米的雀儿山；南线全长2159公里，进藏多走南线。川藏线是中国人的景观大道，沿途景色迷人，旅游景点众多（例如稻城亚丁，海螺沟，丹巴，四姑娘山等）。<a href="http://baike.baidu.com/view/30712.htm">http://baike.baidu.com/view/30712.htm</a></p>
 
 <p>走川藏线会遇到威猛的康巴人</p>
 
-<h3>青藏方向</h3>
-
+<h3 id="section-3">青藏方向</h3>
 <p>青藏线可以走青藏公路和青藏铁路，不过我还是比较偏好铁路，毕竟不用自己开车，比较省事。</p>
 
 <p>在格尔木的武警招待所，可以找到常年跑青藏线的私车。需要和中间人谈价，不能直接和私车车主谈。从格尔木到拉萨大约1000公里，沿途经过可可西里、五道梁、沱沱河、雁石坪、唐古拉山口、那曲、当雄等地。<b>（司机开车会睡着——《十年背包》）</b></p>
 
-<p><a href=http://baike.baidu.com/view/47084.htm>青藏公路</a></p>
+<p>&lt;a href=http://baike.baidu.com/view/47084.htm&gt;青藏公路&lt;/a&gt;</p>
 
-<p><a href=http://baike.baidu.com/view/2580.htm>青藏铁路</a></p>
+<p>&lt;a href=http://baike.baidu.com/view/2580.htm&gt;青藏铁路&lt;/a&gt;</p>
 
 <p>走青藏线会遇到热情好客的安多部</p>
 
-<h3>新藏方向</h3>
+<h3 id="section-4">新藏方向</h3>
 
 <p>新藏线就是从新疆开始到西藏，如果去西藏之前会路过新疆的话，可以考虑从这条路进藏。目前只有新藏公路，铁路的话还在修建中。</p>
 
-<p><a href=http://baike.baidu.com/view/196573.htm>新藏公路</a></p>
+<p>&lt;a href=http://baike.baidu.com/view/196573.htm&gt;新藏公路&lt;/a&gt;</p>
 
-<h2>POI</h2>
-
+<h2 id="poi">POI</h2>
 <ul>
-<li>玛吉阿米</li>
-<li>拉母拉错</li>
-<li>纳木错</li>
-<li>大昭寺</li>
+  <li>玛吉阿米</li>
+  <li>拉母拉错</li>
+  <li>纳木错</li>
+  <li>大昭寺</li>
 </ul>
 
-
-<h2>参考博客</h2>
-
+<h2 id="section-5">参考博客</h2>
 <p><a href="http://blog.sina.com.cn/s/blog_4c565d700100x2n1.html">http://blog.sina.com.cn/s/blog_4c565d700100x2n1.html</a></p>
+
 ]]></content>
   </entry>
   
@@ -1501,17 +1590,16 @@ http://baike.baidu.com/view/157811.htm>百度百科</a></p>
 加404页面的方法很简单，只要在<code>source</code>目录下面创建<code>404.html</code>文件，当发生404错误时，octopress就会自动跳转到<code>404.html</code>这个页面。
 具体内容如下：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>---
-</span><span class='line'>layout: page
-</span><span class='line'>title: Sorry，404错误！你要访问的网页不存在!
-</span><span class='line'>footer: false
-</span><span class='line'>---</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">---
+</span><span class="line">layout: page
+</span><span class="line">title: Sorry，404错误！你要访问的网页不存在!
+</span><span class="line">footer: false
+</span><span class="line">---</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>其中的<code>title</code>可以改成任何自己想要的内容。</p>
 ]]></content>
@@ -1524,79 +1612,13 @@ http://baike.baidu.com/view/157811.htm>百度百科</a></p>
     <id>http://2naive.me/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong</id>
     <content type="html"><![CDATA[<p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，心情不好的时候做些geek的事情转移一下注意力也不错，现在有点小开心。</p>
 
-<p>我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多，就小改了一下。
-<a href=http://jekyllrb.com/docs/migrations/><a href="http://jekyllrb.com/docs/migrations/">http://jekyllrb.com/docs/migrations/</a></a></p>
+<p>我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多，就小改了一下。</p>
+
+<p><a href="http://jekyllrb.com/docs/migrations/">http://jekyllrb.com/docs/migrations/</a></p>
 
 <p>不过目前还有个问题，从wordpress转过来的文章，在超链接上还是有点问题，如果标题中有中文，转完后的文件名是unicode编码，之后会找不到超链接。于是我手动把那些文件名改成了英文，幸好文章不多，大概改了半小时改完了。</p>
 
 <p>接下来要了解markdown语法啦，用这个写博客真的很酷！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[改版octopress 之 安装]]></title>
-    <link href="http://2naive.me/blog/2013/10/01/change-to-octopress/"/>
-    <updated>2013-10-01T00:00:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/01/change-to-octopress</id>
-    <content type="html"><![CDATA[<p>心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。</p>
-
-<p>但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。</p>
-
-<p>首先从git上抓来octopress</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git@github.com:imathis/octopress.git</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后进入octopress目录下，build源代码</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
-</span><span class='line'>bundle install
-</span><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>以上几步都没有问题，然后执行</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后问题就来了，出现了错误</p>
-
-<p>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
-rake aborted!
-undefined method `spawn&#8217; for Process:Module</p>
-
-<p>因为octopress需要ruby 1.9.3，而我原本mac上的ruby是1.8.3. 所以要把ruby更新到1.9.3才能用</p>
-
-<p>网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.</p>
-
-<p>我安装stable版本的rvm</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>curl -L https://get.rvm.io | bash -s stable</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后将rvm写到用户环境中。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>echo "source $HOME/.rvm/scripts/rvm" &gt;&gt; ~/.bash_profile</span></code></pre></td></tr></table></div></figure>
-
-
-<p>具体详见 <a href="https://rvm.io/rvm/install"><a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a></a></p>
-
-<p>然后使用rvm来安装1.9.3版本的ruby.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rvm install ruby-1.9.3-p448</span></code></pre></td></tr></table></div></figure>
-
-
-<p>不过在这之前，要先确定安装了xcode的command line tools.</p>
-
-<p>可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。</p>
 ]]></content>
   </entry>
   

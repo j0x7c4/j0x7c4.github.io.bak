@@ -19,19 +19,25 @@ meta:
 但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。
 
 首先从git上抓来octopress
+
 ```
 git clone git@github.com:imathis/octopress.git
 ```
+
 然后进入octopress目录下，build源代码
+
 ```
 cd octopress
 bundle install
 rake install
 ```
+
 以上几步都没有问题，然后执行
+
 ```
 rake preview
 ```
+
 然后问题就来了，出现了错误
 
 Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
@@ -43,19 +49,25 @@ undefined method `spawn' for Process:Module
 网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.
 
 我安装stable版本的rvm
+
 ```
 curl -L https://get.rvm.io | bash -s stable
 ```
+
 然后将rvm写到用户环境中。
+
 ```
 echo "source $HOME/.rvm/scripts/rvm" &gt;&gt; ~/.bash_profile
 ```
+
 具体详见 <a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a>
 
 然后使用rvm来安装1.9.3版本的ruby.
+
 ```
 rvm install ruby-1.9.3-p448
 ```
+
 不过在这之前，要先确定安装了xcode的command line tools.
 
 可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。

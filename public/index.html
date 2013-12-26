@@ -7,7 +7,16 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="前几天参加了一个hackthon, 在大约24小时的时间内，完成了一个chrome插件，插件扩展大众点评现有的一些功能，比如增加了街景视图，网页上的右键搜索菜单，和本地的点评商户收藏夹。具体可以自己使用看看，不过目前还没上架，可以下载源码来自己玩玩。https://github.com/ &hellip;">
+	<meta name="description" content="在Octopress中显示LaTeX的方法，比想象中的要简单。只要几步，就能完成。 在head中加入MathJax MathJax用来对LaTeX脚本进行渲染。 可以把下面的代码放到source/_include/custom/head.html中。 1
+2
+3
+4
+5
+6
+7
+8
+9
+10 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -20,7 +29,36 @@
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="/javascripts/gmap.js"></script>
-	
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -88,6 +126,161 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/2013/12/26/add-latex/">
+		
+			在Octopress中使用LaTeX</a>
+	</h2>
+	<div class="entry-content">
+		<p>在Octopress中显示LaTeX的方法，比想象中的要简单。只要几步，就能完成。</p>
+
+<h2 id="headmathjax">在head中加入MathJax</h2>
+
+<p>MathJax用来对LaTeX脚本进行渲染。</p>
+
+<p>可以把下面的代码放到<code>source/_include/custom/head.html</code>中。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="c">&lt;!-- mathjax config similar to math.stackexchange --&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-mathjax-config&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
+</span><span class="line">  <span class="nx">jax</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;input/TeX&quot;</span><span class="p">,</span> <span class="s2">&quot;output/HTML-CSS&quot;</span><span class="p">],</span>
+</span><span class="line">  <span class="nx">tex2jax</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">inlineMath</span><span class="o">:</span> <span class="p">[</span> <span class="p">[</span><span class="s1">&#39;$&#39;</span><span class="p">,</span> <span class="s1">&#39;$&#39;</span><span class="p">]</span> <span class="p">],</span>
+</span><span class="line">    <span class="nx">displayMath</span><span class="o">:</span> <span class="p">[</span> <span class="p">[</span><span class="s1">&#39;$$&#39;</span><span class="p">,</span> <span class="s1">&#39;$$&#39;</span><span class="p">]],</span>
+</span><span class="line">    <span class="nx">processEscapes</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class="line">    <span class="nx">skipTags</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;script&#39;</span><span class="p">,</span> <span class="s1">&#39;noscript&#39;</span><span class="p">,</span> <span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="s1">&#39;textarea&#39;</span><span class="p">,</span> <span class="s1">&#39;pre&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">]</span>
+</span><span class="line">  <span class="p">},</span>
+</span><span class="line">  <span class="nx">messageStyle</span><span class="o">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+</span><span class="line">  <span class="s2">&quot;HTML-CSS&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">preferredFont</span><span class="o">:</span> <span class="s2">&quot;TeX&quot;</span><span class="p">,</span> <span class="nx">availableFonts</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;STIX&quot;</span><span class="p">,</span><span class="s2">&quot;TeX&quot;</span><span class="p">]</span> <span class="p">}</span>
+</span><span class="line"><span class="p">});</span>
+</span><span class="line"><span class="nt">&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="kramdownrdiscount">使用kramdown代替默认的rdiscount</h2>
+
+<p>从网上的介绍来看，kramdown对于MathJax的支持要比rediscount好。</p>
+
+<ul>
+  <li>
+    <p>在<code>Gemfile</code>中加入一行<code>gem 'kramdown'</code></p>
+  </li>
+  <li>
+    <p>在<code>_config.yml</code>修改<code>markdown: kramdown</code></p>
+  </li>
+  <li>
+    <p><code>bundle install</code></p>
+  </li>
+</ul>
+
+<p>另外在使用上，kramdown的格式比rdiscount更加严谨，比如在插入code block时，必须严格的与上一行间隔一行。导致我又检查了一遍以前的文章，改了很多地方。</p>
+
+<h2 id="sample">Sample</h2>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+ %]]></script>
+
+<p>上面的这些就是通过下面的LaTeX代码显示的：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+</pre></td><td class="code"><pre><code class="latex"><span class="line"><span class="sb">$$</span><span class="nb"></span>
+</span><span class="line"><span class="nv">\begin</span><span class="nb">{align</span><span class="o">*</span><span class="nb">}</span>
+</span><span class="line"><span class="nb">  &amp; </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">x,y</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\phi</span><span class="nb"> </span><span class="nv">\left</span><span class="o">(</span><span class="nv">\sum</span><span class="nb">_{i</span><span class="o">=</span><span class="m">1</span><span class="nb">}^n x_ie_i, </span><span class="nv">\sum</span><span class="nb">_{j</span><span class="o">=</span><span class="m">1</span><span class="nb">}^n y_je_j </span><span class="nv">\right</span><span class="o">)</span><span class="nb"></span>
+</span><span class="line"><span class="nb">  </span><span class="o">=</span><span class="nb"> </span><span class="nv">\sum</span><span class="nb">_{i</span><span class="o">=</span><span class="m">1</span><span class="nb">}^n </span><span class="nv">\sum</span><span class="nb">_{j</span><span class="o">=</span><span class="m">1</span><span class="nb">}^n x_i y_j </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">e_i, e_j</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+</span><span class="line"><span class="nb">  &amp; </span><span class="o">(</span><span class="nb">x_</span><span class="m">1</span><span class="nb">, </span><span class="nv">\ldots</span><span class="nb">, x_n</span><span class="o">)</span><span class="nb"> </span><span class="nv">\left</span><span class="o">(</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{array}{ccc}</span>
+</span><span class="line"><span class="nb">      </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">e_</span><span class="m">1</span><span class="nb">, e_</span><span class="m">1</span><span class="o">)</span><span class="nb"> &amp; </span><span class="nv">\cdots</span><span class="nb"> &amp; </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">e_</span><span class="m">1</span><span class="nb">, e_n</span><span class="o">)</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+</span><span class="line"><span class="nb">      </span><span class="nv">\vdots</span><span class="nb"> &amp; </span><span class="nv">\ddots</span><span class="nb"> &amp; </span><span class="nv">\vdots</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+</span><span class="line"><span class="nb">      </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">e_n, e_</span><span class="m">1</span><span class="o">)</span><span class="nb"> &amp; </span><span class="nv">\cdots</span><span class="nb"> &amp; </span><span class="nv">\phi</span><span class="o">(</span><span class="nb">e_n, e_n</span><span class="o">)</span><span class="nb"></span>
+</span><span class="line"><span class="nb">    </span><span class="nv">\end</span><span class="nb">{array} </span><span class="nv">\right</span><span class="o">)</span><span class="nb"></span>
+</span><span class="line"><span class="nb">  </span><span class="nv">\left</span><span class="o">(</span><span class="nb"> </span><span class="nv">\begin</span><span class="nb">{array}{c}</span>
+</span><span class="line"><span class="nb">      y_</span><span class="m">1</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+</span><span class="line"><span class="nb">      </span><span class="nv">\vdots</span><span class="nb"> </span><span class="nv">\\</span><span class="nb"></span>
+</span><span class="line"><span class="nb">      y_n</span>
+</span><span class="line"><span class="nb">    </span><span class="nv">\end</span><span class="nb">{array} </span><span class="nv">\right</span><span class="o">)</span><span class="nb"></span>
+</span><span class="line"><span class="nv">\end</span><span class="nb">{align</span><span class="o">*</span><span class="nb">}</span>
+</span><span class="line"><span class="s">$$</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-26T15:07:00+08:00" pubdate data-updated="true">Dec 26<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/12/26/add-latex/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/2013/12/23/my-first-chrome-extension/">
 		
 			开发Chrome插件中遇到的一些坑</a>
@@ -97,42 +290,43 @@
 
 <p>以前没有太多JS的开发经验，这次开发是不断掉进坑里，然后再从坑里爬出来，直到最后有个完整版本出来。先说说chrome插件的配置文件吧，插件中有个叫<code>manifest.json</code>的文件，他管理了插件中所需的所有东西。</p>
 
-<h2>Hack现有网页的内容</h2>
+<h2 id="hack">Hack现有网页的内容</h2>
 
 <p>由于我们的插件需要修改大众点评网现有网页内容，比如在网页中插入我们的街景视图(我们的街景功能是用了腾讯街景的API). 这个就需要让<code>content_scripts</code>来做，他主要包括三个字段，<code>matches</code>, <code>css</code>, 和<code>js</code>. 只要把自己的JS文件名放到它的<code>js</code>字段中，一旦访问的URL符合规则，就会执行js中的脚本。例如：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;content_scripts&quot;</span><span class="err">:</span> <span class="p">[</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="nt">&quot;matches&quot;</span><span class="p">:[</span><span class="s2">&quot;http://www.dianping.com/shop/*&quot;</span><span class="p">],</span>
-</span><span class='line'>    <span class="nt">&quot;css&quot;</span><span class="p">:[</span><span class="s2">&quot;bootstrap.css&quot;</span><span class="p">],</span>
-</span><span class='line'>    <span class="nt">&quot;js&quot;</span><span class="p">:[</span><span class="s2">&quot;hackit.js&quot;</span><span class="p">]</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="s2">&quot;content_scripts&quot;</span><span class="err">:</span> <span class="p">[</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="nt">&quot;matches&quot;</span><span class="p">:[</span><span class="s2">&quot;http://www.dianping.com/shop/*&quot;</span><span class="p">],</span>
+</span><span class="line">    <span class="nt">&quot;css&quot;</span><span class="p">:[</span><span class="s2">&quot;bootstrap.css&quot;</span><span class="p">],</span>
+</span><span class="line">    <span class="nt">&quot;js&quot;</span><span class="p">:[</span><span class="s2">&quot;hackit.js&quot;</span><span class="p">]</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>其中的CSS可以对自己添的内容制定样式。这个看似很简单，其实里面暗藏了一个大坑，不过也是因为自己太粗心，没有仔细看doc所导致的。由于我要在原有网页中嵌入一个街景视图，而街景视图用到了某企鹅的街景API，而那个API又必须是在线调用的。在普通的HTML中，要调用一个网上的脚本很方便，只需添加<code>&lt;script&gt;</code>标签，在<code>src</code>中指定脚本的URL。但是在chrome插件中，无法通过类似的方法，将脚本载入当前页面，并在插件的js脚本中调用。因为<code>content_scripts</code>中的脚本虽然可以访问当前页面的内容，但是无法调用当前页面中的js函数，这个在Chrome的开发文档中有提到：</p>
 
-<blockquote><p>However, content scripts have some limitations. They cannot:</p>
+<blockquote>
+  <p>However, content scripts have some limitations. They cannot:</p>
 
-<p>Use chrome.* APIs (except for parts of chrome.extension)</p>
+  <p>Use chrome.* APIs (except for parts of chrome.extension)</p>
 
-<p>Use variables or functions defined by their extension&rsquo;s pages</p>
+  <p>Use variables or functions defined by their extension’s pages</p>
 
-<p>Use variables or functions defined by web pages or by other content scripts</p></blockquote>
+  <p>Use variables or functions defined by web pages or by other content scripts</p>
+</blockquote>
 
 <p><a href="http://developer.chrome.com/extensions/content_scripts.html">http://developer.chrome.com/extensions/content_scripts.html</a></p>
 
 <p>因此只能把企鹅的js载到本地啦，然后再hack一下那个脚本，因为在本地调用需要做些修改。</p>
 
-<h2>还有一些小东西</h2>
+<h2 id="section">还有一些小东西</h2>
 
 <p>开发chrome插件还有一些小东西可以分享一下，比如那个icon，文档中说最好是19x19的png图片，但如果真的把图片做成19x19，显示在浏览器中会比较糊（可能是因为我的retina屏幕）。其实把图片弄的大一点也是可以的，只要长宽比例是1:1就好。</p>
 
@@ -183,19 +377,19 @@
 	<div class="entry-content">
 		<p>今天尝试了3个很好用的sublime插件，在这里mark一下。这些插件都能在sublime的Package Control中找到，可以在线安装。</p>
 
-<h2>SublimeLinter</h2>
+<h2 id="sublimelinter">SublimeLinter</h2>
 
 <p>经常用sublime写python和一些shell的脚本，有些地方写错了不太容易发现。这个插件可以自动检测一些格式上的错误。</p>
 
-<h2>SideBarEnhancements</h2>
+<h2 id="sidebarenhancements">SideBarEnhancements</h2>
 
 <p>增强了sublime sidebar的功能，在sidebar上点右键能看到很多新的选项，谁用谁知道。</p>
 
-<h2>FileDiffs</h2>
+<h2 id="filediffs">FileDiffs</h2>
 
 <p>为sublime增加了diff的功能，真的很不错。直接在sidebar可以点右键选择需要比较的文件。</p>
 
-<h2>SideBarGit</h2>
+<h2 id="sidebargit">SideBarGit</h2>
 
 <p>在有git的目录下，能在sublime的状态栏中显示当前git的分支，虽然这个功能很平凡，但是提醒你当前的分支是很重要的，改code不要改错分支哦~</p>
 
@@ -289,7 +483,7 @@
 			搭建能在天朝使用的web App</a>
 	</h2>
 	<div class="entry-content">
-		<p>对于像我这种整天感觉很闲的人，总是会在代码中寻找自己的小世界，没事就写个web应用。可是身处天朝，资源有限。国际上很多知名的服务都不能用，比如某G的app engine. 不过还是有些漏网之鱼，没有完全被墙的。比如Heroku <a href="http://www.heroku.com">http://www.heroku.com</a>. (你现在看到的这个博客，就是放在heroku上的 >_&lt; )</p>
+		<p>对于像我这种整天感觉很闲的人，总是会在代码中寻找自己的小世界，没事就写个web应用。可是身处天朝，资源有限。国际上很多知名的服务都不能用，比如某G的app engine. 不过还是有些漏网之鱼，没有完全被墙的。比如Heroku <a href="http://www.heroku.com">http://www.heroku.com</a>. (你现在看到的这个博客，就是放在heroku上的 &gt;_&lt; )</p>
 
 <p>Heroku是通过git的方式将本地的代码部署到云上。前面讲到它没有完全被墙，因为放在它上面的app在国内是可以访问的，但是通过git部署的过程，是被墙的。所以我都是需要VPN才能将代码部署到heroku上。Heroku支持很多语言，我最常用的就是python了。刚刚用Django在Heroku上部署了一个web app. 可以参照下面这篇文章，在heroku上部署django <a href="https://devcenter.heroku.com/articles/getting-started-with-django">https://devcenter.heroku.com/articles/getting-started-with-django</a></p>
 
@@ -343,24 +537,28 @@
 
 <p>文章有點長，但是看了受益匪淺。</p>
 
-<blockquote><p>作者: abcd0 (貓舌茉莉卡)</p>
+<blockquote>
+  <p>作者: abcd0 (貓舌茉莉卡)</p>
 
-<p>看板: CATCH</p>
+  <p>看板: CATCH</p>
 
-<p>標題: Re: [請益] 好朋友，告白失敗被拒</p>
+  <p>標題: Re: [請益] 好朋友，告白失敗被拒</p>
 
-<p>時間: Sun Nov 17 03:50:23 2013</p></blockquote>
+  <p>時間: Sun Nov 17 03:50:23 2013</p>
+</blockquote>
 
 <hr />
 
-<blockquote><p>對方個性及狀況簡述:
+<blockquote>
+  <p>對方個性及狀況簡述:
 個性活潑大方，不少人追，外表是會惹人搭訕的女生</p>
 
-<p>大一到大三都跟一個劈腿男(垃圾!幹)</p>
+  <p>大一到大三都跟一個劈腿男(垃圾!幹)</p>
 
-<p>在一起很痛苦後來在</p>
+  <p>在一起很痛苦後來在</p>
 
-<p>大三時終於看清分手後來回家鄉補習念書，大四幾乎都不在學校大四在補習班時，曾短暫跟某男交往1個月，後來發現根本不喜歡他冷處理後，提分手</p></blockquote>
+  <p>大三時終於看清分手後來回家鄉補習念書，大四幾乎都不在學校大四在補習班時，曾短暫跟某男交往1個月，後來發現根本不喜歡他冷處理後，提分手</p>
+</blockquote>
 
 <p>你知道這代表什麼嗎?</p>
 
@@ -418,9 +616,13 @@
 	<div class="entry-content">
 		<p>刚想写些东西，正在播的音乐刚好跳出五月天的《回来吧》，这真的是个巧合。</p>
 
-<blockquote><p>回来吧，难道你不怀念吗。。。</p>
+<blockquote>
+  <p>回来吧，难道你不怀念吗。。。</p>
+</blockquote>
 
-<p>回来吧，我还一直在等啊。。。</p></blockquote>
+<blockquote>
+  <p>回来吧，我还一直在等啊。。。</p>
+</blockquote>
 
 <p>我来自一个小城市，现在为了自己一点点的事业心，在大城市尝试着自己并不强大的生存能力。坦白说我为什么一定要在这个城市工作，我自己也找不出一个能说服自己的理由。为了事业？为了女人？为了朋友？还是离家比较近？</p>
 
@@ -432,7 +634,7 @@
 
 <p>一个人的生活也可以改变以往的习性，时间久了，我竟然开始看书了。以前只把书当装饰品的我，竟然开始看书了；几年前的我，还是一个没心没肺没有心里情感的人，现在心里的想法多的都藏不住，只好用文字写在博客上来宣泄。</p>
 
-<p><b>喝掉一罐啤酒继续，现在正在播的音乐换成了&#8221;Wake me up when september ends&#8221;，这音乐竟然也懂我的心情</b></p>
+<p><b>喝掉一罐啤酒继续，现在正在播的音乐换成了”Wake me up when september ends”，这音乐竟然也懂我的心情</b></p>
 
 <p>也许年轻时总是喜欢跟自己过不去，明明对方对你没感觉，却一再认为这是一种考验。难道这就叫做“年少轻狂”吗？既然自己无法分辨是真的“没感觉”，还是一种“考验”，那就当时一种考验吧。</p>
 
@@ -481,51 +683,70 @@
 	<div class="entry-content">
 		<p>不知道有没有人和我有同样的困扰，在使用git的时候不小心改到了master分支上的代码，然后还不小心push了，结果还成功push了，而且自己还没发觉是push到了master上。如果代码正确还好，一旦代码有些问题就会引来很大麻烦。</p>
 
-<p><img src="/images/blog/show-git-branch-name.png"></p>
+<p><img src="/images/blog/show-git-branch-name.png" /></p>
 
 <p>mac的terminal上并没有自带功能显示当前的分支，所以需要自己手动修改bash的显示方式。如图上所示，新建一个<code>qrl</code>的目录，初始化<code>git</code>，当<code>commit</code>之后会产生<code>.git</code>的目录，从<code>.git</code>中获取当前的分支名字。</p>
 
 <p>实现起来比较容易，在.bash_profile中加入下面的代码就可以了。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>parse_git_branch<span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    git branch 2&gt; /dev/null | sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ [\1]/&#39;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ &quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">parse_git_branch<span class="o">()</span> <span class="o">{</span>
+</span><span class="line">    git branch 2&gt; /dev/null | sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ [\1]/&#39;</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line"><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ &quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>对于PS1的参数可以参考下面的来写
+&gt;\d ：代表日期</p>
 
-<p>对于PS1的参数可以参考下面的来写</p>
+<blockquote>
+  <p>\H ：完整的主机名称</p>
+</blockquote>
 
-<blockquote><p>\d ：代表日期</p>
+<blockquote>
+  <p>\h ：仅取主机的第一个名字</p>
+</blockquote>
 
-<p>\H ：完整的主机名称</p>
+<blockquote>
+  <p>\t ：显示时间为24小时格式，如：HH：MM：SS</p>
+</blockquote>
 
-<p>\h ：仅取主机的第一个名字</p>
+<blockquote>
+  <p>\T ：显示时间为12小时格式</p>
+</blockquote>
 
-<p>\t ：显示时间为24小时格式，如：HH：MM：SS</p>
+<blockquote>
+  <p>\A ：显示时间为24小时格式：HH：MM</p>
+</blockquote>
 
-<p>\T ：显示时间为12小时格式</p>
+<blockquote>
+  <p>\u ：当前用户的账号名称</p>
+</blockquote>
 
-<p>\A ：显示时间为24小时格式：HH：MM</p>
+<blockquote>
+  <p>\v ：BASH的版本信息</p>
+</blockquote>
 
-<p>\u ：当前用户的账号名称</p>
+<blockquote>
+  <p>\w ：完整的工作目录名称。家目录会以 ~代替</p>
+</blockquote>
 
-<p>\v ：BASH的版本信息</p>
+<blockquote>
+  <p>\W ：利用basename取得工作目录名称，所以只会列出最后一个目录</p>
+</blockquote>
 
-<p>\w ：完整的工作目录名称。家目录会以 ~代替</p>
+<blockquote>
+  <p># ：下达的第几个命令</p>
+</blockquote>
 
-<p>\W ：利用basename取得工作目录名称，所以只会列出最后一个目录</p>
+<blockquote>
+  <p>\$ ：提示字符，如果是root时，提示符为：# ，普通用户则为：$</p>
+</blockquote>
 
-<p>\# ：下达的第几个命令</p>
-
-<p>\$ ：提示字符，如果是root时，提示符为：# ，普通用户则为：$</p></blockquote>
-
-<h3>参考</h3>
-
+<h3 id="section">参考</h3>
 <p><a href="http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac">http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac</a>
 <a href="http://blog.sina.com.cn/s/blog_610913ea0100fce1.html">http://blog.sina.com.cn/s/blog_610913ea0100fce1.html</a></p>
 
@@ -572,60 +793,45 @@
 	<div class="entry-content">
 		<p>Sublime Text 是个很不错的文本编辑工具，已经使用1年多了。这里整理一些关于Sublime的使用方法，防止以后忘记。</p>
 
-<h2>在线安装Package</h2>
+<h2 id="package">在线安装Package</h2>
+<p>###安装Package Control
++ 用 Ctrl+` 打开Console
++ 在console中加入下面这段脚本</p>
 
-<h3>安装Package Control</h3>
-
-<ul>
-<li>用 Ctrl+` 打开Console</li>
-<li>在console中加入下面这段脚本</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">urllib2</span><span class="o">,</span><span class="nn">os</span><span class="p">;</span><span class="n">pf</span><span class="o">=</span><span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span><span class="n">ipp</span><span class="o">=</span><span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span><span class="p">;</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ipp</span><span class="p">,</span><span class="n">pf</span><span class="p">),</span><span class="s">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://sublime.wbond.net/&#39;</span><span class="o">+</span><span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span><span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">urllib2</span><span class="o">,</span><span class="nn">os</span><span class="p">;</span><span class="n">pf</span><span class="o">=</span><span class="s">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span><span class="n">ipp</span><span class="o">=</span><span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span><span class="p">;</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ipp</span><span class="p">,</span><span class="n">pf</span><span class="p">),</span><span class="s">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://sublime.wbond.net/&#39;</span><span class="o">+</span><span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span><span class="s">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-<li>重新打开sublime</li>
+  <li>重新打开sublime</li>
 </ul>
 
-
-<h3>用Package Control安装插件</h3>
-
+<h3 id="package-control">用Package Control安装插件</h3>
 <ul>
-<li><code>Command+Shift+p</code>打开命令面板(如果非mac就用<code>Ctrl</code>代替<code>Command</code>)</li>
-<li>输入<code>install</code>打开Install Package</li>
-<li>选择需要的插件安装</li>
+  <li><code>Command+Shift+p</code>打开命令面板(如果非mac就用<code>Ctrl</code>代替<code>Command</code>)</li>
+  <li>输入<code>install</code>打开Install Package</li>
+  <li>选择需要的插件安装</li>
 </ul>
 
-
-<h3>添加Repository</h3>
-
+<h3 id="repository">添加Repository</h3>
 <p>想要使用更多的插件，可以自行添加网上的repository，比如github.</p>
 
 <ul>
-<li><code>Command+Shift+p</code>打开命令面板</li>
-<li>选择<code>package Control:Add Repository</code></li>
-<li>然后在底下的Repository URL中填入github地址，比如<a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
-<li>最后再选择<code>install package</code>来安装插件</li>
+  <li><code>Command+Shift+p</code>打开命令面板</li>
+  <li>选择<code>package Control:Add Repository</code></li>
+  <li>然后在底下的Repository URL中填入github地址，比如<a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
+  <li>最后再选择<code>install package</code>来安装插件</li>
 </ul>
 
-
-<h3>常用插件</h3>
-
+<h3 id="section">常用插件</h3>
 <ul>
-<li>SublimeFormatSQL <a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
+  <li>SublimeFormatSQL <a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
 </ul>
 
-
-<h3>备注</h3>
-
+<h3 id="section-1">备注</h3>
 <ul>
-<li>SublimeFormatSQL的最新版对Sublime Text 2的兼容性有点问题，我用朋友给的旧版本就可以了。具体issue参见<a href="https://github.com/freewizard/SublimeFormatSQL/issues/14">https://github.com/freewizard/SublimeFormatSQL/issues/14</a></li>
+  <li>SublimeFormatSQL的最新版对Sublime Text 2的兼容性有点问题，我用朋友给的旧版本就可以了。具体issue参见<a href="https://github.com/freewizard/SublimeFormatSQL/issues/14">https://github.com/freewizard/SublimeFormatSQL/issues/14</a></li>
 </ul>
-
 
 		
 		
@@ -668,7 +874,7 @@
 			在日本——列車上的妹子</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x400&maptype=roadmap&markers=size:large%7Ccolor:blue%7C河口湖%7C&zoom=10&sensor=false" /></p>
+		<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x400&amp;maptype=roadmap&amp;markers=size:large%7Ccolor:blue%7C河口湖%7C&amp;zoom=10&amp;sensor=false" /></p>
 
 <p>去河口湖，從橫濱站搭電車，需要換乘4趟列車，总共需要3个多小时。從橫濱到Hachioji就要坐1個多小時，原本以為會在車上無聊的度過，沒想到注意力就被一個戴口罩的妹子吸引走了。</p>
 
@@ -707,72 +913,6 @@
 </div>
 	
 	<div class="comments"><a href="/blog/2013/11/08/in-japan-1/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/11/01/udf-in-python-sucks/">
-		
-			在hive中使用python来做UDF有点糟</a>
-	</h2>
-	<div class="entry-content">
-		<p>之前写了篇介绍如何在HIVE中用python来写UDF的文字，最近终于也开始需要用UDF来处理一些数据了。</p>
-
-<p>可是现实和理想总是存在些差距，原本想着python简洁的代码和随改随用的特性，在UDF的灵活性上显得有点苍白无力。利用<code>TRANSFORM</code>, <code>USING</code>, <code>AS</code>的结构来把python的脚本当做UDF，虽然看起来非常方便，但实际用起来却有很大问题。</p>
-
-<h2>无法单独处理某个字段</h2>
-
-<p>没有仔细研究过这个具体的流程，不过猜想应该是从hive中select出来的数据以pipe的形式转到python的stdin中，再把python中的stdout的内容转到hive的输出中。这样如果仅需对选出的某个字段进行处理，其余字段不进行处理的话，必须在Python脚本中注意当前要处理的字段是第几个，一旦select中的顺序有所改变，那python脚本应该就无法处理了。目前仅选一个字段出来进行处理的情况比较少，大部分都是选出好几个字段来看。所以虽然python很好，不过我还是“十动然拒”了吧。</p>
-
-<h2>无法外加聚集函数</h2>
-
-<p>在使用中，下面这种格式是很死的。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="k">TRANSFORM</span><span class="p">(</span><span class="n">field_A</span><span class="p">,</span> <span class="n">field_B</span><span class="p">)</span> <span class="k">USING</span> <span class="s1">&#39;python foo.py&#39;</span> <span class="k">AS</span><span class="p">(</span><span class="n">field_AA</span><span class="p">,</span> <span class="n">field_BB</span><span class="p">)</span> <span class="k">FROM</span> <span class="p">...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>比如你想再对UDF外面加一层<code>Count</code>是没有办法实现的。某人会告诉你格式不对，无法运行。但是常规的用java写的UDF是没有问题的，全部都能hold住~</p>
-
-<h2>外加的吐槽</h2>
-
-<p>实际工作中，不仅仅需要<code>UDF</code>，<code>UDAF</code>和<code>UDTF</code>都是会经常遇到的。而Python拼死只能处理UDF的情况，对于后者只能呵呵了。于是反正UDAF和UDTF还是需要JAVA来写，那UDF也就顺便用JAVA写了吧。这样代码也统一一点，便于管理。</p>
-
-<p>所以虽然python在UDF上的效果可以实现，不过功能太过简单，实际环境下还是很无力的。接下来还是用JAVA写<code>UDF</code>,<code>UDAF</code>和<code>UDTF</code>吧。回头吧，少年~</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-01T23:57:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/tech/'>Tech</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/11/01/udf-in-python-sucks/#disqus_thread">Comments</a></div>
 	
 </div>
 </article>

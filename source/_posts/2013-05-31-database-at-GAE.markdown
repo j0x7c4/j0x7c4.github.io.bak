@@ -27,10 +27,11 @@ meta:
 
 对于MySQL中table的概念，在GAE的datastore中是以Kind来表示。因为GAE是利用Google的Bigtable的感念，他没有像MySQL这样实际的table实体。
 
-那一个Kind在code的层面上， 它是一个继承```db.Model class```的一个class.
+那一个Kind在code的层面上， 它是一个继承`db.Model class`的一个class.
 
-以Python为例, 这是一个名叫Employee的class, 继承自db.Model. 也就是相当于MySQL中的一个```Employee table```：
-```python
+以Python为例, 这是一个名叫Employee的class, 继承自db.Model. 也就是相当于MySQL中的一个
+
+``` python Employee table
 import datetime
 from google.appengine.ext import db
 class Employee(db.Model):
@@ -39,13 +40,16 @@ class Employee(db.Model):
     hire_date = db.DateProperty()
     attended_hr_training = db.BooleanProperty()
 ```
-其中```first_name```, ```last_name```这些property, 就是相当于一般MySQL table中的每个column字段. 然后```db.StringProperty()```这就是定义字段的类型.
+
+其中`first_name`, `last_name`这些property, 就是相当于一般MySQL table中的每个column字段. 然后`db.StringProperty()`这就是定义字段的类型.
 
 接下来,可以建立Employee class的instance, 然后给其中的property赋值. 最后使用```.put()```这个method就可以将数据存到datastore中了.
-```python
+
+``` python
 employee = Employee(first_name='Antonio', last_name='Salieri')
 employee.hire_date = datetime.datetime.now().date()
 employee.attended_hr_training = True
 employee.put()
 ```
+
 以上是相当于SQL语句中的Insert语句。

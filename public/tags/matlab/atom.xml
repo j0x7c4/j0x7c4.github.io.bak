@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: matlab | 醉過方知酒濃]]></title>
   <link href="http://2naive.me/tags/matlab/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2013-12-23T00:58:27+08:00</updated>
+  <updated>2013-12-26T16:00:08+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -26,53 +26,41 @@
 
 <p>```matlab
 n = 14;
-file = &lsquo;data.csv&rsquo;;
-ylabels = [&lsquo;BT&rsquo;;&lsquo;CC&rsquo;;&lsquo;CS&rsquo;;&lsquo;DW&rsquo;;&lsquo;OC&rsquo;;&lsquo;  &rsquo;;&lsquo;RC&rsquo;;&lsquo;RW&rsquo;;&lsquo;SS&rsquo;;&lsquo;TC&rsquo;;&lsquo;TP&rsquo;;&lsquo;WL&rsquo;;&lsquo;WC&rsquo;;&lsquo;WW&rsquo;];
-xlabels = [&lsquo;BT&rsquo;;&lsquo;CC&rsquo;;&lsquo;CS&rsquo;;&lsquo;DW&rsquo;;&lsquo;OC&rsquo;;&lsquo;  &rsquo;;&lsquo;RC&rsquo;;&lsquo;RW&rsquo;;&lsquo;SS&rsquo;;&lsquo;TC&rsquo;;&lsquo;TP&rsquo;;&lsquo;WL&rsquo;;&lsquo;WC&rsquo;;&lsquo;WW&rsquo;];</p>
+file = ‘data.csv’;
+ylabels = [‘BT’;’CC’;’CS’;’DW’;’OC’;’  ‘;’RC’;’RW’;’SS’;’TC’;’TP’;’WL’;’WC’;’WW’];
+xlabels = [‘BT’;’CC’;’CS’;’DW’;’OC’;’  ‘;’RC’;’RW’;’SS’;’TC’;’TP’;’WL’;’WC’;’WW’];</p>
 
 <p>X = csvread(file);</p>
 
 <p>%normalize
-for i=1:n</p>
-
-<pre><code>X(i,:)=X(i,:)/norm(X(i,:),1);
-</code></pre>
-
-<p>end
+for i=1:n
+    X(i,:)=X(i,:)/norm(X(i,:),1);
+end
 %inverse data
 X=imcomplement(X);
 %draw
 imagesc(X);
 colormap(gray);
 axis off;
-text(0,6,&lsquo;Random&rsquo;,&lsquo;HorizontalAlignment&rsquo;,&lsquo;right&rsquo;);
-for i=1:n</p>
-
-<pre><code>text(0,i,ylabels(i,:),'HorizontalAlignment','right');
-</code></pre>
-
-<p>end
-h=text(6,n+1,&lsquo;Netural&rsquo;,&lsquo;VerticalAlignment&rsquo;,&lsquo;middle&rsquo;,&lsquo;HorizontalAlignment&rsquo;,&lsquo;right&rsquo;);
-set(h,&lsquo;rotation&rsquo;,60);
-for i=1:n</p>
-
-<pre><code>h = text(i,n+1,xlabels(i,:),'VerticalAlignment','middle','HorizontalAlignment','right');
-set(h,'rotation',60);
-</code></pre>
-
-<p>end
+text(0,6,’Random’,’HorizontalAlignment’,’right’);
+for i=1:n
+    text(0,i,ylabels(i,:),’HorizontalAlignment’,’right’);
+end
+h=text(6,n+1,’Netural’,’VerticalAlignment’,’middle’,’HorizontalAlignment’,’right’);
+set(h,’rotation’,60);
+for i=1:n
+    h = text(i,n+1,xlabels(i,:),’VerticalAlignment’,’middle’,’HorizontalAlignment’,’right’);
+    set(h,’rotation’,60);
+end
 disp(X);
 %add value
-for i=1:n</p>
-
-<pre><code>for j=1:n
-    if X(i,j)&lt;0.7
-        text(i,j,num2str(1-X(i,j),'%.2f'),'VerticalAlignment','middle','HorizontalAlignment','center','color','white');
+for i=1:n
+    for j=1:n
+        if X(i,j)&lt;0.7
+            text(i,j,num2str(1-X(i,j),’%.2f’),’VerticalAlignment’,’middle’,’HorizontalAlignment’,’center’,’color’,’white’);
+        end
     end
 end
-</code></pre>
-
-<p>end
 ```</p>
 ]]></content>
   </entry>
@@ -104,7 +92,7 @@ set(h2,'color',[0,0,0])
 Figure %create a figure
 [x,y,z]=sphere(10) %get the mesh of x,y,z for 10x10 surface sphere
 h=surf(x,y,z) %create the object of surface
-axis equal
+axis equal 
 set(h,'FaceColor',[0 0 0],'FaceAlpha',0.5) %change the surface color, and alpha
 </code>
 寫thesis需要各種圖，那些圖用photoshop畫會瘋掉。Matlab可以畫出科學上需要的圖。</p>

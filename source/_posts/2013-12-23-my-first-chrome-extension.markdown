@@ -15,6 +15,7 @@ description:
 ##Hack现有网页的内容
 
 由于我们的插件需要修改大众点评网现有网页内容，比如在网页中插入我们的街景视图(我们的街景功能是用了腾讯街景的API). 这个就需要让`content_scripts`来做，他主要包括三个字段，`matches`, `css`, 和`js`. 只要把自己的JS文件名放到它的`js`字段中，一旦访问的URL符合规则，就会执行js中的脚本。例如：
+
 ``` json
 "content_scripts": [ 
 {
@@ -24,6 +25,7 @@ description:
 }
 ]
 ```
+
 其中的CSS可以对自己添的内容制定样式。这个看似很简单，其实里面暗藏了一个大坑，不过也是因为自己太粗心，没有仔细看doc所导致的。由于我要在原有网页中嵌入一个街景视图，而街景视图用到了某企鹅的街景API，而那个API又必须是在线调用的。在普通的HTML中，要调用一个网上的脚本很方便，只需添加`<script>`标签，在`src`中指定脚本的URL。但是在chrome插件中，无法通过类似的方法，将脚本载入当前页面，并在插件的js脚本中调用。因为`content_scripts`中的脚本虽然可以访问当前页面的内容，但是无法调用当前页面中的js函数，这个在Chrome的开发文档中有提到：
 
 >However, content scripts have some limitations. They cannot:

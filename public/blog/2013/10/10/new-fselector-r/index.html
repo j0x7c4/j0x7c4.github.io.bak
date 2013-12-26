@@ -7,7 +7,7 @@
 	<meta name="author" content="Eli">
 
 	
-	<meta name="description" content="最早认识R语言是看到一本书叫做&ldquo;Machine Learning for Hackers&rdquo;, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature &hellip;">
+	<meta name="description" content="最早认识R语言是看到一本书叫做“Machine Learning for Hackers”, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature Selection方面的工具时， &hellip;">
 	<meta name="keywords" content="R, FSelector">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -20,7 +20,36 @@
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="/javascripts/gmap.js"></script>
-	
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -84,91 +113,83 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Feature Selection in R Is EASY!</h2>
-	<div class="entry-content"><p>最早认识R语言是看到一本书叫做<i>&ldquo;Machine Learning for Hackers&rdquo;</i>, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature Selection方面的工具时，看到有人推荐R的package <a href=http://cran.r-project.org/web/packages/FSelector/FSelector.pdf>FSelector</a> . 于是就载下来尝试一下，结果发现真的很方便。</p>
+	<div class="entry-content"><p>最早认识R语言是看到一本书叫做<i>“Machine Learning for Hackers”</i>, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature Selection方面的工具时，看到有人推荐R的package &lt;a href=http://cran.r-project.org/web/packages/FSelector/FSelector.pdf&gt;FSelector&lt;/a&gt; . 于是就载下来尝试一下，结果发现真的很方便。</p>
 
-<h4>R可以方便的使用现成的benchmark（比如<code>iris</code>），只要一句话就可以轻松导入数据！</h4>
+<h4 id="rbenchmarkiris">R可以方便的使用现成的benchmark（比如<code>iris</code>），只要一句话就可以轻松导入数据！</h4>
 
 <p>下面是一个简单的例子使用FSelector, 采用cvs来寻找feature的子集。其中第一个参数Species~表示数据集iris中的类别(label).</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='r'><span class='line'>library<span class="p">(</span>FSelector<span class="p">)</span>
-</span><span class='line'>data<span class="p">(</span>iris<span class="p">)</span>
-</span><span class='line'>subset <span class="o">&lt;-</span> cfs<span class="p">(</span>Species<span class="o">~</span>.<span class="p">,</span> iris<span class="p">)</span>
-</span><span class='line'>f <span class="o">&lt;-</span> as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">)</span>
-</span><span class='line'>print<span class="p">(</span>f<span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="r"><span class="line">library<span class="p">(</span>FSelector<span class="p">)</span>
+</span><span class="line">data<span class="p">(</span>iris<span class="p">)</span>
+</span><span class="line">subset <span class="o">&lt;-</span> cfs<span class="p">(</span>Species<span class="o">~</span>.<span class="p">,</span> iris<span class="p">)</span>
+</span><span class="line">f <span class="o">&lt;-</span> as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">)</span>
+</span><span class="line">print<span class="p">(</span>f<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 <p>下面这个例子比较高阶，可以自己指定评价feature子集的好坏。采用best first search的策略来寻找子集。其中evaluator训练了rpart model，通过计算error rate来评价feature的好坏。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='r'><span class='line'>library<span class="p">(</span>FSelector<span class="p">)</span>
-</span><span class='line'>library<span class="p">(</span>rpart<span class="p">)</span>
-</span><span class='line'>data<span class="p">(</span>iris<span class="p">)</span>
-</span><span class='line'>evaluator <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>subset<span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="c1">#k-fold cross validation</span>
-</span><span class='line'>  k <span class="o">&lt;-</span> <span class="m">5</span>
-</span><span class='line'>  splits <span class="o">&lt;-</span> runif<span class="p">(</span>nrow<span class="p">(</span>iris<span class="p">))</span>
-</span><span class='line'>  results <span class="o">=</span> sapply<span class="p">(</span><span class="m">1</span><span class="o">:</span>k<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>i<span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    test.idx <span class="o">&lt;-</span> <span class="p">(</span>splits <span class="o">&gt;=</span> <span class="p">(</span>i <span class="o">-</span> <span class="m">1</span><span class="p">)</span> <span class="o">/</span> k<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>splits <span class="o">&lt;</span> i <span class="o">/</span> k<span class="p">)</span>
-</span><span class='line'>    train.idx <span class="o">&lt;-</span> <span class="o">!</span>test.idx
-</span><span class='line'>    test <span class="o">&lt;-</span> iris<span class="p">[</span>test.idx<span class="p">,</span> <span class="p">,</span> drop<span class="o">=</span><span class="kc">FALSE</span><span class="p">]</span>
-</span><span class='line'>    train <span class="o">&lt;-</span> iris<span class="p">[</span>train.idx<span class="p">,</span> <span class="p">,</span> drop<span class="o">=</span><span class="kc">FALSE</span><span class="p">]</span>
-</span><span class='line'>    tree <span class="o">&lt;-</span> rpart<span class="p">(</span>as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">),</span> train<span class="p">)</span>
-</span><span class='line'>    error.rate <span class="o">=</span> sum<span class="p">(</span>test<span class="o">$</span>Species <span class="o">!=</span> predict<span class="p">(</span>tree<span class="p">,</span> test<span class="p">,</span> type<span class="o">=</span><span class="s">&quot;c&quot;</span><span class="p">))</span> <span class="o">/</span> nrow<span class="p">(</span>test<span class="p">)</span>
-</span><span class='line'>    <span class="kr">return</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> error.rate<span class="p">)</span>
-</span><span class='line'>  <span class="p">})</span>
-</span><span class='line'>  <span class="c1">#print(subset)</span>
-</span><span class='line'>  <span class="c1">#print(mean(results))</span>
-</span><span class='line'>  <span class="kr">return</span><span class="p">(</span>mean<span class="p">(</span>results<span class="p">))</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>subset <span class="o">&lt;-</span> best.first.search<span class="p">(</span>names<span class="p">(</span>iris<span class="p">)[</span><span class="m">-5</span><span class="p">],</span> evaluator<span class="p">)</span>
-</span><span class='line'>f <span class="o">&lt;-</span> as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">)</span>
-</span><span class='line'>print<span class="p">(</span>f<span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+</pre></td><td class="code"><pre><code class="r"><span class="line">library<span class="p">(</span>FSelector<span class="p">)</span>
+</span><span class="line">library<span class="p">(</span>rpart<span class="p">)</span>
+</span><span class="line">data<span class="p">(</span>iris<span class="p">)</span>
+</span><span class="line">evaluator <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>subset<span class="p">)</span> <span class="p">{</span>
+</span><span class="line">  <span class="c1">#k-fold cross validation</span>
+</span><span class="line">  k <span class="o">&lt;-</span> <span class="m">5</span>
+</span><span class="line">  splits <span class="o">&lt;-</span> runif<span class="p">(</span>nrow<span class="p">(</span>iris<span class="p">))</span>
+</span><span class="line">  results <span class="o">=</span> sapply<span class="p">(</span><span class="m">1</span><span class="o">:</span>k<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>i<span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    test.idx <span class="o">&lt;-</span> <span class="p">(</span>splits <span class="o">&gt;=</span> <span class="p">(</span>i <span class="o">-</span> <span class="m">1</span><span class="p">)</span> <span class="o">/</span> k<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>splits <span class="o">&lt;</span> i <span class="o">/</span> k<span class="p">)</span>
+</span><span class="line">    train.idx <span class="o">&lt;-</span> <span class="o">!</span>test.idx
+</span><span class="line">    test <span class="o">&lt;-</span> iris<span class="p">[</span>test.idx<span class="p">,</span> <span class="p">,</span> drop<span class="o">=</span><span class="kc">FALSE</span><span class="p">]</span>
+</span><span class="line">    train <span class="o">&lt;-</span> iris<span class="p">[</span>train.idx<span class="p">,</span> <span class="p">,</span> drop<span class="o">=</span><span class="kc">FALSE</span><span class="p">]</span>
+</span><span class="line">    tree <span class="o">&lt;-</span> rpart<span class="p">(</span>as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">),</span> train<span class="p">)</span>
+</span><span class="line">    error.rate <span class="o">=</span> sum<span class="p">(</span>test<span class="o">$</span>Species <span class="o">!=</span> predict<span class="p">(</span>tree<span class="p">,</span> test<span class="p">,</span> type<span class="o">=</span><span class="s">&quot;c&quot;</span><span class="p">))</span> <span class="o">/</span> nrow<span class="p">(</span>test<span class="p">)</span>
+</span><span class="line">    <span class="kr">return</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> error.rate<span class="p">)</span>
+</span><span class="line">  <span class="p">})</span>
+</span><span class="line">  <span class="c1">#print(subset)</span>
+</span><span class="line">  <span class="c1">#print(mean(results))</span>
+</span><span class="line">  <span class="kr">return</span><span class="p">(</span>mean<span class="p">(</span>results<span class="p">))</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">subset <span class="o">&lt;-</span> best.first.search<span class="p">(</span>names<span class="p">(</span>iris<span class="p">)[</span><span class="m">-5</span><span class="p">],</span> evaluator<span class="p">)</span>
+</span><span class="line">f <span class="o">&lt;-</span> as.simple.formula<span class="p">(</span>subset<span class="p">,</span> <span class="s">&quot;Species&quot;</span><span class="p">)</span>
+</span><span class="line">print<span class="p">(</span>f<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>###iris
+This famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
 
-
-<h3>iris</h3>
-
-<p>This famous (Fisher&rsquo;s or Anderson&rsquo;s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
-
-<h3>cfs</h3>
-
+<h3 id="cfs">cfs</h3>
 <p>The algorithm finds attribute subset using correlation and entropy measures for continous and discrete data.</p>
 
-<h2>Hints</h2>
-
+<h2 id="hints">Hints</h2>
 <ul>
-<li>虽然原生的R语言的IDE也不错用，但是发现一个更加强大的IDE，RStudio, 真是可以媲美matlab的IDE了。</li>
-<li>R语言也可以在命令行中用batch的方式来运行，具体指令是<code>R CMD BATCH [options] infile [outfile]</code>, infile就是R的脚本文件，R的输出一般无法显示到STDOUT中，是以文件的形式存起来。如果没有指定outfile，就会以原文件名的方式来命名。在脚本执行的时候，很多无关紧要的内容也会被输出，可以使用options命令的<code>--slave</code>. 在最后的输出中，他也会很好心的帮你计算运行时间，如果不需要，也可以加<code>--no-timing</code>. 详见<a href="http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html">http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html</a></li>
+  <li>虽然原生的R语言的IDE也不错用，但是发现一个更加强大的IDE，RStudio, 真是可以媲美matlab的IDE了。</li>
+  <li>R语言也可以在命令行中用batch的方式来运行，具体指令是<code>R CMD BATCH [options] infile [outfile]</code>, infile就是R的脚本文件，R的输出一般无法显示到STDOUT中，是以文件的形式存起来。如果没有指定outfile，就会以原文件名的方式来命名。在脚本执行的时候，很多无关紧要的内容也会被输出，可以使用options命令的<code>--slave</code>. 在最后的输出中，他也会很好心的帮你计算运行时间，如果不需要，也可以加<code>--no-timing</code>. 详见<a href="http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html">http://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html</a></li>
 </ul>
-
 </div>
 
 

@@ -20,7 +20,36 @@
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="/javascripts/gmap.js"></script>
-	
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -90,6 +119,27 @@
 	
 	<section class="archives"><h1 class="year">2013</h1>
 	
+
+<article>
+	<h2 class="title"><a href="/blog/2013/12/26/add-latex/">在Octopress中使用LaTeX</a></h2>
+	<div class="meta">
+		<div class="date">Dec 26</div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	    
+	    <div class="comments"><a href="/blog/2013/12/26/add-latex/#disqus_thread">Comments</a></div>
+	    
+	</div>
+</article>
+
+
+	
+
 
 <article>
 	<h2 class="title"><a href="/blog/2013/12/23/my-first-chrome-extension/">开发Chrome插件中遇到的一些坑</a></h2>

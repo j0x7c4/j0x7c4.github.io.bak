@@ -15,14 +15,14 @@ description:
 
 使用networks加入node和edge都很方便，并且networkx宣称他的node可以支持任何python的hashable的类型，于是我一开始使用custom的node.
 
-```python
+``` python
 class user:
-	def __init__(self,args):
-		assert re.search('^[\d]+$',args['uid'])
-		self.uid = args['uid']
-		self.info = args
-	def __hash__(self):
-		return int(self.uid)
+    def __init__(self,args):
+        assert re.search('^[\d]+$',args['uid'])
+        self.uid = args['uid']
+        self.info = args
+    def __hash__(self):
+        return int(self.uid)
 ```
 
 可是这样写并不正确，他好像对自定义的类支持不太好（或许是不支持自定义类）。于是在网上查了好久，才看到要实现给一个node添加附加信息的方法。
@@ -30,6 +30,7 @@ class user:
 <http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up>
 
 于是在加入node的时候，应该用
+
 ```python
 G.add_node("label",foo="foo",bar="bar")
 ```
@@ -39,6 +40,7 @@ G.add_node("label",foo="foo",bar="bar")
 ```python
 G.add_node(user.uid,user.info)
 ```
+
 添加node和edge是没问题了，结果在保存`gml`文件时又出问题了，里面的字符串竟然不支持utf-8… 官方是这么解释的：
 >Notes
 
@@ -53,18 +55,15 @@ represented in the GML file as:
 
 ``` python
 class user:
-	def __init__(self,args):
-		
-		assert re.search('^[\d]+$',args['uid'])
-
-		self.uid = args['uid']
-		self.info = {'uid':args['uid'],\
-					 'n_follows':args['n_follows'],\
-					 'n_fans':args['n_fans'],\
-					 'n_weibos':args['n_weibos']}
-
-	def __hash__(self):
-		return int(self.uid)
+    def __init__(self,args):	
+        assert re.search('^[\d]+$',args['uid'])
+        self.uid = args['uid']
+        self.info = {'uid':args['uid'],\
+               'n_follows':args['n_follows'],\
+                  'n_fans':args['n_fans'],\
+                'n_weibos':args['n_weibos']}
+    def __hash__(self):
+        return int(self.uid)
 ```
 
 这样终于正常创建网络，读写gml文件了。

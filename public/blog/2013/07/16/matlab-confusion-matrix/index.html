@@ -36,7 +36,36 @@
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="/javascripts/gmap.js"></script>
-	
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -106,80 +135,79 @@
 
 <p><img class="aligncenter" alt="" src="http://farm8.staticflickr.com/7364/9303955419_9aafcbf1c2_o.png" width="584" height="477" /></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='matlab'><span class='line'><span class="n">n</span> <span class="p">=</span> 14<span class="p">;</span>
-</span><span class='line'><span class="n">file</span> <span class="p">=</span> <span class="s">&#39;data.csv&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="n">ylabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
-</span><span class='line'><span class="n">xlabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">X</span> <span class="p">=</span> <span class="n">csvread</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">%normalize</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)=</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span>1<span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="c">%inverse data</span>
-</span><span class='line'><span class="n">X</span><span class="p">=</span><span class="n">imcomplement</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="c">%draw</span>
-</span><span class='line'><span class="n">imagesc</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="n">colormap</span><span class="p">(</span><span class="n">gray</span><span class="p">);</span>
-</span><span class='line'><span class="n">axis</span> <span class="n">off</span><span class="p">;</span>
-</span><span class='line'><span class="n">text</span><span class="p">(</span>0<span class="p">,</span>6<span class="p">,</span><span class="s">&#39;Random&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">text</span><span class="p">(</span>0<span class="p">,</span><span class="nb">i</span><span class="p">,</span><span class="n">ylabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">h</span><span class="p">=</span><span class="n">text</span><span class="p">(</span>6<span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="s">&#39;Netural&#39;</span><span class="p">,</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="n">h</span> <span class="p">=</span> <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="n">xlabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="nb">disp</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
-</span><span class='line'><span class="c">%add value</span>
-</span><span class='line'><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>    <span class="k">for</span> <span class="nb">j</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span><span class="o">&lt;</span>0<span class="p">.</span>7
-</span><span class='line'>            <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span>1<span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">),</span><span class="s">&#39;%.2f&#39;</span><span class="p">),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;center&#39;</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,</span><span class="s">&#39;white&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+</pre></td><td class="code"><pre><code class="matlab"><span class="line"><span class="n">n</span> <span class="p">=</span> 14<span class="p">;</span>
+</span><span class="line"><span class="n">file</span> <span class="p">=</span> <span class="s">&#39;data.csv&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="n">ylabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
+</span><span class="line"><span class="n">xlabels</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;BT&#39;</span><span class="p">;</span><span class="s">&#39;CC&#39;</span><span class="p">;</span><span class="s">&#39;CS&#39;</span><span class="p">;</span><span class="s">&#39;DW&#39;</span><span class="p">;</span><span class="s">&#39;OC&#39;</span><span class="p">;</span><span class="s">&#39;  &#39;</span><span class="p">;</span><span class="s">&#39;RC&#39;</span><span class="p">;</span><span class="s">&#39;RW&#39;</span><span class="p">;</span><span class="s">&#39;SS&#39;</span><span class="p">;</span><span class="s">&#39;TC&#39;</span><span class="p">;</span><span class="s">&#39;TP&#39;</span><span class="p">;</span><span class="s">&#39;WL&#39;</span><span class="p">;</span><span class="s">&#39;WC&#39;</span><span class="p">;</span><span class="s">&#39;WW&#39;</span><span class="p">];</span>
+</span><span class="line">
+</span><span class="line"><span class="n">X</span> <span class="p">=</span> <span class="n">csvread</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="c">%normalize</span>
+</span><span class="line"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
+</span><span class="line">    <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)=</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span>1<span class="p">);</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line"><span class="c">%inverse data</span>
+</span><span class="line"><span class="n">X</span><span class="p">=</span><span class="n">imcomplement</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
+</span><span class="line"><span class="c">%draw</span>
+</span><span class="line"><span class="n">imagesc</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
+</span><span class="line"><span class="n">colormap</span><span class="p">(</span><span class="n">gray</span><span class="p">);</span>
+</span><span class="line"><span class="n">axis</span> <span class="n">off</span><span class="p">;</span>
+</span><span class="line"><span class="n">text</span><span class="p">(</span>0<span class="p">,</span>6<span class="p">,</span><span class="s">&#39;Random&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
+</span><span class="line"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
+</span><span class="line">    <span class="n">text</span><span class="p">(</span>0<span class="p">,</span><span class="nb">i</span><span class="p">,</span><span class="n">ylabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line"><span class="n">h</span><span class="p">=</span><span class="n">text</span><span class="p">(</span>6<span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="s">&#39;Netural&#39;</span><span class="p">,</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
+</span><span class="line"><span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
+</span><span class="line"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
+</span><span class="line">    <span class="n">h</span> <span class="p">=</span> <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="n">n</span><span class="o">+</span>1<span class="p">,</span><span class="n">xlabels</span><span class="p">(</span><span class="nb">i</span><span class="p">,:),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;right&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="n">set</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="s">&#39;rotation&#39;</span><span class="p">,</span>60<span class="p">);</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line"><span class="nb">disp</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
+</span><span class="line"><span class="c">%add value</span>
+</span><span class="line"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
+</span><span class="line">    <span class="k">for</span> <span class="nb">j</span><span class="p">=</span>1<span class="p">:</span><span class="n">n</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span><span class="o">&lt;</span>0<span class="p">.</span>7
+</span><span class="line">            <span class="n">text</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span>1<span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">),</span><span class="s">&#39;%.2f&#39;</span><span class="p">),</span><span class="s">&#39;VerticalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;middle&#39;</span><span class="p">,</span><span class="s">&#39;HorizontalAlignment&#39;</span><span class="p">,</span><span class="s">&#39;center&#39;</span><span class="p">,</span><span class="s">&#39;color&#39;</span><span class="p">,</span><span class="s">&#39;white&#39;</span><span class="p">);</span>
+</span><span class="line">        <span class="k">end</span>
+</span><span class="line">    <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 
