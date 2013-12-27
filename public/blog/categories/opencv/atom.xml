@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: OpenCV | 醉過方知酒濃]]></title>
+  <link href="http://2naive.me/blog/categories/opencv/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2013-12-28T03:17:28+08:00</updated>
+  <id>http://2naive.me/</id>
+  <author>
+    <name><![CDATA[Eli]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[OpenCV in Python]]></title>
+    <link href="http://2naive.me/blog/2013/07/20/opencv-in-python/"/>
+    <updated>2013-07-20T00:00:00+08:00</updated>
+    <id>http://2naive.me/blog/2013/07/20/opencv-in-python</id>
+    <content type="html"><![CDATA[<p>OpenCV基本上每個學Computer Vision都用過，我之前也是用C++來使用OpenCV, 最近為了處理一些圖片轉影片，加Marker之類的簡單的操作，懶得再用C++去寫。於是就嘗試用Python來寫OpenCV.</p>
+
+<p>在Python中使用OpenCV, 只要把OpenCV的Library加到Python的Lib目錄下面就可以了。</p>
+
+<p>具體就是把OpenCV目錄下的”build/python/2.7/cv2.pyd” 複製到Python的“Lib/site-packages”目錄中。</p>
+
+<p>OpenCV被包在cv2这个module中，在一开始加载这个module就可以了。</p>
+
+<p>OpenCV中经常会用到cv::Size, cv::Point, 在python中就用tuple来代替，不用再定义cv::Size或者cv::Point. 比如原来C++中定义一个size用cv::Size(640,480), 现在Python中直接用(640,480)来代替就好了。</p>
+
+<p>下面这个例子就是把image_dir中的图片转换成avi格式的影片</p>
+
+<p><code>python
+import sys
+import os
+import cv2
+import re
+def intCmp ( x,y ):
+	a = re.search('([\d]+).png',x).group(1)
+	b = re.search('([\d]+).png',y).group(1)
+	return int(a)-int(b)
+if __name__ == '__main__':
+	if len(sys.argv)&lt;3:
+		print "Usage: %s (image_dir) (output)" %(sys.argv[0])
+		exit(1)
+	image_dir = sys.argv[1]
+	output_file = sys.argv[2]
+	image_list = sorted(os.listdir(image_dir),cmp=intCmp)
+	video_writer = cv2.VideoWriter(output_file,-1,30,(640,480))
+	for image_file in image_list:
+		print image_file
+		img = cv2.imread("%s/%s"%(image_dir,image_file.strip()))
+		cv2.imshow("rgb",img)
+		key = cv2.waitKey(10)
+		video_writer.write(img)
+		if key == 27:
+			break;
+</code></p>
+
+<p>更多的细节可以看document</p>
+
+<p><a href="http://docs.opencv.org/modules/refman.html">http://docs.opencv.org/modules/refman.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: git | 醉過方知酒濃]]></title>
+  <link href="http://2naive.me/tags/git/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2013-12-28T03:17:28+08:00</updated>
+  <id>http://2naive.me/</id>
+  <author>
+    <name><![CDATA[Eli]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[在Terminal中显示git的当前branch]]></title>
+    <link href="http://2naive.me/blog/2013/11/16/show-git-branch-name/"/>
+    <updated>2013-11-16T01:05:00+08:00</updated>
+    <id>http://2naive.me/blog/2013/11/16/show-git-branch-name</id>
+    <content type="html"><![CDATA[<p>不知道有没有人和我有同样的困扰，在使用git的时候不小心改到了master分支上的代码，然后还不小心push了，结果还成功push了，而且自己还没发觉是push到了master上。如果代码正确还好，一旦代码有些问题就会引来很大麻烦。</p>
+
+<p>{%img /images/blog/show-git-branch-name.png %}</p>
+
+<p>mac的terminal上并没有自带功能显示当前的分支，所以需要自己手动修改bash的显示方式。如图上所示，新建一个<code>qrl</code>的目录，初始化<code>git</code>，当<code>commit</code>之后会产生<code>.git</code>的目录，从<code>.git</code>中获取当前的分支名字。</p>
+
+<p>实现起来比较容易，在.bash_profile中加入下面的代码就可以了。</p>
+
+<p><code>bash
+parse_git_branch() {
+    git branch 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}
+export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+</code></p>
+
+<p>对于PS1的参数可以参考下面的来写
+&gt;\d ：代表日期</p>
+
+<blockquote>
+  <p>\H ：完整的主机名称</p>
+</blockquote>
+
+<blockquote>
+  <p>\h ：仅取主机的第一个名字</p>
+</blockquote>
+
+<blockquote>
+  <p>\t ：显示时间为24小时格式，如：HH：MM：SS</p>
+</blockquote>
+
+<blockquote>
+  <p>\T ：显示时间为12小时格式</p>
+</blockquote>
+
+<blockquote>
+  <p>\A ：显示时间为24小时格式：HH：MM</p>
+</blockquote>
+
+<blockquote>
+  <p>\u ：当前用户的账号名称</p>
+</blockquote>
+
+<blockquote>
+  <p>\v ：BASH的版本信息</p>
+</blockquote>
+
+<blockquote>
+  <p>\w ：完整的工作目录名称。家目录会以 ~代替</p>
+</blockquote>
+
+<blockquote>
+  <p>\W ：利用basename取得工作目录名称，所以只会列出最后一个目录</p>
+</blockquote>
+
+<blockquote>
+  <p># ：下达的第几个命令</p>
+</blockquote>
+
+<blockquote>
+  <p>\$ ：提示字符，如果是root时，提示符为：# ，普通用户则为：$</p>
+</blockquote>
+
+<h3 id="section">参考</h3>
+<p><a href="http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac">http://martinfitzpatrick.name/article/add-git-branch-name-to-terminal-prompt-mac</a>
+<a href="http://blog.sina.com.cn/s/blog_610913ea0100fce1.html">http://blog.sina.com.cn/s/blog_610913ea0100fce1.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>

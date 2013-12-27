@@ -1,0 +1,429 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>醉過方知酒濃</title> 
+	<meta name="author" content="Eli">
+	
+	<meta name="description" content="很多应用都需要database的支持，GAE提供了不错的Database服务。 但是对于新手来讲，不是太容易理解GAE的database. GAE上的database称为datastore. 对于习惯于MySQL这种常见的SQL database的开发者来说，第一步当然是建立一个database &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="醉過方知酒濃" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!--google map-->
+<link href="/stylesheets/gmap.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="/javascripts/gmap.js"></script>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+	<header id="header" class="inner"><div class="jumbotron" id="banner">
+	<h1>
+		醉過方知酒濃
+	</h1>
+</div>
+<nav class="navbar" role="navigation">
+	<ul class="nav nav-pills navbar-left"><li id="home">
+	<a href="/">Home</a>
+</li>
+<li id="archives">
+	<a href="/blog/archives">Archives</a>
+</li>
+<li id="research">
+	<a href="/research">Research</a>
+</li>
+<li id="about">
+	<a href="/about">About Me</a>
+</li>
+<li id="links">
+	<a href="/links">Links</a>
+</li></ul>
+	<nav id="mobile-nav">
+		<div class="alignleft menu">
+			<a class="button">Menu</a>
+			<div class="container"><li id="home">
+	<a href="/">Home</a>
+</li>
+<li id="archives">
+	<a href="/blog/archives">Archives</a>
+</li>
+<li id="research">
+	<a href="/research">Research</a>
+</li>
+<li id="about">
+	<a href="/about">About Me</a>
+</li>
+<li id="links">
+	<a href="/links">Links</a>
+</li></div>
+		</div>
+		<div class="alignright search">
+			<a class="button"></a>
+			<div class="container">
+				<form action="http://google.com/search" method="get">
+					<input type="text" name="q" results="0">
+					<input type="hidden" name="q" value="site:2naive.me"></form>
+			</div>
+		</div>
+	</nav>
+	<ul class="nav navbar-nav navbar-right" id="sub-nav">
+		<!--
+		<li class="social">
+			
+		
+		
+		
+    
+		
+		
+		
+		
+		
+			<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+			
+    
+		</li>
+	-->
+		<li>
+			<form class="navbar-form" role="search" action="http://google.com/search" method="get">
+				<input type="hidden" name="q" value="site:2naive.me">
+				<input type="text" class="form-control" placeholder="Search" name="q" results="0">
+			</form>
+		</li>
+	</ul>
+</nav>
+</header>
+	
+		
+	
+	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/05/31/database-at-GAE/">
+		
+			在GAE上使用Database</a>
+	</h2>
+	<div class="entry-content">
+		<p>很多应用都需要database的支持，GAE提供了不错的Database服务。</p>
+
+<p>但是对于新手来讲，不是太容易理解GAE的database. GAE上的database称为datastore.</p>
+
+<p>对于习惯于MySQL这种常见的SQL database的开发者来说，第一步当然是建立一个database, 然后又用户名，密码这些必要的东西。</p>
+
+<p>但是对于GAE上的datastore来说，这些都不需要。在GAE上创建好的application, 就会分配到一个datastore, 免费quota 是有1GB的空间。至于用户名和密码，我目前还没发现在哪里需要验证，应该是在同一个application中就不需要验证了吧。</p>
+
+<p>进入application的管理页面，在左边的column中能够看到Data那一栏，这个就是datastore的管理页面了。在Datastore Viewer里就能看到所有存储的data了。但是一开始里面是空的。</p>
+
+<p>对于MySQL中table的概念，在GAE的datastore中是以Kind来表示。因为GAE是利用Google的Bigtable的感念，他没有像MySQL这样实际的table实体。</p>
+
+<p>那一个Kind在code的层面上， 它是一个继承<code>db.Model class</code>的一个class.</p>
+
+<p>以Python为例, 这是一个名叫Employee的class, 继承自db.Model. 也就是相当于MySQL中的一个</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Employee table</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">datetime</span>
+</span><span class="line"><span class="kn">from</span> <span class="nn">google.appengine.ext</span> <span class="kn">import</span> <span class="n">db</span>
+</span><span class="line"><span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+</span><span class="line">    <span class="n">first_name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
+</span><span class="line">    <span class="n">last_name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
+</span><span class="line">    <span class="n">hire_date</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">DateProperty</span><span class="p">()</span>
+</span><span class="line">    <span class="n">attended_hr_training</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">BooleanProperty</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>其中<code>first_name</code>, <code>last_name</code>这些property, 就是相当于一般MySQL table中的每个column字段. 然后<code>db.StringProperty()</code>这就是定义字段的类型.</p>
+
+<p>接下来,可以建立Employee class的instance, 然后给其中的property赋值. 最后使用<code>.put()</code>这个method就可以将数据存到datastore中了.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">employee</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Antonio&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Salieri&#39;</span><span class="p">)</span>
+</span><span class="line"><span class="n">employee</span><span class="o">.</span><span class="n">hire_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+</span><span class="line"><span class="n">employee</span><span class="o">.</span><span class="n">attended_hr_training</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class="line"><span class="n">employee</span><span class="o">.</span><span class="n">put</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>以上是相当于SQL语句中的Insert语句。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gae/'>GAE</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/05/31/database-at-GAE/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/05/31/SQL-like-at-GAE/">
+		
+			在GAE上使用类SQL语句进行查询</a>
+	</h2>
+	<div class="entry-content">
+		<p>GAE上的Datastore虽然不是SQL的Database， 但是他提供了GQL语句进行类似SQL的查询。因为是类似SQL，所以不是完全等同于SQL语句。SQL语句中常用的count, group在GQL中就没有。</p>
+
+<p>以下是GQL支持的格式，具体可以参见reference <a href="https://developers.google.com/appengine/docs/python/datastore/gqlreference">https://developers.google.com/appengine/docs/python/datastore/gqlreference</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="sql"><span class="line"><span class="k">SELECT</span> <span class="p">[</span><span class="o">*</span> <span class="o">|</span> <span class="o">&lt;</span><span class="n">property</span> <span class="n">list</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">__key__</span><span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">DISTINCT</span><span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">FROM</span> <span class="o">&lt;</span><span class="n">kind</span><span class="o">&gt;</span><span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span> <span class="p">[</span><span class="k">AND</span> <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span> <span class="p">...]]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="p">[</span><span class="k">ASC</span> <span class="o">|</span> <span class="k">DESC</span><span class="p">]</span> <span class="p">[,</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="p">[</span><span class="k">ASC</span> <span class="o">|</span> <span class="k">DESC</span><span class="p">]</span> <span class="p">...]]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">LIMIT</span> <span class="p">[</span><span class="o">&lt;</span><span class="k">offset</span><span class="o">&gt;</span><span class="p">,]</span><span class="o">&lt;</span><span class="k">count</span><span class="o">&gt;</span><span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">OFFSET</span> <span class="o">&lt;</span><span class="k">offset</span><span class="o">&gt;</span><span class="p">]</span>
+</span><span class="line">
+</span><span class="line">  <span class="o">&lt;</span><span class="n">property</span> <span class="n">list</span><span class="o">&gt;</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="p">...]</span>
+</span><span class="line">  <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="err">}</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span>
+</span><span class="line">  <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="k">IN</span> <span class="o">&lt;</span><span class="n">list</span><span class="o">&gt;</span>
+</span><span class="line">  <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span> <span class="p">:</span><span class="o">=</span> <span class="n">ANCESTOR</span> <span class="k">IS</span> <span class="o">&lt;</span><span class="n">entity</span> <span class="k">or</span> <span class="k">key</span><span class="o">&gt;</span>
+</span><span class="line">  <span class="o">&lt;</span><span class="n">list</span><span class="o">&gt;</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span> <span class="p">...]])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>在Datastore 中有3种方式可以对数据进行查询：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+</span><span class="line">	<span class="n">first_name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
+</span><span class="line">	<span class="n">last_name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
+</span><span class="line">	<span class="n">city</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
+</span><span class="line">	<span class="n">birth_year</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">IntegerProperty</span><span class="p">()</span>
+</span><span class="line">	<span class="n">height</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">IntegerProperty</span><span class="p">()</span>
+</span><span class="line"><span class="c"># Query interface constructs a query using instance methods</span>
+</span><span class="line"><span class="n">q</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span class="line"><span class="n">q</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s">&quot;last_name =&quot;</span><span class="p">,</span> <span class="s">&quot;Smith&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="n">q</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s">&quot;height &lt;=&quot;</span><span class="p">,</span> <span class="n">max_height</span><span class="p">)</span>
+</span><span class="line"><span class="n">q</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s">&quot;-height&quot;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c"># GqlQuery interface constructs a query using a GQL query string</span>
+</span><span class="line"><span class="n">q</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM Person &quot;</span> <span class="o">+</span>
+</span><span class="line">                <span class="s">&quot;WHERE last_name = :1 AND height &lt;= :2 &quot;</span> <span class="o">+</span>
+</span><span class="line">                <span class="s">&quot;ORDER BY height DESC&quot;</span><span class="p">,</span>
+</span><span class="line">                <span class="s">&quot;Smith&quot;</span><span class="p">,</span> <span class="n">max_height</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c"># Query is not executed until results are accessed</span>
+</span><span class="line"><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">q</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+</span><span class="line">	<span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">, </span><span class="si">%d</span><span class="s"> inches tall&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>个人感觉，还是GQL的方式比较直觉，用起来比较灵活。但是如果对于简单的数据查询，可能第一种方式更加有效, code会比较精简。</p>
+
+<p>如果要在GQL中实现Group的功能，那就要分两步走。</p>
+
+<p>按照上面那个例子，如果要把人按照城市来分组，那就要先把城市找出来，GQL就写成</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">q</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT DISTINCT city FROM Person&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">:</span>
+</span><span class="line">	<span class="n">people</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">	<span class="n">sq</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM person WHERE city = &#39;&quot;</span><span class="o">+</span><span class="n">item</span><span class="o">.</span><span class="n">city</span><span class="o">+</span><span class="s">&quot;&#39;&quot;</span><span class="p">)</span>
+</span><span class="line">	<span class="k">for</span> <span class="n">item2</span> <span class="ow">in</span> <span class="n">sq</span><span class="p">:</span>
+</span><span class="line">		<span class="n">people</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&quot;first_name&quot;</span><span class="p">:</span><span class="n">item2</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span><span class="s">&quot;second_name&quot;</span><span class="p">:</span><span class="n">item2</span><span class="o">.</span><span class="n">second_name</span><span class="p">})</span>
+</span><span class="line">		<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&quot;city&quot;</span><span class="p">:</span><span class="n">item</span><span class="o">.</span><span class="n">city</span><span class="p">,</span><span class="s">&quot;people&quot;</span><span class="p">:</span><span class="n">people</span><span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这就是比较简单的GAE上的数据查询操作。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gae/'>GAE</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2013/05/31/SQL-like-at-GAE/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
+
+
+<ul class="pager">
+
+        <li class="previous"><a href="/blog/page/4/">&larr; Newer</a></li>
+    
+    
+</ul>
+</div>
+	<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - Eli -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'blog-jfttt';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-42052957-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

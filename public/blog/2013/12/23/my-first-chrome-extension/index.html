@@ -1,0 +1,285 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>开发Chrome插件中遇到的一些坑 - 醉過方知酒濃</title> 
+	<meta name="author" content="Eli">
+	
+	<meta name="description" content="前几天参加了一个hackthon, 在大约24小时的时间内，完成了一个chrome插件，插件扩展大众点评现有的一些功能，比如增加了街景视图，网页上的右键搜索菜单，和本地的点评商户收藏夹。具体可以自己使用看看，不过目前还没上架，可以下载源码来自己玩玩。https://github.com/ &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="醉過方知酒濃" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!--google map-->
+<link href="/stylesheets/gmap.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="/javascripts/gmap.js"></script>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+<body>
+	<header id="header" class="inner"><div class="jumbotron" id="banner">
+	<h1>
+		醉過方知酒濃
+	</h1>
+</div>
+<nav class="navbar" role="navigation">
+	<ul class="nav nav-pills navbar-left"><li id="home">
+	<a href="/">Home</a>
+</li>
+<li id="archives">
+	<a href="/blog/archives">Archives</a>
+</li>
+<li id="research">
+	<a href="/research">Research</a>
+</li>
+<li id="about">
+	<a href="/about">About Me</a>
+</li>
+<li id="links">
+	<a href="/links">Links</a>
+</li></ul>
+	<nav id="mobile-nav">
+		<div class="alignleft menu">
+			<a class="button">Menu</a>
+			<div class="container"><li id="home">
+	<a href="/">Home</a>
+</li>
+<li id="archives">
+	<a href="/blog/archives">Archives</a>
+</li>
+<li id="research">
+	<a href="/research">Research</a>
+</li>
+<li id="about">
+	<a href="/about">About Me</a>
+</li>
+<li id="links">
+	<a href="/links">Links</a>
+</li></div>
+		</div>
+		<div class="alignright search">
+			<a class="button"></a>
+			<div class="container">
+				<form action="http://google.com/search" method="get">
+					<input type="text" name="q" results="0">
+					<input type="hidden" name="q" value="site:2naive.me"></form>
+			</div>
+		</div>
+	</nav>
+	<ul class="nav navbar-nav navbar-right" id="sub-nav">
+		<!--
+		<li class="social">
+			
+		
+		
+		
+    
+		
+		
+		
+		
+		
+			<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+			
+    
+		</li>
+	-->
+		<li>
+			<form class="navbar-form" role="search" action="http://google.com/search" method="get">
+				<input type="hidden" name="q" value="site:2naive.me">
+				<input type="text" class="form-control" placeholder="Search" name="q" results="0">
+			</form>
+		</li>
+	</ul>
+</nav>
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">开发Chrome插件中遇到的一些坑</h2>
+	<div class="entry-content"><p>前几天参加了一个hackthon, 在大约24小时的时间内，完成了一个chrome插件，插件扩展大众点评现有的一些功能，比如增加了街景视图，网页上的右键搜索菜单，和本地的点评商户收藏夹。具体可以自己使用看看，不过目前还没上架，可以下载源码来自己玩玩。<a href="https://github.com/j0x7c4/hackstreet">https://github.com/j0x7c4/hackstreet</a></p>
+
+<p>以前没有太多JS的开发经验，这次开发是不断掉进坑里，然后再从坑里爬出来，直到最后有个完整版本出来。先说说chrome插件的配置文件吧，插件中有个叫<code>manifest.json</code>的文件，他管理了插件中所需的所有东西。</p>
+
+<h2 id="hack">Hack现有网页的内容</h2>
+
+<p>由于我们的插件需要修改大众点评网现有网页内容，比如在网页中插入我们的街景视图(我们的街景功能是用了腾讯街景的API). 这个就需要让<code>content_scripts</code>来做，他主要包括三个字段，<code>matches</code>, <code>css</code>, 和<code>js</code>. 只要把自己的JS文件名放到它的<code>js</code>字段中，一旦访问的URL符合规则，就会执行js中的脚本。例如：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="s2">&quot;content_scripts&quot;</span><span class="err">:</span> <span class="p">[</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="nt">&quot;matches&quot;</span><span class="p">:[</span><span class="s2">&quot;http://www.dianping.com/shop/*&quot;</span><span class="p">],</span>
+</span><span class="line">    <span class="nt">&quot;css&quot;</span><span class="p">:[</span><span class="s2">&quot;bootstrap.css&quot;</span><span class="p">],</span>
+</span><span class="line">    <span class="nt">&quot;js&quot;</span><span class="p">:[</span><span class="s2">&quot;hackit.js&quot;</span><span class="p">]</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>其中的CSS可以对自己添的内容制定样式。这个看似很简单，其实里面暗藏了一个大坑，不过也是因为自己太粗心，没有仔细看doc所导致的。由于我要在原有网页中嵌入一个街景视图，而街景视图用到了某企鹅的街景API，而那个API又必须是在线调用的。在普通的HTML中，要调用一个网上的脚本很方便，只需添加<code>&lt;script&gt;</code>标签，在<code>src</code>中指定脚本的URL。但是在chrome插件中，无法通过类似的方法，将脚本载入当前页面，并在插件的js脚本中调用。因为<code>content_scripts</code>中的脚本虽然可以访问当前页面的内容，但是无法调用当前页面中的js函数，这个在Chrome的开发文档中有提到：</p>
+
+<blockquote>
+  <p>However, content scripts have some limitations. They cannot:</p>
+
+  <p>Use chrome.* APIs (except for parts of chrome.extension)</p>
+
+  <p>Use variables or functions defined by their extension’s pages</p>
+
+  <p>Use variables or functions defined by web pages or by other content scripts</p>
+</blockquote>
+
+<p><a href="http://developer.chrome.com/extensions/content_scripts.html">http://developer.chrome.com/extensions/content_scripts.html</a></p>
+
+<p>因此只能把企鹅的js载到本地啦，然后再hack一下那个脚本，因为在本地调用需要做些修改。</p>
+
+<h2 id="section">还有一些小东西</h2>
+
+<p>开发chrome插件还有一些小东西可以分享一下，比如那个icon，文档中说最好是19x19的png图片，但如果真的把图片做成19x19，显示在浏览器中会比较糊（可能是因为我的retina屏幕）。其实把图片弄的大一点也是可以的，只要长宽比例是1:1就好。</p>
+
+<p>如果在脚本中需要有一些跨域的请求，比如我将地址转化成经纬度时，是用到了google map的api, 我需要向<code>https://maps.googleapis.com/</code>发送请求，这就需要把<code>https://maps.googleapis.com/*</code>加入到<code>manifest.json</code>的<code>permissions</code>字段中。</p>
+
+<p>还可以把一些公用的函数写在<code>background</code>的脚本中，然后通过message passing的方式去调用这些函数，不过具体效率还没测试过。在<code>background</code>中，可以直接使用<code>&lt;script&gt;</code>标签来添加在线的脚本。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-23T00:03:00+08:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/chrome/'>Chrome</a>, <a class='category' href='/blog/categories/google/'>Google</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+	
+	<div class="comments"><a href="#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - Eli -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'blog-jfttt';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://2naive.me/blog/2013/12/23/my-first-chrome-extension/';
+        var disqus_url = 'http://2naive.me/blog/2013/12/23/my-first-chrome-extension/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-42052957-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>
