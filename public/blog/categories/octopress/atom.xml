@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 醉過方知酒濃]]></title>
   <link href="http://2naive.me/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2013-12-26T16:01:50+08:00</updated>
+  <updated>2013-12-27T15:11:25+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -102,6 +102,108 @@ $$
 \end{align*}
 $$
 </code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[添加404页面]]></title>
+    <link href="http://2naive.me/blog/2013/10/02/add-404-page/"/>
+    <updated>2013-10-02T23:48:00+08:00</updated>
+    <id>http://2naive.me/blog/2013/10/02/add-404-page</id>
+    <content type="html"><![CDATA[<p>今天给博客加了404页面，看起来感觉更加完整了一点。
+加404页面的方法很简单，只要在<code>source</code>目录下面创建<code>404.html</code>文件，当发生404错误时，octopress就会自动跳转到<code>404.html</code>这个页面。
+具体内容如下：</p>
+
+<h2 id="section">```</h2>
+<p>layout: page
+title: Sorry，404错误！你要访问的网页不存在!
+footer: false
+—
+```</p>
+
+<p>其中的<code>title</code>可以改成任何自己想要的内容。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[从wordpress到octopress迁移成功]]></title>
+    <link href="http://2naive.me/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/"/>
+    <updated>2013-10-01T23:49:00+08:00</updated>
+    <id>http://2naive.me/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong</id>
+    <content type="html"><![CDATA[<p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，心情不好的时候做些geek的事情转移一下注意力也不错，现在有点小开心。</p>
+
+<p>我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多，就小改了一下。</p>
+
+<p><a href="http://jekyllrb.com/docs/migrations/">http://jekyllrb.com/docs/migrations/</a></p>
+
+<p>不过目前还有个问题，从wordpress转过来的文章，在超链接上还是有点问题，如果标题中有中文，转完后的文件名是unicode编码，之后会找不到超链接。于是我手动把那些文件名改成了英文，幸好文章不多，大概改了半小时改完了。</p>
+
+<p>接下来要了解markdown语法啦，用这个写博客真的很酷！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[改版octopress 之 安装]]></title>
+    <link href="http://2naive.me/blog/2013/10/01/change-to-octopress/"/>
+    <updated>2013-10-01T00:00:00+08:00</updated>
+    <id>http://2naive.me/blog/2013/10/01/change-to-octopress</id>
+    <content type="html"><![CDATA[<p>心血来潮想把博客从wordpress改成octopress, 毕竟在heroku上想用wordpress上传照片不太方便，而且比起静态网页来，速度慢很多。</p>
+
+<p>但是我之前没有碰过ruby，一步一步按照网上的guide慢慢来。</p>
+
+<p>首先从git上抓来octopress</p>
+
+<p><code>
+git clone git@github.com:imathis/octopress.git
+</code></p>
+
+<p>然后进入octopress目录下，build源代码</p>
+
+<p><code>
+cd octopress
+bundle install
+rake install
+</code></p>
+
+<p>以上几步都没有问题，然后执行</p>
+
+<p><code>
+rake preview
+</code></p>
+
+<p>然后问题就来了，出现了错误</p>
+
+<p>Starting to watch source with Jekyll and Compass. Starting Rack on port 4000
+rake aborted!
+undefined method `spawn’ for Process:Module</p>
+
+<p>因为octopress需要ruby 1.9.3，而我原本mac上的ruby是1.8.3. 所以要把ruby更新到1.9.3才能用</p>
+
+<p>网上看了一遍后，用RVM可以很好的管理ruby的版本，可以方便的在多个ruby版本中进行切换，还能很方便的安装新版的ruby.</p>
+
+<p>我安装stable版本的rvm</p>
+
+<p><code>
+curl -L https://get.rvm.io | bash -s stable
+</code></p>
+
+<p>然后将rvm写到用户环境中。</p>
+
+<p><code>
+echo "source $HOME/.rvm/scripts/rvm" &amp;gt;&amp;gt; ~/.bash_profile
+</code></p>
+
+<p>具体详见 <a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a></p>
+
+<p>然后使用rvm来安装1.9.3版本的ruby.</p>
+
+<p><code>
+rvm install ruby-1.9.3-p448
+</code></p>
+
+<p>不过在这之前，要先确定安装了xcode的command line tools.</p>
+
+<p>可能因为国内网络的原因，这个安装过程相当的漫长，我觉得应该先去吃个午饭比较好。。。</p>
 ]]></content>
   </entry>
   
