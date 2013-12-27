@@ -3,9 +3,8 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>每當離別的時候，就會開始回憶過去 - 醉過方知酒濃</title>
+	<title>每當離別的時候，就會開始回憶過去 - 醉過方知酒濃</title> 
 	<meta name="author" content="Eli">
-
 	
 	<meta name="description" content="每當離別的時候，就會開始回憶過去。兩年前來台灣的情景彷彿就在昨天，但現在朋友們問我最多的都是什麼時候回大陸，工作找的如何，今後打算在哪裡工作。呆在台灣的日子，也漸漸的進入了倒數計時。 兩年在台灣的日子，過得還算充實。雖然說沒有走遍整個台灣，但也去過了不少地方。在台灣結交的朋友也都不錯， &hellip;">
 	
@@ -15,12 +14,21 @@
 	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="/stylesheets/gmap.css" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-	<script src="/javascripts/gmap.js"></script>
-	<!-- MathJax -->
+<!--google map-->
+<link href="/stylesheets/gmap.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="/javascripts/gmap.js"></script>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<!-- MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -48,46 +56,63 @@
 </script>
 
 <script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 
-
 <body>
-	<header id="header" class="inner"><h1><a href="/">醉過方知酒濃</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">Home</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-	<li><a href="/research">Research</a></li>
-	<li><a href="/about">About Me</a></li>
-	<li><a href="/links">Links</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">Home</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-	<li><a href="/research">Research</a></li>
-	<li><a href="/about">About Me</a></li>
-	<li><a href="/links">Links</a></li>
-</ul>
+	<header id="header" class="inner"><div class="jumbotron" id="banner">
+	<h1>
+		醉過方知酒濃
+	</h1>
 </div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="http://google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:2naive.me">
-			</form>
+<nav class="navbar" role="navigation">
+	<ul class="nav nav-pills navbar-left"><li id="home">
+	<a href="/">Home</a>
+</li>
+<li id="archives">
+	<a href="/blog/archives">Archives</a>
+</li>
+<li id="research">
+	<a href="/research">Research</a>
+</li>
+<li id="about">
+	<a href="/about">About Me</a>
+</li>
+<li id="links">
+	<a href="/links">Links</a>
+</li></ul>
+	<nav id="mobile-nav">
+		<div class="alignleft menu">
+			<a class="button">Menu</a>
+			<div class="container"><li id="home">
+	<a href="/">Home</a>
+</li>
+<li id="archives">
+	<a href="/blog/archives">Archives</a>
+</li>
+<li id="research">
+	<a href="/research">Research</a>
+</li>
+<li id="about">
+	<a href="/about">About Me</a>
+</li>
+<li id="links">
+	<a href="/links">Links</a>
+</li></div>
 		</div>
-	</div>
-</nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
+		<div class="alignright search">
+			<a class="button"></a>
+			<div class="container">
+				<form action="http://google.com/search" method="get">
+					<input type="text" name="q" results="0">
+					<input type="hidden" name="q" value="site:2naive.me"></form>
+			</div>
+		</div>
+	</nav>
+	<ul class="nav navbar-nav navbar-right" id="sub-nav">
+		<!--
+		<li class="social">
+			
 		
 		
 		
@@ -97,16 +122,19 @@
 		
 		
 		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
+			<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+			
     
-	</div>
-	<form class="search" action="http://google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:2naive.me">
-	</form>
+		</li>
+	-->
+		<li>
+			<form class="navbar-form" role="search" action="http://google.com/search" method="get">
+				<input type="hidden" name="q" value="site:2naive.me">
+				<input type="text" class="form-control" placeholder="Search" name="q" results="0">
+			</form>
+		</li>
+	</ul>
 </nav>
-
 </header>
 	
 		
