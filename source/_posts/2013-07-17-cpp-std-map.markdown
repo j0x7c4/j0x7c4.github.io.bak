@@ -2,7 +2,7 @@
 layout: post
 title: 关于C++ std::map
 categories:
-- Coding
+- cpp
 - Tech
 - Theory
 tags:

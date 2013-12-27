@@ -2,7 +2,7 @@
 layout: post
 title: 用matlab画Sphere Coordinate System
 categories:
-- Coding
+- Matlab
 - Tech
 tags:
 - matlab

@@ -2,8 +2,8 @@
 layout: post
 title: 在GAE上使用Database
 categories:
-- Coding
 - Tech
+- GAE
 tags:
 - GAE
 - Python

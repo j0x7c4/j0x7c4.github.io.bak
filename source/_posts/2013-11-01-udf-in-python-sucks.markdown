@@ -8,6 +8,8 @@ tags:
 - hive
 categories: 
 - Tech
+- Python
+- Hive
 keywords: hive,python,udf
 description: 
 ---

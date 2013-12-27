@@ -5,6 +5,7 @@ date: 2013-11-13 11:33
 comments: true
 categories:
 - Tech 
+- Sublime Text
 keywords: sublime text 2, 备忘, package 
 description: 
 ---

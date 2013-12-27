@@ -5,6 +5,8 @@ date: 2013-12-23 00:03
 comments: true
 categories: 
 - Tech 
+- Chrome
+- Google
 keywords: 
 description: 
 ---

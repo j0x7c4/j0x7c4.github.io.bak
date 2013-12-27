@@ -5,7 +5,7 @@ date: 2013-10-07 02:21
 comments: true
 categories: 
 - Tech
-- Coding
+- Google
 tags:
 - octopress
 - google

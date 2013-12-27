@@ -5,6 +5,9 @@ date: 2013-11-16 01:05
 comments: true
 categories: 
 - Tech
+- Git
+- Shell
+- UNIX/LINUX
 tags:
 - git
 - mac

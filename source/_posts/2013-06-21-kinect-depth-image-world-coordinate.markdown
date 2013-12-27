@@ -4,6 +4,7 @@ title: 將Kinect的depth image轉成世界坐標系
 categories:
 - Tech
 - Theory
+- Kinect
 tags:
 - Kinect
 status: publish

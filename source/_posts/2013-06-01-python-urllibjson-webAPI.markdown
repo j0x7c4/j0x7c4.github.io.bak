@@ -2,7 +2,7 @@
 layout: post
 title: Python urllib+json 与web API交互
 categories:
-- Coding
+- Python
 - Tech
 tags:
 - Python

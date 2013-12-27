@@ -3,6 +3,7 @@ layout: post
 title: "改版octopress 之 安装"
 categories:
 - Tech
+- Octopress
 tags:
 - octopress
 - ruby

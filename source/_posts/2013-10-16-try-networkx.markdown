@@ -5,7 +5,7 @@ date: 2013-10-16 01:44
 comments: true
 categories: 
 - Tech
-- coding
+- Python
 tags: python,networks
 keywords: python, networkx, pagerank
   

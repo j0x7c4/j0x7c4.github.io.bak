@@ -2,7 +2,7 @@
 layout: post
 title: 用matlab畫Confusion matrix
 categories:
-- Coding
+- Matlab
 - Tech
 tags:
 - matlab

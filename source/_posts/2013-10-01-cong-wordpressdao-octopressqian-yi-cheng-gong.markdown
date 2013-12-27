@@ -5,6 +5,7 @@ date: 2013-10-01 23:49
 comments: true
 categories: 
 - Tech
+- Octopress
 tags:
 - ruby
 - octopress

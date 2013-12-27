@@ -2,7 +2,7 @@
 layout: post
 title: 在GAE上使用类SQL语句进行查询
 categories:
-- Coding
+- GAE
 - Tech
 tags:
 - GAE

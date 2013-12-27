@@ -2,7 +2,7 @@
 layout: post
 title: 用matlab畫3D線段
 categories:
-- Coding
+- Matlab
 - Tech
 tags:
 - matlab

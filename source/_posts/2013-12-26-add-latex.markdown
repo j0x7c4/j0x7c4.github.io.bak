@@ -6,6 +6,7 @@ comments: true
 categories: 
 - Tech
 - Octopress
+- LaTeX
 keywords: 
 description: 
 ---

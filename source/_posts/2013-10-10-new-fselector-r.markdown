@@ -5,7 +5,7 @@ date: 2013-10-10 23:43
 comments: true
 categories: 
 - Tech
-- Coding
+- R
 tags:
 - R
 keywords: R, FSelector

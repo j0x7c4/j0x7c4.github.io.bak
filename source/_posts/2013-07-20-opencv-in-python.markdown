@@ -2,7 +2,8 @@
 layout: post
 title: OpenCV in Python
 categories:
-- Coding
+- OpenCV
+- Python
 - Tech
 tags:
 - opencv

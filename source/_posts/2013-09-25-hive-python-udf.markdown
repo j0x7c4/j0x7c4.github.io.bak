@@ -2,7 +2,7 @@
 layout: post
 title: HIVE中使用python实现UDF
 categories:
-- Coding
+- Hive
 - Tech
 tags:
 - HIVE
