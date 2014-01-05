@@ -6,16 +6,7 @@
 	<title>醉過方知酒濃</title> 
 	<meta name="author" content="Eli">
 	
-	<meta name="description" content="在Octopress中显示LaTeX的方法，比想象中的要简单。只要几步，就能完成。 在head中加入MathJax MathJax用来对LaTeX脚本进行渲染。 可以把下面的代码放到source/_include/custom/head.html中。 1
-2
-3
-4
-5
-6
-7
-8
-9
-10 &hellip;">
+	<meta name="description" content="之前写过一篇关于说Python无法实现hive UDAF的文章，后来经过尝试，python完全可以代替JAVA实现hive中常用的UDF,UDAF,及UDTF. 通过transform语句，可以将hive语句中select得到的数据通过类似hadoop中streaming的方式， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -149,6 +140,154 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/01/05/hive-stream-with-python/">
+		
+			用python写hive的UDAF</a>
+	</h2>
+	<div class="entry-content">
+		<p>之前写过一篇关于说Python无法实现hive UDAF的文章，后来经过尝试，python完全可以代替JAVA实现hive中常用的UDF,UDAF,及UDTF.</p>
+
+<p>通过<code>transform</code>语句，可以将hive语句中<code>select</code>得到的数据通过类似hadoop中<a href="http://hadoop.apache.org/docs/stable1/streaming.html">streaming</a>的方式，传给<code>using</code>语句中的脚本作为输入。用<code>DISTRIBUTE BY</code>将mapper的输出分类给reducer. </p>
+
+<h2 id="udaf">UDAF</h2>
+
+<p>由于<code>SELECT</code>和<code>DISTRIBUTE BY</code>是有先后顺序，所以要先得到经过<code>DISTRIBUTE BY</code>的数据，再用<code>TRANSFORM</code>进行转化，保证相同的key落入到同一个reducer中去。reducer把处理后的结果以<code>AS</code>中的字段格式进行输出。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">FROM (
+</span><span class="line">SELECT a,b,c,d
+</span><span class="line">FROM db
+</span><span class="line">DISTRIBUTE BY a
+</span><span class="line">SORT BY a,b ) T
+</span><span class="line">SELECT TRANSFORM(T.a, T.b, T.c, T.d)
+</span><span class="line">USING 'python udaf.py'
+</span><span class="line">AS (a,b,e)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c">#! /usr/bin/env python</span>
+</span><span class="line"><span class="c">#encoding=utf-8</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">logging</span>
+</span><span class="line">
+</span><span class="line"><span class="n">current</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;a&quot;</span><span class="p">:</span><span class="bp">None</span><span class="p">,</span><span class="s">&quot;b&quot;</span><span class="p">:</span><span class="bp">None</span><span class="p">,</span><span class="s">&quot;e&quot;</span><span class="p">:</span><span class="bp">None</span><span class="p">}</span>
+</span><span class="line"><span class="n">a</span><span class="o">=</span><span class="bp">None</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">foo</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">):</span>
+</span><span class="line">    <span class="n">e</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class="line">    <span class="c">#To-do, write something</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">e</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">output</span> <span class="p">():</span>
+</span><span class="line">    <span class="c">#To-do, write something</span>
+</span><span class="line">    <span class="k">print</span> <span class="o">...</span>
+</span><span class="line">
+</span><span class="line"><span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+</span><span class="line">    <span class="k">try</span><span class="p">:</span>
+</span><span class="line">        <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class="line">        <span class="n">e</span><span class="o">=</span><span class="n">foo</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+</span><span class="line">    <span class="k">except</span><span class="p">:</span>
+</span><span class="line">        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</span><span class="line">        <span class="k">continue</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">if</span> <span class="n">current</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">a</span><span class="p">:</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">current</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]:</span>
+</span><span class="line">            <span class="n">output</span><span class="p">()</span>
+</span><span class="line">        <span class="n">current</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">a</span>
+</span><span class="line">        <span class="n">current</span><span class="p">[</span><span class="s">&quot;b&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">b</span>
+</span><span class="line">        <span class="n">current</span><span class="p">[</span><span class="s">&quot;e&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">e</span>
+</span><span class="line">    <span class="k">else</span><span class="p">:</span>
+</span><span class="line">        <span class="n">current</span><span class="p">[</span><span class="s">&quot;e&quot;</span><span class="p">]</span><span class="o">+=</span><span class="n">e</span>
+</span><span class="line">
+</span><span class="line"><span class="k">if</span> <span class="n">current</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]:</span>
+</span><span class="line">    <span class="n">output</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="section">代码的重用</h2>
+
+<p>如果按照以上的方式，是可以实现UDAF的效果，但是代码的重用性不高。如果在java中，可以写多个不同功能的类，然后打在一个jar包中。不过在python中实现起来有点困难，比如我在另一个py脚本中定义两个函数foo,bar,在一个udaf脚本中需要先import那个py 模块，然后再用这两个函数。这样就需要在<code>add file</code>中同时添加两个py脚本，在实际使用过程中，发现添加多个py脚本后，在py代码中使用import语句，会找不到那个文件的路径。原因是在hdfs中，这些py脚本不一定会在同一个目录下。所以只能把所有需要用到的函数写在同一个py脚本中。这样一来，以后需要同种功能的函数时，需要重写这些代码。之后再看看有没有其他可行的方案。</p>
+
+<p><a href="/blog/2013/09/25/hive-python-udf/">HIVE中使用python实现UDF</a></p>
+
+<p><a href="/blog/2013/11/01/udf-in-python-sucks/">在hive中使用python来做UDF有点糟</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-05T15:33:00+08:00" pubdate data-updated="true">Jan 5<span>th</span>, 2014</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/hive/'>Hive</a>, <a class='category' href='/blog/categories/python/'>Python</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/2014/01/05/hive-stream-with-python/#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -894,58 +1033,6 @@
 </article>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/11/08/in-japan-1/">
-		
-			在日本——列車上的妹子</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x400&amp;maptype=roadmap&amp;markers=size:large%7Ccolor:blue%7C河口湖%7C&amp;zoom=10&amp;sensor=false" /></p>
-
-<p>去河口湖，從橫濱站搭電車，需要換乘4趟列車，总共需要3个多小时。從橫濱到Hachioji就要坐1個多小時，原本以為會在車上無聊的度過，沒想到注意力就被一個戴口罩的妹子吸引走了。</p>
-
-<p>她沒有塗很濃的妝，甚至還能看到額頭的痘痘，这与之前见到的日本妹子不同，大多数人都是化了很精致的妆。我為了不讓自己的視線一直聚焦在她身上而引起尷尬，拿出kindle繼續看書。大概過了幾分鐘，終於她對面的座位空了出來，可以有機會從正面觀察她。我一直想拿出手機拍下這激動的瞬間，可是想到這對她是種不尊重，就不停說服自己不要這樣做。</p>
-
-<p>她一開始是在看手機，後來從包包中拿出一本書和一本記事本，書名是日文写的，其中几个汉字是“實用”，“中级”，“中國話”。竟然是在學中文，我腦海中立刻浮現出各種上前搭訕的情景——“口你几哇”，“你好，你是在学中文吗”，真想把昨天凌晨自己从新宿走回酒店的事情告诉她。可是这些僅僅是停留在腦子裡，天生不擅和女生講話的缺陷再次暴露了。於是我還是默默的看書，她也是默默的看書。其間有幾次目光的交匯，隱約的感到她貌似也想開口講話，也是因為害羞吧。</p>
-
-<p>车外还在下雨，窗户上起了雾，也看不清外面的画面，目光还是主要集中在她身上。终于，她翻完了笔记本，把书和记事本塞回包包里，开始眯起眼睛来小睡。不知道她会坐到哪一站，不知道她会不会也是去河口湖，不知道她她是否注意到對面有個屌絲一直在YY她。沒過多久，車再次進站，這次她起身，整了整衣服，下車了。這麼多次旅行中看到的人都是這樣，事先不知是否和她相遇，事後不知何時與她分別。</p>
-
-
-		
-		<a href="/blog/2013/11/08/in-japan-1/" class="more-link">More</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-08T00:20:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/travel/'>Travel</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/2013/11/08/in-japan-1/#disqus_thread">Comments</a></div>
-	
-</div>
-</article>
-
-
 <ul class="pager">
 
     
@@ -954,7 +1041,7 @@
 </ul>
 </div>
 	<footer id="footer" class="inner"><p>
-  Copyright &copy; 2013 - Eli -
+  Copyright &copy; 2014 - Eli -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p></footer>
 	<script src="/javascripts/slash.js"></script>

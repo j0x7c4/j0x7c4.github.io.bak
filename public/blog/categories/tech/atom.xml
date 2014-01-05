@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tech | 醉過方知酒濃]]></title>
   <link href="http://2naive.me/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2013-12-28T03:17:28+08:00</updated>
+  <updated>2014-01-05T16:25:26+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -192,7 +192,7 @@ $$
 
 <!--more-->
 
-<p>{% img https://addons.heroku.com/provider/addons/heroku-postgresql/icons/catalog.png %}</p>
+<p><img src="https://addons.heroku.com/provider/addons/heroku-postgresql/icons/catalog.png"></p>
 
 <p>于是乎，我就想到了GAE，它免费的数据库支持到了1GB. 虽然他上面的服务在天朝无法访问，但是如果请求是从heroku发出去的，然后heroku再就收GAE传回的数据显示在app上，就没问题了！带着这个想法，我在GAE上部署了一个数据库，用来存放一些数据，之前的文章中有提到如何在GAE上使用数据库。</p>
 
@@ -285,7 +285,7 @@ from jieba import finalseg</p>
     <id>http://2naive.me/blog/2013/11/16/show-git-branch-name</id>
     <content type="html"><![CDATA[<p>不知道有没有人和我有同样的困扰，在使用git的时候不小心改到了master分支上的代码，然后还不小心push了，结果还成功push了，而且自己还没发觉是push到了master上。如果代码正确还好，一旦代码有些问题就会引来很大麻烦。</p>
 
-<p>{%img /images/blog/show-git-branch-name.png %}</p>
+<p><img src="/images/blog/show-git-branch-name.png"></p>
 
 <p>mac的terminal上并没有自带功能显示当前的分支，所以需要自己手动修改bash的显示方式。如图上所示，新建一个<code>qrl</code>的目录，初始化<code>git</code>，当<code>commit</code>之后会产生<code>.git</code>的目录，从<code>.git</code>中获取当前的分支名字。</p>
 

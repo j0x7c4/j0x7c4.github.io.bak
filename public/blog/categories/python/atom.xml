@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | 醉過方知酒濃]]></title>
   <link href="http://2naive.me/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2013-12-28T03:17:28+08:00</updated>
+  <updated>2014-01-05T16:25:26+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用python写hive的UDAF]]></title>
+    <link href="http://2naive.me/blog/2014/01/05/hive-stream-with-python/"/>
+    <updated>2014-01-05T15:33:00+08:00</updated>
+    <id>http://2naive.me/blog/2014/01/05/hive-stream-with-python</id>
+    <content type="html"><![CDATA[<p>之前写过一篇关于说Python无法实现hive UDAF的文章，后来经过尝试，python完全可以代替JAVA实现hive中常用的UDF,UDAF,及UDTF.</p>
+
+<p>通过<code>transform</code>语句，可以将hive语句中<code>select</code>得到的数据通过类似hadoop中<a href="http://hadoop.apache.org/docs/stable1/streaming.html">streaming</a>的方式，传给<code>using</code>语句中的脚本作为输入。用<code>DISTRIBUTE BY</code>将mapper的输出分类给reducer. </p>
+
+<h2 id="udaf">UDAF</h2>
+
+<p>由于<code>SELECT</code>和<code>DISTRIBUTE BY</code>是有先后顺序，所以要先得到经过<code>DISTRIBUTE BY</code>的数据，再用<code>TRANSFORM</code>进行转化，保证相同的key落入到同一个reducer中去。reducer把处理后的结果以<code>AS</code>中的字段格式进行输出。</p>
+
+<p><code>
+FROM (
+SELECT a,b,c,d
+FROM db
+DISTRIBUTE BY a
+SORT BY a,b ) T
+SELECT TRANSFORM(T.a, T.b, T.c, T.d)
+USING 'python udaf.py'
+AS (a,b,e)
+</code> </p>
+
+<p>``` python
+#! /usr/bin/env python
+#encoding=utf-8
+import sys
+import logging</p>
+
+<p>current={“a”:None,”b”:None,”e”:None}
+a=None</p>
+
+<p>def foo (c,d):
+    e = ‘’
+    #To-do, write something
+    return e</p>
+
+<p>def output ():
+    #To-do, write something
+    print …</p>
+
+<p>for l in sys.stdin:
+    try:
+        a,b,c,d = l.strip().split(‘\t’)
+        e=foo(c,d)
+    except:
+        logging.error(l)
+        continue</p>
+
+<pre><code>if current["a"] != a:
+    if current["a"]: 
+        output()
+    current["a"]=a
+    current["b"]=b
+    current["e"]=e
+else:
+    current["e"]+=e
+</code></pre>
+
+<p>if current[“a”]:
+    output()
+```</p>
+
+<h2 id="section">代码的重用</h2>
+
+<p>如果按照以上的方式，是可以实现UDAF的效果，但是代码的重用性不高。如果在java中，可以写多个不同功能的类，然后打在一个jar包中。不过在python中实现起来有点困难，比如我在另一个py脚本中定义两个函数foo,bar,在一个udaf脚本中需要先import那个py 模块，然后再用这两个函数。这样就需要在<code>add file</code>中同时添加两个py脚本，在实际使用过程中，发现添加多个py脚本后，在py代码中使用import语句，会找不到那个文件的路径。原因是在hdfs中，这些py脚本不一定会在同一个目录下。所以只能把所有需要用到的函数写在同一个py脚本中。这样一来，以后需要同种功能的函数时，需要重写这些代码。之后再看看有没有其他可行的方案。</p>
+
+<p><a href="/blog/2013/09/25/hive-python-udf/">HIVE中使用python实现UDF</a></p>
+
+<p><a href="/blog/2013/11/01/udf-in-python-sucks/">在hive中使用python来做UDF有点糟</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在hive中使用python来做UDF有点糟]]></title>

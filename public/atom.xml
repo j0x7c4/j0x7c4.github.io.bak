@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://2naive.me/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2013-12-28T03:07:32+08:00</updated>
+  <updated>2014-01-05T16:25:26+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,120 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用python写hive的UDAF]]></title>
+    <link href="http://2naive.me/blog/2014/01/05/hive-stream-with-python/"/>
+    <updated>2014-01-05T15:33:00+08:00</updated>
+    <id>http://2naive.me/blog/2014/01/05/hive-stream-with-python</id>
+    <content type="html"><![CDATA[<p>之前写过一篇关于说Python无法实现hive UDAF的文章，后来经过尝试，python完全可以代替JAVA实现hive中常用的UDF,UDAF,及UDTF.</p>
+
+<p>通过<code>transform</code>语句，可以将hive语句中<code>select</code>得到的数据通过类似hadoop中<a href="http://hadoop.apache.org/docs/stable1/streaming.html">streaming</a>的方式，传给<code>using</code>语句中的脚本作为输入。用<code>DISTRIBUTE BY</code>将mapper的输出分类给reducer. </p>
+
+<h2 id="udaf">UDAF</h2>
+
+<p>由于<code>SELECT</code>和<code>DISTRIBUTE BY</code>是有先后顺序，所以要先得到经过<code>DISTRIBUTE BY</code>的数据，再用<code>TRANSFORM</code>进行转化，保证相同的key落入到同一个reducer中去。reducer把处理后的结果以<code>AS</code>中的字段格式进行输出。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">FROM (
+</span><span class="line">SELECT a,b,c,d
+</span><span class="line">FROM db
+</span><span class="line">DISTRIBUTE BY a
+</span><span class="line">SORT BY a,b ) T
+</span><span class="line">SELECT TRANSFORM(T.a, T.b, T.c, T.d)
+</span><span class="line">USING 'python udaf.py'
+</span><span class="line">AS (a,b,e)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c">#! /usr/bin/env python</span>
+</span><span class="line"><span class="c">#encoding=utf-8</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">logging</span>
+</span><span class="line">
+</span><span class="line"><span class="n">current</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;a&quot;</span><span class="p">:</span><span class="bp">None</span><span class="p">,</span><span class="s">&quot;b&quot;</span><span class="p">:</span><span class="bp">None</span><span class="p">,</span><span class="s">&quot;e&quot;</span><span class="p">:</span><span class="bp">None</span><span class="p">}</span>
+</span><span class="line"><span class="n">a</span><span class="o">=</span><span class="bp">None</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">foo</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">):</span>
+</span><span class="line">    <span class="n">e</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class="line">    <span class="c">#To-do, write something</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">e</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nf">output</span> <span class="p">():</span>
+</span><span class="line">    <span class="c">#To-do, write something</span>
+</span><span class="line">    <span class="k">print</span> <span class="o">...</span>
+</span><span class="line">
+</span><span class="line"><span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+</span><span class="line">    <span class="k">try</span><span class="p">:</span>
+</span><span class="line">        <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class="line">        <span class="n">e</span><span class="o">=</span><span class="n">foo</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+</span><span class="line">    <span class="k">except</span><span class="p">:</span>
+</span><span class="line">        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</span><span class="line">        <span class="k">continue</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">if</span> <span class="n">current</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">a</span><span class="p">:</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">current</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]:</span>
+</span><span class="line">            <span class="n">output</span><span class="p">()</span>
+</span><span class="line">        <span class="n">current</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">a</span>
+</span><span class="line">        <span class="n">current</span><span class="p">[</span><span class="s">&quot;b&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">b</span>
+</span><span class="line">        <span class="n">current</span><span class="p">[</span><span class="s">&quot;e&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">e</span>
+</span><span class="line">    <span class="k">else</span><span class="p">:</span>
+</span><span class="line">        <span class="n">current</span><span class="p">[</span><span class="s">&quot;e&quot;</span><span class="p">]</span><span class="o">+=</span><span class="n">e</span>
+</span><span class="line">
+</span><span class="line"><span class="k">if</span> <span class="n">current</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">]:</span>
+</span><span class="line">    <span class="n">output</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="section">代码的重用</h2>
+
+<p>如果按照以上的方式，是可以实现UDAF的效果，但是代码的重用性不高。如果在java中，可以写多个不同功能的类，然后打在一个jar包中。不过在python中实现起来有点困难，比如我在另一个py脚本中定义两个函数foo,bar,在一个udaf脚本中需要先import那个py 模块，然后再用这两个函数。这样就需要在<code>add file</code>中同时添加两个py脚本，在实际使用过程中，发现添加多个py脚本后，在py代码中使用import语句，会找不到那个文件的路径。原因是在hdfs中，这些py脚本不一定会在同一个目录下。所以只能把所有需要用到的函数写在同一个py脚本中。这样一来，以后需要同种功能的函数时，需要重写这些代码。之后再看看有没有其他可行的方案。</p>
+
+<p><a href="http://2naive.me/blog/2013/09/25/hive-python-udf/">HIVE中使用python实现UDF</a></p>
+
+<p><a href="http://2naive.me/blog/2013/11/01/udf-in-python-sucks/">在hive中使用python来做UDF有点糟</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在Octopress中使用LaTeX]]></title>
@@ -1602,23 +1716,6 @@ http://baike.baidu.com/view/157811.htm&gt;百度百科&lt;/a&gt;
 </span><span class="line">---</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>其中的<code>title</code>可以改成任何自己想要的内容。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[从wordpress到octopress迁移成功]]></title>
-    <link href="http://2naive.me/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/"/>
-    <updated>2013-10-01T23:49:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong</id>
-    <content type="html"><![CDATA[<p>忙活了一晚上，终于把原来wordpress的数据导入到了octopress中，心情不好的时候做些geek的事情转移一下注意力也不错，现在有点小开心。</p>
-
-<p>我是参照下面这个链接介绍的方法，把原来wordpress的数据导出成xml文件，然后再用jekyll-import来转的。不过貌似转完之后还需要自己手动修改一些地方，比如代码高亮部分。幸好我之前的内容也不多，就小改了一下。</p>
-
-<p><a href="http://jekyllrb.com/docs/migrations/">http://jekyllrb.com/docs/migrations/</a></p>
-
-<p>不过目前还有个问题，从wordpress转过来的文章，在超链接上还是有点问题，如果标题中有中文，转完后的文件名是unicode编码，之后会找不到超链接。于是我手动把那些文件名改成了英文，幸好文章不多，大概改了半小时改完了。</p>
-
-<p>接下来要了解markdown语法啦，用这个写博客真的很酷！</p>
 ]]></content>
   </entry>
   
