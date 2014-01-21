@@ -8,24 +8,24 @@
 	
 	<meta name="description" content="Category: 隨心所想">
 	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 	<link href="/atom.xml" rel="alternate" title="醉過方知酒濃" type="application/atom+xml">
 	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!--<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
 <!--google map-->
 <link href="/stylesheets/gmap.css" rel="stylesheet" type="text/css">
 <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>-->
 <script src="/javascripts/gmap.js"></script>
 <!-- Bootstrap -->
 <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
-
 <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link href="/stylesheets/elistyle.css" media="screen, projection" rel="stylesheet" type="text/css">
 <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <!-- MathJax -->
@@ -58,61 +58,41 @@
 <script type="text/javascript"
    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
-
 <body>
-	<header id="header" class="inner"><div class="jumbotron" id="banner">
-	<h1>
-		醉過方知酒濃
-	</h1>
+<header class="navbar eli-navbar navbar-fixed-top" role="navigation">
+	<div class="container"><div class="navbar-header">
+	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+</button>
+	<a class="navbar-brand">醉過方知酒濃</a>
 </div>
-<nav class="navbar" role="navigation">
-	<ul class="nav nav-pills navbar-left"><li id="home">
-	<a href="/">Home</a>
+
+<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+	<ul class="nav navbar-nav"><li id="home"></span>
+<a href="/">
+	<span class="glyphicon glyphicon-home"> Home</span>
+</a>
 </li>
 <li id="archives">
-	<a href="/blog/archives">Archives</a>
+<a href="/blog/archives">
+	<span class="glyphicon glyphicon-inbox"> Archives</span>
+</a>
 </li>
 <li id="research">
-	<a href="/research">Research</a>
+<a href="/research"><span class="glyphicon glyphicon-book"> Research</span></a>
 </li>
 <li id="about">
-	<a href="/about">About Me</a>
+<a href="/about"><span class="glyphicon glyphicon-user"> About</span></a>
 </li>
 <li id="links">
-	<a href="/links">Links</a>
+<a href="/links"><span class="glyphicon glyphicon-link"> Links</span></a>
 </li></ul>
-	<nav id="mobile-nav">
-		<div class="alignleft menu">
-			<a class="button">Menu</a>
-			<div class="container"><li id="home">
-	<a href="/">Home</a>
-</li>
-<li id="archives">
-	<a href="/blog/archives">Archives</a>
-</li>
-<li id="research">
-	<a href="/research">Research</a>
-</li>
-<li id="about">
-	<a href="/about">About Me</a>
-</li>
-<li id="links">
-	<a href="/links">Links</a>
-</li></div>
-		</div>
-		<div class="alignright search">
-			<a class="button"></a>
-			<div class="container">
-				<form action="http://google.com/search" method="get">
-					<input type="text" name="q" results="0">
-					<input type="hidden" name="q" value="site:2naive.me"></form>
-			</div>
-		</div>
-	</nav>
 	<ul class="nav navbar-nav navbar-right" id="sub-nav">
-		<!--
-		<li class="social">
-			
+		<!--	<li class="social">
+		
 		
 		
 		
@@ -122,33 +102,48 @@
 		
 		
 		
-			<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-			
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
     
-		</li>
+	</li>
 	-->
-		<li>
-			<form class="navbar-form" role="search" action="http://google.com/search" method="get">
+	<li>
+		<form class="navbar-form eli-navbar-form" role="search" action="http://google.com/search" method="get">
+			<div class="input-group">
 				<input type="hidden" name="q" value="site:2naive.me">
-				<input type="text" class="form-control" placeholder="Search" name="q" results="0">
-			</form>
-		</li>
-	</ul>
+				<input type="text" class="form-control">
+				<span class="input-group-btn">
+					<button class="btn eli-btn-search" type="submit">
+						<a>
+							<span class="glyphicon glyphicon-search"></span>
+						</a>
+					</button>
+				</span>
+			</div>
+			<!-- /input-group -->
+		</form>
+	</li>
+</ul>
 </nav>
+</div>
 </header>
+<!--<div class="banner jumbotron">
+	<h1>醉過方知酒濃</h1>
+</div>-->
+<div class="container eli-body">
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-9">
 	
-		
-	
-	<div id="content" class="inner">
-	
-
-
-	
-	
-	<section class="archives"><h1 class="year">2013</h1>
 	
 
-<article>
+
+	
+	
+	<section class="archives row"><h1 class="year col-md-3">2013</h1>
+	
+
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/12/06/some-regrets/">不知不觉走了许多路，但又像是原地踏步</a></h2>
 	<div class="meta">
 		<div class="date">Dec  6</div>
@@ -165,11 +160,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/11/23/emotion-trash/">[转]当还是不当女生的心情垃圾桶</a></h2>
 	<div class="meta">
 		<div class="date">Nov 23</div>
@@ -186,11 +180,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/11/18/homeless/">归属感</a></h2>
 	<div class="meta">
 		<div class="date">Nov 18</div>
@@ -207,11 +200,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/10/24/first-love/">人生若只如初见</a></h2>
 	<div class="meta">
 		<div class="date">Oct 24</div>
@@ -228,11 +220,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/10/03/fu-za-de-gan-qing/">复杂的感情</a></h2>
 	<div class="meta">
 		<div class="date">Oct  3</div>
@@ -249,11 +240,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/09/19/looking-for-my-life/">寻找自己的生活</a></h2>
 	<div class="meta">
 		<div class="date">Sep 19</div>
@@ -270,11 +260,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/08/29/last-days-in-taiwan/">在島上的最後幾天</a></h2>
 	<div class="meta">
 		<div class="date">Aug 29</div>
@@ -291,11 +280,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/08/10/big-fail-in-basketball/">關於中國男籃被台灣男籃完爆</a></h2>
 	<div class="meta">
 		<div class="date">Aug 10</div>
@@ -312,11 +300,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/07/28/goodbye-campus/">即將再見的學生</a></h2>
 	<div class="meta">
 		<div class="date">Jul 28</div>
@@ -333,11 +320,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/07/23/never-change/">不變的永遠</a></h2>
 	<div class="meta">
 		<div class="date">Jul 23</div>
@@ -354,11 +340,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/07/09/when-walking/">走著走著</a></h2>
 	<div class="meta">
 		<div class="date">Jul  9</div>
@@ -375,11 +360,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/07/05/one-night/">又熬過了一夜</a></h2>
 	<div class="meta">
 		<div class="date">Jul  5</div>
@@ -396,11 +380,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/07/05/best-memory/">每當離別的時候，就會開始回憶過去</a></h2>
 	<div class="meta">
 		<div class="date">Jul  5</div>
@@ -417,11 +400,10 @@
 	</div>
 </article>
 
-
 	
 
 
-<article>
+<article class="col-md-6">
 	<h2 class="title"><a href="/blog/2013/06/08/people-in-my-heart/">住在心裡的人</a></h2>
 	<div class="meta">
 		<div class="date">Jun  8</div>
@@ -438,13 +420,16 @@
 	</div>
 </article>
 
-
+	</div>
 </div>
-	<footer id="footer" class="inner"><p>
+</div>
+<footer id="footer">
+	<div class="container"><p>
   Copyright &copy; 2014 - Eli -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p></footer>
-	<script src="/javascripts/slash.js"></script>
+</p></div>
+</footer>
+<script src="/javascripts/slash.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){

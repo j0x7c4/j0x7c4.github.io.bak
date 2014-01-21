@@ -1,0 +1,40 @@
+a :hover, a :focus{
+	text-decoration: None;
+}
+.post {
+	background-color: #FFFFFF;
+}
+.eli-navbar {
+	background-color: #313A4A;
+}
+.eli-body {
+	margin-top:50px;
+}
+.navbar-brand:hover, .navbar-brand:focus, header a{
+	color:#F7F8F8;
+}
+.nav>li>a:hover, .nav>li>a:focus{
+	color:#F7F8F8;
+	background-color: #4C78A3;
+}
+.eli-navbar-form {
+	height: 30px;
+}
+.eli-btn-search {
+	background-color: #498CC6;
+}
+.banner {
+	padding:30px 0 0 0;
+}
+.navbar-toggle {
+	background: url("../images/toggle-menu.png");
+	background-repeat: no-repeat;
+}
+.eli-post-meta {
+	position: fixed;
+	width:263px;
+	top:80px;
+}
+.eli-content {
+	line-height: 2;
+}

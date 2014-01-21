@@ -1,13 +1,21 @@
 {% capture root_url %}{{ site.root | strip_slash }}{% endcapture %}
 {% include head.html %}
-
 <body>
-	<header id="header" class="inner">{% include header.html %}</header>
-	{% unless page.banner == false %}
-		{% include banner.html %}
-	{% endunless %}
-	<div id="content" class="inner">{{ content | expand_urls: root_url }}</div>
-	<footer id="footer" class="inner">{% include footer.html %}</footer>
-	{% include after_footer.html %}
+<header class="navbar eli-navbar navbar-fixed-top" role="navigation">
+	<div class="container">{% include header.html %}</div>
+</header>
+{% include banner.html %}
+<div class="container eli-body">
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-9">
+	{{ content | expand_urls: root_url }}
+	</div>
+</div>
+</div>
+<footer id="footer">
+	<div class="container">{% include footer.html %}</div>
+</footer>
+{% include after_footer.html %}
 </body>
 </html>
