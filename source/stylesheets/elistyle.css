@@ -31,9 +31,14 @@ a :hover, a :focus{
 	background-repeat: no-repeat;
 }
 .eli-post-meta {
-	position: fixed;
-	width:263px;
-	top:80px;
+	height: 70px;
+	padding:5px 2px;
+}
+.eli-post-meta div{
+	margin:2px 5px;
+}
+.eli-post-meta a{
+	color:#B8BAB5;
 }
 .eli-content {
 	line-height: 2;
