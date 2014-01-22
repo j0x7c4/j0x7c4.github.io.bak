@@ -26,10 +26,6 @@ a :hover, a :focus{
 .banner {
 	padding:30px 0 0 0;
 }
-.navbar-toggle {
-	background: url("../images/toggle-menu.png");
-	background-repeat: no-repeat;
-}
 .eli-post-meta {
 	height: 70px;
 	padding:5px 2px;
@@ -42,4 +38,10 @@ a :hover, a :focus{
 }
 .eli-content {
 	line-height: 2;
+}
+.eli-meta-icon {
+	margin-right:5px;
+}
+.icon-bar {
+	background-color:#F7F8F8;
 }

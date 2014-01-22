@@ -64,11 +64,11 @@
 <header class="navbar eli-navbar navbar-fixed-top" role="navigation">
 	<div class="container"><div class="navbar-header">
 	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-	<span class="sr-only">Toggle navigation</span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-</button>
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	</button>
 	<a class="navbar-brand">醉過方知酒濃</a>
 </div>
 
@@ -138,6 +138,29 @@
 	<div class="col-md-9">
 	<article class="post">
 	<h2 class="title">试用networkx</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-16T01:44:00+08:00" pubdate data-updated="true">Oct 16<span>th</span>, 2013</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
+
+
+	<a class='category' href='/blog/categories/python/'>Python</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="#disqus_thread">Comments</a></div>
+	</div>
 	<div class="entry-content"><p>最近想用pagerank的方法来分析微博好友之间的权威关系，于是试着用crawler去抓微博上好友的信息，然后建立关系网络。在网上看到用networkx可以比较方便的建立关系网络，并且可以比较方便的用pagerank计算每个好友的重要性。</p>
 
 <p>使用networks加入node和edge都很方便，并且networkx宣称他的node可以支持任何python的hashable的类型，于是我一开始使用custom的node.</p>
