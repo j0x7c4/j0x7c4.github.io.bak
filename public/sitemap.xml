@@ -1,203 +1,217 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://2naive.me/blog/2013/05/31/SQL-like-at-GAE/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/05/31/SQL-like-at-GAE/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/05/31/database-at-GAE/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/05/31/database-at-GAE/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/06/01/python-urllibjson-webAPI/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/06/01/python-urllibjson-webAPI/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/06/08/people-in-my-heart/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/06/08/people-in-my-heart/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/06/19/matlab-sphere-coordinate-system/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/06/19/matlab-sphere-coordinate-system/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/06/20/matlab-3d-segment/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/06/20/matlab-3d-segment/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/06/21/kinect-depth-image-world-coordinate/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/06/21/kinect-depth-image-world-coordinate/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/06/28/resumecover-letter-interview-tips/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/06/28/resumecover-letter-interview-tips/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/07/04/die-for-thesis-and-job/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/07/04/die-for-thesis-and-job/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/07/05/best-memory/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/07/05/best-memory/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/07/05/one-night/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/07/05/one-night/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/07/09/when-walking/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/07/09/when-walking/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/07/16/matlab-confusion-matrix/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/07/16/matlab-confusion-matrix/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/07/17/cpp-std-map/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/07/17/cpp-std-map/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/07/20/opencv-in-python/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/07/20/opencv-in-python/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/07/23/never-change/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/07/23/never-change/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/07/28/goodbye-campus/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/07/28/goodbye-campus/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/08/10/big-fail-in-basketball/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/08/10/big-fail-in-basketball/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/08/29/last-days-in-taiwan/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/08/29/last-days-in-taiwan/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/09/19/looking-for-my-life/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/09/19/looking-for-my-life/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/09/25/hive-python-udf/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/09/25/hive-python-udf/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/10/01/change-to-octopress/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/10/01/change-to-octopress/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>
+            http://j0x7c4.github.io/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/
+        </loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/10/02/add-404-page/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/10/02/add-404-page/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/10/03/fu-za-de-gan-qing/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/10/03/fu-za-de-gan-qing/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/10/04/go-to-tibet/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/10/04/go-to-tibet/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/10/07/google-map/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/10/07/google-map/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/10/10/new-fselector-r/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/10/10/new-fselector-r/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/10/16/try-networkx/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/10/16/try-networkx/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/10/18/travel-to-xiamen/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/10/18/travel-to-xiamen/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/10/24/first-love/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/10/24/first-love/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/11/01/udf-in-python-sucks/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/11/01/udf-in-python-sucks/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/11/08/in-japan-1/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/11/08/in-japan-1/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/11/13/sublime-text2-tutorial/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/11/13/sublime-text2-tutorial/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/11/16/show-git-branch-name/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/11/16/show-git-branch-name/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/11/18/homeless/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/11/18/homeless/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/11/23/emotion-trash/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/11/23/emotion-trash/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/11/30/heroku-gae-python/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/11/30/heroku-gae-python/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/12/06/some-regrets/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/12/06/some-regrets/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/12/11/todays-plugin-of-sublime/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/12/11/todays-plugin-of-sublime/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/12/23/my-first-chrome-extension/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/12/23/my-first-chrome-extension/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2013/12/26/add-latex/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2013/12/26/add-latex/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/2014/01/05/hive-stream-with-python/</loc>
-        <lastmod>2014-01-22T02:27:54+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2014/01/05/hive-stream-with-python/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/404.html</loc>
-        <lastmod>2014-01-22T02:18:13+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2014/01/22/ui-redesign/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/about/</loc>
-        <lastmod>2014-01-22T02:18:13+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2014/01/29/full-of-regret/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/blog/archives/</loc>
-        <lastmod>2014-01-22T02:18:13+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/2014/02/01/begin-ios-develop/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/</loc>
-        <lastmod>2014-01-22T02:18:13+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/404.html</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/links/</loc>
-        <lastmod>2014-01-22T02:18:13+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/about/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/research/</loc>
-        <lastmod>2014-01-22T02:18:13+08:00</lastmod>
+        <loc>http://j0x7c4.github.io/blog/archives/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
     </url>
     <url>
-        <loc>http://2naive.me/robots.txt</loc>
+        <loc>http://j0x7c4.github.io/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://j0x7c4.github.io/links/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://j0x7c4.github.io/research/</loc>
+        <lastmod>2014-04-21T01:48:07+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://j0x7c4.github.io/robots.txt</loc>
         <lastmod>2013-10-03T00:18:41+08:00</lastmod>
     </url>
 </urlset>

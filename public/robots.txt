@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://2naive.me/sitemap.xml 
+Sitemap: http://j0x7c4.github.io/sitemap.xml 

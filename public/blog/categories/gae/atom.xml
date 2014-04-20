@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: GAE | 醉過方知酒濃]]></title>
-  <link href="http://2naive.me/blog/categories/gae/atom.xml" rel="self"/>
-  <link href="http://2naive.me/"/>
-  <updated>2014-01-22T16:59:53+08:00</updated>
-  <id>http://2naive.me/</id>
+  <link href="http://j0x7c4.github.io/blog/categories/gae/atom.xml" rel="self"/>
+  <link href="http://j0x7c4.github.io/"/>
+  <updated>2014-04-21T02:10:07+08:00</updated>
+  <id>http://j0x7c4.github.io/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[搭建能在天朝使用的web app]]></title>
-    <link href="http://2naive.me/blog/2013/11/30/heroku-gae-python/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/11/30/heroku-gae-python/"/>
     <updated>2013-11-30T20:23:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/11/30/heroku-gae-python</id>
+    <id>http://j0x7c4.github.io/blog/2013/11/30/heroku-gae-python</id>
     <content type="html"><![CDATA[<p>对于像我这种整天感觉很闲的人，总是会在代码中寻找自己的小世界，没事就写个web应用。可是身处天朝，资源有限。国际上很多知名的服务都不能用，比如某G的app engine. 不过还是有些漏网之鱼，没有完全被墙的。比如Heroku <a href="http://www.heroku.com">http://www.heroku.com</a>. (你现在看到的这个博客，就是放在heroku上的 &gt;_&lt; )</p>
 
 <p>Heroku是通过git的方式将本地的代码部署到云上。前面讲到它没有完全被墙，因为放在它上面的app在国内是可以访问的，但是通过git部署的过程，是被墙的。所以我都是需要VPN才能将代码部署到heroku上。Heroku支持很多语言，我最常用的就是python了。刚刚用Django在Heroku上部署了一个web app. 可以参照下面这篇文章，在heroku上部署django <a href="https://devcenter.heroku.com/articles/getting-started-with-django">https://devcenter.heroku.com/articles/getting-started-with-django</a></p>
@@ -30,9 +30,9 @@
 
 <p>于是乎，我就想到了GAE，它免费的数据库支持到了1GB. 虽然他上面的服务在天朝无法访问，但是如果请求是从heroku发出去的，然后heroku再就收GAE传回的数据显示在app上，就没问题了！带着这个想法，我在GAE上部署了一个数据库，用来存放一些数据，之前的文章中有提到如何在GAE上使用数据库。</p>
 
-<h3 id="a-hrefhttp2naivemeblog20130531sql-like-at-gaegaesqla"><a href="http://2naive.me/blog/2013/05/31/SQL-like-at-GAE">在GAE上使用类SQL语句进行查询</a></h3>
+<h3 id="a-hrefhttpj0x7c4githubioblog20130531sql-like-at-gaegaesqla"><a href="http://j0x7c4.github.io/blog/2013/05/31/SQL-like-at-GAE">在GAE上使用类SQL语句进行查询</a></h3>
 
-<h3 id="a-hrefhttp2naivemeblog20130531database-at-gaegaedatabasea"><a href="http://2naive.me/blog/2013/05/31/database-at-GAE/">在GAE上使用Database</a></h3>
+<h3 id="a-hrefhttpj0x7c4githubioblog20130531database-at-gaegaedatabasea"><a href="http://j0x7c4.github.io/blog/2013/05/31/database-at-GAE/">在GAE上使用Database</a></h3>
 
 <p>下面这个例子是一张Inverted_index表中，存2个字段，并且实现两个方法去获取资料：</p>
 
@@ -114,9 +114,9 @@ from jieba import finalseg</p>
   
   <entry>
     <title type="html"><![CDATA[在GAE上使用Database]]></title>
-    <link href="http://2naive.me/blog/2013/05/31/database-at-GAE/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/05/31/database-at-GAE/"/>
     <updated>2013-05-31T00:00:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/05/31/database-at-GAE</id>
+    <id>http://j0x7c4.github.io/blog/2013/05/31/database-at-GAE</id>
     <content type="html"><![CDATA[<p>很多应用都需要database的支持，GAE提供了不错的Database服务。</p>
 
 <p>但是对于新手来讲，不是太容易理解GAE的database. GAE上的database称为datastore.</p>
@@ -160,9 +160,9 @@ employee.put()
   
   <entry>
     <title type="html"><![CDATA[在GAE上使用类SQL语句进行查询]]></title>
-    <link href="http://2naive.me/blog/2013/05/31/SQL-like-at-GAE/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/05/31/SQL-like-at-GAE/"/>
     <updated>2013-05-31T00:00:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/05/31/SQL-like-at-GAE</id>
+    <id>http://j0x7c4.github.io/blog/2013/05/31/SQL-like-at-GAE</id>
     <content type="html"><![CDATA[<p>GAE上的Datastore虽然不是SQL的Database， 但是他提供了GQL语句进行类似SQL的查询。因为是类似SQL，所以不是完全等同于SQL语句。SQL语句中常用的count, group在GQL中就没有。</p>
 
 <p>以下是GQL支持的格式，具体可以参见reference <a href="https://developers.google.com/appengine/docs/python/datastore/gqlreference">https://developers.google.com/appengine/docs/python/datastore/gqlreference</a></p>

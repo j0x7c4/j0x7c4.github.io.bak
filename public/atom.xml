@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[醉過方知酒濃]]></title>
-  <link href="http://2naive.me/atom.xml" rel="self"/>
-  <link href="http://2naive.me/"/>
-  <updated>2014-01-22T16:59:53+08:00</updated>
-  <id>http://2naive.me/</id>
+  <link href="http://j0x7c4.github.io/atom.xml" rel="self"/>
+  <link href="http://j0x7c4.github.io/"/>
+  <updated>2014-04-21T02:10:07+08:00</updated>
+  <id>http://j0x7c4.github.io/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -14,10 +14,108 @@
 
   
   <entry>
+    <title type="html"><![CDATA[简单的iOS互动]]></title>
+    <link href="http://j0x7c4.github.io/blog/2014/02/01/begin-ios-develop/"/>
+    <updated>2014-02-01T01:57:00+08:00</updated>
+    <id>http://j0x7c4.github.io/blog/2014/02/01/begin-ios-develop</id>
+    <content type="html"><![CDATA[<p>最近想开发iOS上的app，却发现以前上课时学的iOS开发已经忘的差不多了，于是决定重拾objective-c，和iOS的开发。</p>
+
+<p>我在看Beginning iOS 6 Development Exploring the iOS SDK 一书，这书有中文的翻译版，也翻译的不错，但还是看原版比较有感觉。实体书价格不菲，而且iOS7的版本也快出版了，觉得现在买一本iOS6的不太合适，所以还是在网上找了pdf，先看起来，等出了iOS7的版本后再买吧。</p>
+
+<p><img src="http://img5.douban.com/lpic/s26815358.jpg" /></p>
+
+<p>iOS的开发也是MVC(Model-View-Controller)的框架，目前是个流行的开发框架。在Chapter 4中，作者介绍了如何构建简单的互动（通过按钮改变文字的内容）。其中提到了<code>Outlet</code>和<code>Action</code>两个东西，<code>Outlet</code>是controller中的对象，他会映射到view中的一个真实的元素。<code>Action</code>是controller的方法，他反映了view中一个元素的动作，就是说view中的某个元素触发了一个事件（比如按钮被按了一下），会执行相应的action方法。</p>
+
+<p>创建view中的元素很方便，在storyboard中拖出一个UI元素来，然后按住<code>control</code>键，再拖动指针，拉到<code>xxController.h</code>中的interface中，就能选择是创建一个<code>Outlet</code>还是一个<code>Action</code>. 也可以事先在<code>xxController.h</code>中创建好相应的<code>Outlet</code>对象和<code>Action</code>方法，然后按住<code>control</code>，指针拖动到这些对象和方法上时，会自动高亮这些代码，放开指针，就能创建映射。不过我还是觉得先创建UI元素，再拖动指针自动创建<code>Outlet</code>或者<code>Action</code>比较方便。</p>
+
+<p>在<code>xxController.h</code>中进行声明之后，可以在<code>xxController.m</code>中把代码实现。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>BIDViewController.h</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="objectivec"><span class="line"><span class="cp">#import &lt;UIKit/UIKit.h&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="cp">#ifndef IBOutlet</span>
+</span><span class="line"><span class="cp">#define IBOutlet</span>
+</span><span class="line"><span class="cp">#endif</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@interface</span> <span class="nc">BIDViewController</span> : <span class="nc">UIViewController</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@property</span> <span class="p">(</span><span class="n">weak</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="kt">IBOutlet</span> <span class="n">UILabel</span> <span class="o">*</span><span class="n">statusLabel</span><span class="p">;</span>
+</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">buttonPressed:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>BIDViewController.m</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="objectivec"><span class="line"><span class="cp">#import &quot;BIDViewController.h&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@implementation</span> <span class="nc">BIDViewController</span>
+</span><span class="line">
+</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">buttonPressed:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
+</span><span class="line">  <span class="n">NSString</span> <span class="o">*</span><span class="n">title</span> <span class="o">=</span> <span class="p">[</span><span class="n">sender</span> <span class="nl">titleForState:</span><span class="n">UIControlStateNormal</span><span class="p">];</span>
+</span><span class="line">  <span class="n">NSString</span> <span class="o">*</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithFormat:</span><span class="s">@&quot;%@ button pressed.&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">];</span>
+</span><span class="line">  <span class="n">_statusLabel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[不小心又被回忆填满]]></title>
+    <link href="http://j0x7c4.github.io/blog/2014/01/29/full-of-regret/"/>
+    <updated>2014-01-29T02:00:00+08:00</updated>
+    <id>http://j0x7c4.github.io/blog/2014/01/29/full-of-regret</id>
+    <content type="html"><![CDATA[<p>电脑屏幕上不时跳出磁盘已满的消息，弹出来多了，就决定清理一下硬盘，看看哪些东西可以永久丢掉的。</p>
+
+<p>打开了以前手机拍的视频的文件夹，那都是2，3年前的事了。真的不该手贱打开来的，看了之后心里又起了一点点震动。</p>
+
+<p>到底是什么原因，可以让原本都下决心忘记的事情又重新出现在了眼前。尝试着忘掉这些事情，但是却因为一些几分钟甚至几秒钟的视频，让自己又开始动摇。</p>
+
+<p>故事什么时候才能有结尾。</p>
+
+<p><img src="http://farm4.staticflickr.com/3781/10802229284_e2fc908fdb_o.jpg" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[UI大改]]></title>
+    <link href="http://j0x7c4.github.io/blog/2014/01/22/ui-redesign/"/>
+    <updated>2014-01-22T23:01:00+08:00</updated>
+    <id>http://j0x7c4.github.io/blog/2014/01/22/ui-redesign</id>
+    <content type="html"><![CDATA[<p>最近对UI设计突然起了兴趣。在很久很久以前，还在读初中的时候就开始搞网页设计和Photoshop，不过我最终还是没能走上平面设计，或者UED的道路。这几天对bootstrap研究了一下，正好趁热打铁，顺便丰富一下自己的UI设计理念。</p>
+
+<p>向公司的MM询问到了UI相关的网站，其中最喜欢的是<a href="http://dribbble.com/">http://dribbble.com/</a>.虽然自己的设计能力有限，但是模仿能力我觉得还是挺不错的。于是我结合了dribble中那些作品的配色，和强大的bootstrap，开始了自己Blog的UI创作。这里要强调一下Responsive的概念，这真的很棒！根据当前窗口的尺寸，可以显示不同的排版。我的理解还停留在以前通过判断agent来改变CSS的阶段，现在用了这个之后感觉方便更多了。UI大改的第一步基本上完成了，包括页面的配色，大致的样式以及页面布局。接下来准备好好设计一些icon，比如<code>favicon</code>, <code>logo</code>. 当然还有<code>banner</code>.</p>
+
+<h2 id="ps">PS</h2>
+<p>最近heroku的连接速度越来越慢了，无意中发现了<a href="https://stdyun.com/">stdyun</a>, 他提供免费的octopress的托管（说白了就是帮你存储一些静态网页嘛），目前把部落格放到上面，感觉从部署到连接，都很流畅，以后更新部落格再也不用翻墙了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[用python写hive的UDAF]]></title>
-    <link href="http://2naive.me/blog/2014/01/05/hive-stream-with-python/"/>
+    <link href="http://j0x7c4.github.io/blog/2014/01/05/hive-stream-with-python/"/>
     <updated>2014-01-05T15:33:00+08:00</updated>
-    <id>http://2naive.me/blog/2014/01/05/hive-stream-with-python</id>
+    <id>http://j0x7c4.github.io/blog/2014/01/05/hive-stream-with-python</id>
     <content type="html"><![CDATA[<p>之前写过一篇关于说Python无法实现hive UDAF的文章，后来经过尝试，python完全可以代替JAVA实现hive中常用的UDF,UDAF,及UDTF.</p>
 
 <p>通过<code>transform</code>语句，可以将hive语句中<code>select</code>得到的数据通过类似hadoop中<a href="http://hadoop.apache.org/docs/stable1/streaming.html">streaming</a>的方式，传给<code>using</code>语句中的脚本作为输入。用<code>DISTRIBUTE BY</code>将mapper的输出分类给reducer. </p>
@@ -121,17 +219,17 @@
 
 <p>如果按照以上的方式，是可以实现UDAF的效果，但是代码的重用性不高。如果在java中，可以写多个不同功能的类，然后打在一个jar包中。不过在python中实现起来有点困难，比如我在另一个py脚本中定义两个函数foo,bar,在一个udaf脚本中需要先import那个py 模块，然后再用这两个函数。这样就需要在<code>add file</code>中同时添加两个py脚本，在实际使用过程中，发现添加多个py脚本后，在py代码中使用import语句，会找不到那个文件的路径。原因是在hdfs中，这些py脚本不一定会在同一个目录下。所以只能把所有需要用到的函数写在同一个py脚本中。这样一来，以后需要同种功能的函数时，需要重写这些代码。之后再看看有没有其他可行的方案。</p>
 
-<p><a href="http://2naive.me/blog/2013/09/25/hive-python-udf/">HIVE中使用python实现UDF</a></p>
+<p><a href="http://j0x7c4.github.io/blog/2013/09/25/hive-python-udf/">HIVE中使用python实现UDF</a></p>
 
-<p><a href="http://2naive.me/blog/2013/11/01/udf-in-python-sucks/">在hive中使用python来做UDF有点糟</a></p>
+<p><a href="http://j0x7c4.github.io/blog/2013/11/01/udf-in-python-sucks/">在hive中使用python来做UDF有点糟</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[在Octopress中使用LaTeX]]></title>
-    <link href="http://2naive.me/blog/2013/12/26/add-latex/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/12/26/add-latex/"/>
     <updated>2013-12-26T15:07:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/12/26/add-latex</id>
+    <id>http://j0x7c4.github.io/blog/2013/12/26/add-latex</id>
     <content type="html"><![CDATA[<p>在Octopress中显示LaTeX的方法，比想象中的要简单。只要几步，就能完成。</p>
 
 <h2 id="headmathjax">在head中加入MathJax</h2>
@@ -250,9 +348,9 @@
   
   <entry>
     <title type="html"><![CDATA[开发Chrome插件中遇到的一些坑]]></title>
-    <link href="http://2naive.me/blog/2013/12/23/my-first-chrome-extension/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/12/23/my-first-chrome-extension/"/>
     <updated>2013-12-23T00:03:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/12/23/my-first-chrome-extension</id>
+    <id>http://j0x7c4.github.io/blog/2013/12/23/my-first-chrome-extension</id>
     <content type="html"><![CDATA[<p>前几天参加了一个hackthon, 在大约24小时的时间内，完成了一个chrome插件，插件扩展大众点评现有的一些功能，比如增加了街景视图，网页上的右键搜索菜单，和本地的点评商户收藏夹。具体可以自己使用看看，不过目前还没上架，可以下载源码来自己玩玩。<a href="https://github.com/j0x7c4/hackstreet">https://github.com/j0x7c4/hackstreet</a></p>
 
 <p>以前没有太多JS的开发经验，这次开发是不断掉进坑里，然后再从坑里爬出来，直到最后有个完整版本出来。先说说chrome插件的配置文件吧，插件中有个叫<code>manifest.json</code>的文件，他管理了插件中所需的所有东西。</p>
@@ -305,9 +403,9 @@
   
   <entry>
     <title type="html"><![CDATA[好用的sublime插件]]></title>
-    <link href="http://2naive.me/blog/2013/12/11/todays-plugin-of-sublime/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/12/11/todays-plugin-of-sublime/"/>
     <updated>2013-12-11T16:35:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/12/11/todays-plugin-of-sublime</id>
+    <id>http://j0x7c4.github.io/blog/2013/12/11/todays-plugin-of-sublime</id>
     <content type="html"><![CDATA[<p>今天尝试了3个很好用的sublime插件，在这里mark一下。这些插件都能在sublime的Package Control中找到，可以在线安装。</p>
 
 <h2 id="sublimelinter">SublimeLinter</h2>
@@ -330,9 +428,9 @@
   
   <entry>
     <title type="html"><![CDATA[不知不觉走了许多路，但又像是原地踏步]]></title>
-    <link href="http://2naive.me/blog/2013/12/06/some-regrets/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/12/06/some-regrets/"/>
     <updated>2013-12-06T02:01:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/12/06/some-regrets</id>
+    <id>http://j0x7c4.github.io/blog/2013/12/06/some-regrets</id>
     <content type="html"><![CDATA[<p>畢業，找工作，入職開始上班，手上有活干，這一整串事情就發生在短短3個月里。回想起來生活還挺豐富的，11月份還去了一趟日本玩。不知不覺的好像自己走了很多路，經歷了很多事，以前幻想的，有些破滅了，有些還堅持著。</p>
 
 <p>最近開始有點忙了，工作上要做的事情漸漸有點眉目，迫切的想完成，可是又擔心自己目前的水平難以勝任。感覺工作效率越來越低了，沒有了一種披荊斬棘的快感。另外下班后做的事也越來越豐富了，每週固定要有幾次去健身，對於自己的身材還是不太滿意。還有一個晚上需要留出來參加吉他社，希望自己對吉他的熱情不要再是三分鐘熱度了。暫時現在看來還挺有熱情，在家裡看劇也是把吉他抱在懷裡，只是晚上太晚就不敢彈，怕吵到鄰居吧。最近，還找到了新的美劇《S.H.I.E.L.D》，它擴展了《復仇者聯盟》的劇情，相當於是Marvel弄的外傳吧，和主線劇情沒什麼太大相關，但看起來還挺有意思。其餘的時間，就留給了LOL，不過現在都是一個人打路人局，有時候別人坑我，有時候我坑別人，大家坑來坑去。還是想和小夥伴一起打，最好能有妹子一起。可是現實就是和理想有這麼點坑爹的差距。前段時間還心血來潮鼓搗一個微博相關的應用，可是目前在技術上遇到瓶頸，沒有特別好的方法解決，也沒有特別大的動力，於是就擱置了，等下次心血來潮再繼續吧。</p>
@@ -345,9 +443,9 @@
   
   <entry>
     <title type="html"><![CDATA[搭建能在天朝使用的web app]]></title>
-    <link href="http://2naive.me/blog/2013/11/30/heroku-gae-python/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/11/30/heroku-gae-python/"/>
     <updated>2013-11-30T20:23:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/11/30/heroku-gae-python</id>
+    <id>http://j0x7c4.github.io/blog/2013/11/30/heroku-gae-python</id>
     <content type="html"><![CDATA[<p>对于像我这种整天感觉很闲的人，总是会在代码中寻找自己的小世界，没事就写个web应用。可是身处天朝，资源有限。国际上很多知名的服务都不能用，比如某G的app engine. 不过还是有些漏网之鱼，没有完全被墙的。比如Heroku <a href="http://www.heroku.com">http://www.heroku.com</a>. (你现在看到的这个博客，就是放在heroku上的 &gt;_&lt; )</p>
 
 <p>Heroku是通过git的方式将本地的代码部署到云上。前面讲到它没有完全被墙，因为放在它上面的app在国内是可以访问的，但是通过git部署的过程，是被墙的。所以我都是需要VPN才能将代码部署到heroku上。Heroku支持很多语言，我最常用的就是python了。刚刚用Django在Heroku上部署了一个web app. 可以参照下面这篇文章，在heroku上部署django <a href="https://devcenter.heroku.com/articles/getting-started-with-django">https://devcenter.heroku.com/articles/getting-started-with-django</a></p>
@@ -360,9 +458,9 @@
 
 <p>于是乎，我就想到了GAE，它免费的数据库支持到了1GB. 虽然他上面的服务在天朝无法访问，但是如果请求是从heroku发出去的，然后heroku再就收GAE传回的数据显示在app上，就没问题了！带着这个想法，我在GAE上部署了一个数据库，用来存放一些数据，之前的文章中有提到如何在GAE上使用数据库。</p>
 
-<h3 id="a-hrefblog20130531sql-like-at-gaegaesqla"><a href="http://2naive.me/blog/2013/05/31/SQL-like-at-GAE">在GAE上使用类SQL语句进行查询</a></h3>
+<h3 id="a-hrefblog20130531sql-like-at-gaegaesqla"><a href="http://j0x7c4.github.io/blog/2013/05/31/SQL-like-at-GAE">在GAE上使用类SQL语句进行查询</a></h3>
 
-<h3 id="a-hrefblog20130531database-at-gaegaedatabasea"><a href="http://2naive.me/blog/2013/05/31/database-at-GAE/">在GAE上使用Database</a></h3>
+<h3 id="a-hrefblog20130531database-at-gaegaedatabasea"><a href="http://j0x7c4.github.io/blog/2013/05/31/database-at-GAE/">在GAE上使用Database</a></h3>
 
 <p>下面这个例子是一张Inverted_index表中，存2个字段，并且实现两个方法去获取资料：</p>
 
@@ -489,9 +587,9 @@
   
   <entry>
     <title type="html"><![CDATA[[转]当还是不当女生的心情垃圾桶]]></title>
-    <link href="http://2naive.me/blog/2013/11/23/emotion-trash/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/11/23/emotion-trash/"/>
     <updated>2013-11-23T00:19:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/11/23/emotion-trash</id>
+    <id>http://j0x7c4.github.io/blog/2013/11/23/emotion-trash</id>
     <content type="html"><![CDATA[<p>這是一篇分享自ptt的文章，很值得一看，特別是對那些總是追不到女生卻又很想討好女生的男生。</p>
 
 <p>作者根據一個網友的問題，逐一解釋，看了真是受益匪淺。</p>
@@ -967,9 +1065,9 @@
   
   <entry>
     <title type="html"><![CDATA[归属感]]></title>
-    <link href="http://2naive.me/blog/2013/11/18/homeless/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/11/18/homeless/"/>
     <updated>2013-11-18T00:12:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/11/18/homeless</id>
+    <id>http://j0x7c4.github.io/blog/2013/11/18/homeless</id>
     <content type="html"><![CDATA[<p>刚想写些东西，正在播的音乐刚好跳出五月天的《回来吧》，这真的是个巧合。</p>
 
 <blockquote>
@@ -1000,12 +1098,12 @@
   
   <entry>
     <title type="html"><![CDATA[在Terminal中显示git的当前branch]]></title>
-    <link href="http://2naive.me/blog/2013/11/16/show-git-branch-name/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/11/16/show-git-branch-name/"/>
     <updated>2013-11-16T01:05:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/11/16/show-git-branch-name</id>
+    <id>http://j0x7c4.github.io/blog/2013/11/16/show-git-branch-name</id>
     <content type="html"><![CDATA[<p>不知道有没有人和我有同样的困扰，在使用git的时候不小心改到了master分支上的代码，然后还不小心push了，结果还成功push了，而且自己还没发觉是push到了master上。如果代码正确还好，一旦代码有些问题就会引来很大麻烦。</p>
 
-<p><img src="http://2naive.me/images/blog/show-git-branch-name.png" /></p>
+<p><img src="http://j0x7c4.github.io/images/blog/show-git-branch-name.png" /></p>
 
 <p>mac的terminal上并没有自带功能显示当前的分支，所以需要自己手动修改bash的显示方式。如图上所示，新建一个<code>qrl</code>的目录，初始化<code>git</code>，当<code>commit</code>之后会产生<code>.git</code>的目录，从<code>.git</code>中获取当前的分支名字。</p>
 
@@ -1076,9 +1174,9 @@
   
   <entry>
     <title type="html"><![CDATA[Sublime Text 备忘]]></title>
-    <link href="http://2naive.me/blog/2013/11/13/sublime-text2-tutorial/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/11/13/sublime-text2-tutorial/"/>
     <updated>2013-11-13T11:33:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/11/13/sublime-text2-tutorial</id>
+    <id>http://j0x7c4.github.io/blog/2013/11/13/sublime-text2-tutorial</id>
     <content type="html"><![CDATA[<p>Sublime Text 是个很不错的文本编辑工具，已经使用1年多了。这里整理一些关于Sublime的使用方法，防止以后忘记。</p>
 
 <h2 id="package">在线安装Package</h2>
@@ -1125,9 +1223,9 @@
   
   <entry>
     <title type="html"><![CDATA[在日本——列車上的妹子]]></title>
-    <link href="http://2naive.me/blog/2013/11/08/in-japan-1/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/11/08/in-japan-1/"/>
     <updated>2013-11-08T00:20:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/11/08/in-japan-1</id>
+    <id>http://j0x7c4.github.io/blog/2013/11/08/in-japan-1</id>
     <content type="html"><![CDATA[<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x400&amp;maptype=roadmap&amp;markers=size:large%7Ccolor:blue%7C河口湖%7C&amp;zoom=10&amp;sensor=false" /></p>
 
 <p>去河口湖，從橫濱站搭電車，需要換乘4趟列車，总共需要3个多小时。從橫濱到Hachioji就要坐1個多小時，原本以為會在車上無聊的度過，沒想到注意力就被一個戴口罩的妹子吸引走了。</p>
@@ -1143,15 +1241,15 @@
 <h2 id="ps">PS</h2>
 <p>日本近几年对<code>痴汉</code>行为抓的很严，不能随意对日本的女孩进行拍照，特别是在电车，地铁上。只要有妹子向警察指正你对她有痴汉行为，比如拍照，咸猪手等，一旦证据确凿，就要在日本被关上两年，无论是本国人还是外国人。所以经常看岛国爱情动作片的同学们，去了日本之后千万不要拿相机乱拍妹子。</p>
 
-<p><img src="http://2naive.me/images/blog/Screen-Shot-2013-11-08-at-12.54.14-AM.png" /></p>
+<p><img src="http://j0x7c4.github.io/images/blog/Screen-Shot-2013-11-08-at-12.54.14-AM.png" /></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[在hive中使用python来做UDF有点糟]]></title>
-    <link href="http://2naive.me/blog/2013/11/01/udf-in-python-sucks/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/11/01/udf-in-python-sucks/"/>
     <updated>2013-11-01T23:57:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/11/01/udf-in-python-sucks</id>
+    <id>http://j0x7c4.github.io/blog/2013/11/01/udf-in-python-sucks</id>
     <content type="html"><![CDATA[<p>之前写了篇介绍如何在HIVE中用python来写UDF的文字，最近终于也开始需要用UDF来处理一些数据了。</p>
 
 <p>可是现实和理想总是存在些差距，原本想着python简洁的代码和随改随用的特性，在UDF的灵活性上显得有点苍白无力。利用<code>TRANSFORM</code>, <code>USING</code>, <code>AS</code>的结构来把python的脚本当做UDF，虽然看起来非常方便，但实际用起来却有很大问题。</p>
@@ -1177,9 +1275,9 @@
   
   <entry>
     <title type="html"><![CDATA[人生若只如初见]]></title>
-    <link href="http://2naive.me/blog/2013/10/24/first-love/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/10/24/first-love/"/>
     <updated>2013-10-24T22:11:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/24/first-love</id>
+    <id>http://j0x7c4.github.io/blog/2013/10/24/first-love</id>
     <content type="html"><![CDATA[<blockquote>
   <p>人生若只如初見
 何事秋風悲畫扇</p>
@@ -1201,9 +1299,9 @@
   
   <entry>
     <title type="html"><![CDATA[终于来到了厦门]]></title>
-    <link href="http://2naive.me/blog/2013/10/18/travel-to-xiamen/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/10/18/travel-to-xiamen/"/>
     <updated>2013-10-18T01:32:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/18/travel-to-xiamen</id>
+    <id>http://j0x7c4.github.io/blog/2013/10/18/travel-to-xiamen</id>
     <content type="html"><![CDATA[<p>以前一直想去厦门，可是都没有机会，没有成行。后来就去了台湾。
 现在从台湾回来，没想到工作还不到一个月就有机会和同事们一起去厦门旅游。我们搭某廉价航空的飞机，旅途算是有点艰辛——除了飞机晚点一个多小时不说，整趟飞行中不能把座椅后背倒下来，结果坐的脖子都僵硬了T_T</p>
 
@@ -1260,9 +1358,9 @@
   
   <entry>
     <title type="html"><![CDATA[试用networkx]]></title>
-    <link href="http://2naive.me/blog/2013/10/16/try-networkx/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/10/16/try-networkx/"/>
     <updated>2013-10-16T01:44:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/16/try-networkx</id>
+    <id>http://j0x7c4.github.io/blog/2013/10/16/try-networkx</id>
     <content type="html"><![CDATA[<p>最近想用pagerank的方法来分析微博好友之间的权威关系，于是试着用crawler去抓微博上好友的信息，然后建立关系网络。在网上看到用networkx可以比较方便的建立关系网络，并且可以比较方便的用pagerank计算每个好友的重要性。</p>
 
 <p>使用networks加入node和edge都很方便，并且networkx宣称他的node可以支持任何python的hashable的类型，于是我一开始使用custom的node.</p>
@@ -1345,9 +1443,9 @@ represented in the GML file as:</p>
   
   <entry>
     <title type="html"><![CDATA[Feature Selection in R is EASY!]]></title>
-    <link href="http://2naive.me/blog/2013/10/10/new-fselector-r/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/10/10/new-fselector-r/"/>
     <updated>2013-10-10T23:43:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/10/new-fselector-r</id>
+    <id>http://j0x7c4.github.io/blog/2013/10/10/new-fselector-r</id>
     <content type="html"><![CDATA[<p>最早认识R语言是看到一本书叫做<i>“Machine Learning for Hackers”</i>, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature Selection方面的工具时，看到有人推荐R的package &lt;a href=http://cran.r-project.org/web/packages/FSelector/FSelector.pdf&gt;FSelector&lt;/a&gt; . 于是就载下来尝试一下，结果发现真的很方便。</p>
 
 <h4 id="rbenchmarkiris">R可以方便的使用现成的benchmark（比如<code>iris</code>），只要一句话就可以轻松导入数据！</h4>
@@ -1430,9 +1528,9 @@ This famous (Fisher’s or Anderson’s) iris data set gives the measurements in
   
   <entry>
     <title type="html"><![CDATA[在octopress中加入Google map]]></title>
-    <link href="http://2naive.me/blog/2013/10/07/google-map/"/>
+    <link href="http://j0x7c4.github.io/blog/2013/10/07/google-map/"/>
     <updated>2013-10-07T02:21:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/07/google-map</id>
+    <id>http://j0x7c4.github.io/blog/2013/10/07/google-map</id>
     <content type="html"><![CDATA[<h3 id="google-mapapitt">需要科学上网才能正常显示Google Map(API被墙了T_T)</h3>
 
 <p>想在octopress中插入地图信息，考虑到之后可能会在博客中加入关于游记的文章，如果文章能有形象的地图信息会有很好的效果。于是在网上搜寻octopress的地图插件，发现一个叫做<a herf="http://mguentner.github.io/octolayer/">Octolayer</a>的插件，想载下来试试，不过github刚好出问题，我无法获取代码，再加上他不是用google map. 作为一个google的忠实脑残粉，我就决定自己写一个。</p>
@@ -1609,113 +1707,6 @@ This famous (Fisher’s or Anderson’s) iris data set gives the measurements in
 <div id="map-canvas"></div>
 
 <p>目前存在的问题是，因为都使用id叫map-canvas的div, 所以在同个页面中显示多个地图就会出错了。之后再想办法改进。又快天亮了，先睡了zzz</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[进藏前传]]></title>
-    <link href="http://2naive.me/blog/2013/10/04/go-to-tibet/"/>
-    <updated>2013-10-04T16:31:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/04/go-to-tibet</id>
-    <content type="html"><![CDATA[<p>最近看了一些书，都是和西藏旅行相关的，身边也有认识的人去西藏旅行。文青们都认为去西藏可以净化自己的心灵，近距离接近天堂。作为一个伪文青的我，自然也要跟随着众多文青的后尘。去西藏的愿望也在心底埋下了一颗种子。</p>
-
-<p>但是毕竟西藏不是一般的地方，除了高原反应和大太阳之外，路途遥远，沿路也不免遇到土匪野兽之类的东西，所以计划必须周全，于是我从现在开始收集进藏的必备知识，待这些知识成熟之后，再亲自赴藏，到时候也许会和小伙伴一起，也许会和妹子同行，也许就我一个人。此文会不断补充，希望广大网友们多多给些意见。</p>
-
-<!-- more -->
-<p>##基础篇
-+ <b>时间</b> 最适合去西藏旅游的时间是10月份，空气含氧量是一年内最高的(66%-67%)。
-+ <b>携带物品</b> 高原反映的药物(红景天)，消炎软膏，晕车药，唇膏，墨镜，防晒霜（SPA50+）</p>
-
-<h4 id="section">应对高原反应（摘自《背包十年》）</h4>
-<ol>
-  <li>提前至少10天服用高原红景天</li>
-  <li>进入高原第一天，不要吃太多</li>
-  <li>进入高原第一天不要在超过海拔4500米以上的地段过夜</li>
-  <li>除非要死，最好不要吸氧</li>
-  <li>坚持，一定要坚持，没什么大不了</li>
-</ol>
-
-<h2 id="section-1">路线篇</h2>
-<p>首先研究了一下进藏路线，我是比较喜欢享受过程，如果直接坐飞机到达拉萨，会感觉没有那么大的成就感，所以希望通过陆上的方式过去。网上了解到，大致可以分为3条路线：</p>
-
-<h3 id="section-2">川藏方向</h3>
-<p>#####318国道
-这几天看书和网络，看到最多的就是318国道。而且从上海的人民广场出发，一路可以开到西藏。</p>
-
-<p>318国道始建于1993年，1996年建成。起点为上海人民广场，途径浙江、安徽、湖北、重庆、四川、终点为西藏聂拉木县樟木镇友谊桥，全长5476千米，是中国目前最长的国道。因其横跨中国东中西部，揽括了平原、丘陵、盆地、高原景观，包含了江浙水乡文化、天府盆地文化、西藏人文景观，拥有从成都平原到青藏高原的高山峡谷一路的惊、险、绝、美、雄、壮的景观，而被中国国家地理杂志在2006年第10期评为中国的景观大道。&lt;a href=
-http://baike.baidu.com/view/157811.htm&gt;百度百科&lt;/a&gt;
-#####川藏公路
-川藏公路是连通四川成都与西藏拉萨之间汽车通行的第一条公路。川藏线始于四川成都，经雅安、康定，在新都桥分为南北两线：川藏北线经甘孜、德格、进入西藏昌都、邦达；川藏南线属318国道，经雅安、理塘、巴塘、进入西藏芝康，后在邦达与北线会合，再经巴宿、波密、林芝到拉萨。北线全长2412公里，沿途最高点是海拔4916米的雀儿山；南线全长2159公里，进藏多走南线。川藏线是中国人的景观大道，沿途景色迷人，旅游景点众多（例如稻城亚丁，海螺沟，丹巴，四姑娘山等）。<a href="http://baike.baidu.com/view/30712.htm">http://baike.baidu.com/view/30712.htm</a></p>
-
-<p>走川藏线会遇到威猛的康巴人</p>
-
-<h3 id="section-3">青藏方向</h3>
-<p>青藏线可以走青藏公路和青藏铁路，不过我还是比较偏好铁路，毕竟不用自己开车，比较省事。</p>
-
-<p>在格尔木的武警招待所，可以找到常年跑青藏线的私车。需要和中间人谈价，不能直接和私车车主谈。从格尔木到拉萨大约1000公里，沿途经过可可西里、五道梁、沱沱河、雁石坪、唐古拉山口、那曲、当雄等地。<b>（司机开车会睡着——《十年背包》）</b></p>
-
-<p>&lt;a href=http://baike.baidu.com/view/47084.htm&gt;青藏公路&lt;/a&gt;</p>
-
-<p>&lt;a href=http://baike.baidu.com/view/2580.htm&gt;青藏铁路&lt;/a&gt;</p>
-
-<p>走青藏线会遇到热情好客的安多部</p>
-
-<h3 id="section-4">新藏方向</h3>
-
-<p>新藏线就是从新疆开始到西藏，如果去西藏之前会路过新疆的话，可以考虑从这条路进藏。目前只有新藏公路，铁路的话还在修建中。</p>
-
-<p>&lt;a href=http://baike.baidu.com/view/196573.htm&gt;新藏公路&lt;/a&gt;</p>
-
-<h2 id="poi">POI</h2>
-<ul>
-  <li>玛吉阿米</li>
-  <li>拉母拉错</li>
-  <li>纳木错</li>
-  <li>大昭寺</li>
-</ul>
-
-<h2 id="section-5">参考博客</h2>
-<p><a href="http://blog.sina.com.cn/s/blog_4c565d700100x2n1.html">http://blog.sina.com.cn/s/blog_4c565d700100x2n1.html</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[复杂的感情]]></title>
-    <link href="http://2naive.me/blog/2013/10/03/fu-za-de-gan-qing/"/>
-    <updated>2013-10-03T23:00:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/03/fu-za-de-gan-qing</id>
-    <content type="html"><![CDATA[<p>前幾天被女神拒絕后，心情一直很糟，特別的失落。一直很想用一些文字來發洩一下心中的雜亂，可是卻找不到任何有力的文字。混亂的思想無法用自己幼稚的文字表達出來。不過漸漸的，我似乎明白了一些什麼道理，理解了她的想法。</p>
-
-<p>像我這種一廂情願的人肯定有很多，自己喜歡的人，卻不一定喜歡自己。自己拿對方當做愛人，對方卻把自己當做普通朋友。自己追求很久的人，她也許也在追求其他的人。對方並沒有把你當做戀人，而只是普通朋友，所以和對方說話一定要很小心，一旦尺度過大，就會導致尷尬。經歷過多次后，自己心裡大概也有數，對方可能對自己沒感覺，但自己也不敢捅破那層窗戶紙，因為害怕被拒絕。寧可過著這樣小心翼翼的生活，將對方假想成自己的戀人，也不願意將話挑明，導致大家不歡而散。然而感情是複雜的，我還無法用某種邏輯思維去控制它，因此談話的內容難免有時會觸碰到對方的底線。終於在我出口問她之前，她主動捅破了窗戶紙。心中長久以來的擔憂卻已成真。</p>
-
-<p>說到底，就是沒有互相吸引。我們這種不到30歲的年輕人，對於近期成家或許並沒有太大的執念，所以并不期望湊合著過，還是對一場轟轟烈烈的愛情充滿了期待。在尋找到生命中真正的伴侶之前，總是寧願不停的尋找，也不肯停下來看看自己的周圍。有些人會用很多標準去評判自己的追求者，一旦有某個條件沒有符合，就立即拉黑，如果條件符合就欣然接受；有些人卻比較感性，只要感覺對了就好，感覺不對對方再努力也是白搭。同樣兩個只憑感覺的人湊在一起，往往就無法在一起，因為兩者都對對方有感覺的概率，要遠遠小於兩者都滿足對方要求的概率。因為感情是個複雜的東西，也許感覺就在一瞬間不見了，也許感覺在一瞬間就產生了；而外在的條件是不容易變化的。也許同樣星座的人會有同樣的喜好，也許兩個人星座相同，都同樣相信感覺而不是理性的條件。這也許是相同星座比較難在一起的原因了。</p>
-
-<p>我們在deadline來臨之前都是期望生活是豐富的，只有在deadline迫在眉睫的時候，才會用理性高效的方法去應對deadline. 有些人會選擇替代方案去解決這個問題；有些人卻喜歡寧缺毋濫。我不排斥前者，但我更加尊重後者，雖然他們浪費了追求者的一片用心，但卻保持了感情的純潔。也許我還太幼稚，對於感情的問題太理想化。但是一個沒有完全吸引自己的人，你是無法付出所有去愛這個人的。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[添加404页面]]></title>
-    <link href="http://2naive.me/blog/2013/10/02/add-404-page/"/>
-    <updated>2013-10-02T23:48:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/02/add-404-page</id>
-    <content type="html"><![CDATA[<p>今天给博客加了404页面，看起来感觉更加完整了一点。
-加404页面的方法很简单，只要在<code>source</code>目录下面创建<code>404.html</code>文件，当发生404错误时，octopress就会自动跳转到<code>404.html</code>这个页面。
-具体内容如下：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">---
-</span><span class="line">layout: page
-</span><span class="line">title: Sorry，404错误！你要访问的网页不存在!
-</span><span class="line">footer: false
-</span><span class="line">---</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>其中的<code>title</code>可以改成任何自己想要的内容。</p>
 ]]></content>
   </entry>
   
