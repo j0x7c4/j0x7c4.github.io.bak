@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://j0x7c4.github.io/sitemap.xml 

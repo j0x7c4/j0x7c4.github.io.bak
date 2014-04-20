@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: UI | 醉過方知酒濃]]></title>
+  <link href="http://j0x7c4.github.io/blog/categories/ui/atom.xml" rel="self"/>
+  <link href="http://j0x7c4.github.io/"/>
+  <updated>2014-04-21T02:10:07+08:00</updated>
+  <id>http://j0x7c4.github.io/</id>
+  <author>
+    <name><![CDATA[Eli]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[UI大改]]></title>
+    <link href="http://j0x7c4.github.io/blog/2014/01/22/ui-redesign/"/>
+    <updated>2014-01-22T23:01:00+08:00</updated>
+    <id>http://j0x7c4.github.io/blog/2014/01/22/ui-redesign</id>
+    <content type="html"><![CDATA[<p>最近对UI设计突然起了兴趣。在很久很久以前，还在读初中的时候就开始搞网页设计和Photoshop，不过我最终还是没能走上平面设计，或者UED的道路。这几天对bootstrap研究了一下，正好趁热打铁，顺便丰富一下自己的UI设计理念。</p>
+
+<p>向公司的MM询问到了UI相关的网站，其中最喜欢的是<a href="http://dribbble.com/">http://dribbble.com/</a>.虽然自己的设计能力有限，但是模仿能力我觉得还是挺不错的。于是我结合了dribble中那些作品的配色，和强大的bootstrap，开始了自己Blog的UI创作。这里要强调一下Responsive的概念，这真的很棒！根据当前窗口的尺寸，可以显示不同的排版。我的理解还停留在以前通过判断agent来改变CSS的阶段，现在用了这个之后感觉方便更多了。UI大改的第一步基本上完成了，包括页面的配色，大致的样式以及页面布局。接下来准备好好设计一些icon，比如<code>favicon</code>, <code>logo</code>. 当然还有<code>banner</code>.</p>
+
+<h2 id="ps">PS</h2>
+<p>最近heroku的连接速度越来越慢了，无意中发现了<a href="https://stdyun.com/">stdyun</a>, 他提供免费的octopress的托管（说白了就是帮你存储一些静态网页嘛），目前把部落格放到上面，感觉从部署到连接，都很流畅，以后更新部落格再也不用翻墙了。</p>
+]]></content>
+  </entry>
+  
+</feed>

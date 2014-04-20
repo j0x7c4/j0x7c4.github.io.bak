@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 学习开发移动APP | 醉過方知酒濃]]></title>
+  <link href="http://j0x7c4.github.io/blog/categories/xue-xi-kai-fa-yi-dong-app/atom.xml" rel="self"/>
+  <link href="http://j0x7c4.github.io/"/>
+  <updated>2014-04-21T02:10:07+08:00</updated>
+  <id>http://j0x7c4.github.io/</id>
+  <author>
+    <name><![CDATA[Eli]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[简单的iOS互动]]></title>
+    <link href="http://j0x7c4.github.io/blog/2014/02/01/begin-ios-develop/"/>
+    <updated>2014-02-01T01:57:00+08:00</updated>
+    <id>http://j0x7c4.github.io/blog/2014/02/01/begin-ios-develop</id>
+    <content type="html"><![CDATA[<p>最近想开发iOS上的app，却发现以前上课时学的iOS开发已经忘的差不多了，于是决定重拾objective-c，和iOS的开发。</p>
+
+<p>我在看Beginning iOS 6 Development Exploring the iOS SDK 一书，这书有中文的翻译版，也翻译的不错，但还是看原版比较有感觉。实体书价格不菲，而且iOS7的版本也快出版了，觉得现在买一本iOS6的不太合适，所以还是在网上找了pdf，先看起来，等出了iOS7的版本后再买吧。</p>
+
+<p><img src="http://img5.douban.com/lpic/s26815358.jpg"></p>
+
+<p>iOS的开发也是MVC(Model-View-Controller)的框架，目前是个流行的开发框架。在Chapter 4中，作者介绍了如何构建简单的互动（通过按钮改变文字的内容）。其中提到了<code>Outlet</code>和<code>Action</code>两个东西，<code>Outlet</code>是controller中的对象，他会映射到view中的一个真实的元素。<code>Action</code>是controller的方法，他反映了view中一个元素的动作，就是说view中的某个元素触发了一个事件（比如按钮被按了一下），会执行相应的action方法。</p>
+
+<p>创建view中的元素很方便，在storyboard中拖出一个UI元素来，然后按住<code>control</code>键，再拖动指针，拉到<code>xxController.h</code>中的interface中，就能选择是创建一个<code>Outlet</code>还是一个<code>Action</code>. 也可以事先在<code>xxController.h</code>中创建好相应的<code>Outlet</code>对象和<code>Action</code>方法，然后按住<code>control</code>，指针拖动到这些对象和方法上时，会自动高亮这些代码，放开指针，就能创建映射。不过我还是觉得先创建UI元素，再拖动指针自动创建<code>Outlet</code>或者<code>Action</code>比较方便。</p>
+
+<p>在<code>xxController.h</code>中进行声明之后，可以在<code>xxController.m</code>中把代码实现。</p>
+
+<p>``` objectivec BIDViewController.h
+#import &lt;UIKit/UIKit.h&gt;</p>
+
+<h1 id="ifndef-iboutlet">ifndef IBOutlet</h1>
+<p>#define IBOutlet
+#endif</p>
+
+<p>@interface BIDViewController : UIViewController</p>
+
+<p>@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+- (IBAction)buttonPressed:(id)sender;</p>
+
+<p>@end
+```</p>
+
+<p>``` objectivec BIDViewController.m
+#import “BIDViewController.h”</p>
+
+<p>@implementation BIDViewController</p>
+
+<ul>
+  <li>(IBAction)buttonPressed:(id)sender {
+NSString *title = [sender titleForState:UIControlStateNormal];
+NSString *text = [NSString stringWithFormat:@”%@ button pressed.”,title];
+_statusLabel.text = text;
+}
+@end
+```</li>
+</ul>
+]]></content>
+  </entry>
+  
+</feed>

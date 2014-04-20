@@ -1,0 +1,294 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>简单的iOS互动 - 醉過方知酒濃</title> 
+	<meta name="author" content="Eli">
+	
+	<meta name="description" content="最近想开发iOS上的app，却发现以前上课时学的iOS开发已经忘的差不多了，于是决定重拾objective-c，和iOS的开发。 我在看Beginning iOS 6 Development Exploring the iOS SDK 一书，这书有中文的翻译版，也翻译的不错，但还是看原版比较有感觉 &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link href="/atom.xml" rel="alternate" title="醉過方知酒濃" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+<!--google map-->
+<!--<link href="/stylesheets/gmap.css" rel="stylesheet" type="text/css">-->
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>-->
+<!--<script src="/javascripts/gmap.js"></script>-->
+<!-- Bootstrap -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link href="/stylesheets/elistyle.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<header class="navbar eli-navbar navbar-fixed-top" role="navigation">
+	<div class="container"><div class="navbar-header">
+	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	</button>
+	<a class="navbar-brand">醉過方知酒濃</a>
+</div>
+
+<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+	<ul class="nav navbar-nav"><li id="home"></span>
+<a href="/">
+	<span class="glyphicon glyphicon-home"> Home</span>
+</a>
+</li>
+<li id="archives">
+<a href="/blog/archives">
+	<span class="glyphicon glyphicon-inbox"> Archives</span>
+</a>
+</li>
+<li id="research">
+<a href="/research"><span class="glyphicon glyphicon-book"> Research</span></a>
+</li>
+<li id="about">
+<a href="/about"><span class="glyphicon glyphicon-user"> About</span></a>
+</li>
+<li id="links">
+<a href="/links"><span class="glyphicon glyphicon-link"> Links</span></a>
+</li></ul>
+	<ul class="nav navbar-nav navbar-right" id="sub-nav">
+		<!--	<li class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</li>
+	-->
+	<li>
+		<form class="navbar-form eli-navbar-form" role="search" action="http://google.com/search" method="get">
+			<div class="input-group">
+				<input type="hidden" name="q" value="site:j0x7c4.github.io">
+				<input type="text" class="form-control">
+				<span class="input-group-btn">
+					<button class="btn eli-btn-search" type="submit">
+						<a>
+							<span class="glyphicon glyphicon-search"></span>
+						</a>
+					</button>
+				</span>
+			</div>
+			<!-- /input-group -->
+		</form>
+	</li>
+</ul>
+</nav>
+</div>
+</header>
+<!--<div class="banner jumbotron">
+	<h1>醉過方知酒濃</h1>
+</div>-->
+<div class="container eli-body">
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-9">
+	<article class="post">
+	<h2 class="title">简单的iOS互动</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-01T01:57:00+08:00" pubdate data-updated="true">Feb 1<span>st</span>, 2014</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
+
+
+	<a class='category' href='/blog/categories/objective-c/'>Objective-C</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>, <a class='category' href='/blog/categories/ios/'>iOS</a>, <a class='category' href='/blog/categories/xue-xi-kai-fa-yi-dong-app/'>学习开发移动APP</a>
+
+
+</div>
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="#disqus_thread">Comments</a></div>
+	</div>
+	<div class="entry-content"><p>最近想开发iOS上的app，却发现以前上课时学的iOS开发已经忘的差不多了，于是决定重拾objective-c，和iOS的开发。</p>
+
+<p>我在看Beginning iOS 6 Development Exploring the iOS SDK 一书，这书有中文的翻译版，也翻译的不错，但还是看原版比较有感觉。实体书价格不菲，而且iOS7的版本也快出版了，觉得现在买一本iOS6的不太合适，所以还是在网上找了pdf，先看起来，等出了iOS7的版本后再买吧。</p>
+
+<p><img src="http://img5.douban.com/lpic/s26815358.jpg" /></p>
+
+<p>iOS的开发也是MVC(Model-View-Controller)的框架，目前是个流行的开发框架。在Chapter 4中，作者介绍了如何构建简单的互动（通过按钮改变文字的内容）。其中提到了<code>Outlet</code>和<code>Action</code>两个东西，<code>Outlet</code>是controller中的对象，他会映射到view中的一个真实的元素。<code>Action</code>是controller的方法，他反映了view中一个元素的动作，就是说view中的某个元素触发了一个事件（比如按钮被按了一下），会执行相应的action方法。</p>
+
+<p>创建view中的元素很方便，在storyboard中拖出一个UI元素来，然后按住<code>control</code>键，再拖动指针，拉到<code>xxController.h</code>中的interface中，就能选择是创建一个<code>Outlet</code>还是一个<code>Action</code>. 也可以事先在<code>xxController.h</code>中创建好相应的<code>Outlet</code>对象和<code>Action</code>方法，然后按住<code>control</code>，指针拖动到这些对象和方法上时，会自动高亮这些代码，放开指针，就能创建映射。不过我还是觉得先创建UI元素，再拖动指针自动创建<code>Outlet</code>或者<code>Action</code>比较方便。</p>
+
+<p>在<code>xxController.h</code>中进行声明之后，可以在<code>xxController.m</code>中把代码实现。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>BIDViewController.h</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="objectivec"><span class="line"><span class="cp">#import &lt;UIKit/UIKit.h&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="cp">#ifndef IBOutlet</span>
+</span><span class="line"><span class="cp">#define IBOutlet</span>
+</span><span class="line"><span class="cp">#endif</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@interface</span> <span class="nc">BIDViewController</span> : <span class="nc">UIViewController</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@property</span> <span class="p">(</span><span class="n">weak</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="kt">IBOutlet</span> <span class="n">UILabel</span> <span class="o">*</span><span class="n">statusLabel</span><span class="p">;</span>
+</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">buttonPressed:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>BIDViewController.m</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="objectivec"><span class="line"><span class="cp">#import &quot;BIDViewController.h&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@implementation</span> <span class="nc">BIDViewController</span>
+</span><span class="line">
+</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">buttonPressed:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
+</span><span class="line">  <span class="n">NSString</span> <span class="o">*</span><span class="n">title</span> <span class="o">=</span> <span class="p">[</span><span class="n">sender</span> <span class="nl">titleForState:</span><span class="n">UIControlStateNormal</span><span class="p">];</span>
+</span><span class="line">  <span class="n">NSString</span> <span class="o">*</span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithFormat:</span><span class="s">@&quot;%@ button pressed.&quot;</span><span class="p">,</span><span class="n">title</span><span class="p">];</span>
+</span><span class="line">  <span class="n">_statusLabel</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+
+	</div>
+</div>
+</div>
+<footer id="footer">
+	<div class="container"><p>
+  Copyright &copy; 2014 - Eli -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p></div>
+</footer>
+<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'blog-jfttt';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://j0x7c4.github.io/blog/2014/02/01/begin-ios-develop/';
+        var disqus_url = 'http://j0x7c4.github.io/blog/2014/02/01/begin-ios-develop/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-42052957-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>
