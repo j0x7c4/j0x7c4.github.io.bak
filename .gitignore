@@ -6,6 +6,7 @@
 .themes/*
 _deploy
 sass.old
+public/*
 source.old
 source/_stash
 source/stylesheets/screen.css
