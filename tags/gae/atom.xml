@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: GAE | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/tags/gae/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/tags/gae/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[在GAE上使用Database]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/05/31/database-at-GAE/"/>
+    <link href="http://2naive.me/blog/2013/05/31/database-at-GAE/"/>
     <updated>2013-05-31T00:00:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/05/31/database-at-GAE</id>
+    <id>http://2naive.me/blog/2013/05/31/database-at-GAE</id>
     <content type="html"><![CDATA[<p>很多应用都需要database的支持，GAE提供了不错的Database服务。</p>
 
 <p>但是对于新手来讲，不是太容易理解GAE的database. GAE上的database称为datastore.</p>
@@ -61,9 +61,9 @@ employee.put()
   
   <entry>
     <title type="html"><![CDATA[在GAE上使用类SQL语句进行查询]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/05/31/SQL-like-at-GAE/"/>
+    <link href="http://2naive.me/blog/2013/05/31/SQL-like-at-GAE/"/>
     <updated>2013-05-31T00:00:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/05/31/SQL-like-at-GAE</id>
+    <id>http://2naive.me/blog/2013/05/31/SQL-like-at-GAE</id>
     <content type="html"><![CDATA[<p>GAE上的Datastore虽然不是SQL的Database， 但是他提供了GQL语句进行类似SQL的查询。因为是类似SQL，所以不是完全等同于SQL语句。SQL语句中常用的count, group在GQL中就没有。</p>
 
 <p>以下是GQL支持的格式，具体可以参见reference <a href="https://developers.google.com/appengine/docs/python/datastore/gqlreference">https://developers.google.com/appengine/docs/python/datastore/gqlreference</a></p>

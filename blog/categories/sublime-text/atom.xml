@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Sublime Text | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/blog/categories/sublime-text/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/blog/categories/sublime-text/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[好用的sublime插件]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/12/11/todays-plugin-of-sublime/"/>
+    <link href="http://2naive.me/blog/2013/12/11/todays-plugin-of-sublime/"/>
     <updated>2013-12-11T16:35:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/12/11/todays-plugin-of-sublime</id>
+    <id>http://2naive.me/blog/2013/12/11/todays-plugin-of-sublime</id>
     <content type="html"><![CDATA[<p>今天尝试了3个很好用的sublime插件，在这里mark一下。这些插件都能在sublime的Package Control中找到，可以在线安装。</p>
 
 <h2 id="sublimelinter">SublimeLinter</h2>
@@ -40,9 +40,9 @@
   
   <entry>
     <title type="html"><![CDATA[Sublime Text 备忘]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/11/13/sublime-text2-tutorial/"/>
+    <link href="http://2naive.me/blog/2013/11/13/sublime-text2-tutorial/"/>
     <updated>2013-11-13T11:33:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/11/13/sublime-text2-tutorial</id>
+    <id>http://2naive.me/blog/2013/11/13/sublime-text2-tutorial</id>
     <content type="html"><![CDATA[<p>Sublime Text 是个很不错的文本编辑工具，已经使用1年多了。这里整理一些关于Sublime的使用方法，防止以后忘记。</p>
 
 <h2 id="package">在线安装Package</h2>

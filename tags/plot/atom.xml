@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: plot | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/tags/plot/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/tags/plot/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[用matlab画Sphere Coordinate System]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/06/19/matlab-sphere-coordinate-system/"/>
+    <link href="http://2naive.me/blog/2013/06/19/matlab-sphere-coordinate-system/"/>
     <updated>2013-06-19T00:00:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/06/19/matlab-sphere-coordinate-system</id>
+    <id>http://2naive.me/blog/2013/06/19/matlab-sphere-coordinate-system</id>
     <content type="html"><![CDATA[<p><code>matlab
 Figure %create a figure
 [x,y,z]=sphere(10) %get the mesh of x,y,z for 10x10 surface sphere

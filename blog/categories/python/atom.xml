@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Python | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/blog/categories/python/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[用python写hive的UDAF]]></title>
-    <link href="http://j0x7c4.github.io/blog/2014/01/05/hive-stream-with-python/"/>
+    <link href="http://2naive.me/blog/2014/01/05/hive-stream-with-python/"/>
     <updated>2014-01-05T15:33:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2014/01/05/hive-stream-with-python</id>
+    <id>http://2naive.me/blog/2014/01/05/hive-stream-with-python</id>
     <content type="html"><![CDATA[<p>之前写过一篇关于说Python无法实现hive UDAF的文章，后来经过尝试，python完全可以代替JAVA实现hive中常用的UDF,UDAF,及UDTF.</p>
 
 <p>通过<code>transform</code>语句，可以将hive语句中<code>select</code>得到的数据通过类似hadoop中<a href="http://hadoop.apache.org/docs/stable1/streaming.html">streaming</a>的方式，传给<code>using</code>语句中的脚本作为输入。用<code>DISTRIBUTE BY</code>将mapper的输出分类给reducer. </p>
@@ -89,9 +89,9 @@ else:
   
   <entry>
     <title type="html"><![CDATA[在hive中使用python来做UDF有点糟]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/11/01/udf-in-python-sucks/"/>
+    <link href="http://2naive.me/blog/2013/11/01/udf-in-python-sucks/"/>
     <updated>2013-11-01T23:57:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/11/01/udf-in-python-sucks</id>
+    <id>http://2naive.me/blog/2013/11/01/udf-in-python-sucks</id>
     <content type="html"><![CDATA[<p>之前写了篇介绍如何在HIVE中用python来写UDF的文字，最近终于也开始需要用UDF来处理一些数据了。</p>
 
 <p>可是现实和理想总是存在些差距，原本想着python简洁的代码和随改随用的特性，在UDF的灵活性上显得有点苍白无力。利用<code>TRANSFORM</code>, <code>USING</code>, <code>AS</code>的结构来把python的脚本当做UDF，虽然看起来非常方便，但实际用起来却有很大问题。</p>
@@ -117,9 +117,9 @@ SELECT TRANSFORM(field_A, field_B) USING 'python foo.py' AS(field_AA, field_BB) 
   
   <entry>
     <title type="html"><![CDATA[试用networkx]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/10/16/try-networkx/"/>
+    <link href="http://2naive.me/blog/2013/10/16/try-networkx/"/>
     <updated>2013-10-16T01:44:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/10/16/try-networkx</id>
+    <id>http://2naive.me/blog/2013/10/16/try-networkx</id>
     <content type="html"><![CDATA[<p>最近想用pagerank的方法来分析微博好友之间的权威关系，于是试着用crawler去抓微博上好友的信息，然后建立关系网络。在网上看到用networkx可以比较方便的建立关系网络，并且可以比较方便的用pagerank计算每个好友的重要性。</p>
 
 <p>使用networks加入node和edge都很方便，并且networkx宣称他的node可以支持任何python的hashable的类型，于是我一开始使用custom的node.</p>
@@ -187,9 +187,9 @@ class user:
   
   <entry>
     <title type="html"><![CDATA[OpenCV in Python]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/07/20/opencv-in-python/"/>
+    <link href="http://2naive.me/blog/2013/07/20/opencv-in-python/"/>
     <updated>2013-07-20T00:00:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/07/20/opencv-in-python</id>
+    <id>http://2naive.me/blog/2013/07/20/opencv-in-python</id>
     <content type="html"><![CDATA[<p>OpenCV基本上每個學Computer Vision都用過，我之前也是用C++來使用OpenCV, 最近為了處理一些圖片轉影片，加Marker之類的簡單的操作，懶得再用C++去寫。於是就嘗試用Python來寫OpenCV.</p>
 
 <p>在Python中使用OpenCV, 只要把OpenCV的Library加到Python的Lib目錄下面就可以了。</p>
@@ -237,9 +237,9 @@ if __name__ == '__main__':
   
   <entry>
     <title type="html"><![CDATA[Python urllib+json 与web API交互]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/06/01/python-urllibjson-webAPI/"/>
+    <link href="http://2naive.me/blog/2013/06/01/python-urllibjson-webAPI/"/>
     <updated>2013-06-01T00:00:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/06/01/python-urllibjson-webAPI</id>
+    <id>http://2naive.me/blog/2013/06/01/python-urllibjson-webAPI</id>
     <content type="html"><![CDATA[<p>目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。</p>
 
 <p>利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。</p>

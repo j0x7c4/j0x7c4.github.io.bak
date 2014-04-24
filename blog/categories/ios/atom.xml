@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: iOS | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/blog/categories/ios/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/blog/categories/ios/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[简单的iOS互动]]></title>
-    <link href="http://j0x7c4.github.io/blog/2014/02/01/begin-ios-develop/"/>
+    <link href="http://2naive.me/blog/2014/02/01/begin-ios-develop/"/>
     <updated>2014-02-01T01:57:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2014/02/01/begin-ios-develop</id>
+    <id>http://2naive.me/blog/2014/02/01/begin-ios-develop</id>
     <content type="html"><![CDATA[<p>最近想开发iOS上的app，却发现以前上课时学的iOS开发已经忘的差不多了，于是决定重拾objective-c，和iOS的开发。</p>
 
 <p>我在看Beginning iOS 6 Development Exploring the iOS SDK 一书，这书有中文的翻译版，也翻译的不错，但还是看原版比较有感觉。实体书价格不菲，而且iOS7的版本也快出版了，觉得现在买一本iOS6的不太合适，所以还是在网上找了pdf，先看起来，等出了iOS7的版本后再买吧。</p>
