@@ -1,0 +1,228 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Python urllib+json 与web API交互 - 醉過方知酒濃</title> 
+	<meta name="author" content="Eli">
+	
+	<meta name="description" content="目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。 利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。 1
+2
+3
+4
+5
+import json
+import urllib
+url=URL_QUERY
+f &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link href="/atom.xml" rel="alternate" title="醉過方知酒濃" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+<!--google map-->
+<!--<link href="/stylesheets/gmap.css" rel="stylesheet" type="text/css">-->
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>-->
+<!--<script src="/javascripts/gmap.js"></script>-->
+<!-- Bootstrap -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link href="/stylesheets/elistyle.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<header class="navbar eli-navbar navbar-fixed-top" role="navigation">
+	<div class="container"><div class="navbar-header">
+	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	</button>
+	<a class="navbar-brand">醉過方知酒濃</a>
+</div>
+
+<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+	<ul class="nav navbar-nav"><li id="home"></span>
+<a href="/">
+	<span class="glyphicon glyphicon-home"> Home</span>
+</a>
+</li>
+<li id="archives">
+<a href="/blog/archives">
+	<span class="glyphicon glyphicon-inbox"> Archives</span>
+</a>
+</li>
+<li id="research">
+<a href="/research"><span class="glyphicon glyphicon-book"> Research</span></a>
+</li>
+<li id="about">
+<a href="/about"><span class="glyphicon glyphicon-user"> About</span></a>
+</li>
+<li id="links">
+<a href="/links"><span class="glyphicon glyphicon-link"> Links</span></a>
+</li></ul>
+</nav>
+</div>
+</header>
+<!--<div class="banner jumbotron">
+	<h1>醉過方知酒濃</h1>
+</div>-->
+<div class="container eli-body">
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-9">
+	<article class="post">
+	<h2 class="title">Python Urllib+json 与web API交互</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-01T00:00:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
+
+
+	<a class='category' href='/blog/categories/python/'>Python</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="#disqus_thread">Comments</a></div>
+	</div>
+	<div class="entry-content"><p>目前的web app都流行用URL的方式传递Query, 然后接受server回传过来的json格式的结果。</p>
+
+<p>利用python的urllib和json这两个模块，很容易就可以抓取里面的信息。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">json</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">urllib</span>
+</span><span class="line"><span class="n">url</span><span class="o">=</span><span class="n">URL_QUERY</span>
+</span><span class="line"><span class="n">f</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span><span class="line"><span class="n">j</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>f这个object存储了server回传的信息，通过<code>read()</code>将文字信息读出来。</p>
+
+<p><code>loads()</code>将文字信息转成dictionary和list的形式，存储在j中。</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+
+	</div>
+</div>
+</div>
+<footer id="footer">
+	<div class="container"><p>
+  Copyright &copy; 2014 - Eli -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p></div>
+</footer>
+<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'blog-jfttt';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://2naive.me/blog/2013/06/01/python-urllibjson-webAPI/';
+        var disqus_url = 'http://2naive.me/blog/2013/06/01/python-urllibjson-webAPI/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-42052957-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

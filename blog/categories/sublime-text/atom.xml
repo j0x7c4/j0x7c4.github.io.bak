@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sublime Text | 醉過方知酒濃]]></title>
+  <link href="http://2naive.me/blog/categories/sublime-text/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-25T01:13:19+08:00</updated>
+  <id>http://2naive.me/</id>
+  <author>
+    <name><![CDATA[Eli]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[好用的sublime插件]]></title>
+    <link href="http://2naive.me/blog/2013/12/11/todays-plugin-of-sublime/"/>
+    <updated>2013-12-11T16:35:00+08:00</updated>
+    <id>http://2naive.me/blog/2013/12/11/todays-plugin-of-sublime</id>
+    <content type="html"><![CDATA[<p>今天尝试了3个很好用的sublime插件，在这里mark一下。这些插件都能在sublime的Package Control中找到，可以在线安装。</p>
+
+<h2 id="sublimelinter">SublimeLinter</h2>
+
+<p>经常用sublime写python和一些shell的脚本，有些地方写错了不太容易发现。这个插件可以自动检测一些格式上的错误。</p>
+
+<h2 id="sidebarenhancements">SideBarEnhancements</h2>
+
+<p>增强了sublime sidebar的功能，在sidebar上点右键能看到很多新的选项，谁用谁知道。</p>
+
+<h2 id="filediffs">FileDiffs</h2>
+
+<p>为sublime增加了diff的功能，真的很不错。直接在sidebar可以点右键选择需要比较的文件。</p>
+
+<h2 id="sidebargit">SideBarGit</h2>
+
+<p>在有git的目录下，能在sublime的状态栏中显示当前git的分支，虽然这个功能很平凡，但是提醒你当前的分支是很重要的，改code不要改错分支哦~</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sublime Text 备忘]]></title>
+    <link href="http://2naive.me/blog/2013/11/13/sublime-text2-tutorial/"/>
+    <updated>2013-11-13T11:33:00+08:00</updated>
+    <id>http://2naive.me/blog/2013/11/13/sublime-text2-tutorial</id>
+    <content type="html"><![CDATA[<p>Sublime Text 是个很不错的文本编辑工具，已经使用1年多了。这里整理一些关于Sublime的使用方法，防止以后忘记。</p>
+
+<h2 id="package">在线安装Package</h2>
+<p>###安装Package Control
++ 用 Ctrl+` 打开Console
++ 在console中加入下面这段脚本</p>
+
+<p><code>python
+import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
+</code></p>
+
+<ul>
+  <li>重新打开sublime</li>
+</ul>
+
+<h3 id="package-control">用Package Control安装插件</h3>
+<ul>
+  <li><code>Command+Shift+p</code>打开命令面板(如果非mac就用<code>Ctrl</code>代替<code>Command</code>)</li>
+  <li>输入<code>install</code>打开Install Package</li>
+  <li>选择需要的插件安装</li>
+</ul>
+
+<h3 id="repository">添加Repository</h3>
+<p>想要使用更多的插件，可以自行添加网上的repository，比如github.</p>
+
+<ul>
+  <li><code>Command+Shift+p</code>打开命令面板</li>
+  <li>选择<code>package Control:Add Repository</code></li>
+  <li>然后在底下的Repository URL中填入github地址，比如<a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
+  <li>最后再选择<code>install package</code>来安装插件</li>
+</ul>
+
+<h3 id="section">常用插件</h3>
+<ul>
+  <li>SublimeFormatSQL <a href="https://github.com/freewizard/SublimeFormatSQL">https://github.com/freewizard/SublimeFormatSQL</a></li>
+</ul>
+
+<h3 id="section-1">备注</h3>
+<ul>
+  <li>SublimeFormatSQL的最新版对Sublime Text 2的兼容性有点问题，我用朋友给的旧版本就可以了。具体issue参见<a href="https://github.com/freewizard/SublimeFormatSQL/issues/14">https://github.com/freewizard/SublimeFormatSQL/issues/14</a></li>
+</ul>
+]]></content>
+  </entry>
+  
+</feed>

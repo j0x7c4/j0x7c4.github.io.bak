@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: plot | 醉過方知酒濃]]></title>
+  <link href="http://2naive.me/tags/plot/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-25T01:13:19+08:00</updated>
+  <id>http://2naive.me/</id>
+  <author>
+    <name><![CDATA[Eli]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[用matlab画Sphere Coordinate System]]></title>
+    <link href="http://2naive.me/blog/2013/06/19/matlab-sphere-coordinate-system/"/>
+    <updated>2013-06-19T00:00:00+08:00</updated>
+    <id>http://2naive.me/blog/2013/06/19/matlab-sphere-coordinate-system</id>
+    <content type="html"><![CDATA[<p><code>matlab
+Figure %create a figure
+[x,y,z]=sphere(10) %get the mesh of x,y,z for 10x10 surface sphere
+h=surf(x,y,z) %create the object of surface
+axis equal 
+set(h,'FaceColor',[0 0 0],'FaceAlpha',0.5) %change the surface color, and alpha
+</code>
+寫thesis需要各種圖，那些圖用photoshop畫會瘋掉。Matlab可以畫出科學上需要的圖。</p>
+]]></content>
+  </entry>
+  
+</feed>
