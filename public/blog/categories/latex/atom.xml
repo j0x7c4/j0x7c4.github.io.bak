@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: LaTeX | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/blog/categories/latex/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/blog/categories/latex/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[在Octopress中使用LaTeX]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/12/26/add-latex/"/>
+    <link href="http://2naive.me/blog/2013/12/26/add-latex/"/>
     <updated>2013-12-26T15:07:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/12/26/add-latex</id>
+    <id>http://2naive.me/blog/2013/12/26/add-latex</id>
     <content type="html"><![CDATA[<p>在Octopress中显示LaTeX的方法，比想象中的要简单。只要几步，就能完成。</p>
 
 <h2 id="headmathjax">在head中加入MathJax</h2>

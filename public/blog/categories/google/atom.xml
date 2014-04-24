@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Google | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/blog/categories/google/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/blog/categories/google/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[开发Chrome插件中遇到的一些坑]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/12/23/my-first-chrome-extension/"/>
+    <link href="http://2naive.me/blog/2013/12/23/my-first-chrome-extension/"/>
     <updated>2013-12-23T00:03:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/12/23/my-first-chrome-extension</id>
+    <id>http://2naive.me/blog/2013/12/23/my-first-chrome-extension</id>
     <content type="html"><![CDATA[<p>前几天参加了一个hackthon, 在大约24小时的时间内，完成了一个chrome插件，插件扩展大众点评现有的一些功能，比如增加了街景视图，网页上的右键搜索菜单，和本地的点评商户收藏夹。具体可以自己使用看看，不过目前还没上架，可以下载源码来自己玩玩。<a href="https://github.com/j0x7c4/hackstreet">https://github.com/j0x7c4/hackstreet</a></p>
 
 <p>以前没有太多JS的开发经验，这次开发是不断掉进坑里，然后再从坑里爬出来，直到最后有个完整版本出来。先说说chrome插件的配置文件吧，插件中有个叫<code>manifest.json</code>的文件，他管理了插件中所需的所有东西。</p>
@@ -64,9 +64,9 @@
   
   <entry>
     <title type="html"><![CDATA[在octopress中加入Google map]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/10/07/google-map/"/>
+    <link href="http://2naive.me/blog/2013/10/07/google-map/"/>
     <updated>2013-10-07T02:21:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/10/07/google-map</id>
+    <id>http://2naive.me/blog/2013/10/07/google-map</id>
     <content type="html"><![CDATA[<h3 id="google-mapapitt">需要科学上网才能正常显示Google Map(API被墙了T_T)</h3>
 
 <p>想在octopress中插入地图信息，考虑到之后可能会在博客中加入关于游记的文章，如果文章能有形象的地图信息会有很好的效果。于是在网上搜寻octopress的地图插件，发现一个叫做<a herf="http://mguentner.github.io/octolayer/">Octolayer</a>的插件，想载下来试试，不过github刚好出问题，我无法获取代码，再加上他不是用google map. 作为一个google的忠实脑残粉，我就决定自己写一个。</p>
@@ -145,7 +145,7 @@ function initialize() {</p>
 <p>把<code>gmap.js</code>放在<code>source/javascripts</code>中，并且在<code>source/_includes/head.html</code>中加入下面几行：</p>
 
 <p><code>html
-&lt;script async="true" src="http://j0x7c4.github.io//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script async="true" src="http://2naive.me//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"&gt;&lt;/script&gt;
 &lt;script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"&gt;&lt;/script&gt;
 &lt;script src="/javascripts/gmap.js"&gt;&lt;/script&gt;
 </code></p>
@@ -169,7 +169,7 @@ function initialize() {</p>
 <p>所以在<code>source/_includes/head.html</code>中也要加入下面这行：</p>
 
 <p><code>html
-&lt;link href="http://j0x7c4.github.io/stylesheets/gmap.css" rel="stylesheet" type="text/css"&gt;
+&lt;link href="http://2naive.me/stylesheets/gmap.css" rel="stylesheet" type="text/css"&gt;
 </code></p>
 
 <p>这样子应该可以出现下面的结果了：</p>

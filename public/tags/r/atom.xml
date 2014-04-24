@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: R | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/tags/r/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/tags/r/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Feature Selection in R is EASY!]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/10/10/new-fselector-r/"/>
+    <link href="http://2naive.me/blog/2013/10/10/new-fselector-r/"/>
     <updated>2013-10-10T23:43:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/10/10/new-fselector-r</id>
+    <id>http://2naive.me/blog/2013/10/10/new-fselector-r</id>
     <content type="html"><![CDATA[<p>最早认识R语言是看到一本书叫做<i>“Machine Learning for Hackers”</i>, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature Selection方面的工具时，看到有人推荐R的package &lt;a href=http://cran.r-project.org/web/packages/FSelector/FSelector.pdf&gt;FSelector&lt;/a&gt; . 于是就载下来尝试一下，结果发现真的很方便。</p>
 
 <h4 id="rbenchmarkiris">R可以方便的使用现成的benchmark（比如<code>iris</code>），只要一句话就可以轻松导入数据！</h4>

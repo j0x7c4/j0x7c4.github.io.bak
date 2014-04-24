@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: opencv | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/tags/opencv/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/tags/opencv/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[OpenCV in Python]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/07/20/opencv-in-python/"/>
+    <link href="http://2naive.me/blog/2013/07/20/opencv-in-python/"/>
     <updated>2013-07-20T00:00:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/07/20/opencv-in-python</id>
+    <id>http://2naive.me/blog/2013/07/20/opencv-in-python</id>
     <content type="html"><![CDATA[<p>OpenCV基本上每個學Computer Vision都用過，我之前也是用C++來使用OpenCV, 最近為了處理一些圖片轉影片，加Marker之類的簡單的操作，懶得再用C++去寫。於是就嘗試用Python來寫OpenCV.</p>
 
 <p>在Python中使用OpenCV, 只要把OpenCV的Library加到Python的Lib目錄下面就可以了。</p>

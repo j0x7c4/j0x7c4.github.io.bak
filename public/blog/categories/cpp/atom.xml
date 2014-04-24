@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: cpp | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/blog/categories/cpp/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/blog/categories/cpp/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[关于C++ std::map]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/07/17/cpp-std-map/"/>
+    <link href="http://2naive.me/blog/2013/07/17/cpp-std-map/"/>
     <updated>2013-07-17T00:00:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/07/17/cpp-std-map</id>
+    <id>http://2naive.me/blog/2013/07/17/cpp-std-map</id>
     <content type="html"><![CDATA[<p>C++的std::map是个很好用的东西，将key和value进行对应，而且可以是任意类型的key.</p>
 
 <p>以前一直没有研究过具体这个MAP是怎么实现的，只是大概的知道它是一个binary search tree. 那如果一个key不是数字，字符串这种相对简单的类型的时，而是一个vector, 或者一个pair类型的对象时，key要如何对应value呢？</p>

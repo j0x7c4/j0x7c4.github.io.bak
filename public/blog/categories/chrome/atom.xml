@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Chrome | 醉過方知酒濃]]></title>
-  <link href="http://j0x7c4.github.io/blog/categories/chrome/atom.xml" rel="self"/>
-  <link href="http://j0x7c4.github.io/"/>
-  <updated>2014-04-23T01:23:12+08:00</updated>
-  <id>http://j0x7c4.github.io/</id>
+  <link href="http://2naive.me/blog/categories/chrome/atom.xml" rel="self"/>
+  <link href="http://2naive.me/"/>
+  <updated>2014-04-24T14:16:19+08:00</updated>
+  <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[开发Chrome插件中遇到的一些坑]]></title>
-    <link href="http://j0x7c4.github.io/blog/2013/12/23/my-first-chrome-extension/"/>
+    <link href="http://2naive.me/blog/2013/12/23/my-first-chrome-extension/"/>
     <updated>2013-12-23T00:03:00+08:00</updated>
-    <id>http://j0x7c4.github.io/blog/2013/12/23/my-first-chrome-extension</id>
+    <id>http://2naive.me/blog/2013/12/23/my-first-chrome-extension</id>
     <content type="html"><![CDATA[<p>前几天参加了一个hackthon, 在大约24小时的时间内，完成了一个chrome插件，插件扩展大众点评现有的一些功能，比如增加了街景视图，网页上的右键搜索菜单，和本地的点评商户收藏夹。具体可以自己使用看看，不过目前还没上架，可以下载源码来自己玩玩。<a href="https://github.com/j0x7c4/hackstreet">https://github.com/j0x7c4/hackstreet</a></p>
 
 <p>以前没有太多JS的开发经验，这次开发是不断掉进坑里，然后再从坑里爬出来，直到最后有个完整版本出来。先说说chrome插件的配置文件吧，插件中有个叫<code>manifest.json</code>的文件，他管理了插件中所需的所有东西。</p>
