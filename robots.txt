@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: 
-
-Sitemap: http://2naive.me/sitemap.xml 
