@@ -6,7 +6,6 @@
 _deploy
 public
 sass.old
-public/*
 source.old
 public
 source/_stash

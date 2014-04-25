@@ -7,15 +7,17 @@
 {% include banner.html %}
 <div class="container eli-body">
 <div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-9">
+	<div class="col-md-1 left-page"></div>
+	<div class="col-md-10 main-page">
 	{{ content | expand_urls: root_url }}
+	<footer>
+		{% include footer.html %}
+	</footer>
 	</div>
+	<div class="col-md-1 right-page"></div>
 </div>
 </div>
-<footer id="footer">
-	<div class="container">{% include footer.html %}</div>
-</footer>
+
 {% include after_footer.html %}
 </body>
 </html>

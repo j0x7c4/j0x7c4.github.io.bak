@@ -13,6 +13,8 @@ footer: true
 
 <a href="http://hi.baidu.com/avovkozpikgprur">大学时写的一些东西</a>
 	
+##特别关注
++ <a href="http://loveli.me">Dali</a>
 
 ##小伙伴们
 + <a href="http://www.dcharm.com/">dcharm</a>
