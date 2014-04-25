@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 醉過方知酒濃]]></title>
   <link href="http://2naive.me/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2014-04-25T16:14:21+08:00</updated>
+  <updated>2014-04-25T18:37:01+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[一台电脑中管理多个Octopress Blog]]></title>
+    <link href="http://2naive.me/blog/2014/04/25/multi-octopress-deploy/"/>
+    <updated>2014-04-25T16:51:00+08:00</updated>
+    <id>http://2naive.me/blog/2014/04/25/multi-octopress-deploy</id>
+    <content type="html"><![CDATA[<p>``` sh
+if [ ! $1 ];
+then
+    echo “need role”
+    exit 0
+fi</p>
+
+<p>private_key=’id_rsa<em>‘$1
+public_key=’id_rsa</em>‘$1’.pub’</p>
+
+<p>private_key_file=’/Users/jie/.ssh/’$private_key
+public_key_file=’/Users/jie/.ssh/’$public_key</p>
+
+<p>if [ -e $public_key_file ] &amp;&amp; [ -e $private_key_file ];
+then
+    cp $public_key_file ~/.ssh/id_rsa.pub
+    cp $private_key_file ~/.ssh/id_rsa
+    echo $1” changed”
+else
+    echo “Can’t find “$public_key_file” or “$private_key_file
+fi
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在Octopress中使用LaTeX]]></title>

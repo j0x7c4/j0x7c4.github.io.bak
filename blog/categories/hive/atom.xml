@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hive | 醉過方知酒濃]]></title>
   <link href="http://2naive.me/blog/categories/hive/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2014-04-25T16:14:21+08:00</updated>
+  <updated>2014-04-25T18:37:01+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -81,9 +81,9 @@ else:
 
 <p>如果按照以上的方式，是可以实现UDAF的效果，但是代码的重用性不高。如果在java中，可以写多个不同功能的类，然后打在一个jar包中。不过在python中实现起来有点困难，比如我在另一个py脚本中定义两个函数foo,bar,在一个udaf脚本中需要先import那个py 模块，然后再用这两个函数。这样就需要在<code>add file</code>中同时添加两个py脚本，在实际使用过程中，发现添加多个py脚本后，在py代码中使用import语句，会找不到那个文件的路径。原因是在hdfs中，这些py脚本不一定会在同一个目录下。所以只能把所有需要用到的函数写在同一个py脚本中。这样一来，以后需要同种功能的函数时，需要重写这些代码。之后再看看有没有其他可行的方案。</p>
 
-<p><a href="/blog/2013/09/25/hive-python-udf/">HIVE中使用python实现UDF</a></p>
+<p><a href="{{root_url}}/blog/2013/09/25/hive-python-udf/">HIVE中使用python实现UDF</a></p>
 
-<p><a href="/blog/2013/11/01/udf-in-python-sucks/">在hive中使用python来做UDF有点糟</a></p>
+<p><a href="{{root_url}}/blog/2013/11/01/udf-in-python-sucks/">在hive中使用python来做UDF有点糟</a></p>
 ]]></content>
   </entry>
   

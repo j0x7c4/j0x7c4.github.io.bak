@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 隨心所想 | 醉過方知酒濃]]></title>
   <link href="http://2naive.me/blog/categories/sui-xin-suo-xiang/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2014-04-25T16:14:21+08:00</updated>
+  <updated>2014-04-25T18:37:01+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -47,7 +47,7 @@
 
 <p>故事什么时候才能有结尾。</p>
 
-<p><img src="http://farm4.staticflickr.com/3781/10802229284_e2fc908fdb_o.jpg"></p>
+<p>{% img http://farm4.staticflickr.com/3781/10802229284_e2fc908fdb_o.jpg %}</p>
 ]]></content>
   </entry>
   

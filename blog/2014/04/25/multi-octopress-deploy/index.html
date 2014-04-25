@@ -3,10 +3,33 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: Octopress - 醉過方知酒濃</title> 
+	<title>一台电脑中管理多个Octopress Blog - 醉過方知酒濃</title> 
 	<meta name="author" content="Eli">
 	
-	<meta name="description" content="Category: Octopress">
+	<meta name="description" content="1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+if [ ! $1 ];
+then echo &quot;need role&quot; exit 0
+fi private_key=&#39;id_rsa_&#39;$1
+public_key &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -100,118 +123,93 @@
 <div class="row">
 	<div class="col-md-1 left-page"></div>
 	<div class="col-md-10 main-page">
-	
-	
+	<article class="post">
+	<h2 class="title">一台电脑中管理多个Octopress Blog</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
 
 
-	
-	
-	<section class="archives row"><h1 class="year col-md-3">2014</h1>
-	
 
-<article class="col-md-6">
-	<h2 class="title"><a href="/blog/2014/04/25/multi-octopress-deploy/">一台电脑中管理多个Octopress Blog</a></h2>
-	<div class="meta">
-		<div class="date">Apr 25</div>
-		<div class="tags">
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-25T16:51:00+08:00" pubdate data-updated="true">Apr 25<span>th</span>, 2014</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
 
 
 	<a class='category' href='/blog/categories/blog/'>Blog</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
 
 
 </div>
-	    
-	    <div class="comments"><a href="/blog/2014/04/25/multi-octopress-deploy/#disqus_thread">Comments</a></div>
-	    
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="#disqus_thread">Comments</a></div>
 	</div>
-</article>
-
-	
-
-
-	
-	
-		</section>
-	
-	<section class="archives row"><h1 class="year col-md-3">2013</h1>
-	
-
-<article class="col-md-6">
-	<h2 class="title"><a href="/blog/2013/12/26/add-latex/">在Octopress中使用LaTeX</a></h2>
-	<div class="meta">
-		<div class="date">Dec 26</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/latex/'>LaTeX</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
-
-
+	<div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="k">if</span> <span class="o">[</span> ! <span class="nv">$1</span> <span class="o">]</span>;
+</span><span class="line"><span class="k">then</span>
+</span><span class="line"><span class="k">    </span><span class="nb">echo</span> <span class="s2">&quot;need role&quot;</span>
+</span><span class="line">    <span class="nb">exit </span>0
+</span><span class="line"><span class="k">fi</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">private_key</span><span class="o">=</span><span class="s1">&#39;id_rsa_&#39;</span><span class="nv">$1</span>
+</span><span class="line"><span class="nv">public_key</span><span class="o">=</span><span class="s1">&#39;id_rsa_&#39;</span><span class="nv">$1</span><span class="s1">&#39;.pub&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">private_key_file</span><span class="o">=</span><span class="s1">&#39;/Users/jie/.ssh/&#39;</span><span class="nv">$private_key</span>
+</span><span class="line"><span class="nv">public_key_file</span><span class="o">=</span><span class="s1">&#39;/Users/jie/.ssh/&#39;</span><span class="nv">$public_key</span>
+</span><span class="line">
+</span><span class="line"><span class="k">if</span> <span class="o">[</span> -e <span class="nv">$public_key_file</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -e <span class="nv">$private_key_file</span> <span class="o">]</span>;
+</span><span class="line"><span class="k">then</span>
+</span><span class="line"><span class="k">    </span>cp <span class="nv">$public_key_file</span> ~/.ssh/id_rsa.pub
+</span><span class="line">    cp <span class="nv">$private_key_file</span> ~/.ssh/id_rsa
+</span><span class="line">    <span class="nb">echo</span> <span class="nv">$1</span><span class="s2">&quot; changed&quot;</span>
+</span><span class="line"><span class="k">else</span>
+</span><span class="line"><span class="k">    </span><span class="nb">echo</span> <span class="s2">&quot;Can&#39;t find &quot;</span><span class="nv">$public_key_file</span><span class="s2">&quot; or &quot;</span><span class="nv">$private_key_file</span>
+</span><span class="line"><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
-	    
-	    <div class="comments"><a href="/blog/2013/12/26/add-latex/#disqus_thread">Comments</a></div>
-	    
-	</div>
+
 </article>
 
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
 	
-
-
-<article class="col-md-6">
-	<h2 class="title"><a href="/blog/2013/10/02/add-404-page/">添加404页面</a></h2>
-	<div class="meta">
-		<div class="date">Oct  2</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
-
-
 </div>
-	    
-	    <div class="comments"><a href="/blog/2013/10/02/add-404-page/#disqus_thread">Comments</a></div>
-	    
-	</div>
-</article>
-
-	
 
 
-<article class="col-md-6">
-	<h2 class="title"><a href="/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/">从wordpress到octopress迁移成功</a></h2>
-	<div class="meta">
-		<div class="date">Oct  1</div>
-		<div class="tags">
 
-
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
-
-
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-	    
-	    <div class="comments"><a href="/blog/2013/10/01/cong-wordpressdao-octopressqian-yi-cheng-gong/#disqus_thread">Comments</a></div>
-	    
-	</div>
-</article>
-
-	
-
-
-<article class="col-md-6">
-	<h2 class="title"><a href="/blog/2013/10/01/change-to-octopress/">改版octopress 之 安装</a></h2>
-	<div class="meta">
-		<div class="date">Oct  1</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
-
-
-</div>
-	    
-	    <div class="comments"><a href="/blog/2013/10/01/change-to-octopress/#disqus_thread">Comments</a></div>
-	    
-	</div>
-</article>
+</section>
 
 	<footer>
 		<p>
@@ -237,7 +235,10 @@
       var disqus_shortname = 'blog-jfttt';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://2naive.me/blog/2014/04/25/multi-octopress-deploy/';
+        var disqus_url = 'http://2naive.me/blog/2014/04/25/multi-octopress-deploy/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
