@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 醉過方知酒濃]]></title>
   <link href="http://2naive.me/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2014-04-25T18:42:26+08:00</updated>
+  <updated>2014-04-26T01:53:11+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -18,7 +18,15 @@
     <link href="http://2naive.me/blog/2014/04/25/multi-octopress-deploy/"/>
     <updated>2014-04-25T16:51:00+08:00</updated>
     <id>http://2naive.me/blog/2014/04/25/multi-octopress-deploy</id>
-    <content type="html"><![CDATA[<p>``` sh
+    <content type="html"><![CDATA[<p>尝试着在一台mac上使用两个不同的Octopress博客，这两个博客目前放在github的两个用户下，所以每个用户的priviate key和pubilc key都是不一样的。</p>
+
+<p>上网找了一些方法，主要都是通过配置<code>~/.ssh/config</code>来实现，不过我按照那些方法做，都没成功。貌似只能识别<code>~/.ssh/id_rsa</code>和<code>~/.ssh/id_rsa.pub</code>. 于是就索性写个脚本，自动进行不同用户的private key和public key的切换。</p>
+
+<p>我将<code>id_rsa</code>和<code>id_rsa.pub</code>的命名规则改成<code>id_rsa_xxx</code>和<code>id_rsa_xxx.pub</code>, 这个脚本需要输入一个参数表示<code>xxx</code>，就能进行切换。</p>
+
+<p>个人感觉这种方式用起来更加方便。以下是脚本的源代码。</p>
+
+<p>``` sh change-key.sh
 if [ ! $1 ];
 then
     echo “need role”
