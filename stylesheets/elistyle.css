@@ -4,6 +4,9 @@ body {
 a :hover, a :focus{
 	text-decoration: None;
 }
+.entry-content {
+	font-size: 1.5em;
+}
 .main-page {
 	background-color: #f8f8f8;
 	padding: 0 100px 0 100px;
