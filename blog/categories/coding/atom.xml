@@ -4,7 +4,7 @@
   <title><![CDATA[Category: coding | 醉過方知酒濃]]></title>
   <link href="http://2naive.me/blog/categories/coding/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2014-05-01T01:02:40+08:00</updated>
+  <updated>2014-05-01T01:04:38+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -20,7 +20,7 @@
     <id>http://2naive.me/blog/2014/05/01/googlemapapi-common</id>
     <content type="html"><![CDATA[<p><code>Google Map</code>提供的API很强大，可以通过输入简单的地址，得到和该地址相关的详细信息。</p>
 
-<h1 id="section">通过地址去查经纬度信息</h1>
+<h1 id="geocoding">通过地址去查经纬度信息(GEOCODING)</h1>
 
 <blockquote>
   <p>个人觉得很有用的信息，就是这个API能够返回<code>formatted_address</code>和经纬度。</p>
@@ -32,7 +32,7 @@
 https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&amp;sensor=true_or_false&amp;key=API_KEY
 </code></p>
 
-<h1 id="section-1">通过经纬度去查地址信息</h1>
+<h1 id="reverse-geocoding">通过经纬度去查地址信息(REVERSE GEOCODING)</h1>
 
 <blockquote>
   <p>这个API可以通过传递特定的经纬度，获得该经纬度的详细地址信息。包括门牌号，路名，地区名，国家等非常详尽的信息。</p>
