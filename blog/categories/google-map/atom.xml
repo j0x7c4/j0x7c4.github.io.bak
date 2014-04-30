@@ -4,7 +4,7 @@
   <title><![CDATA[Category: google map | 醉過方知酒濃]]></title>
   <link href="http://2naive.me/blog/categories/google-map/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2014-05-01T01:07:05+08:00</updated>
+  <updated>2014-05-01T01:15:30+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -32,6 +32,8 @@
 https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&amp;sensor=true_or_false&amp;key=API_KEY
 </code></p>
 
+<p><br /></p>
+
 <ul>
   <li>通过经纬度去查地址信息</li>
 </ul>
@@ -41,6 +43,12 @@ https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Park
 <p><code>
 https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&amp;sensor=true_or_false&amp;key=API_KEY
 </code></p>
+
+<p><br /></p>
+
+<p>另外，Google Map还提供<code>Direction API</code>, <code>Distance Matrix API</code>, <code>Elevation API</code>和<code>Time Zone API</code></p>
+
+<p><a href="https://developers.google.com/maps/documentation/webservices/">https://developers.google.com/maps/documentation/webservices/</a></p>
 ]]></content>
   </entry>
   
