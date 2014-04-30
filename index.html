@@ -6,7 +6,7 @@
 	<title>醉過方知酒濃</title> 
 	<meta name="author" content="Eli">
 	
-	<meta name="description" content="Google Map提供的API很强大，可以通过输入简单的地址，得到和该地址相关的详细信息。 通过地址去查经纬度信息(GEOCODING) 个人觉得很有用的信息，就是这个API能够返回formatted_address和经纬度。 以下是相应的API，通过传递address参数（可以是简单的路名， &hellip;">
+	<meta name="description" content="Google Map提供的API很强大，可以通过输入简单的地址，得到和该地址相关的详细信息。 通过地址去查经纬度信息 个人觉得很有用的信息，就是这个GEOCODINGAPI能够返回formatted_address和经纬度。 以下是相应的API，通过传递address参数（可以是简单的路名， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -136,22 +136,22 @@
 	<div class="entry-content">
 		<p><code>Google Map</code>提供的API很强大，可以通过输入简单的地址，得到和该地址相关的详细信息。</p>
 
-<h1 id="geocoding">通过地址去查经纬度信息(GEOCODING)</h1>
+<ul>
+  <li>通过地址去查经纬度信息</li>
+</ul>
 
-<blockquote>
-  <p>个人觉得很有用的信息，就是这个API能够返回<code>formatted_address</code>和经纬度。</p>
-</blockquote>
+<p>个人觉得很有用的信息，就是这个<code>GEOCODING</code>API能够返回<code>formatted_address</code>和经纬度。</p>
 
 <p>以下是相应的API，通过传递address参数（可以是简单的路名，甚至不用指定国家），就能获得相关地址的详细信息。</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&amp;sensor=true_or_false&amp;key=API_KEY</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h1 id="reverse-geocoding">通过经纬度去查地址信息(REVERSE GEOCODING)</h1>
+<ul>
+  <li>通过经纬度去查地址信息</li>
+</ul>
 
-<blockquote>
-  <p>这个API可以通过传递特定的经纬度，获得该经纬度的详细地址信息。包括门牌号，路名，地区名，国家等非常详尽的信息。</p>
-</blockquote>
+<p>这个<code>REVERSE GEOCODING</code>API可以通过传递特定的经纬度，获得该经纬度的详细地址信息。包括门牌号，路名，地区名，国家等非常详尽的信息。</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&amp;sensor=true_or_false&amp;key=API_KEY</span></code></pre></td></tr></table></div></figure></notextile></div>
