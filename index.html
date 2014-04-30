@@ -6,7 +6,7 @@
 	<title>醉過方知酒濃</title> 
 	<meta name="author" content="Eli">
 	
-	<meta name="description" content="尝试着在一台mac上使用两个不同的Octopress博客，这两个博客目前放在github的两个用户下，所以每个用户的priviate key和pubilc key都是不一样的。 上网找了一些方法，主要都是通过配置~/.ssh/config来实现，不过我按照那些方法做，都没成功。貌似只能识别~/. &hellip;">
+	<meta name="description" content="Google Map提供的API很强大，可以通过输入简单的地址，得到和该地址相关的详细信息。 通过地址去查经纬度信息 个人觉得很有用的信息，就是这个API能够返回formatted_address和经纬度。 以下是相应的API，通过传递address参数（可以是简单的路名，甚至不用指定国家）， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -101,6 +101,66 @@
 	<div class="col-md-1 left-page"></div>
 	<div class="col-md-10 main-page">
 	
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/05/01/googlemapapi-common/">
+		
+			Google Map API之获取地址和经纬度</a>
+	</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-01T00:48:00+08:00" pubdate data-updated="true">May 1<span>st</span>, 2014</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
+
+
+	<a class='category' href='/blog/categories/coding/'>coding</a>, <a class='category' href='/blog/categories/google-map/'>google map</a>, <a class='category' href='/blog/categories/tech/'>tech</a>
+
+
+</div>
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2014/05/01/googlemapapi-common/#disqus_thread">Comments</a></div>
+	</div>
+	<div class="entry-content">
+		<p><code>Google Map</code>提供的API很强大，可以通过输入简单的地址，得到和该地址相关的详细信息。</p>
+
+<h1 id="section">通过地址去查经纬度信息</h1>
+
+<blockquote>
+  <p>个人觉得很有用的信息，就是这个API能够返回<code>formatted_address</code>和经纬度。</p>
+</blockquote>
+
+<p>以下是相应的API，通过传递address参数（可以是简单的路名，甚至不用指定国家），就能获得相关地址的详细信息。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&amp;sensor=true_or_false&amp;key=API_KEY</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section-1">通过经纬度去查地址信息</h1>
+
+<blockquote>
+  <p>这个API可以通过传递特定的经纬度，获得该经纬度的详细地址信息。包括门牌号，路名，地区名，国家等非常详尽的信息。</p>
+</blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&amp;sensor=true_or_false&amp;key=API_KEY</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -865,52 +925,6 @@
 <h2 id="sidebargit">SideBarGit</h2>
 
 <p>在有git的目录下，能在sublime的状态栏中显示当前git的分支，虽然这个功能很平凡，但是提醒你当前的分支是很重要的，改code不要改错分支哦~</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/12/06/some-regrets/">
-		
-			不知不觉走了许多路，但又像是原地踏步</a>
-	</h2>
-	<div class="eli-post-meta">
-		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-06T02:01:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2013</time></div>
-		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
-
-
-	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
-
-
-</div>
-		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/12/06/some-regrets/#disqus_thread">Comments</a></div>
-	</div>
-	<div class="entry-content">
-		<p>畢業，找工作，入職開始上班，手上有活干，這一整串事情就發生在短短3個月里。回想起來生活還挺豐富的，11月份還去了一趟日本玩。不知不覺的好像自己走了很多路，經歷了很多事，以前幻想的，有些破滅了，有些還堅持著。</p>
-
-<p>最近開始有點忙了，工作上要做的事情漸漸有點眉目，迫切的想完成，可是又擔心自己目前的水平難以勝任。感覺工作效率越來越低了，沒有了一種披荊斬棘的快感。另外下班后做的事也越來越豐富了，每週固定要有幾次去健身，對於自己的身材還是不太滿意。還有一個晚上需要留出來參加吉他社，希望自己對吉他的熱情不要再是三分鐘熱度了。暫時現在看來還挺有熱情，在家裡看劇也是把吉他抱在懷裡，只是晚上太晚就不敢彈，怕吵到鄰居吧。最近，還找到了新的美劇《S.H.I.E.L.D》，它擴展了《復仇者聯盟》的劇情，相當於是Marvel弄的外傳吧，和主線劇情沒什麼太大相關，但看起來還挺有意思。其餘的時間，就留給了LOL，不過現在都是一個人打路人局，有時候別人坑我，有時候我坑別人，大家坑來坑去。還是想和小夥伴一起打，最好能有妹子一起。可是現實就是和理想有這麼點坑爹的差距。前段時間還心血來潮鼓搗一個微博相關的應用，可是目前在技術上遇到瓶頸，沒有特別好的方法解決，也沒有特別大的動力，於是就擱置了，等下次心血來潮再繼續吧。</p>
-
-<p>每天就這樣起床，上班，下班，睡覺，時間過得很快，一下次就12月份了。之前看到一本書中講，“人腦強大到足以超越時空的限制”，這句話很好的解釋了有時候感覺時間很快，而有時候又很慢。因為我們的大腦太強大了，以至於在全力使用他的時候，時間都感覺跑的飛快。但是我感覺時間過得太快了，我的成長似乎沒有跟上時間的腳步。雖然感覺空餘時間做了很多事情，但找不到讓我興奮起來的點。原來我走的這麼多路，也只是在原地踏步吧。</p>
-
-<p>另外再抱怨一下，這上海的鬼天氣真的無法忍受了。感覺自己快要被毒死了。就沒人來管管這個空氣污染嗎？</p>
 
 		
 		

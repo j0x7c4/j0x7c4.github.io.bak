@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://2naive.me/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2014-04-26T02:23:45+08:00</updated>
+  <updated>2014-05-01T01:02:40+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Google Map API之获取地址和经纬度]]></title>
+    <link href="http://2naive.me/blog/2014/05/01/googlemapapi-common/"/>
+    <updated>2014-05-01T00:48:00+08:00</updated>
+    <id>http://2naive.me/blog/2014/05/01/googlemapapi-common</id>
+    <content type="html"><![CDATA[<p><code>Google Map</code>提供的API很强大，可以通过输入简单的地址，得到和该地址相关的详细信息。</p>
+
+<h1 id="section">通过地址去查经纬度信息</h1>
+
+<blockquote>
+  <p>个人觉得很有用的信息，就是这个API能够返回<code>formatted_address</code>和经纬度。</p>
+</blockquote>
+
+<p>以下是相应的API，通过传递address参数（可以是简单的路名，甚至不用指定国家），就能获得相关地址的详细信息。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&amp;sensor=true_or_false&amp;key=API_KEY</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section-1">通过经纬度去查地址信息</h1>
+
+<blockquote>
+  <p>这个API可以通过传递特定的经纬度，获得该经纬度的详细地址信息。包括门牌号，路名，地区名，国家等非常详尽的信息。</p>
+</blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&amp;sensor=true_or_false&amp;key=API_KEY</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[一台电脑中管理多个Octopress Blog]]></title>
@@ -1431,91 +1460,6 @@
 <p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C曾厝垵%7C&amp;zoom=13&amp;sensor=false" /></p>
 
 <p>从沙滩上来，太阳已经下山了。沿着环岛难路，一路走到了曾厝垵。在点评上看到一家叫做<code>亚尖大排档</code>的店，有不错的评价，还有团购券，晚餐就在那里解决。菜的味道还算不错，只是上菜速度有点慢。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[试用networkx]]></title>
-    <link href="http://2naive.me/blog/2013/10/16/try-networkx/"/>
-    <updated>2013-10-16T01:44:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/16/try-networkx</id>
-    <content type="html"><![CDATA[<p>最近想用pagerank的方法来分析微博好友之间的权威关系，于是试着用crawler去抓微博上好友的信息，然后建立关系网络。在网上看到用networkx可以比较方便的建立关系网络，并且可以比较方便的用pagerank计算每个好友的重要性。</p>
-
-<p>使用networks加入node和edge都很方便，并且networkx宣称他的node可以支持任何python的hashable的类型，于是我一开始使用custom的node.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>
-</span><span class="line">        <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="n">args</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class="line">        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>可是这样写并不正确，他好像对自定义的类支持不太好（或许是不支持自定义类）。于是在网上查了好久，才看到要实现给一个node添加附加信息的方法。</p>
-
-<p><a href="http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up">http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up</a></p>
-
-<p>于是在加入node的时候，应该用</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">&quot;label&quot;</span><span class="p">,</span><span class="n">foo</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="n">bar</span><span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>于是把添加node改写成</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span><span class="n">user</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>添加node和edge是没问题了，结果在保存<code>gml</code>文件时又出问题了，里面的字符串竟然不支持utf-8… 官方是这么解释的：
-&gt;Notes</p>
-
-<blockquote>
-  <p>GML specifications indicate that the file should only use 7bit ASCII text encoding.iso8859-1 (latin-1).</p>
-</blockquote>
-
-<blockquote>
-  <p>This implementation does not support all Python data types as GML data. Nodes, node attributes, edge attributes, and graph attributes must be either dictionaries or single stings or numbers. If they are not an attempt is made to represent them as strings. For example, a list as edge data G[1][2][‘somedata’]=[1,2,3], will be 
-represented in the GML file as:</p>
-</blockquote>
-
-<blockquote>
-  <p><a href="http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html">http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html</a></p>
-</blockquote>
-
-<p>于是我只好抽取是ascii的编码的用户信息。然后把类的定义改写成：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>	
-</span><span class="line">        <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;uid&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">],</span>\
-</span><span class="line">               <span class="s">&#39;n_follows&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_follows&#39;</span><span class="p">],</span>\
-</span><span class="line">                  <span class="s">&#39;n_fans&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_fans&#39;</span><span class="p">],</span>\
-</span><span class="line">                <span class="s">&#39;n_weibos&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_weibos&#39;</span><span class="p">]}</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class="line">        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这样终于正常创建网络，读写gml文件了。</p>
 ]]></content>
   </entry>
   

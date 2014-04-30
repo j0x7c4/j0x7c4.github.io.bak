@@ -3,10 +3,10 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: tech - 醉過方知酒濃</title> 
+	<title>Google Map API之获取地址和经纬度 - 醉過方知酒濃</title> 
 	<meta name="author" content="Eli">
 	
-	<meta name="description" content="Category: tech">
+	<meta name="description" content="Google Map提供的API很强大，可以通过输入简单的地址，得到和该地址相关的详细信息。 通过地址去查经纬度信息 个人觉得很有用的信息，就是这个API能够返回formatted_address和经纬度。 以下是相应的API，通过传递address参数（可以是简单的路名，甚至不用指定国家）， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -100,33 +100,73 @@
 <div class="row">
 	<div class="col-md-1 left-page"></div>
 	<div class="col-md-10 main-page">
-	
-	
+	<article class="post">
+	<h2 class="title">Google Map API之获取地址和经纬度</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
 
 
-	
-	
-	<section class="archives row"><h1 class="year col-md-3">2014</h1>
-	
-	</section>
-	
 
-<article class="col-md-6">
-	<h2 class="title"><a href="/blog/2014/05/01/googlemapapi-common/">Google Map API之获取地址和经纬度</a></h2>
-	<div class="meta">
-		<div class="date">May  1</div>
-		<div class="tags">
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-01T00:48:00+08:00" pubdate data-updated="true">May 1<span>st</span>, 2014</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
 
 
 	<a class='category' href='/blog/categories/coding/'>coding</a>, <a class='category' href='/blog/categories/google-map/'>google map</a>, <a class='category' href='/blog/categories/tech/'>tech</a>
 
 
 </div>
-	    
-	    <div class="comments"><a href="/blog/2014/05/01/googlemapapi-common/#disqus_thread">Comments</a></div>
-	    
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="#disqus_thread">Comments</a></div>
 	</div>
+	<div class="entry-content"><p><code>Google Map</code>提供的API很强大，可以通过输入简单的地址，得到和该地址相关的详细信息。</p>
+
+<h1 id="section">通过地址去查经纬度信息</h1>
+
+<blockquote>
+  <p>个人觉得很有用的信息，就是这个API能够返回<code>formatted_address</code>和经纬度。</p>
+</blockquote>
+
+<p>以下是相应的API，通过传递address参数（可以是简单的路名，甚至不用指定国家），就能获得相关地址的详细信息。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&amp;sensor=true_or_false&amp;key=API_KEY</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section-1">通过经纬度去查地址信息</h1>
+
+<blockquote>
+  <p>这个API可以通过传递特定的经纬度，获得该经纬度的详细地址信息。包括门牌号，路名，地区名，国家等非常详尽的信息。</p>
+</blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&amp;sensor=true_or_false&amp;key=API_KEY</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+
 </article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
 
 	<footer>
 		<p>
@@ -152,7 +192,10 @@
       var disqus_shortname = 'blog-jfttt';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://2naive.me/blog/2014/05/01/googlemapapi-common/';
+        var disqus_url = 'http://2naive.me/blog/2014/05/01/googlemapapi-common/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

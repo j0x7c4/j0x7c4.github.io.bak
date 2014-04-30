@@ -6,7 +6,7 @@
 	<title>醉過方知酒濃</title> 
 	<meta name="author" content="Eli">
 	
-	<meta name="description" content="最早认识R语言是看到一本书叫做“Machine Learning for Hackers”, 听说R在machine learning的研究方面很有用处，就是一个专门为Machine Learning而生的语言，不过一直没用仔细研究过。在网上寻找Feature Selection方面的工具时， &hellip;">
+	<meta name="description" content="最近想用pagerank的方法来分析微博好友之间的权威关系，于是试着用crawler去抓微博上好友的信息，然后建立关系网络。在网上看到用networkx可以比较方便的建立关系网络，并且可以比较方便的用pagerank计算每个好友的重要性。 使用networks加入node和edge都很方便， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -101,6 +101,122 @@
 	<div class="col-md-1 left-page"></div>
 	<div class="col-md-10 main-page">
 	
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/16/try-networkx/">
+		
+			试用networkx</a>
+	</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-16T01:44:00+08:00" pubdate data-updated="true">Oct 16<span>th</span>, 2013</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
+
+
+	<a class='category' href='/blog/categories/python/'>Python</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/10/16/try-networkx/#disqus_thread">Comments</a></div>
+	</div>
+	<div class="entry-content">
+		<p>最近想用pagerank的方法来分析微博好友之间的权威关系，于是试着用crawler去抓微博上好友的信息，然后建立关系网络。在网上看到用networkx可以比较方便的建立关系网络，并且可以比较方便的用pagerank计算每个好友的重要性。</p>
+
+<p>使用networks加入node和edge都很方便，并且networkx宣称他的node可以支持任何python的hashable的类型，于是我一开始使用custom的node.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>
+</span><span class="line">        <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="n">args</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>可是这样写并不正确，他好像对自定义的类支持不太好（或许是不支持自定义类）。于是在网上查了好久，才看到要实现给一个node添加附加信息的方法。</p>
+
+<p><a href="http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up">http://stackoverflow.com/questions/8490794/how-do-i-make-a-cutomised-object-as-a-node-for-networkx-and-how-do-i-look-it-up</a></p>
+
+<p>于是在加入node的时候，应该用</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s">&quot;label&quot;</span><span class="p">,</span><span class="n">foo</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="n">bar</span><span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>于是把添加node改写成</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span><span class="n">user</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>添加node和edge是没问题了，结果在保存<code>gml</code>文件时又出问题了，里面的字符串竟然不支持utf-8… 官方是这么解释的：
+&gt;Notes</p>
+
+<blockquote>
+  <p>GML specifications indicate that the file should only use 7bit ASCII text encoding.iso8859-1 (latin-1).</p>
+</blockquote>
+
+<blockquote>
+  <p>This implementation does not support all Python data types as GML data. Nodes, node attributes, edge attributes, and graph attributes must be either dictionaries or single stings or numbers. If they are not an attempt is made to represent them as strings. For example, a list as edge data G[1][2][‘somedata’]=[1,2,3], will be 
+represented in the GML file as:</p>
+</blockquote>
+
+<blockquote>
+  <p><a href="http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html">http://networkx.lanl.gov/reference/generated/networkx.readwrite.gml.write_gml.html</a></p>
+</blockquote>
+
+<p>于是我只好抽取是ascii的编码的用户信息。然后把类的定义改写成：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">user</span><span class="p">:</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">):</span>	
+</span><span class="line">        <span class="k">assert</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;^[\d]+$&#39;</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">])</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">]</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;uid&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;uid&#39;</span><span class="p">],</span>\
+</span><span class="line">               <span class="s">&#39;n_follows&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_follows&#39;</span><span class="p">],</span>\
+</span><span class="line">                  <span class="s">&#39;n_fans&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_fans&#39;</span><span class="p">],</span>\
+</span><span class="line">                <span class="s">&#39;n_weibos&#39;</span><span class="p">:</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;n_weibos&#39;</span><span class="p">]}</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这样终于正常创建网络，读写gml文件了。</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -729,78 +845,6 @@ undefined method `spawn’ for Process:Module</p>
 <p>现在很多事情都已经一步一步确定，接下来的就是上班工作的节奏了。这几天比较关心的问题就是下班之后干什么？我估摸着自己现在肯定不是一个工作狂，在下班之后希望能及时行乐。那我可以干些什么事呢？然后我发现我一直以来都有的一个问题，就是专注力不够集中，做事很容易分心。不过在deadline的驱使下，我的专注力还是很强的。于是我决定开始看书，一方面补充自己贫乏的人文知识，一方面锻炼自己的专注力。第三方面，也是为了能和喜欢看书的人有些共同语言。这几天看的几本书感觉都不错，曾经的伪文青终于得到了真正的文化知识的滋润了。</p>
 
 <p>对于即将工作的我来说，接下来的日子还很长，还有很多路要走。在生活中有很多东西想要去追逐，希望这些追逐的东西不要在未来的某一天，被证明是可有可无的。希望能找到我自己真正喜欢的生活方式。</p>
-
-<p> </p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/08/29/last-days-in-taiwan/">
-		
-			在島上的最後幾天</a>
-	</h2>
-	<div class="eli-post-meta">
-		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-29T00:00:00+08:00" pubdate data-updated="true">Aug 29<span>th</span>, 2013</time></div>
-		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
-
-
-	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
-
-
-</div>
-		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/08/29/last-days-in-taiwan/#disqus_thread">Comments</a></div>
-	</div>
-	<div class="entry-content">
-		<p>兩年前的今天，我忙著收拾行李，忙著和朋友吃飯告別，準備著來台灣的一切。對台灣的了解也只是林志玲和聯發科。</p>
-
-<p>經過了兩年的生活，雖然不能肯定說自己對台灣有多了解，但肯定是被台灣深深的吸引了。</p>
-
-<p><span style="line-height: 1.714285714; font-size: 1rem;">我喜歡藍色，因為天空是藍色，大海是藍色，深處廣闊的藍色中，有一種獨特的滿足感。</span></p>
-
-<p><span style="line-height: 1.714285714; font-size: 1rem;">在台灣，我看到了最美的藍色，小時候作文中藍藍的天空，白白的雲朵，終於在這裡讓我領略到它們的美。</span></p>
-
-<p><img class="alignnone" alt="" src="http://farm8.staticflickr.com/7399/9614610447_96d627a476.jpg" width="500" height="333" /></p>
-
-<p>以前在大陸時，我不經常去海邊，偶爾幾次去海邊，看到的大海和我心目中的大海還是有很大差距。在這裡，我看到了比我心目中更美的大海。</p>
-
-<p><img class="alignnone" alt="" src="http://farm3.staticflickr.com/2813/9617841176_5de61743b0.jpg" width="500" height="333" /></p>
-
-<p><span style="line-height: 1.714285714; font-size: 1rem;">在如此美麗的沙灘上，似乎任何煩惱都會暫時的忘記。</span></p>
-
-<p>台灣吸引我的，除了看不完的美景，還有忘不了的人情。</p>
-
-<p>初來台灣，令我最想不到的是台北的建築。這裡的建築和大陸的高大，浮華不同，它們沒有艷麗的外表，卻深深的流露出溫馨的感覺。走在學校附近的窄小的巷子，兩邊的房子看似都有20多年的房齡，卻還是這麼生機盎然的感覺，房子與房子之間挨的很近，如同親密的老朋友，互相幫助，互相扶持。</p>
-
-<p><img class="alignnone" alt="" src="http://farm3.staticflickr.com/2876/9614592679_b48a78d9a3.jpg" width="500" height="333" /></p>
-
-<p>房子和房子之間都如此親密無間，人和人之間更是如此。在台灣特別能感受到人情味，路人之間的一絲微笑，言語上的一聲謝謝，人與人之間的信任感，都會令我感到身邊的都是家人。</p>
-
-<p>前幾天和實驗室的同學一起開車環島，在即將離開的時候，能再次體會台灣的美。曾經以為來台灣只是為了學業，匆匆的度過兩年，什麼都不留下，什麼都不帶走。沒想到在這兩年中，能認識這麼多朋友，留下那麼多的友情。有過悲傷，有過歡樂。在心情最低落的時候，有朋友陪我一起喝酒；在壓力山大的時候，有朋友一起肩並肩一起度過。這兩年記錄了人生中豐富的內容，我變得比以前成熟了。</p>
-
-<p><img class="alignnone" alt="" src="http://farm4.staticflickr.com/3700/9618201436_28c61c7ea5_c.jpg" width="534" height="800" /></p>
-
-<p>兩年后的我們不知身在何處，做著未知的事情。但願一切都若初見。</p>
-
-<p>好基友，一輩子。</p>
 
 <p> </p>
 
