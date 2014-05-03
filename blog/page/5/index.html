@@ -6,7 +6,7 @@
 	<title>醉過方知酒濃</title> 
 	<meta name="author" content="Eli">
 	
-	<meta name="description" content="又熬過了一夜，這已經是這禮拜連續第5天通宵了。 碩論到目前為止，方法基本上都已經確定，理論部分已經完成的差不多了。而為了準備今天的Rehearsal， 這兩天都在準備投影片，又把論文的思路整理了一遍。發現論文經過和學長的討論，自己的研究之後，理論基礎又堅固很多。 耳機中一直循環播放著劉若英的《 &hellip;">
+	<meta name="description" content="每當離別的時候，就會開始回憶過去。兩年前來台灣的情景彷彿就在昨天，但現在朋友們問我最多的都是什麼時候回大陸，工作找的如何，今後打算在哪裡工作。呆在台灣的日子，也漸漸的進入了倒數計時。 兩年在台灣的日子，過得還算充實。雖然說沒有走遍整個台灣，但也去過了不少地方。在台灣結交的朋友也都不錯， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -101,54 +101,6 @@
 	<div class="col-md-1 left-page"></div>
 	<div class="col-md-10 main-page">
 	
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/05/one-night/">
-		
-			又熬過了一夜</a>
-	</h2>
-	<div class="eli-post-meta">
-		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-05T00:00:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time></div>
-		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
-
-
-	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
-
-
-</div>
-		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/07/05/one-night/#disqus_thread">Comments</a></div>
-	</div>
-	<div class="entry-content">
-		<p>又熬過了一夜，這已經是這禮拜連續第5天通宵了。</p>
-
-<p>碩論到目前為止，方法基本上都已經確定，理論部分已經完成的差不多了。而為了準備今天的Rehearsal， 這兩天都在準備投影片，又把論文的思路整理了一遍。發現論文經過和學長的討論，自己的研究之後，理論基礎又堅固很多。</p>
-
-<p>耳機中一直循環播放著劉若英的《親愛的路人》專輯和張震嶽的《我是海雅谷慕》專輯；手機偶爾能夠和女神聊到幾句話，從她睡覺前聊幾句，到醒來後再聊幾句；中途偶爾打了幾場LOL；實驗室的中央空調從晚上12點自動關閉，到早上8點的自動打開，經歷了一晚上的悶熱，我依然還坐在電腦前敲鍵盤。</p>
-
-<p>曾經天真的幻想著寫完論文之後可以好好的休息一下，現在才明白現實的殘酷。論文其實是寫不完的，寫的越深入，發現的問題也就越多。我從一開始預計的方法到現在最終的方法，基本上是接近180度的轉變。雖然現在已經完善很多，但是仔細深究下去，應該還有一大堆漏洞。在熬了這麼多晚後，終於悟出一個道理，”論文沒有寫完的一天，只有熬過deadline的一天。“</p>
-
-<p>我發現我越來越喜歡寫blog了。。。</p>
-
-		
-		
-	</div>
-
-</article>
 
 
     <article class="post">
@@ -639,12 +591,152 @@
 
 </article>
 
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/05/31/SQL-like-at-GAE/">
+		
+			在GAE上使用类SQL语句进行查询</a>
+	</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-31T00:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
+
+
+	<a class='category' href='/blog/categories/gae/'>GAE</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/05/31/SQL-like-at-GAE/#disqus_thread">Comments</a></div>
+	</div>
+	<div class="entry-content">
+		<p>GAE上的Datastore虽然不是SQL的Database， 但是他提供了GQL语句进行类似SQL的查询。因为是类似SQL，所以不是完全等同于SQL语句。SQL语句中常用的count, group在GQL中就没有。</p>
+
+<p>以下是GQL支持的格式，具体可以参见reference <a href="https://developers.google.com/appengine/docs/python/datastore/gqlreference">https://developers.google.com/appengine/docs/python/datastore/gqlreference</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="sql"><span class="line"><span class="k">SELECT</span> <span class="p">[</span><span class="o">*</span> <span class="o">|</span> <span class="o">&lt;</span><span class="n">property</span> <span class="n">list</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">__key__</span><span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">DISTINCT</span><span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">FROM</span> <span class="o">&lt;</span><span class="n">kind</span><span class="o">&gt;</span><span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span> <span class="p">[</span><span class="k">AND</span> <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span> <span class="p">...]]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="p">[</span><span class="k">ASC</span> <span class="o">|</span> <span class="k">DESC</span><span class="p">]</span> <span class="p">[,</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="p">[</span><span class="k">ASC</span> <span class="o">|</span> <span class="k">DESC</span><span class="p">]</span> <span class="p">...]]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">LIMIT</span> <span class="p">[</span><span class="o">&lt;</span><span class="k">offset</span><span class="o">&gt;</span><span class="p">,]</span><span class="o">&lt;</span><span class="k">count</span><span class="o">&gt;</span><span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="k">OFFSET</span> <span class="o">&lt;</span><span class="k">offset</span><span class="o">&gt;</span><span class="p">]</span>
+</span><span class="line">
+</span><span class="line">  <span class="o">&lt;</span><span class="n">property</span> <span class="n">list</span><span class="o">&gt;</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="p">...]</span>
+</span><span class="line">  <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="err">{</span><span class="o">&lt;</span> <span class="o">|</span> <span class="o">&lt;=</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="o">|</span> <span class="o">&gt;=</span> <span class="o">|</span> <span class="o">=</span> <span class="o">|</span> <span class="o">!=</span> <span class="err">}</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span>
+</span><span class="line">  <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;</span><span class="n">property</span><span class="o">&gt;</span> <span class="k">IN</span> <span class="o">&lt;</span><span class="n">list</span><span class="o">&gt;</span>
+</span><span class="line">  <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span> <span class="p">:</span><span class="o">=</span> <span class="n">ANCESTOR</span> <span class="k">IS</span> <span class="o">&lt;</span><span class="n">entity</span> <span class="k">or</span> <span class="k">key</span><span class="o">&gt;</span>
+</span><span class="line">  <span class="o">&lt;</span><span class="n">list</span><span class="o">&gt;</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span> <span class="p">...]])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>在Datastore 中有3种方式可以对数据进行查询：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+</span><span class="line">	<span class="n">first_name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
+</span><span class="line">	<span class="n">last_name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
+</span><span class="line">	<span class="n">city</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">StringProperty</span><span class="p">()</span>
+</span><span class="line">	<span class="n">birth_year</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">IntegerProperty</span><span class="p">()</span>
+</span><span class="line">	<span class="n">height</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">IntegerProperty</span><span class="p">()</span>
+</span><span class="line"><span class="c"># Query interface constructs a query using instance methods</span>
+</span><span class="line"><span class="n">q</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span class="line"><span class="n">q</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s">&quot;last_name =&quot;</span><span class="p">,</span> <span class="s">&quot;Smith&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="n">q</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s">&quot;height &lt;=&quot;</span><span class="p">,</span> <span class="n">max_height</span><span class="p">)</span>
+</span><span class="line"><span class="n">q</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s">&quot;-height&quot;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c"># GqlQuery interface constructs a query using a GQL query string</span>
+</span><span class="line"><span class="n">q</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM Person &quot;</span> <span class="o">+</span>
+</span><span class="line">                <span class="s">&quot;WHERE last_name = :1 AND height &lt;= :2 &quot;</span> <span class="o">+</span>
+</span><span class="line">                <span class="s">&quot;ORDER BY height DESC&quot;</span><span class="p">,</span>
+</span><span class="line">                <span class="s">&quot;Smith&quot;</span><span class="p">,</span> <span class="n">max_height</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c"># Query is not executed until results are accessed</span>
+</span><span class="line"><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">q</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+</span><span class="line">	<span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">, </span><span class="si">%d</span><span class="s"> inches tall&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>个人感觉，还是GQL的方式比较直觉，用起来比较灵活。但是如果对于简单的数据查询，可能第一种方式更加有效, code会比较精简。</p>
+
+<p>如果要在GQL中实现Group的功能，那就要分两步走。</p>
+
+<p>按照上面那个例子，如果要把人按照城市来分组，那就要先把城市找出来，GQL就写成</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">q</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT DISTINCT city FROM Person&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">q</span><span class="p">:</span>
+</span><span class="line">	<span class="n">people</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">	<span class="n">sq</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">GqlQuery</span><span class="p">(</span><span class="s">&quot;SELECT * FROM person WHERE city = &#39;&quot;</span><span class="o">+</span><span class="n">item</span><span class="o">.</span><span class="n">city</span><span class="o">+</span><span class="s">&quot;&#39;&quot;</span><span class="p">)</span>
+</span><span class="line">	<span class="k">for</span> <span class="n">item2</span> <span class="ow">in</span> <span class="n">sq</span><span class="p">:</span>
+</span><span class="line">		<span class="n">people</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&quot;first_name&quot;</span><span class="p">:</span><span class="n">item2</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span><span class="s">&quot;second_name&quot;</span><span class="p">:</span><span class="n">item2</span><span class="o">.</span><span class="n">second_name</span><span class="p">})</span>
+</span><span class="line">		<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&quot;city&quot;</span><span class="p">:</span><span class="n">item</span><span class="o">.</span><span class="n">city</span><span class="p">,</span><span class="s">&quot;people&quot;</span><span class="p">:</span><span class="n">people</span><span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这就是比较简单的GAE上的数据查询操作。</p>
+
+		
+		
+	</div>
+
+</article>
+
 <ul class="pager">
 
         <li class="previous"><a href="/blog/page/4/">&larr; Newer</a></li>
     
-    
-        <li class="next"><a href="/blog/page/6/" >Older &rarr; </a></li>
     
 </ul>
 

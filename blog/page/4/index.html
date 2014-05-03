@@ -6,7 +6,7 @@
 	<title>醉過方知酒濃</title> 
 	<meta name="author" content="Eli">
 	
-	<meta name="description" content="HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。 UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。 &hellip;">
+	<meta name="description" content="转眼间，从台湾回来已经半个多月了。回来之后也忙了不少事情，最大一件事应该是找了一份不错的工作，了去一桩心事。不过其他的心事也接踵而来，比如找房子，找对象等。。。 感觉在毕业之后的两个礼拜内就能找到一份工作，算是相当的神速。不过也有很多客观原因，使得我不得不当机立断，没有太多的“货比三家”的时间。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -101,100 +101,6 @@
 	<div class="col-md-1 left-page"></div>
 	<div class="col-md-10 main-page">
 	
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/09/25/hive-python-udf/">
-		
-			HIVE中使用python实现UDF</a>
-	</h2>
-	<div class="eli-post-meta">
-		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2013</time></div>
-		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
-
-
-	<a class='category' href='/blog/categories/hive/'>Hive</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
-
-
-</div>
-		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/09/25/hive-python-udf/#disqus_thread">Comments</a></div>
-	</div>
-	<div class="entry-content">
-		<p>HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。</p>
-
-<p>UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。</p>
-
-<p>HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。</p>
-
-<p>使用HIVE的命令进入数据仓库(search)</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">use search;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>使用HIVE的命令查看已经建立的表</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">show tables;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>使用HIVE的命令查看xxx表中的字段</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">describe xxx;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>使用HIVE命令用PYTHON实现UDF</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">add file udf.py;
-</span><span class="line">SELECT 
-</span><span class="line">TRANSFORM(keyword)
-</span><span class="line">USING 'python udf.py'
-</span><span class="line">AS(keyword)
-</span><span class="line">FROM xxx
-</span><span class="line">WHERE dt='2013-09-25'
-</span><span class="line">;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。</p>
-
-<p>输入到python中的内容，是按照AS里的数量来决定的。</p>
-
-<p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>udf.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class="line"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
-</span><span class="line">    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class="line">    <span class="k">print</span> <span class="n">line</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-		
-		
-	</div>
-
-</article>
 
 
     <article class="post">
@@ -766,6 +672,54 @@
 <p>走著走著覺得是不是應該走慢一點。從小學畢業，就有一條明確的路，我要念中學，3年唸完初中，又是3年唸完高中，然後別人告訴我繼續走，別停下，因為別人都在過那條獨木橋，雖然現在身邊沒有什麼美景，但是你只要越過那條獨木橋就可以看到美景了。於是我跟著潮流一起越過了獨木橋，來到了眾人嚮往的象牙塔。有些人迷失在了象牙塔中，而我卻因為深受之前被灌輸的思想，有路就要繼續走，於是我也跟著一撮人繼續走。大學的四年本應該可以過得更加美好，可是我不是一個留戀眼前景色的人。也許我只是跟著感覺在走，並沒有受到任何人的控制。當然我也不希望被人控制。這座象牙塔轉眼間就快跨出門檻了，可是我因為之前走得太快，太自由，卻摔在了門檻上。幸好我還是爬了起來，繼續向前走。這時一條路突然變成了兩條路，一條通向火熱的熔爐，一條通向幽靜的山谷。我在火爐面前來回走了一圈，發現還沒準備充分，還是走向山谷吧。好吧，2年時間我走出了山谷，TMD面前竟然又是那個火爐。本以為從山谷里出來會有不同的景色。無奈最終還是要面對這個火爐。</p>
 
 <p>到底怎樣的人生才會令人滿意，如果仔細觀察身邊的美景，是否會有種心動的感覺？終於應該要有自己獨立思考的技能了，美不美自己說了算，和別人無關。</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/05/one-night/">
+		
+			又熬過了一夜</a>
+	</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-05T00:00:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
+
+
+	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
+
+
+</div>
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/07/05/one-night/#disqus_thread">Comments</a></div>
+	</div>
+	<div class="entry-content">
+		<p>又熬過了一夜，這已經是這禮拜連續第5天通宵了。</p>
+
+<p>碩論到目前為止，方法基本上都已經確定，理論部分已經完成的差不多了。而為了準備今天的Rehearsal， 這兩天都在準備投影片，又把論文的思路整理了一遍。發現論文經過和學長的討論，自己的研究之後，理論基礎又堅固很多。</p>
+
+<p>耳機中一直循環播放著劉若英的《親愛的路人》專輯和張震嶽的《我是海雅谷慕》專輯；手機偶爾能夠和女神聊到幾句話，從她睡覺前聊幾句，到醒來後再聊幾句；中途偶爾打了幾場LOL；實驗室的中央空調從晚上12點自動關閉，到早上8點的自動打開，經歷了一晚上的悶熱，我依然還坐在電腦前敲鍵盤。</p>
+
+<p>曾經天真的幻想著寫完論文之後可以好好的休息一下，現在才明白現實的殘酷。論文其實是寫不完的，寫的越深入，發現的問題也就越多。我從一開始預計的方法到現在最終的方法，基本上是接近180度的轉變。雖然現在已經完善很多，但是仔細深究下去，應該還有一大堆漏洞。在熬了這麼多晚後，終於悟出一個道理，”論文沒有寫完的一天，只有熬過deadline的一天。“</p>
+
+<p>我發現我越來越喜歡寫blog了。。。</p>
 
 		
 		
