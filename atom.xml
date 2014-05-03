@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://2naive.me/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2014-05-01T01:15:30+08:00</updated>
+  <updated>2014-05-03T14:19:51+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[期待你们的目送]]></title>
+    <link href="http://2naive.me/blog/2014/05/03/my-parents/"/>
+    <updated>2014-05-03T14:00:00+08:00</updated>
+    <id>http://2naive.me/blog/2014/05/03/my-parents</id>
+    <content type="html"><![CDATA[<p>长这么大，以前都是在父母的庇护下一步一步走来，以前对父母的关心感觉很温暖，希望父母能把事情都安排好，我就不用太费心去考虑这些事情。</p>
+
+<p>可是我现在已经有了“足够的经验”去决定自己要做的事，但是这种“足够的经验”并不是“充分的经验”，因为我无法判断这个“经验”是好还是坏。只不过我有了这些“经验”，就会有勇气去做那些以前没做过的事情。是好是坏都应该自己承担这些结果，自己的人生再也不是父母所设计的那样。忽然对我爸说的话很失望，“养你这么大你还要自己去做这些事情，那为什么当初要养你”。他总是想设计我的未来，可我其实没怎么认同过这个事情。从来都没觉得父母对自己未来的设计是一件好事情。</p>
+
+<p>看到龙应台的文字，深有感触。尽管可能与原意不符，但我对这话有了自己的理解。也许因为我现在还没孩子，希望我以后也会有相同的认识——留给孩子的，应该是让他能自己探索世界的勇气：</p>
+
+<blockquote>
+  <p>我慢慢地、慢慢地了解到，所谓父女母子一场，只不过意味着你和他的缘分就是今生今世不断地在目送他的背影渐行渐远。你站立在小路的这一端，看着他逐渐消失在小路转弯的地方，而且，他用背影默默告诉你：不必追。——龙应台《目送》</p>
+</blockquote>
+
+<p>父母应该目送孩子渐行渐远的背影，而不是在背后追着孩子跑。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[my parentes]]></title>
+    <link href="http://2naive.me/blog/2014/05/03/my-parentes/"/>
+    <updated>2014-05-03T13:58:00+08:00</updated>
+    <id>http://2naive.me/blog/2014/05/03/my-parentes</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Google Map API之获取地址和经纬度]]></title>
@@ -1385,89 +1413,6 @@
 <p>实际工作中，不仅仅需要<code>UDF</code>，<code>UDAF</code>和<code>UDTF</code>都是会经常遇到的。而Python拼死只能处理UDF的情况，对于后者只能呵呵了。于是反正UDAF和UDTF还是需要JAVA来写，那UDF也就顺便用JAVA写了吧。这样代码也统一一点，便于管理。</p>
 
 <p>所以虽然python在UDF上的效果可以实现，不过功能太过简单，实际环境下还是很无力的。接下来还是用JAVA写<code>UDF</code>,<code>UDAF</code>和<code>UDTF</code>吧。回头吧，少年~</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[人生若只如初见]]></title>
-    <link href="http://2naive.me/blog/2013/10/24/first-love/"/>
-    <updated>2013-10-24T22:11:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/24/first-love</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>人生若只如初見
-何事秋風悲畫扇</p>
-</blockquote>
-
-<blockquote>
-  <p>等閒變卻故人心
-卻道故心人易變</p>
-</blockquote>
-
-<p>兩人相見，並沒有絲毫的躲閃，言語之間還是如同往常。真的像是认识很久的老友，我了解她，她也了解我。交谈时毫不顾忌，于是，她還是那麼欢快中带点豪爽，我還是那樣幽默中带点木讷。</p>
-
-<p>从热恋到分手，是否就是一个从有很多话想讲，到把能讲的话都讲完的一个过程？双方发现没话讲了，于是一方说分手，另一方默认。但开始恋爱的原因，不就是觉得我们有永远讲不完的话题，永远用不完的欢笑吗？为什么当恋人非得有话要讲，聊得越多就表明爱的越多吗？在交往过程中，双方都有责任和义务和对方讲话，一旦讲不出话，沉没时，就会导致冷战的开始，觉得缘分已尽了吧，或者觉得对方变心了。反而是成了朋友之后，卸下了这份责任和义务，想讲的时候就讲，不讲也不会有人责怪。没有了压力，自然聊得轻松。</p>
-
-<p>爱情真的能转化成友情，还是旧情人相见时互相客套的热情？双方尽量表现的不在乎，好像在说，“看吧，没有你我照样过得很好”。我只是单纯的想对她好，因为以前我对其他女生好，她会生气，现在我对她好，至少还没有人会生我的气吧。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[终于来到了厦门]]></title>
-    <link href="http://2naive.me/blog/2013/10/18/travel-to-xiamen/"/>
-    <updated>2013-10-18T01:32:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/18/travel-to-xiamen</id>
-    <content type="html"><![CDATA[<p>以前一直想去厦门，可是都没有机会，没有成行。后来就去了台湾。
-现在从台湾回来，没想到工作还不到一个月就有机会和同事们一起去厦门旅游。我们搭某廉价航空的飞机，旅途算是有点艰辛——除了飞机晚点一个多小时不说，整趟飞行中不能把座椅后背倒下来，结果坐的脖子都僵硬了T_T</p>
-
-<p>好在最后还是安全降落在厦门机场，来到近期被爆数据库的某家快捷酒店。到酒店已经11点半了，稍微整理了一下出来到附近的宵夜摊，在一家卖沙茶面的店里坐下了。虽然说离开台湾还不到2个月，不过现在身处一海峡之隔的厦门，真的对台湾有了一点想念。于是点了一个在台湾常吃的蚵仔煎(ou a jian)，和没有吃过的沙茶面。结果蚵仔煎和我想的差距有点大，看来隔了一条海峡，蚵仔煎出现了变种。可怕的是，价格竟然还要高于台湾的。。。</p>
-
-<h2 id="tips">Tips</h2>
-
-<p>除了物价过高之外，小贩的人品也很低。特别是买水果，基本上所有的小贩秤都偏重，大家在买水果之前，先要把手机放在秤上看看秤的准度。太离谱的就马上走人。如果在晚上，要当心小贩给你偷梁换柱。我们一行人在鹭江道的<b>台湾小吃街</b>门口买了水果，没想到小贩给我们秤完重量后，偷偷的换了另外一袋给我们，幸好我们人多，立刻把她识破了。然后她从一开始的客气的给我们试吃水果，立刻变的很凶的大声叫嚷。</p>
-
-<!--more-->
-<p>#游览路线
-##Day 1
-###鼓浪屿</p>
-
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C鼓浪屿%7C&amp;zoom=14&amp;sensor=false" /></p>
-
-<p>本以为避开十一高峰去人会比较少，不过还是低估了厦门最有名的经典之一的鼓浪屿吸引游客的能力。看来如果十一去的话，必定是被挤出翔啊。鼓浪屿上地势高低起伏比较大，一条条曲折的小巷，从高到低，从低到高的不断延伸。巷子里有很多建筑物和小店，不少店里提供盖章留念，如果是比较文艺的游客，可以搜集这些印章。</p>
-
-<p>在鼓浪屿上有不少有名的店，比如<code>张三疯</code>奶茶店，不过20元一杯的奶茶确实有点小贵，大多数人选择拍照留念后就走人了（后来才发现这家奶茶店的连锁挺多的，不只是在鼓浪屿上才有）。<code>黄胜记</code>的猪肉脯也不错，主要是店内提供免费的试吃，品尝一下味道不买也没有关系。在<code>黄胜记</code>旁边有家叫做<code>联邦调茶局</code>的店，他们除了卖饮料之外，还有很多的茶包和茶叶卖。起先因为名字比较独特就过去看了看，后来被正妹店员吸引进入店内仔细看看，最终被正妹店员叫帅哥之后，果断的买了一罐茶叶回去。也是在附近，有一家卖肥肠粉的店，看到排很长队，味道也不错。附近还有一家比较大的卖明信片和纪念品的店，在店内看到很多具有特色的明信片，就忍不住买了很多，写了寄给台湾的学妹(^_^)</p>
-
-<h3 id="section">中山路步行街</h3>
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C中山路步行街%7C&amp;zoom=14&amp;sensor=false" /></p>
-
-<p>中山路步行街上有很多饭馆，小吃店，服装店。。。第一天路过<code>黄则和</code>，那里的花生汤挺好喝的。在滑蛋中加入了花生，口味比较偏甜。第二天去中山路时，还去了非常有名的<code>藏足馆推拿足浴</code>，大概要排半个多小时才能有空位，而且这还是淡季。比起上海，这里的推拿价格算挺便宜了，物超所值。</p>
-
-<p>靠近中山路的思明西路上，有一家叫<code>梦bar</code>的酒吧，应该是附近比较靠谱的一家酒吧了。来到一个城市，当然要体验一下里面的酒吧了~我一个人去酒吧，坐在靠窗的位子上，点了一杯啤酒，老板送上免费的花生，还热情的跟我聊天。老板是个魔术师，墙上挂了一些照片，不过我没让他当场show几下，因为和另一个可爱的调酒师一起喝酒玩色子会来的更有意思。</p>
-
-<h2 id="day-2">Day 2</h2>
-<p>###南普陀寺
-<img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C南普陀寺%7C&amp;zoom=14&amp;sensor=false" /></p>
-
-<p>本来打算是先去厦门大学的，在轮渡门口坐841路公交车就能到厦大门口。但是厦大是需要排队进入，到那里已经快11点，排队进入厦大的游客已经是相当多了。所以就决定先去南普陀寺。</p>
-
-<p>由于我们不是特意来烧香的，所以前面的庙宇并没有用心看，直接就走上了后山。山不算太高，体力还可以的，比较轻松的就能登顶。在山顶的视野挺不错的，可以看到远处的建筑物，海，轮船。</p>
-
-<h3 id="section-1">厦门大学</h3>
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C厦门大学%7C&amp;zoom=14&amp;sensor=false" /></p>
-
-<p>厦门大学已经成为了厦门一个知名的景点了，很多游客慕名而来。厦大的美丽，让我想起了台大，同样是树木葱郁的校园，刚从校园走出来的我，又一次来到一个校园，还把自己当作是校园中的一份子。</p>
-
-<p>厦大的芙蓉隧道真的是很惊人，里面的涂鸦充分展示了大学生的热情。喜欢拍照的话，可以在里面摆各种pose，可以把自己融入涂鸦当中去。</p>
-
-<h3 id="section-2">环岛南路</h3>
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C环岛路南%7C&amp;zoom=13&amp;sensor=false" /></p>
-
-<p>沿着环岛南路，有一片很大的沙滩，虽然海水不及台湾的清澈，沙滩看起来也比较脏。但是玩水的人还挺多的，似乎只要是海，人就会对它产生一种发自本能的喜爱。我来厦门的目的，也就是想看看海。</p>
-
-<h3 id="section-3">曾厝垵</h3>
-<p><img src="http://maps.googleapis.com/maps/api/staticmap?size=640x100&amp;maptype=roadmap&amp;markers=size:mid%7Ccolor:red%7C曾厝垵%7C&amp;zoom=13&amp;sensor=false" /></p>
-
-<p>从沙滩上来，太阳已经下山了。沿着环岛难路，一路走到了曾厝垵。在点评上看到一家叫做<code>亚尖大排档</code>的店，有不错的评价，还有团购券，晚餐就在那里解决。菜的味道还算不错，只是上菜速度有点慢。</p>
 ]]></content>
   </entry>
   

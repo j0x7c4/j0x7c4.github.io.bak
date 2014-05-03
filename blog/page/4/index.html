@@ -6,7 +6,7 @@
 	<title>醉過方知酒濃</title> 
 	<meta name="author" content="Eli">
 	
-	<meta name="description" content="兩年前的今天，我忙著收拾行李，忙著和朋友吃飯告別，準備著來台灣的一切。對台灣的了解也只是林志玲和聯發科。 經過了兩年的生活，雖然不能肯定說自己對台灣有多了解，但肯定是被台灣深深的吸引了。 我喜歡藍色，因為天空是藍色，大海是藍色，深處廣闊的藍色中，有一種獨特的滿足感。 在台灣，我看到了最美的藍色， &hellip;">
+	<meta name="description" content="HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。 UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -101,6 +101,148 @@
 	<div class="col-md-1 left-page"></div>
 	<div class="col-md-10 main-page">
 	
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/25/hive-python-udf/">
+		
+			HIVE中使用python实现UDF</a>
+	</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2013</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
+
+
+	<a class='category' href='/blog/categories/hive/'>Hive</a>, <a class='category' href='/blog/categories/tech/'>Tech</a>
+
+
+</div>
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/09/25/hive-python-udf/#disqus_thread">Comments</a></div>
+	</div>
+	<div class="entry-content">
+		<p>HIVE，FACEBOOK的一个开源项目，利用类SQL的语句（HiveQL）来加快一般的MapReduce的开发过程。</p>
+
+<p>UDF，user defined function, 因为HIVE毕竟不是一般的关系型数据库，支持的HQL有限，如果要实现复杂的功能，就要通过自己定义函数来帮助实现。</p>
+
+<p>HIVE应该利用PIPE的原理，将自己查询的结果放到python脚本的stdin中。所以他的查询结果不会显示在terminal中，terminal中显示的结果是python的执行结果。</p>
+
+<p>使用HIVE的命令进入数据仓库(search)</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">use search;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>使用HIVE的命令查看已经建立的表</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">show tables;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>使用HIVE的命令查看xxx表中的字段</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">describe xxx;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>使用HIVE命令用PYTHON实现UDF</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">add file udf.py;
+</span><span class="line">SELECT 
+</span><span class="line">TRANSFORM(keyword)
+</span><span class="line">USING 'python udf.py'
+</span><span class="line">AS(keyword)
+</span><span class="line">FROM xxx
+</span><span class="line">WHERE dt='2013-09-25'
+</span><span class="line">;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>要注意的是，这里的TRANSFORM的内容可以写*，但是AS()里就不能写*，会报错。</p>
+
+<p>输入到python中的内容，是按照AS里的数量来决定的。</p>
+
+<p>下面是python的脚本，内容很简单，就是把输入的东西原封不动输出来。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>udf.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+</span><span class="line">    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class="line">    <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/19/looking-for-my-life/">
+		
+			寻找自己的生活</a>
+	</h2>
+	<div class="eli-post-meta">
+		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-19T00:00:00+08:00" pubdate data-updated="true">Sep 19<span>th</span>, 2013</time></div>
+		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
+
+
+	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
+
+
+</div>
+		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/09/19/looking-for-my-life/#disqus_thread">Comments</a></div>
+	</div>
+	<div class="entry-content">
+		<p>转眼间，从台湾回来已经半个多月了。回来之后也忙了不少事情，最大一件事应该是找了一份不错的工作，了去一桩心事。不过其他的心事也接踵而来，比如找房子，找对象等。。。</p>
+
+<p>感觉在毕业之后的两个礼拜内就能找到一份工作，算是相当的神速。不过也有很多客观原因，使得我不得不当机立断，没有太多的“货比三家”的时间。老爸似乎对我这个选择也没有非常满意，在他看来进到一个大家公认的大公司要比呆在一个小公司里做些核心的事情要有意义的多。但是在我看来，我并没有因为进不了这些大公司而感到过分沮丧，我是一个善于自我治愈的人，一开始虽然是有点放不下大公司offer的诱惑，不过在我签下这个到手的offer之后，自我治愈的过程就开始了。能够在一个核心部门发挥自己的价值，能够直接提高产品的效能，能够马上和这家公司的牛人们一起工作，使我对这个工作的兴奋感越来越强。没过多久，我已经把自己的心情恢复到了平衡点上。</p>
+
+<p>现在很多事情都已经一步一步确定，接下来的就是上班工作的节奏了。这几天比较关心的问题就是下班之后干什么？我估摸着自己现在肯定不是一个工作狂，在下班之后希望能及时行乐。那我可以干些什么事呢？然后我发现我一直以来都有的一个问题，就是专注力不够集中，做事很容易分心。不过在deadline的驱使下，我的专注力还是很强的。于是我决定开始看书，一方面补充自己贫乏的人文知识，一方面锻炼自己的专注力。第三方面，也是为了能和喜欢看书的人有些共同语言。这几天看的几本书感觉都不错，曾经的伪文青终于得到了真正的文化知识的滋润了。</p>
+
+<p>对于即将工作的我来说，接下来的日子还很长，还有很多路要走。在生活中有很多东西想要去追逐，希望这些追逐的东西不要在未来的某一天，被证明是可有可无的。希望能找到我自己真正喜欢的生活方式。</p>
+
+<p> </p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -624,100 +766,6 @@
 <p>走著走著覺得是不是應該走慢一點。從小學畢業，就有一條明確的路，我要念中學，3年唸完初中，又是3年唸完高中，然後別人告訴我繼續走，別停下，因為別人都在過那條獨木橋，雖然現在身邊沒有什麼美景，但是你只要越過那條獨木橋就可以看到美景了。於是我跟著潮流一起越過了獨木橋，來到了眾人嚮往的象牙塔。有些人迷失在了象牙塔中，而我卻因為深受之前被灌輸的思想，有路就要繼續走，於是我也跟著一撮人繼續走。大學的四年本應該可以過得更加美好，可是我不是一個留戀眼前景色的人。也許我只是跟著感覺在走，並沒有受到任何人的控制。當然我也不希望被人控制。這座象牙塔轉眼間就快跨出門檻了，可是我因為之前走得太快，太自由，卻摔在了門檻上。幸好我還是爬了起來，繼續向前走。這時一條路突然變成了兩條路，一條通向火熱的熔爐，一條通向幽靜的山谷。我在火爐面前來回走了一圈，發現還沒準備充分，還是走向山谷吧。好吧，2年時間我走出了山谷，TMD面前竟然又是那個火爐。本以為從山谷里出來會有不同的景色。無奈最終還是要面對這個火爐。</p>
 
 <p>到底怎樣的人生才會令人滿意，如果仔細觀察身邊的美景，是否會有種心動的感覺？終於應該要有自己獨立思考的技能了，美不美自己說了算，和別人無關。</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/05/one-night/">
-		
-			又熬過了一夜</a>
-	</h2>
-	<div class="eli-post-meta">
-		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-05T00:00:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time></div>
-		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
-
-
-	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
-
-
-</div>
-		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/07/05/one-night/#disqus_thread">Comments</a></div>
-	</div>
-	<div class="entry-content">
-		<p>又熬過了一夜，這已經是這禮拜連續第5天通宵了。</p>
-
-<p>碩論到目前為止，方法基本上都已經確定，理論部分已經完成的差不多了。而為了準備今天的Rehearsal， 這兩天都在準備投影片，又把論文的思路整理了一遍。發現論文經過和學長的討論，自己的研究之後，理論基礎又堅固很多。</p>
-
-<p>耳機中一直循環播放著劉若英的《親愛的路人》專輯和張震嶽的《我是海雅谷慕》專輯；手機偶爾能夠和女神聊到幾句話，從她睡覺前聊幾句，到醒來後再聊幾句；中途偶爾打了幾場LOL；實驗室的中央空調從晚上12點自動關閉，到早上8點的自動打開，經歷了一晚上的悶熱，我依然還坐在電腦前敲鍵盤。</p>
-
-<p>曾經天真的幻想著寫完論文之後可以好好的休息一下，現在才明白現實的殘酷。論文其實是寫不完的，寫的越深入，發現的問題也就越多。我從一開始預計的方法到現在最終的方法，基本上是接近180度的轉變。雖然現在已經完善很多，但是仔細深究下去，應該還有一大堆漏洞。在熬了這麼多晚後，終於悟出一個道理，”論文沒有寫完的一天，只有熬過deadline的一天。“</p>
-
-<p>我發現我越來越喜歡寫blog了。。。</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/05/best-memory/">
-		
-			每當離別的時候，就會開始回憶過去</a>
-	</h2>
-	<div class="eli-post-meta">
-		<div class="date"><span class="glyphicon eli-meta-icon glyphicon-calendar"></span>
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-05T00:00:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time></div>
-		<div class="tags"><span class="glyphicon eli-meta-icon glyphicon-tags"></span>
-
-
-	<a class='category' href='/blog/categories/sui-xin-suo-xiang/'>隨心所想</a>
-
-
-</div>
-		<div class="comments"><span class="glyphicon eli-meta-icon glyphicon-comment"></span><a href="/blog/2013/07/05/best-memory/#disqus_thread">Comments</a></div>
-	</div>
-	<div class="entry-content">
-		<p>每當離別的時候，就會開始回憶過去。兩年前來台灣的情景彷彿就在昨天，但現在朋友們問我最多的都是什麼時候回大陸，工作找的如何，今後打算在哪裡工作。呆在台灣的日子，也漸漸的進入了倒數計時。</p>
-
-<p>兩年在台灣的日子，過得還算充實。雖然說沒有走遍整個台灣，但也去過了不少地方。在台灣結交的朋友也都不錯，遇到形形色色的人，感受到形形色色的愛。在台灣我的心情大概經歷了三個階段，第一是無憂無慮期，來到了一個新的環境，享受著新環境的好，當時也沒有特別大的壓力，因為實驗室也沒有特別多事情做，除了在期末比較忙之外，平時都過得比較悠閒自在。台灣人也非常的熱情，剛來沒多久就結交了不少朋友，在他們的幫助下，我也很快的融入了台灣的生活中；在台灣經歷了人生中很多的第一次，比如第一次失戀，這也就是第二個階段的開始，那段時間的情緒是極其低落的，做事沒有動力，晚上又會特別難過，感覺就像生活在夢境，和回憶當中，和現實脫離了。不過這也鞏固基友之間的感情，因為剛好有朋友也發生和我同樣的變故。生命中突然感受到同性帶來的溫暖，有時這也讓我比價困惑，對自己的性向也有點動搖。那段時間對人生的思考也特別多，喝的酒也特別多。每當晚上喝完酒，思維就變得和平時不一樣，也許是以前活的太好，所以沒心沒肺，經過這次變故后我的心也成熟了不少，開始能夠體會自己和別人的內心世界，自己能摸索著從那裡走出來，從一開始的不知所措，到胡思亂想，到最終的放下，經歷了還算挺長的時間。漸漸的明白成熟的人應該是怎樣的，自己也朝那個方向前進著，雖然不敢說已經走到了成熟，但也已經走了不少路了；生命中其實充滿著很多奇遇，旅遊往往會帶給你一種驚喜。之前大學時幾乎都沒有和她說過話，可是這一次偶然間卻和她能夠一起在台灣旅遊。我和她說話的機會也從原來的0％到了50％（因為我們是3個人，她除了和另一個朋友說話話，也只能和我說話了）。剛聽說她們要來台灣玩時，我也沒有打算會和她們一路玩到底。不過當時也正好忙完paper, 想放鬆一下心情，於是就決定一起履行了。我們一路從台北到墾丁，一起去了春浪音樂節，一起看了美麗的大海。當時在她身上似乎看到了一種似曾相識的憂傷，不知道什麼時候開始，我的心思也從旅遊轉移到了她的身上。也從那段時間開始，我對人生又產生了一種新的動力，有變的像以前這樣樂觀了，想做一個認真的人，想把每件事情都做好。這也是在台灣的第三個階段，現在還在延續著。</p>
-
-<p>如果當初沒有來台灣，我也許會以一種截然不同的方式活著。以前的生活方式不能說不好，但既然已經變了，就要讓現在的生活變得比以前更好。以前的記憶會被時間逐漸的沖淡，希望那些不開心的可以被時間帶走，開心的記憶可以儘可能多的留下來。</p>
-
-<p><span style="line-height: 1.714285714; font-size: 1rem;">上個禮拜還憂心忡忡的擔心自己是不是會不能畢業，而這禮拜經過幾晚的奮鬥，終於把論文初稿趕完，也逐漸開始準備口試的presentation. 今天還進行了口試的rehearsal. 之前投的paper也意外的被accepted了。現在終於有一種感覺，自己進入了準備畢業的節奏。</span></p>
 
 		
 		
