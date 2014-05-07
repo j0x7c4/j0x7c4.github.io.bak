@@ -4,7 +4,7 @@
   <title><![CDATA[醉過方知酒濃]]></title>
   <link href="http://2naive.me/atom.xml" rel="self"/>
   <link href="http://2naive.me/"/>
-  <updated>2014-05-03T14:43:47+08:00</updated>
+  <updated>2014-05-07T22:55:03+08:00</updated>
   <id>http://2naive.me/</id>
   <author>
     <name><![CDATA[Eli]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[简单的事情]]></title>
+    <link href="http://2naive.me/blog/2014/05/07/simple-programmer/"/>
+    <updated>2014-05-07T20:14:00+08:00</updated>
+    <id>http://2naive.me/blog/2014/05/07/simple-programmer</id>
+    <content type="html"><![CDATA[<p>这几天比较忙，但是感觉在忙的事情没有在主干上。计划做的事情没有太多的进展，大多数时间忙着处理突发的各种意外。</p>
+
+<p>有些事情想象着很简单，比如用别人开发的一个服务，虽然说只要在自己的项目里面增加一些依赖，然后简单的调用API就能实现那些功能。可是真正行动起来，却遇到各种麻烦。开发环境的不一致，导致依赖的jar包的版本冲突；以前的粗心留下的好几个bug，到现在同时爆发；甚至连merge代码都会因网络问题一直无法merge.</p>
+
+<p>所以说没有绝对的“简单的事情”，很多事情都是不确定的，生活中到处充满了uncertainty. 遇到这些问题，只能慢慢的吸取教训，转化成经验，之后可能这些东西就不算什么了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[期待你们的目送]]></title>
@@ -1404,30 +1417,6 @@
 <p>实际工作中，不仅仅需要<code>UDF</code>，<code>UDAF</code>和<code>UDTF</code>都是会经常遇到的。而Python拼死只能处理UDF的情况，对于后者只能呵呵了。于是反正UDAF和UDTF还是需要JAVA来写，那UDF也就顺便用JAVA写了吧。这样代码也统一一点，便于管理。</p>
 
 <p>所以虽然python在UDF上的效果可以实现，不过功能太过简单，实际环境下还是很无力的。接下来还是用JAVA写<code>UDF</code>,<code>UDAF</code>和<code>UDTF</code>吧。回头吧，少年~</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[人生若只如初见]]></title>
-    <link href="http://2naive.me/blog/2013/10/24/first-love/"/>
-    <updated>2013-10-24T22:11:00+08:00</updated>
-    <id>http://2naive.me/blog/2013/10/24/first-love</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>人生若只如初見
-何事秋風悲畫扇</p>
-</blockquote>
-
-<blockquote>
-  <p>等閒變卻故人心
-卻道故心人易變</p>
-</blockquote>
-
-<p>兩人相見，並沒有絲毫的躲閃，言語之間還是如同往常。真的像是认识很久的老友，我了解她，她也了解我。交谈时毫不顾忌，于是，她還是那麼欢快中带点豪爽，我還是那樣幽默中带点木讷。</p>
-
-<p>从热恋到分手，是否就是一个从有很多话想讲，到把能讲的话都讲完的一个过程？双方发现没话讲了，于是一方说分手，另一方默认。但开始恋爱的原因，不就是觉得我们有永远讲不完的话题，永远用不完的欢笑吗？为什么当恋人非得有话要讲，聊得越多就表明爱的越多吗？在交往过程中，双方都有责任和义务和对方讲话，一旦讲不出话，沉没时，就会导致冷战的开始，觉得缘分已尽了吧，或者觉得对方变心了。反而是成了朋友之后，卸下了这份责任和义务，想讲的时候就讲，不讲也不会有人责怪。没有了压力，自然聊得轻松。</p>
-
-<p>爱情真的能转化成友情，还是旧情人相见时互相客套的热情？双方尽量表现的不在乎，好像在说，“看吧，没有你我照样过得很好”。我只是单纯的想对她好，因为以前我对其他女生好，她会生气，现在我对她好，至少还没有人会生我的气吧。</p>
-
 ]]></content>
   </entry>
   

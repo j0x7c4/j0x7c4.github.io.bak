@@ -9,7 +9,6 @@ a :hover, a :focus{
 }
 .main-page {
 	background-color: #f8f8f8;
-	padding: 0 100px 0 100px;
 }
 .eli-navbar {
 	background-color: #1A3A5A;
@@ -26,6 +25,10 @@ a :hover, a :focus{
 }
 .eli-navbar-form {
 	height: 30px;
+}
+article {
+	padding: 30px 100px 30px 100px;
+    border-bottom: 1px dashed #ddd
 }
 .eli-btn-search {
 	background-color: #498CC6;
