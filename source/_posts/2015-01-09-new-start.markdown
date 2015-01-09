@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "new start"
+title: "开始"
 date: 2015-01-09 22:17
 comments: true
 categories: 
